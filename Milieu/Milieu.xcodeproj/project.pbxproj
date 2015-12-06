@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		839C88711C14C1D200D80D0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839C88701C14C1D200D80D0A /* AppDelegate.swift */; };
-		839C88731C14C1D200D80D0A /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839C88721C14C1D200D80D0A /* FirstViewController.swift */; };
+		839C88731C14C1D200D80D0A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839C88721C14C1D200D80D0A /* MapViewController.swift */; };
 		839C88751C14C1D200D80D0A /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839C88741C14C1D200D80D0A /* SecondViewController.swift */; };
 		839C88781C14C1D200D80D0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839C88761C14C1D200D80D0A /* Main.storyboard */; };
 		839C887A1C14C1D200D80D0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 839C88791C14C1D200D80D0A /* Assets.xcassets */; };
 		839C887D1C14C1D200D80D0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839C887B1C14C1D200D80D0A /* LaunchScreen.storyboard */; };
 		839C88881C14C1D200D80D0A /* MilieuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839C88871C14C1D200D80D0A /* MilieuTests.swift */; };
 		839C88931C14C1D200D80D0A /* MilieuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839C88921C14C1D200D80D0A /* MilieuUITests.swift */; };
+		83EE7D531C14D9F100CEDF0D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83EE7D521C14D9F100CEDF0D /* MapKit.framework */; };
+		83EE7D551C14DF3000CEDF0D /* AR5Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE7D541C14DF3000CEDF0D /* AR5Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +39,7 @@
 /* Begin PBXFileReference section */
 		839C886D1C14C1D200D80D0A /* Milieu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milieu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		839C88701C14C1D200D80D0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		839C88721C14C1D200D80D0A /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		839C88721C14C1D200D80D0A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		839C88741C14C1D200D80D0A /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		839C88771C14C1D200D80D0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		839C88791C14C1D200D80D0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +51,8 @@
 		839C888E1C14C1D200D80D0A /* MilieuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MilieuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		839C88921C14C1D200D80D0A /* MilieuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilieuUITests.swift; sourceTree = "<group>"; };
 		839C88941C14C1D200D80D0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83EE7D521C14D9F100CEDF0D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		83EE7D541C14DF3000CEDF0D /* AR5Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AR5Logger.swift; path = Helpers/AR5Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83EE7D531C14D9F100CEDF0D /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +84,7 @@
 		839C88641C14C1D200D80D0A = {
 			isa = PBXGroup;
 			children = (
+				83EE7D521C14D9F100CEDF0D /* MapKit.framework */,
 				839C886F1C14C1D200D80D0A /* Milieu */,
 				839C88861C14C1D200D80D0A /* MilieuTests */,
 				839C88911C14C1D200D80D0A /* MilieuUITests */,
@@ -99,8 +105,9 @@
 		839C886F1C14C1D200D80D0A /* Milieu */ = {
 			isa = PBXGroup;
 			children = (
+				83EE7D561C14E01E00CEDF0D /* Helpers */,
 				839C88701C14C1D200D80D0A /* AppDelegate.swift */,
-				839C88721C14C1D200D80D0A /* FirstViewController.swift */,
+				839C88721C14C1D200D80D0A /* MapViewController.swift */,
 				839C88741C14C1D200D80D0A /* SecondViewController.swift */,
 				839C88761C14C1D200D80D0A /* Main.storyboard */,
 				839C88791C14C1D200D80D0A /* Assets.xcassets */,
@@ -126,6 +133,14 @@
 				839C88941C14C1D200D80D0A /* Info.plist */,
 			);
 			path = MilieuUITests;
+			sourceTree = "<group>";
+		};
+		83EE7D561C14E01E00CEDF0D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				83EE7D541C14DF3000CEDF0D /* AR5Logger.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,7 +277,8 @@
 			files = (
 				839C88751C14C1D200D80D0A /* SecondViewController.swift in Sources */,
 				839C88711C14C1D200D80D0A /* AppDelegate.swift in Sources */,
-				839C88731C14C1D200D80D0A /* FirstViewController.swift in Sources */,
+				839C88731C14C1D200D80D0A /* MapViewController.swift in Sources */,
+				83EE7D551C14DF3000CEDF0D /* AR5Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +505,7 @@
 				839C88991C14C1D200D80D0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		839C889A1C14C1D200D80D0A /* Build configuration list for PBXNativeTarget "MilieuTests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +514,7 @@
 				839C889C1C14C1D200D80D0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		839C889D1C14C1D200D80D0A /* Build configuration list for PBXNativeTarget "MilieuUITests" */ = {
 			isa = XCConfigurationList;
@@ -505,6 +523,7 @@
 				839C889F1C14C1D200D80D0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
