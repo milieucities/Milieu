@@ -15,6 +15,8 @@ class MapViewController: UIViewController {
     // MARK: - UI Labels
     @IBOutlet weak var coordinatesLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var mapView: MKMapView!
+    
     
     // MARK: - VC properties
     let locationManager = CLLocationManager()
@@ -28,8 +30,8 @@ class MapViewController: UIViewController {
     var timer: NSTimer?
     
     // MARK: - VC methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         getLocation()
     }
 
@@ -56,6 +58,17 @@ class MapViewController: UIViewController {
         }
     }
     
+    func showUser(){
+        let coordinate = mapView.userLocation.coordinate
+        AR5Logger.debug("!!!Coordinate:\(coordinate)")
+        let region = MKCoordinateRegionMakeWithDistance(mapView.userLocation.coordinate, 1000, 1000)
+        mapView.setRegion(mapView.regionThatFits(region), animated: true)
+    }
+    
+}
+
+extension MapViewController: MKMapViewDelegate{
+    
 }
 
 extension MapViewController: CLLocationManagerDelegate{
@@ -81,11 +94,11 @@ extension MapViewController: CLLocationManagerDelegate{
             return
         }
         
-        startLocationManger()
+        startLocationManager()
         updateLabels()
     }
     
-    func startLocationManger(){
+    func startLocationManager(){
         if CLLocationManager.locationServicesEnabled(){
             // Config the manager and begin to udpate
             locationManager.delegate = self
@@ -205,6 +218,7 @@ extension MapViewController: CLLocationManagerDelegate{
                 
                 self.performingReverseGeocoding = false
                 self.updateLabels()
+                self.showUser()
             }
         }else if distance < 1.0{
             let timeInterval = newLocation.timestamp.timeIntervalSinceDate(location!.timestamp)
