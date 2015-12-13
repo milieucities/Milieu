@@ -85,17 +85,22 @@ class MapViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "mapToLocationSelection"{
             let locationSelectionVC = segue.destinationViewController as! LocationSelectionViewController
-            
-            // Create the blur effect view
-            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-            let blurEffectView = UIVisualEffectView(effect: blurEffect)
-            blurEffectView.frame = self.view.bounds
-            
-            // Add the blur effect into the viewcontroller
+
+            // Show the location selection view on top of the current map view
             locationSelectionVC.view.frame = self.view.bounds
-            locationSelectionVC.view.backgroundColor = UIColor.clearColor()
-            locationSelectionVC.view.insertSubview(blurEffectView, atIndex: 0)
             locationSelectionVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+            locationSelectionVC.hidesBottomBarWhenPushed = true
+            
+//            // Create the blur effect view
+//            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+//            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//            blurEffectView.frame = self.view.bounds
+//            
+//            // Add the blur effect into the viewcontroller
+//            locationSelectionVC.view.frame = self.view.bounds
+//            locationSelectionVC.view.backgroundColor = UIColor.clearColor()
+//            locationSelectionVC.view.insertSubview(blurEffectView, atIndex: 0)
+//            locationSelectionVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
             
             // TODO: Add vibrancy effect
         }
