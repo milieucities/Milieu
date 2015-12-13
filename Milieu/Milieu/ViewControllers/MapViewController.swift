@@ -30,9 +30,20 @@ class MapViewController: UIViewController {
     var timer: NSTimer?
     
     // MARK: - VC methods
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        getLocation()
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        getLocation()
+        showLocationSelectionView()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
     }
 
     /**
@@ -62,17 +73,42 @@ class MapViewController: UIViewController {
         let coordinate = mapView.userLocation.coordinate
         AR5Logger.debug("!!!Coordinate:\(coordinate)")
         let region = MKCoordinateRegionMakeWithDistance(mapView.userLocation.coordinate, 1000, 1000)
-        mapView.setRegion(mapView.regionThatFits(region), animated: true)
+        mapView.setRegion(mapView.regionThatFits(region), animated: false)
+    }
+    
+    // MARK: - Blur Effect
+    func showLocationSelectionView(){
+        self.performSegueWithIdentifier("mapToLocationSelection", sender: self)
+    }
+    
+    // MARK: - Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "mapToLocationSelection"{
+            let locationSelectionVC = segue.destinationViewController as! LocationSelectionViewController
+
+            // Show the location selection view on top of the current map view
+            locationSelectionVC.view.frame = self.view.bounds
+            locationSelectionVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+            locationSelectionVC.hidesBottomBarWhenPushed = true
+            
+//            // Create the blur effect view
+//            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+//            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//            blurEffectView.frame = self.view.bounds
+//            
+//            // Add the blur effect into the viewcontroller
+//            locationSelectionVC.view.frame = self.view.bounds
+//            locationSelectionVC.view.backgroundColor = UIColor.clearColor()
+//            locationSelectionVC.view.insertSubview(blurEffectView, atIndex: 0)
+//            locationSelectionVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+            
+            // TODO: Add vibrancy effect
+        }
     }
     
 }
 
-extension MapViewController: MKMapViewDelegate{
-    
-}
-
 extension MapViewController: CLLocationManagerDelegate{
-    
     // MARK: - Location Logic
     /**
     Trigger the location update
