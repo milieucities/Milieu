@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import STPopup
 
 class MapViewController: UIViewController {
 
@@ -39,11 +40,18 @@ class MapViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         getLocation()
+        
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        showLocationSelectionView()
+        
+        // Load the defaults value
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaultLocation: String? = defaults.objectForKey(DefaultsKey.Location) as? String
+        if defaultLocation == nil || defaultLocation!.isEmpty{
+            showLocationSelectionView()
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -83,9 +91,13 @@ class MapViewController: UIViewController {
             let coordinateB = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) - 0.002, (location?.coordinate.longitude ?? -75.702) - 0.004)
             let coordinateC = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) + 0.005, (location?.coordinate.longitude ?? -75.702) - 0.006)
             
-            let applicationA = ApplicationInfo(title: "Hello, office", type: ApplicationType.OfficeBuilding, coordinate: coordinateA)
-            let applicationB = ApplicationInfo(title: "Don't touch", type: ApplicationType.Construction, coordinate: coordinateB)
-            let applicationC = ApplicationInfo(title: "Say bye-bye", type: ApplicationType.Demolition, coordinate: coordinateC)
+            let imageA: UIImage = UIImage(named: "office_building_example.png")!
+            let imageB: UIImage = UIImage(named: "construction_example.png")!
+            let imageC: UIImage = UIImage(named: "demolition_example.png")!
+            
+            let applicationA = ApplicationInfo(title: "Hello, office", type: ApplicationType.OfficeBuilding, coordinate: coordinateA, image: imageA)
+            let applicationB = ApplicationInfo(title: "Don't touch", type: ApplicationType.Construction, coordinate: coordinateB, image: imageB)
+            let applicationC = ApplicationInfo(title: "Say bye-bye", type: ApplicationType.Demolition, coordinate: coordinateC, image: imageC)
             mapView.addAnnotation(applicationA)
             mapView.addAnnotation(applicationB)
             mapView.addAnnotation(applicationC)
@@ -122,6 +134,10 @@ class MapViewController: UIViewController {
 }
 
 extension MapViewController: MKMapViewDelegate{
+    
+    /**
+     Create and customize the annotation view
+    */
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? ApplicationInfo{
             // Make unique reusable identifier for these type annotation
@@ -135,16 +151,23 @@ extension MapViewController: MKMapViewDelegate{
             }else{
                 // No reusable annotation found, Create a new one
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.canShowCallout = true
-                view.calloutOffset = CGPoint(x: -5, y: 5)
                 view.image = UIImage(named: annotation.type.rawValue)
-                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
             }
             
             return view
         }
         
         return nil
+    }
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        if let annotation = view.annotation as? ApplicationInfo{
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ApplicationDetailViewController") as? ApplicationDetailViewController
+            viewController?.annotation = annotation
+            let popupController = STPopupController(rootViewController: viewController)
+            popupController.cornerRadius = 4
+            popupController.presentInViewController(self)
+        }
     }
 }
 

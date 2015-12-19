@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8317C97D1C25AFE10088DEAA /* ApplicationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C97C1C25AFE10088DEAA /* ApplicationInfo.swift */; };
 		8317C9801C25ECAC0088DEAA /* Acknowledgement&Legal in Resources */ = {isa = PBXBuildFile; fileRef = 8317C97F1C25ECAC0088DEAA /* Acknowledgement&Legal */; };
+		8317C9831C25F5250088DEAA /* ApplicationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C9821C25F5250088DEAA /* ApplicationDetailViewController.swift */; };
+		8317C9861C25FFF20088DEAA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C9851C25FFF20088DEAA /* Constants.swift */; };
 		834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E87ED1C1C6734002A763C /* MapViewController.swift */; };
 		834E87F01C1C6734002A763C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E87EE1C1C6734002A763C /* SecondViewController.swift */; };
 		834E87F21C1C67E0002A763C /* LocationSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */; };
@@ -45,6 +47,8 @@
 		2C21667E9BAC5A927CE45449 /* Pods_Milieu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Milieu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8317C97C1C25AFE10088DEAA /* ApplicationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationInfo.swift; path = Models/ApplicationInfo.swift; sourceTree = "<group>"; };
 		8317C97F1C25ECAC0088DEAA /* Acknowledgement&Legal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Acknowledgement&Legal"; sourceTree = "<group>"; };
+		8317C9821C25F5250088DEAA /* ApplicationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationDetailViewController.swift; path = ViewControllers/ApplicationDetailViewController.swift; sourceTree = "<group>"; };
+		8317C9851C25FFF20088DEAA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Constants/Constants.swift; sourceTree = "<group>"; };
 		834E87ED1C1C6734002A763C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ViewControllers/MapViewController.swift; sourceTree = "<group>"; };
 		834E87EE1C1C6734002A763C /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecondViewController.swift; path = ViewControllers/SecondViewController.swift; sourceTree = "<group>"; };
 		834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationSelectionViewController.swift; path = ViewControllers/LocationSelectionViewController.swift; sourceTree = "<group>"; };
@@ -109,10 +113,19 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		8317C9841C25FFD50088DEAA /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				8317C9851C25FFF20088DEAA /* Constants.swift */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
 		834E87EC1C1C6687002A763C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				834E87ED1C1C6734002A763C /* MapViewController.swift */,
+				8317C9821C25F5250088DEAA /* ApplicationDetailViewController.swift */,
 				834E87EE1C1C6734002A763C /* SecondViewController.swift */,
 				834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */,
 			);
@@ -145,6 +158,7 @@
 		839C886F1C14C1D200D80D0A /* Milieu */ = {
 			isa = PBXGroup;
 			children = (
+				8317C9841C25FFD50088DEAA /* Constants */,
 				8317C97B1C25AF420088DEAA /* Models */,
 				834E87EC1C1C6687002A763C /* Controllers */,
 				83EE7D561C14E01E00CEDF0D /* Helpers */,
@@ -378,10 +392,12 @@
 			files = (
 				834E87F01C1C6734002A763C /* SecondViewController.swift in Sources */,
 				839C88711C14C1D200D80D0A /* AppDelegate.swift in Sources */,
+				8317C9831C25F5250088DEAA /* ApplicationDetailViewController.swift in Sources */,
 				8317C97D1C25AFE10088DEAA /* ApplicationInfo.swift in Sources */,
 				834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */,
 				83EE7D551C14DF3000CEDF0D /* AR5Logger.swift in Sources */,
 				834E87F21C1C67E0002A763C /* LocationSelectionViewController.swift in Sources */,
+				8317C9861C25FFF20088DEAA /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
