@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8317C97D1C25AFE10088DEAA /* ApplicationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C97C1C25AFE10088DEAA /* ApplicationInfo.swift */; };
 		834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E87ED1C1C6734002A763C /* MapViewController.swift */; };
 		834E87F01C1C6734002A763C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E87EE1C1C6734002A763C /* SecondViewController.swift */; };
 		834E87F21C1C67E0002A763C /* LocationSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8317C97C1C25AFE10088DEAA /* ApplicationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationInfo.swift; path = Models/ApplicationInfo.swift; sourceTree = "<group>"; };
 		834E87ED1C1C6734002A763C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ViewControllers/MapViewController.swift; sourceTree = "<group>"; };
 		834E87EE1C1C6734002A763C /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecondViewController.swift; path = ViewControllers/SecondViewController.swift; sourceTree = "<group>"; };
 		834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationSelectionViewController.swift; path = ViewControllers/LocationSelectionViewController.swift; sourceTree = "<group>"; };
@@ -83,14 +85,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		834E87EC1C1C6687002A763C /* ViewControllers */ = {
+		8317C97B1C25AF420088DEAA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8317C97C1C25AFE10088DEAA /* ApplicationInfo.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		834E87EC1C1C6687002A763C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				834E87ED1C1C6734002A763C /* MapViewController.swift */,
 				834E87EE1C1C6734002A763C /* SecondViewController.swift */,
 				834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */,
 			);
-			name = ViewControllers;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		839C88641C14C1D200D80D0A = {
@@ -117,7 +127,8 @@
 		839C886F1C14C1D200D80D0A /* Milieu */ = {
 			isa = PBXGroup;
 			children = (
-				834E87EC1C1C6687002A763C /* ViewControllers */,
+				8317C97B1C25AF420088DEAA /* Models */,
+				834E87EC1C1C6687002A763C /* Controllers */,
 				83EE7D561C14E01E00CEDF0D /* Helpers */,
 				839C88701C14C1D200D80D0A /* AppDelegate.swift */,
 				839C88761C14C1D200D80D0A /* Main.storyboard */,
@@ -288,6 +299,7 @@
 			files = (
 				834E87F01C1C6734002A763C /* SecondViewController.swift in Sources */,
 				839C88711C14C1D200D80D0A /* AppDelegate.swift in Sources */,
+				8317C97D1C25AFE10088DEAA /* ApplicationInfo.swift in Sources */,
 				834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */,
 				83EE7D551C14DF3000CEDF0D /* AR5Logger.swift in Sources */,
 				834E87F21C1C67E0002A763C /* LocationSelectionViewController.swift in Sources */,

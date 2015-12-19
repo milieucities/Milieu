@@ -13,8 +13,6 @@ import CoreLocation
 class MapViewController: UIViewController {
 
     // MARK: - UI Labels
-    @IBOutlet weak var coordinatesLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     
     
@@ -28,8 +26,14 @@ class MapViewController: UIViewController {
     var performingReverseGeocoding = false
     var lastGeocodingError: NSError?
     var timer: NSTimer?
+    let regionRedius : CLLocationDistance = 1000
     
     // MARK: - VC methods
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        mapView.delegate = self
+    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -54,26 +58,43 @@ class MapViewController: UIViewController {
             let latitudeText = String(format: "%.8f", location.coordinate.latitude)
             let longitudeText = String(format: "%.8f", location.coordinate.longitude)
             
-            coordinatesLabel.text = "\(latitudeText), \(longitudeText)"
+            AR5Logger.debug("\(latitudeText), \(longitudeText)")
             
-            if let placemark = placemark{
-                locationLabel.text = stringFromPlacemark(placemark)
-            }else if performingReverseGeocoding{
-                locationLabel.text = "Searching..."
-            }else{
-                locationLabel.text = "No Address Found"
-            }
-        }else{
-            coordinatesLabel.text = ""
-            locationLabel.text = ""
         }
     }
     
+    /**
+     Show the user's current location
+    */
     func showUser(){
         let coordinate = mapView.userLocation.coordinate
         AR5Logger.debug("!!!Coordinate:\(coordinate)")
-        let region = MKCoordinateRegionMakeWithDistance(mapView.userLocation.coordinate, 1000, 1000)
-        mapView.setRegion(mapView.regionThatFits(region), animated: false)
+        centerMapOnLocation(location ?? CLLocation(latitude: 45.423, longitude: -75.702))
+        showFakeApplication()
+    }
+    
+    /**
+     Show a fake location that always has a certain distance with the current user location
+    */
+    func showFakeApplication(){
+        let coordinateA = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) + 0.003, (location?.coordinate.longitude ?? -75.702) + 0.002)
+        let coordinateB = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) - 0.002, (location?.coordinate.longitude ?? -75.702) - 0.004)
+        let coordinateC = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) + 0.005, (location?.coordinate.longitude ?? -75.702) - 0.006)
+        
+        let applicationA = ApplicationInfo(title: "Hello, office", type: ApplicationType.OfficeBuilding, coordinate: coordinateA)
+        let applicationB = ApplicationInfo(title: "Don't touch", type: ApplicationType.Construction, coordinate: coordinateB)
+        let applicationC = ApplicationInfo(title: "Say bye-bye", type: ApplicationType.Demolition, coordinate: coordinateC)
+        mapView.addAnnotation(applicationA)
+        mapView.addAnnotation(applicationB)
+        mapView.addAnnotation(applicationC)
+    }
+    
+    /**
+     Center the map to the given location region
+    */
+    func centerMapOnLocation(location: CLLocation){
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRedius * 2.0, regionRedius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: false)
     }
     
     // MARK: - Blur Effect
@@ -90,22 +111,36 @@ class MapViewController: UIViewController {
             locationSelectionVC.view.frame = self.view.bounds
             locationSelectionVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
             locationSelectionVC.hidesBottomBarWhenPushed = true
-            
-//            // Create the blur effect view
-//            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-//            let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//            blurEffectView.frame = self.view.bounds
-//            
-//            // Add the blur effect into the viewcontroller
-//            locationSelectionVC.view.frame = self.view.bounds
-//            locationSelectionVC.view.backgroundColor = UIColor.clearColor()
-//            locationSelectionVC.view.insertSubview(blurEffectView, atIndex: 0)
-//            locationSelectionVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-            
-            // TODO: Add vibrancy effect
         }
     }
     
+}
+
+extension MapViewController: MKMapViewDelegate{
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as? ApplicationInfo{
+            // Make unique reusable identifier for these type annotation
+            let identifier = "com.ar5.applicationPin"
+            var view: MKAnnotationView
+            
+            // dequeue annotation and reusable annotation based on identifier
+            if let dequeuedView: MKAnnotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier){
+                dequeuedView.annotation = annotation
+                view = dequeuedView
+            }else{
+                // No reusable annotation found, Create a new one
+                view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                view.canShowCallout = true
+                view.calloutOffset = CGPoint(x: -5, y: 5)
+                view.image = UIImage(named: annotation.type.rawValue)
+                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
+            }
+            
+            return view
+        }
+        
+        return nil
+    }
 }
 
 extension MapViewController: CLLocationManagerDelegate{
