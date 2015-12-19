@@ -77,8 +77,16 @@ class MapViewController: UIViewController {
      Show a fake location that always has a certain distance with the current user location
     */
     func showFakeApplication(){
-        let application = ApplicationInfo(coordinate: CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) + 0.001, (location?.coordinate.longitude ?? -75.702) + 0.001))
-        mapView.addAnnotation(application)
+        let coordinateA = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) + 0.003, (location?.coordinate.longitude ?? -75.702) + 0.002)
+        let coordinateB = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) - 0.002, (location?.coordinate.longitude ?? -75.702) - 0.004)
+        let coordinateC = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) + 0.005, (location?.coordinate.longitude ?? -75.702) - 0.006)
+        
+        let applicationA = ApplicationInfo(title: "Hello, office", type: ApplicationType.OfficeBuilding, coordinate: coordinateA)
+        let applicationB = ApplicationInfo(title: "Don't touch", type: ApplicationType.Construction, coordinate: coordinateB)
+        let applicationC = ApplicationInfo(title: "Say bye-bye", type: ApplicationType.Demolition, coordinate: coordinateC)
+        mapView.addAnnotation(applicationA)
+        mapView.addAnnotation(applicationB)
+        mapView.addAnnotation(applicationC)
     }
     
     /**
@@ -112,18 +120,19 @@ extension MapViewController: MKMapViewDelegate{
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? ApplicationInfo{
             // Make unique reusable identifier for these type annotation
-            let identifier = "pin"
-            var view: MKPinAnnotationView
+            let identifier = "com.ar5.applicationPin"
+            var view: MKAnnotationView
             
             // dequeue annotation and reusable annotation based on identifier
-            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView{
+            if let dequeuedView: MKAnnotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier){
                 dequeuedView.annotation = annotation
                 view = dequeuedView
             }else{
                 // No reusable annotation found, Create a new one
-                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -5, y: 5)
+                view.image = UIImage(named: annotation.type.rawValue)
                 view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
             }
             

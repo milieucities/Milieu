@@ -9,8 +9,10 @@
 import Foundation
 import MapKit
 
-enum ApplicationType{
-    case New
+enum ApplicationType: String{
+    case OfficeBuilding = "office-building.png"
+    case Construction = "constructioncrane.png"
+    case Demolition = "demolition.png"
 }
 
 
@@ -23,9 +25,9 @@ class ApplicationInfo : NSObject, MKAnnotation{
     let type: ApplicationType
     let coordinate: CLLocationCoordinate2D
     
-    init(coordinate: CLLocationCoordinate2D){
-        self.title = "New Application"
-        self.type = ApplicationType.New
+    init(title: String, type: ApplicationType, coordinate: CLLocationCoordinate2D){
+        self.title = title
+        self.type = type
         self.coordinate = coordinate
         
         super.init()
