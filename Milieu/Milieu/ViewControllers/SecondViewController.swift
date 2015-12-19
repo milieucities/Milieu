@@ -3,7 +3,7 @@
 //  Milieu
 //
 //  Created by Xiaoxi Pang on 15/12/6.
-//  Copyright © 2015年 Atelier Ruderal. All rights reserved.
+//  Copyright © 2015 Atelier Ruderal. All rights reserved.
 //
 
 import UIKit

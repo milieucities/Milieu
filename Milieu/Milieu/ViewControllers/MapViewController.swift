@@ -3,7 +3,7 @@
 //  Milieu
 //
 //  Created by Xiaoxi Pang on 15/12/6.
-//  Copyright © 2015年 Atelier Ruderal. All rights reserved.
+//  Copyright © 2015 Atelier Ruderal. All rights reserved.
 //
 
 import UIKit
@@ -27,6 +27,7 @@ class MapViewController: UIViewController {
     var lastGeocodingError: NSError?
     var timer: NSTimer?
     let regionRedius : CLLocationDistance = 1000
+    var createFakeLocation: Bool = true
     
     // MARK: - VC methods
     
@@ -77,16 +78,20 @@ class MapViewController: UIViewController {
      Show a fake location that always has a certain distance with the current user location
     */
     func showFakeApplication(){
-        let coordinateA = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) + 0.003, (location?.coordinate.longitude ?? -75.702) + 0.002)
-        let coordinateB = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) - 0.002, (location?.coordinate.longitude ?? -75.702) - 0.004)
-        let coordinateC = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) + 0.005, (location?.coordinate.longitude ?? -75.702) - 0.006)
-        
-        let applicationA = ApplicationInfo(title: "Hello, office", type: ApplicationType.OfficeBuilding, coordinate: coordinateA)
-        let applicationB = ApplicationInfo(title: "Don't touch", type: ApplicationType.Construction, coordinate: coordinateB)
-        let applicationC = ApplicationInfo(title: "Say bye-bye", type: ApplicationType.Demolition, coordinate: coordinateC)
-        mapView.addAnnotation(applicationA)
-        mapView.addAnnotation(applicationB)
-        mapView.addAnnotation(applicationC)
+        if createFakeLocation{
+            let coordinateA = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) + 0.003, (location?.coordinate.longitude ?? -75.702) + 0.002)
+            let coordinateB = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) - 0.002, (location?.coordinate.longitude ?? -75.702) - 0.004)
+            let coordinateC = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) + 0.005, (location?.coordinate.longitude ?? -75.702) - 0.006)
+            
+            let applicationA = ApplicationInfo(title: "Hello, office", type: ApplicationType.OfficeBuilding, coordinate: coordinateA)
+            let applicationB = ApplicationInfo(title: "Don't touch", type: ApplicationType.Construction, coordinate: coordinateB)
+            let applicationC = ApplicationInfo(title: "Say bye-bye", type: ApplicationType.Demolition, coordinate: coordinateC)
+            mapView.addAnnotation(applicationA)
+            mapView.addAnnotation(applicationB)
+            mapView.addAnnotation(applicationC)
+            
+            createFakeLocation = false
+        }
     }
     
     /**
