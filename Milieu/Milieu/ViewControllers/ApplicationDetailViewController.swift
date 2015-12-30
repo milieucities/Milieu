@@ -27,6 +27,13 @@ class ApplicationDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    deinit{
+        AR5Logger.debug("Deinit the view!")
+        applicationImageView = nil
+        titleLabel = nil
+        applicationTypeLabel = nil
+    }
+    
 
     /*
     // MARK: - Navigation

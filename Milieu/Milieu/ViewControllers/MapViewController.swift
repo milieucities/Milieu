@@ -1,4 +1,4 @@
-//
+	//
 //  FirstViewController.swift
 //  Milieu
 //
@@ -35,6 +35,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        showUser()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -76,10 +77,15 @@ class MapViewController: UIViewController {
      Show the user's current location
     */
     func showUser(){
+        
+        // Get the user current location
         let coordinate = mapView.userLocation.coordinate
+        
         AR5Logger.debug("!!!Coordinate:\(coordinate)")
-        centerMapOnLocation(location ?? CLLocation(latitude: 45.423, longitude: -75.702))
-        showFakeApplication()
+        
+        // Transfer the user current location from CLLocationCoordinate2D to CLLocation for centering map
+        let userLocation: CLLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        centerMapOnLocation(userLocation ?? CLLocation(latitude: 45.423, longitude: -75.702))
     }
     
     /**
@@ -131,6 +137,13 @@ class MapViewController: UIViewController {
         }
     }
     
+    // MARK: - Buttons
+    
+    @IBAction func recenterUserLocation(sender: AnyObject) {
+        showUser()
+        showFakeApplication()
+    }
+    
 }
 
 extension MapViewController: MKMapViewDelegate{
@@ -141,7 +154,7 @@ extension MapViewController: MKMapViewDelegate{
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? ApplicationInfo{
             // Make unique reusable identifier for these type annotation
-            let identifier = "com.ar5.applicationPin"
+            let identifier = annotation.type.rawValue
             var view: MKAnnotationView
             
             // dequeue annotation and reusable annotation based on identifier
@@ -161,11 +174,22 @@ extension MapViewController: MKMapViewDelegate{
     }
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        
+        // Deselect the annotation so that it can be chosen again after dismissing the detail view controller
+        mapView.deselectAnnotation(view.annotation, animated: false)
+        
         if let annotation = view.annotation as? ApplicationInfo{
+            // Create the ApplicationDetailViewController by storyboard
             let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ApplicationDetailViewController") as? ApplicationDetailViewController
+            
+            // Set the annotation
             viewController?.annotation = annotation
+            
+            // Use the STPopupController to make the fancy view controller
             let popupController = STPopupController(rootViewController: viewController)
             popupController.cornerRadius = 4
+            
+            // Show it on top of the map view
             popupController.presentInViewController(self)
         }
     }
@@ -317,7 +341,6 @@ extension MapViewController: CLLocationManagerDelegate{
                 
                 self.performingReverseGeocoding = false
                 self.updateLabels()
-                self.showUser()
             }
         }else if distance < 1.0{
             let timeInterval = newLocation.timestamp.timeIntervalSinceDate(location!.timestamp)
