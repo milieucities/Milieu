@@ -29,19 +29,19 @@ class MapViewController: UIViewController {
     var timer: NSTimer?
     let regionRedius : CLLocationDistance = 1000
     var createFakeLocation: Bool = true
+    var loadInitialLocation: Bool = true
     
     // MARK: - VC methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        showUser()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         getLocation()
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -341,6 +341,14 @@ extension MapViewController: CLLocationManagerDelegate{
                 
                 self.performingReverseGeocoding = false
                 self.updateLabels()
+                
+                // Load the user current initial location once
+                if self.loadInitialLocation{
+                    self.centerMapOnLocation(self.location ?? CLLocation(latitude: 45.423, longitude: -75.702))
+                    self.showFakeApplication()
+                    self.loadInitialLocation = false
+                }
+
             }
         }else if distance < 1.0{
             let timeInterval = newLocation.timestamp.timeIntervalSinceDate(location!.timestamp)
