@@ -23,12 +23,14 @@ enum ApplicationType: String{
 class ApplicationInfo : NSObject, MKAnnotation{
     let title: String?
     let type: ApplicationType
+    let image: UIImage
     let coordinate: CLLocationCoordinate2D
     
-    init(title: String, type: ApplicationType, coordinate: CLLocationCoordinate2D){
+    init(title: String, type: ApplicationType, coordinate: CLLocationCoordinate2D, image: UIImage){
         self.title = title
         self.type = type
         self.coordinate = coordinate
+        self.image = image
         
         super.init()
     }

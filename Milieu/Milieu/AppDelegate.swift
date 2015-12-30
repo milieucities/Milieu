@@ -3,7 +3,7 @@
 //  Milieu
 //
 //  Created by Xiaoxi Pang on 15/12/6.
-//  Copyright © 2015年 Atelier Ruderal. All rights reserved.
+//  Copyright © 2015 Atelier Ruderal. All rights reserved.
 //
 
 import UIKit
@@ -25,8 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(DefaultsKey.Location)
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

@@ -1,14 +1,15 @@
-//
+	//
 //  FirstViewController.swift
 //  Milieu
 //
 //  Created by Xiaoxi Pang on 15/12/6.
-//  Copyright © 2015年 Atelier Ruderal. All rights reserved.
+//  Copyright © 2015 Atelier Ruderal. All rights reserved.
 //
 
 import UIKit
 import MapKit
 import CoreLocation
+import STPopup
 
 class MapViewController: UIViewController {
 
@@ -27,12 +28,15 @@ class MapViewController: UIViewController {
     var lastGeocodingError: NSError?
     var timer: NSTimer?
     let regionRedius : CLLocationDistance = 1000
+    var createFakeLocation: Bool = true
+    var loadInitialLocation: Bool = true
     
     // MARK: - VC methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -42,7 +46,13 @@ class MapViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        showLocationSelectionView()
+        
+        // Load the defaults value
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaultLocation: String? = defaults.objectForKey(DefaultsKey.Location) as? String
+        if defaultLocation == nil || defaultLocation!.isEmpty{
+            showLocationSelectionView()
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -67,26 +77,39 @@ class MapViewController: UIViewController {
      Show the user's current location
     */
     func showUser(){
+        
+        // Get the user current location
         let coordinate = mapView.userLocation.coordinate
+        
         AR5Logger.debug("!!!Coordinate:\(coordinate)")
-        centerMapOnLocation(location ?? CLLocation(latitude: 45.423, longitude: -75.702))
-        showFakeApplication()
+        
+        // Transfer the user current location from CLLocationCoordinate2D to CLLocation for centering map
+        let userLocation: CLLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        centerMapOnLocation(userLocation ?? CLLocation(latitude: 45.423, longitude: -75.702))
     }
     
     /**
      Show a fake location that always has a certain distance with the current user location
     */
     func showFakeApplication(){
-        let coordinateA = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) + 0.003, (location?.coordinate.longitude ?? -75.702) + 0.002)
-        let coordinateB = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) - 0.002, (location?.coordinate.longitude ?? -75.702) - 0.004)
-        let coordinateC = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) + 0.005, (location?.coordinate.longitude ?? -75.702) - 0.006)
-        
-        let applicationA = ApplicationInfo(title: "Hello, office", type: ApplicationType.OfficeBuilding, coordinate: coordinateA)
-        let applicationB = ApplicationInfo(title: "Don't touch", type: ApplicationType.Construction, coordinate: coordinateB)
-        let applicationC = ApplicationInfo(title: "Say bye-bye", type: ApplicationType.Demolition, coordinate: coordinateC)
-        mapView.addAnnotation(applicationA)
-        mapView.addAnnotation(applicationB)
-        mapView.addAnnotation(applicationC)
+        if createFakeLocation{
+            let coordinateA = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) + 0.003, (location?.coordinate.longitude ?? -75.702) + 0.002)
+            let coordinateB = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) - 0.002, (location?.coordinate.longitude ?? -75.702) - 0.004)
+            let coordinateC = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) + 0.005, (location?.coordinate.longitude ?? -75.702) - 0.006)
+            
+            let imageA: UIImage = UIImage(named: "office_building_example.png")!
+            let imageB: UIImage = UIImage(named: "construction_example.png")!
+            let imageC: UIImage = UIImage(named: "demolition_example.png")!
+            
+            let applicationA = ApplicationInfo(title: "Hello, office", type: ApplicationType.OfficeBuilding, coordinate: coordinateA, image: imageA)
+            let applicationB = ApplicationInfo(title: "Don't touch", type: ApplicationType.Construction, coordinate: coordinateB, image: imageB)
+            let applicationC = ApplicationInfo(title: "Say bye-bye", type: ApplicationType.Demolition, coordinate: coordinateC, image: imageC)
+            mapView.addAnnotation(applicationA)
+            mapView.addAnnotation(applicationB)
+            mapView.addAnnotation(applicationC)
+            
+            createFakeLocation = false
+        }
     }
     
     /**
@@ -114,13 +137,24 @@ class MapViewController: UIViewController {
         }
     }
     
+    // MARK: - Buttons
+    
+    @IBAction func recenterUserLocation(sender: AnyObject) {
+        showUser()
+        showFakeApplication()
+    }
+    
 }
 
 extension MapViewController: MKMapViewDelegate{
+    
+    /**
+     Create and customize the annotation view
+    */
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? ApplicationInfo{
             // Make unique reusable identifier for these type annotation
-            let identifier = "com.ar5.applicationPin"
+            let identifier = annotation.type.rawValue
             var view: MKAnnotationView
             
             // dequeue annotation and reusable annotation based on identifier
@@ -130,16 +164,34 @@ extension MapViewController: MKMapViewDelegate{
             }else{
                 // No reusable annotation found, Create a new one
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.canShowCallout = true
-                view.calloutOffset = CGPoint(x: -5, y: 5)
                 view.image = UIImage(named: annotation.type.rawValue)
-                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
             }
             
             return view
         }
         
         return nil
+    }
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        
+        // Deselect the annotation so that it can be chosen again after dismissing the detail view controller
+        mapView.deselectAnnotation(view.annotation, animated: false)
+        
+        if let annotation = view.annotation as? ApplicationInfo{
+            // Create the ApplicationDetailViewController by storyboard
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ApplicationDetailViewController") as? ApplicationDetailViewController
+            
+            // Set the annotation
+            viewController?.annotation = annotation
+            
+            // Use the STPopupController to make the fancy view controller
+            let popupController = STPopupController(rootViewController: viewController)
+            popupController.cornerRadius = 4
+            
+            // Show it on top of the map view
+            popupController.presentInViewController(self)
+        }
     }
 }
 
@@ -289,7 +341,14 @@ extension MapViewController: CLLocationManagerDelegate{
                 
                 self.performingReverseGeocoding = false
                 self.updateLabels()
-                self.showUser()
+                
+                // Load the user current initial location once
+                if self.loadInitialLocation{
+                    self.centerMapOnLocation(self.location ?? CLLocation(latitude: 45.423, longitude: -75.702))
+                    self.showFakeApplication()
+                    self.loadInitialLocation = false
+                }
+
             }
         }else if distance < 1.0{
             let timeInterval = newLocation.timestamp.timeIntervalSinceDate(location!.timestamp)

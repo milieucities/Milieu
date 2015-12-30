@@ -31,6 +31,8 @@ class LocationSelectionViewController: UIViewController, UIPickerViewDelegate, U
     }
     
     @IBAction func useCurrentLocation(sender: AnyObject) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject("Ottawa", forKey: DefaultsKey.Location)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
