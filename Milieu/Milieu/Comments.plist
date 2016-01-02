@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>userName</key>
+		<string>Jonny L. Digger</string>
+		<key>userAvatar</key>
+		<string>jonny</string>
+		<key>content</key>
+		<string>The renderings looks pretty convincing and this ia a nice project to be in the downtown core? A little more street connection to engage the context will definitly make it better. But still it looks a bit generic.</string>
+		<key>date</key>
+		<date>2016-01-02T00:22:26Z</date>
+	</dict>
+</array>
+</plist>

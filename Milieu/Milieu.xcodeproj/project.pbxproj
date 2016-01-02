@@ -11,6 +11,11 @@
 		8317C9801C25ECAC0088DEAA /* Acknowledgement&Legal in Resources */ = {isa = PBXBuildFile; fileRef = 8317C97F1C25ECAC0088DEAA /* Acknowledgement&Legal */; };
 		8317C9831C25F5250088DEAA /* ApplicationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C9821C25F5250088DEAA /* ApplicationDetailViewController.swift */; };
 		8317C9861C25FFF20088DEAA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C9851C25FFF20088DEAA /* Constants.swift */; };
+		83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D031C37424200F16F4D /* CommentsViewController.swift */; };
+		83405D071C37435A00F16F4D /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D061C37435A00F16F4D /* CommentCell.swift */; };
+		83405D091C37487200F16F4D /* ApplicationComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D081C37487200F16F4D /* ApplicationComments.swift */; };
+		83405D0D1C374F4100F16F4D /* Comments.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83405D0C1C374F4100F16F4D /* Comments.plist */; };
+		83405D101C38278D00F16F4D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D0F1C38278D00F16F4D /* UIImage+Resize.swift */; };
 		834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E87ED1C1C6734002A763C /* MapViewController.swift */; };
 		834E87F01C1C6734002A763C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E87EE1C1C6734002A763C /* SecondViewController.swift */; };
 		834E87F21C1C67E0002A763C /* LocationSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */; };
@@ -49,6 +54,11 @@
 		8317C97F1C25ECAC0088DEAA /* Acknowledgement&Legal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Acknowledgement&Legal"; sourceTree = "<group>"; };
 		8317C9821C25F5250088DEAA /* ApplicationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationDetailViewController.swift; path = ViewControllers/ApplicationDetailViewController.swift; sourceTree = "<group>"; };
 		8317C9851C25FFF20088DEAA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Constants/Constants.swift; sourceTree = "<group>"; };
+		83405D031C37424200F16F4D /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentsViewController.swift; path = ViewControllers/CommentsViewController.swift; sourceTree = "<group>"; };
+		83405D061C37435A00F16F4D /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentCell.swift; path = Views/CommentCell.swift; sourceTree = "<group>"; };
+		83405D081C37487200F16F4D /* ApplicationComments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationComments.swift; path = Models/ApplicationComments.swift; sourceTree = "<group>"; };
+		83405D0C1C374F4100F16F4D /* Comments.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Comments.plist; sourceTree = "<group>"; };
+		83405D0F1C38278D00F16F4D /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Resize.swift"; path = "Views/UIImage+Resize.swift"; sourceTree = "<group>"; };
 		834E87ED1C1C6734002A763C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ViewControllers/MapViewController.swift; sourceTree = "<group>"; };
 		834E87EE1C1C6734002A763C /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecondViewController.swift; path = ViewControllers/SecondViewController.swift; sourceTree = "<group>"; };
 		834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationSelectionViewController.swift; path = ViewControllers/LocationSelectionViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				8317C97C1C25AFE10088DEAA /* ApplicationInfo.swift */,
+				83405D081C37487200F16F4D /* ApplicationComments.swift */,
+				83405D0C1C374F4100F16F4D /* Comments.plist */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -121,13 +133,23 @@
 			name = Constants;
 			sourceTree = "<group>";
 		};
+		83405D051C37431400F16F4D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				83405D061C37435A00F16F4D /* CommentCell.swift */,
+				83405D0F1C38278D00F16F4D /* UIImage+Resize.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		834E87EC1C1C6687002A763C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */,
 				834E87ED1C1C6734002A763C /* MapViewController.swift */,
 				8317C9821C25F5250088DEAA /* ApplicationDetailViewController.swift */,
+				83405D031C37424200F16F4D /* CommentsViewController.swift */,
 				834E87EE1C1C6734002A763C /* SecondViewController.swift */,
-				834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -158,6 +180,7 @@
 		839C886F1C14C1D200D80D0A /* Milieu */ = {
 			isa = PBXGroup;
 			children = (
+				83405D051C37431400F16F4D /* Views */,
 				8317C9841C25FFD50088DEAA /* Constants */,
 				8317C97B1C25AF420088DEAA /* Models */,
 				834E87EC1C1C6687002A763C /* Controllers */,
@@ -315,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				839C887D1C14C1D200D80D0A /* LaunchScreen.storyboard in Resources */,
+				83405D0D1C374F4100F16F4D /* Comments.plist in Resources */,
 				839C887A1C14C1D200D80D0A /* Assets.xcassets in Resources */,
 				8317C9801C25ECAC0088DEAA /* Acknowledgement&Legal in Resources */,
 				839C88781C14C1D200D80D0A /* Main.storyboard in Resources */,
@@ -390,14 +414,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83405D091C37487200F16F4D /* ApplicationComments.swift in Sources */,
 				834E87F01C1C6734002A763C /* SecondViewController.swift in Sources */,
 				839C88711C14C1D200D80D0A /* AppDelegate.swift in Sources */,
 				8317C9831C25F5250088DEAA /* ApplicationDetailViewController.swift in Sources */,
 				8317C97D1C25AFE10088DEAA /* ApplicationInfo.swift in Sources */,
+				83405D101C38278D00F16F4D /* UIImage+Resize.swift in Sources */,
 				834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */,
+				83405D071C37435A00F16F4D /* CommentCell.swift in Sources */,
 				83EE7D551C14DF3000CEDF0D /* AR5Logger.swift in Sources */,
 				834E87F21C1C67E0002A763C /* LocationSelectionViewController.swift in Sources */,
 				8317C9861C25FFF20088DEAA /* Constants.swift in Sources */,
+				83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
