@@ -18,6 +18,8 @@ class CommentsViewController: UITableViewController {
         self.landscapeContentSizeInPopup = CGSizeMake(400, 200)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneBtnDidTap")
         comments = ApplicationComments.loadAllApplicationComments()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 80.0
     }
     
     // MARK: - UITableViewDataSource
@@ -37,6 +39,16 @@ class CommentsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return comments.count
+    }
+    
+    // MARK: - UITableViewDelegate
+
+    
+    func calculateHeightForConfiguredSizingCell(cell: UITableViewCell) -> CGFloat{
+        cell.layoutIfNeeded()
+        
+        let size = cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+        return size.height
     }
     
     func doneBtnDidTap(){
