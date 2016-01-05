@@ -34,6 +34,9 @@ class ApplicationDetailViewController: UIViewController {
         applicationTypeLabel = nil
     }
     
+    @IBAction func commentBtnDidTap(sender: AnyObject) {
+        popupController?.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommentsViewController"), animated: true)
+    }
 
     /*
     // MARK: - Navigation
