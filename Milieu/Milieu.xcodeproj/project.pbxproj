@@ -565,11 +565,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 29EB07C9FD9733E26F0EDB5F /* Pods-Milieu.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Milieu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.AtelierRuderal.Milieu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Zingoer.Milieu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -578,11 +578,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FF4869C0DF401998CD305FAD /* Pods-Milieu.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Milieu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.AtelierRuderal.Milieu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Zingoer.Milieu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
