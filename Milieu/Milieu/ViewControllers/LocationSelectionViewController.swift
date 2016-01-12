@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class LocationSelectionViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -15,6 +16,7 @@ class LocationSelectionViewController: UIViewController, UIPickerViewDelegate, U
     @IBOutlet weak var picker: UIPickerView!
     
     var pickerData: [String] = [String]()
+    var managedContext: NSManagedObjectContext!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,3 +56,9 @@ class LocationSelectionViewController: UIViewController, UIPickerViewDelegate, U
         return myTitle
     }
 }
+
+// MARK: - Load neighbourhood data
+
+extension LocationSelectionViewController{
+    
+    }

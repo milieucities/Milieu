@@ -7,15 +7,25 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    lazy var coreDataStack = CoreDataStack()
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        preloadData()
+        
+        let tabBarController = self.window!.rootViewController as! UITabBarController
+        let viewController = tabBarController.viewControllers![0] as! MapViewController
+        viewController.managedContext = coreDataStack.context
+        
+        
+        
         return true
     }
 
@@ -40,6 +50,99 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func preloadData(){
+        let fetchRequest = NSFetchRequest(entityName: "Neighbourhood")
+        
+        do{
+           let neighbourhoods = try coreDataStack.context.executeFetchRequest(fetchRequest) as! [Neighbourhood]
+            
+            if neighbourhoods.count == 0{
+                preloadWardsDataIfNeeded()
+            }else{
+                let ward1 = neighbourhoods.first!
+                
+                print("WardNumber: \(ward1.number), WardName: \(ward1.name)")
+                
+                let coordinateFetch = NSFetchRequest(entityName: "Coordinate")
+                coordinateFetch.predicate = NSPredicate(format: "neighbourhood == %@", ward1)
+                
+                let coordinates = try coreDataStack.context.executeFetchRequest(coordinateFetch) as! [Coordinate]
+                
+                if coordinates.count >= 0{
+                    for coordinate in coordinates{
+                        AR5Logger.debug("Longitude: \(coordinate.longitude!.doubleValue), Latitude: \(coordinate.latitude!.doubleValue)")
+                    }
+                }
+            }
+        }catch let error as NSError{
+            AR5Logger.debug("Can't fetch data: \(error.localizedDescription)")
+        }
+    }
 
+    /**
+     load and parse wards geojson file
+     */
+    func preloadWardsDataIfNeeded(){
+        
+        // Find json file path
+        let jsonURL = NSBundle.mainBundle().URLForResource("ottawa_wards_2010", withExtension: "json")!
+        
+        // Load json data
+        let jsonData = NSData(contentsOfURL: jsonURL)!
+        
+        do{
+            // Parse JSON data
+            let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as! NSDictionary
+            let features = jsonDictionary["features"] as! NSArray
+            
+            // Create entity description
+            let entity = NSEntityDescription.entityForName("Neighbourhood", inManagedObjectContext: coreDataStack.context)!
+            
+            for feature in features{
+                let properties = feature["properties"] as! NSDictionary
+                let wardNumber = Int(properties["WARD_NUM"] as! String)!
+                let wardName = properties["DESCRIPTIO"] as! String
+                
+                // Create entity
+                let neighbourhood = Neighbourhood(entity: entity, insertIntoManagedObjectContext: coreDataStack.context)
+                neighbourhood.name = wardName
+                neighbourhood.number = NSNumber(integer: wardNumber)
+                
+                // Get coordinates array
+                let geometry = feature["geometry"] as! NSDictionary
+                let coordinates = geometry["coordinates"] as! NSArray
+                let xyzArrays = coordinates[0] as! NSArray
+                
+                // Add coordinates into the neighbourhood
+                addCoordinatesForNeighbourhood(neighbourhood, coordinates: xyzArrays)
+
+                coreDataStack.saveContext()
+                coreDataStack.context.reset()
+            }
+            
+            coreDataStack.saveContext()
+            coreDataStack.context.reset()
+            
+        }catch let error as NSError{
+            AR5Logger.debug("Error: \(error.localizedDescription)")
+            abort()
+        }
+    }
+    
+    /**
+     Add coordinates into the Coordinate object
+     
+     - Parameter neighbourhood: The parent neighbourhood that the coordinate belongs to
+     - Parameter coordinates: The coordinate array need to save in
+    */
+    func addCoordinatesForNeighbourhood(neighbourhood: Neighbourhood, coordinates: NSArray){
+        
+        for xyz in coordinates{
+            let coordinate = NSEntityDescription.insertNewObjectForEntityForName("Coordinate", inManagedObjectContext: coreDataStack.context) as! Coordinate
+            coordinate.longitude = NSNumber(double: xyz[0] as! Double)
+            coordinate.latitude = NSNumber(double: xyz[1] as! Double)
+            coordinate.neighbourhood = neighbourhood
+        }
+    }
 }
 
