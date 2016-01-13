@@ -31,7 +31,7 @@ class MapViewController: UIViewController {
     let regionRedius : CLLocationDistance = 1000
     var createFakeLocation: Bool = true
     var loadInitialLocation: Bool = true
-    var managedContext: NSManagedObjectContext!
+    var coreDataStack: CoreDataStack!
     
     // MARK: - VC methods
     
@@ -137,7 +137,8 @@ class MapViewController: UIViewController {
             locationSelectionVC.view.frame = self.view.bounds
             locationSelectionVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
             locationSelectionVC.hidesBottomBarWhenPushed = true
-            locationSelectionVC.managedContext = managedContext
+            locationSelectionVC.coreDataStack = coreDataStack
+            locationSelectionVC.delegate = self
         }
     }
     
@@ -382,4 +383,13 @@ extension MapViewController: CLLocationManagerDelegate{
         presentViewController(alert, animated: true, completion: nil)
     }
 }
+    
+    extension MapViewController: LocationSelectionDelegate{
+        func selectNeighbourhood(name: String, withRegion region: MKCoordinateRegion?) {
+            if let region = region{
+                mapView.region = region
+                print("Show the area: \(name)")
+            }
+        }
+    }
 

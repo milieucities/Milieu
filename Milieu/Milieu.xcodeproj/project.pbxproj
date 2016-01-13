@@ -85,7 +85,6 @@
 		83EE7D541C14DF3000CEDF0D /* AR5Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AR5Logger.swift; path = Helpers/AR5Logger.swift; sourceTree = "<group>"; };
 		83FB298F1C43208D0093EBC8 /* ottawa_wards_2010.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ottawa_wards_2010.json; sourceTree = "<group>"; };
 		83FB29911C4321760093EBC8 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = Models/CoreDataStack.swift; sourceTree = "<group>"; };
-		83FB29931C4322120093EBC8 /* ottawa_wards_2010.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; name = ottawa_wards_2010.geojson; path = "Preload Data/ottawa_wards_2010.geojson"; sourceTree = "<group>"; };
 		83FB29951C4322720093EBC8 /* Milieu.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Milieu.xcdatamodel; sourceTree = "<group>"; };
 		83FB29A11C44AE8E0093EBC8 /* Coordinate+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Coordinate+CoreDataProperties.swift"; path = "Models/Coordinate+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		83FB29A21C44AE8E0093EBC8 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Coordinate.swift; path = Models/Coordinate.swift; sourceTree = "<group>"; };
@@ -211,7 +210,6 @@
 				839C88791C14C1D200D80D0A /* Assets.xcassets */,
 				839C887B1C14C1D200D80D0A /* LaunchScreen.storyboard */,
 				839C887E1C14C1D200D80D0A /* Info.plist */,
-				83FB29931C4322120093EBC8 /* ottawa_wards_2010.geojson */,
 				83FB298F1C43208D0093EBC8 /* ottawa_wards_2010.json */,
 				8317C97F1C25ECAC0088DEAA /* Acknowledgement&Legal */,
 			);

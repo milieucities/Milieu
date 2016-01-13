@@ -63,6 +63,9 @@
                                                         <state key="normal" title="neighbourhood⌄">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="selectNeighbourhood:" destination="tcV-Za-7jb" eventType="touchUpInside" id="yBG-Vr-DeL"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>

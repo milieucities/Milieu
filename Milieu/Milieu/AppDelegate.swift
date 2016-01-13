@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tabBarController = self.window!.rootViewController as! UITabBarController
         let viewController = tabBarController.viewControllers![0] as! MapViewController
-        viewController.managedContext = coreDataStack.context
+        viewController.coreDataStack = coreDataStack
         
         
         
@@ -52,27 +52,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func preloadData(){
         let fetchRequest = NSFetchRequest(entityName: "Neighbourhood")
+        fetchRequest.resultType = .CountResultType
         
         do{
-           let neighbourhoods = try coreDataStack.context.executeFetchRequest(fetchRequest) as! [Neighbourhood]
+            // Check the neighbourhood objects count
+           let results = try coreDataStack.context.executeFetchRequest(fetchRequest) as! [NSNumber]
             
-            if neighbourhoods.count == 0{
+            // If there is no data, load json file in
+            if results.first!.integerValue == 0{
                 preloadWardsDataIfNeeded()
-            }else{
-                let ward1 = neighbourhoods.first!
-                
-                print("WardNumber: \(ward1.number), WardName: \(ward1.name)")
-                
-                let coordinateFetch = NSFetchRequest(entityName: "Coordinate")
-                coordinateFetch.predicate = NSPredicate(format: "neighbourhood == %@", ward1)
-                
-                let coordinates = try coreDataStack.context.executeFetchRequest(coordinateFetch) as! [Coordinate]
-                
-                if coordinates.count >= 0{
-                    for coordinate in coordinates{
-                        AR5Logger.debug("Longitude: \(coordinate.longitude!.doubleValue), Latitude: \(coordinate.latitude!.doubleValue)")
-                    }
-                }
             }
         }catch let error as NSError{
             AR5Logger.debug("Can't fetch data: \(error.localizedDescription)")
