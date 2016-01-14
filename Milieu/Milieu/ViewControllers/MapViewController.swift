@@ -385,10 +385,10 @@ extension MapViewController: CLLocationManagerDelegate{
 }
     
     extension MapViewController: LocationSelectionDelegate{
-        func selectNeighbourhood(name: String, withRegion region: MKCoordinateRegion?) {
+        func selectNeighbourhood(neighbourhood: Neighbourhood, withRegion region: MKCoordinateRegion?) {
             if let region = region{
                 mapView.region = region
-                print("Show the area: \(name)")
+                print("Show the area: \(neighbourhood.name!)")
             }
         }
     }

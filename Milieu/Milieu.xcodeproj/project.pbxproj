@@ -33,8 +33,10 @@
 		83FB29961C4322720093EBC8 /* Milieu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29941C4322720093EBC8 /* Milieu.xcdatamodeld */; };
 		83FB29A51C44AE8E0093EBC8 /* Coordinate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29A11C44AE8E0093EBC8 /* Coordinate+CoreDataProperties.swift */; };
 		83FB29A61C44AE8E0093EBC8 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29A21C44AE8E0093EBC8 /* Coordinate.swift */; };
-		83FB29A71C44AE8E0093EBC8 /* Neighbourhood+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29A31C44AE8E0093EBC8 /* Neighbourhood+CoreDataProperties.swift */; };
-		83FB29A81C44AE8E0093EBC8 /* Neighbourhood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29A41C44AE8E0093EBC8 /* Neighbourhood.swift */; };
+		83FB29EA1C473F140093EBC8 /* City+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29E61C473F140093EBC8 /* City+CoreDataProperties.swift */; };
+		83FB29EB1C473F140093EBC8 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29E71C473F140093EBC8 /* City.swift */; };
+		83FB29EC1C473F140093EBC8 /* Neighbourhood+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29E81C473F140093EBC8 /* Neighbourhood+CoreDataProperties.swift */; };
+		83FB29ED1C473F140093EBC8 /* Neighbourhood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29E91C473F140093EBC8 /* Neighbourhood.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,8 +90,10 @@
 		83FB29951C4322720093EBC8 /* Milieu.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Milieu.xcdatamodel; sourceTree = "<group>"; };
 		83FB29A11C44AE8E0093EBC8 /* Coordinate+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Coordinate+CoreDataProperties.swift"; path = "Models/Coordinate+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		83FB29A21C44AE8E0093EBC8 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Coordinate.swift; path = Models/Coordinate.swift; sourceTree = "<group>"; };
-		83FB29A31C44AE8E0093EBC8 /* Neighbourhood+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Neighbourhood+CoreDataProperties.swift"; path = "Models/Neighbourhood+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		83FB29A41C44AE8E0093EBC8 /* Neighbourhood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Neighbourhood.swift; path = Models/Neighbourhood.swift; sourceTree = "<group>"; };
+		83FB29E61C473F140093EBC8 /* City+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "City+CoreDataProperties.swift"; path = "Models/City+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		83FB29E71C473F140093EBC8 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = City.swift; path = Models/City.swift; sourceTree = "<group>"; };
+		83FB29E81C473F140093EBC8 /* Neighbourhood+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Neighbourhood+CoreDataProperties.swift"; path = "Models/Neighbourhood+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		83FB29E91C473F140093EBC8 /* Neighbourhood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Neighbourhood.swift; path = Models/Neighbourhood.swift; sourceTree = "<group>"; };
 		FF4869C0DF401998CD305FAD /* Pods-Milieu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Milieu.release.xcconfig"; path = "Pods/Target Support Files/Pods-Milieu/Pods-Milieu.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,8 +143,10 @@
 				83FB29941C4322720093EBC8 /* Milieu.xcdatamodeld */,
 				83FB29A11C44AE8E0093EBC8 /* Coordinate+CoreDataProperties.swift */,
 				83FB29A21C44AE8E0093EBC8 /* Coordinate.swift */,
-				83FB29A31C44AE8E0093EBC8 /* Neighbourhood+CoreDataProperties.swift */,
-				83FB29A41C44AE8E0093EBC8 /* Neighbourhood.swift */,
+				83FB29E61C473F140093EBC8 /* City+CoreDataProperties.swift */,
+				83FB29E71C473F140093EBC8 /* City.swift */,
+				83FB29E81C473F140093EBC8 /* Neighbourhood+CoreDataProperties.swift */,
+				83FB29E91C473F140093EBC8 /* Neighbourhood.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -438,22 +444,24 @@
 			files = (
 				83405D091C37487200F16F4D /* ApplicationComments.swift in Sources */,
 				834E87F01C1C6734002A763C /* SecondViewController.swift in Sources */,
+				83FB29EB1C473F140093EBC8 /* City.swift in Sources */,
 				839C88711C14C1D200D80D0A /* AppDelegate.swift in Sources */,
 				8317C9831C25F5250088DEAA /* ApplicationDetailViewController.swift in Sources */,
 				83FB29961C4322720093EBC8 /* Milieu.xcdatamodeld in Sources */,
 				8317C97D1C25AFE10088DEAA /* ApplicationInfo.swift in Sources */,
+				83FB29ED1C473F140093EBC8 /* Neighbourhood.swift in Sources */,
 				83405D101C38278D00F16F4D /* UIImage+Resize.swift in Sources */,
-				83FB29A81C44AE8E0093EBC8 /* Neighbourhood.swift in Sources */,
 				83FB29921C4321760093EBC8 /* CoreDataStack.swift in Sources */,
 				83FB29A51C44AE8E0093EBC8 /* Coordinate+CoreDataProperties.swift in Sources */,
+				83FB29EA1C473F140093EBC8 /* City+CoreDataProperties.swift in Sources */,
 				834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */,
-				83FB29A71C44AE8E0093EBC8 /* Neighbourhood+CoreDataProperties.swift in Sources */,
 				83405D071C37435A00F16F4D /* CommentCell.swift in Sources */,
 				83EE7D551C14DF3000CEDF0D /* AR5Logger.swift in Sources */,
 				834E87F21C1C67E0002A763C /* LocationSelectionViewController.swift in Sources */,
 				8317C9861C25FFF20088DEAA /* Constants.swift in Sources */,
 				83FB29A61C44AE8E0093EBC8 /* Coordinate.swift in Sources */,
 				83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */,
+				83FB29EC1C473F140093EBC8 /* Neighbourhood+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

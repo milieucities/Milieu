@@ -83,6 +83,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as! NSDictionary
             let features = jsonDictionary["features"] as! NSArray
             
+            let cityEntity = NSEntityDescription.entityForName("City", inManagedObjectContext: coreDataStack.context)!
+            let city = City(entity: cityEntity, insertIntoManagedObjectContext:  coreDataStack.context)
+            city.name = "OTTAWA"
+            
             // Create entity description
             let entity = NSEntityDescription.entityForName("Neighbourhood", inManagedObjectContext: coreDataStack.context)!
             
@@ -90,11 +94,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let properties = feature["properties"] as! NSDictionary
                 let wardNumber = Int(properties["WARD_NUM"] as! String)!
                 let wardName = properties["DESCRIPTIO"] as! String
-                
+            
                 // Create entity
                 let neighbourhood = Neighbourhood(entity: entity, insertIntoManagedObjectContext: coreDataStack.context)
                 neighbourhood.name = wardName
                 neighbourhood.number = NSNumber(integer: wardNumber)
+                neighbourhood.city = city
                 
                 // Get coordinates array
                 let geometry = feature["geometry"] as! NSDictionary
@@ -104,8 +109,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // Add coordinates into the neighbourhood
                 addCoordinatesForNeighbourhood(neighbourhood, coordinates: xyzArrays)
 
-                coreDataStack.saveContext()
-                coreDataStack.context.reset()
             }
             
             coreDataStack.saveContext()

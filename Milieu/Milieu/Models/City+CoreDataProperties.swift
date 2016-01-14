@@ -1,5 +1,5 @@
 //
-//  Neighbourhood+CoreDataProperties.swift
+//  City+CoreDataProperties.swift
 //  Milieu
 //
 //  Created by Xiaoxi Pang on 2016-01-13.
@@ -12,11 +12,9 @@
 import Foundation
 import CoreData
 
-extension Neighbourhood {
+extension City {
 
     @NSManaged var name: String?
-    @NSManaged var number: NSNumber?
-    @NSManaged var coordinates: NSSet?
-    @NSManaged var city: City?
+    @NSManaged var neighbourhoods: NSSet?
 
 }

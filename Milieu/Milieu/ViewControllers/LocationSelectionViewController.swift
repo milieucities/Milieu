@@ -12,17 +12,20 @@ import CoreData
 import MapKit
 
 protocol LocationSelectionDelegate: class{
-    func selectNeighbourhood(name: String, withRegion region: MKCoordinateRegion?)
+    func selectNeighbourhood(neighbourhood: Neighbourhood, withRegion region: MKCoordinateRegion?)
 }
 
 class LocationSelectionViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet var backgroundColoredViews: [UIView]!
     @IBOutlet weak var picker: UIPickerView!
+    @IBOutlet weak var selectedLoctionBtn: UIButton!
     
-    var pickerData: [String] = [String]()
     var coreDataStack: CoreDataStack!
     weak var delegate: LocationSelectionDelegate?
+    
+    var neighbourhoods: [Neighbourhood]!
+    var selectedNeighbourhood: Neighbourhood?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,37 +37,27 @@ class LocationSelectionViewController: UIViewController, UIPickerViewDelegate, U
         for view in backgroundColoredViews{
             view.backgroundColor = UIColor.clearColor()
         }
-        
-        pickerData = ["ottawa", "toronto", "montreal", "vancouver"]
     }
     
-    @IBAction func selectNeighbourhood(sender: AnyObject) {
-        self.delegate?.selectNeighbourhood("GLOUCESTER-SOUTHGATE", withRegion: regionForSelectedNeighbourhood("GLOUCESTER-SOUTHGATE"))
-        self.dismissViewControllerAnimated(true, completion: nil)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        neighbourhoods = fetchNeighbourhoods()
+    }
+    
+    @IBAction func showLocation(sender: AnyObject) {
+        if let neighbour = selectedNeighbourhood{
+            self.delegate?.selectNeighbourhood(neighbour, withRegion: regionForSelectedNeighbourhood(neighbour.name!))
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }else{
+            selectedLoctionBtn.setTitle("Please choose a location", forState: .Normal)
+        }
+        
     }
     
     @IBAction func useCurrentLocation(sender: AnyObject) {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject("Ottawa", forKey: DefaultsKey.Location)
         self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
-    }
-    
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
-    }
-    
-    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        let titleData = pickerData[row]
-        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName: UIFont(name:"PingFang TC", size: 18.0)!, NSForegroundColorAttributeName: UIColor.whiteColor()])
-        return myTitle
     }
     
     // MARK: - Manipulate neighbour data
@@ -158,6 +151,47 @@ class LocationSelectionViewController: UIViewController, UIPickerViewDelegate, U
         expressionDescription.expressionResultType = .DoubleAttributeType
         return expressionDescription
     }
-
+    
+    // Mark: - Get Ward Data
+    func fetchNeighbourhoods() -> [Neighbourhood]{
+        let fetchRequest = NSFetchRequest(entityName: "Neighbourhood")
+        let predicate = NSPredicate(format: "city.name == %@", "OTTAWA")
+        fetchRequest.predicate = predicate
+        
+        do{
+            let results = try coreDataStack.context.executeFetchRequest(fetchRequest) as! [Neighbourhood]
+            
+            return results
+            
+        }catch let error as NSError{
+            print("ERROR: \(error.localizedDescription)")
+            return [Neighbourhood]()
+        }
+    }
+    
+    // MARK: - Populate Picker View
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return neighbourhoods.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return neighbourhoods[row].name
+    }
+    
+    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let title = neighbourhoods[row].name!
+        let myTitle = NSAttributedString(string: title, attributes: [NSFontAttributeName: UIFont(name:"PingFang TC", size: 18.0)!, NSForegroundColorAttributeName: UIColor.whiteColor()])
+        return myTitle
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedNeighbourhood = neighbourhoods[row]
+        selectedLoctionBtn.setTitle("\(selectedNeighbourhood!.name!), OTTAWA", forState: .Normal)
+    }
 }
 
