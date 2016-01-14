@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import STPopup
+import CoreData
 
 class MapViewController: UIViewController {
 
@@ -30,6 +31,7 @@ class MapViewController: UIViewController {
     let regionRedius : CLLocationDistance = 1000
     var createFakeLocation: Bool = true
     var loadInitialLocation: Bool = true
+    var coreDataStack: CoreDataStack!
     
     // MARK: - VC methods
     
@@ -47,12 +49,13 @@ class MapViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Load the defaults value
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let defaultLocation: String? = defaults.objectForKey(DefaultsKey.Location) as? String
-        if defaultLocation == nil || defaultLocation!.isEmpty{
-            showLocationSelectionView()
-        }
+        showLocationSelectionView()
+//        // Load the defaults value
+//        let defaults = NSUserDefaults.standardUserDefaults()
+//        let defaultLocation: String? = defaults.objectForKey(DefaultsKey.Location) as? String
+//        if defaultLocation == nil || defaultLocation!.isEmpty{
+//            showLocationSelectionView()
+//        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -134,6 +137,8 @@ class MapViewController: UIViewController {
             locationSelectionVC.view.frame = self.view.bounds
             locationSelectionVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
             locationSelectionVC.hidesBottomBarWhenPushed = true
+            locationSelectionVC.coreDataStack = coreDataStack
+            locationSelectionVC.delegate = self
         }
     }
     
@@ -378,4 +383,13 @@ extension MapViewController: CLLocationManagerDelegate{
         presentViewController(alert, animated: true, completion: nil)
     }
 }
+    
+    extension MapViewController: LocationSelectionDelegate{
+        func selectNeighbourhood(neighbourhood: Neighbourhood, withRegion region: MKCoordinateRegion?) {
+            if let region = region{
+                mapView.region = region
+                print("Show the area: \(neighbourhood.name!)")
+            }
+        }
+    }
 
