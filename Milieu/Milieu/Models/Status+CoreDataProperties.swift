@@ -1,5 +1,5 @@
 //
-//  Neighbourhood+CoreDataProperties.swift
+//  Status+CoreDataProperties.swift
 //  Milieu
 //
 //  Created by Xiaoxi Pang on 2016-01-16.
@@ -12,12 +12,13 @@
 import Foundation
 import CoreData
 
-extension Neighbourhood {
+extension Status {
 
-    @NSManaged var name: String?
-    @NSManaged var number: NSNumber?
-    @NSManaged var city: City?
-    @NSManaged var coordinates: NSSet?
-    @NSManaged var devApps: NSSet?
+    @NSManaged var statusDate: String?
+    @NSManaged var updatedDate: String?
+    @NSManaged var status: String?
+    @NSManaged var createdDate: String?
+    @NSManaged var id: NSNumber?
+    @NSManaged var devApp: DevApp?
 
 }

@@ -35,9 +35,16 @@
 		83FB29A61C44AE8E0093EBC8 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29A21C44AE8E0093EBC8 /* Coordinate.swift */; };
 		83FB29EA1C473F140093EBC8 /* City+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29E61C473F140093EBC8 /* City+CoreDataProperties.swift */; };
 		83FB29EB1C473F140093EBC8 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29E71C473F140093EBC8 /* City.swift */; };
-		83FB29EC1C473F140093EBC8 /* Neighbourhood+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29E81C473F140093EBC8 /* Neighbourhood+CoreDataProperties.swift */; };
-		83FB29ED1C473F140093EBC8 /* Neighbourhood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29E91C473F140093EBC8 /* Neighbourhood.swift */; };
 		83FB29EF1C4A979B0093EBC8 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29EE1C4A979B0093EBC8 /* LaunchViewController.swift */; };
+		83FB29F11C4A9D480093EBC8 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29F01C4A9D480093EBC8 /* ConnectionManager.swift */; };
+		83FB29FD1C4AC4000093EBC8 /* Address+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29F51C4AC4000093EBC8 /* Address+CoreDataProperties.swift */; };
+		83FB29FE1C4AC4000093EBC8 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29F61C4AC4000093EBC8 /* Address.swift */; };
+		83FB29FF1C4AC4000093EBC8 /* Neighbourhood+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29F71C4AC4000093EBC8 /* Neighbourhood+CoreDataProperties.swift */; };
+		83FB2A001C4AC4000093EBC8 /* Neighbourhood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29F81C4AC4000093EBC8 /* Neighbourhood.swift */; };
+		83FB2A011C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29F91C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift */; };
+		83FB2A021C4AC4000093EBC8 /* DevApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29FA1C4AC4000093EBC8 /* DevApp.swift */; };
+		83FB2A031C4AC4000093EBC8 /* Status+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29FB1C4AC4000093EBC8 /* Status+CoreDataProperties.swift */; };
+		83FB2A041C4AC4000093EBC8 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29FC1C4AC4000093EBC8 /* Status.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,9 +100,16 @@
 		83FB29A21C44AE8E0093EBC8 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Coordinate.swift; path = Models/Coordinate.swift; sourceTree = "<group>"; };
 		83FB29E61C473F140093EBC8 /* City+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "City+CoreDataProperties.swift"; path = "Models/City+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		83FB29E71C473F140093EBC8 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = City.swift; path = Models/City.swift; sourceTree = "<group>"; };
-		83FB29E81C473F140093EBC8 /* Neighbourhood+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Neighbourhood+CoreDataProperties.swift"; path = "Models/Neighbourhood+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		83FB29E91C473F140093EBC8 /* Neighbourhood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Neighbourhood.swift; path = Models/Neighbourhood.swift; sourceTree = "<group>"; };
 		83FB29EE1C4A979B0093EBC8 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LaunchViewController.swift; path = ViewControllers/LaunchViewController.swift; sourceTree = "<group>"; };
+		83FB29F01C4A9D480093EBC8 /* ConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionManager.swift; path = Helpers/ConnectionManager.swift; sourceTree = "<group>"; };
+		83FB29F51C4AC4000093EBC8 /* Address+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Address+CoreDataProperties.swift"; path = "Models/Address+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		83FB29F61C4AC4000093EBC8 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Address.swift; path = Models/Address.swift; sourceTree = "<group>"; };
+		83FB29F71C4AC4000093EBC8 /* Neighbourhood+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Neighbourhood+CoreDataProperties.swift"; path = "Models/Neighbourhood+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		83FB29F81C4AC4000093EBC8 /* Neighbourhood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Neighbourhood.swift; path = Models/Neighbourhood.swift; sourceTree = "<group>"; };
+		83FB29F91C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DevApp+CoreDataProperties.swift"; path = "Models/DevApp+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		83FB29FA1C4AC4000093EBC8 /* DevApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DevApp.swift; path = Models/DevApp.swift; sourceTree = "<group>"; };
+		83FB29FB1C4AC4000093EBC8 /* Status+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Status+CoreDataProperties.swift"; path = "Models/Status+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		83FB29FC1C4AC4000093EBC8 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Status.swift; path = Models/Status.swift; sourceTree = "<group>"; };
 		FF4869C0DF401998CD305FAD /* Pods-Milieu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Milieu.release.xcconfig"; path = "Pods/Target Support Files/Pods-Milieu/Pods-Milieu.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,8 +161,14 @@
 				83FB29A21C44AE8E0093EBC8 /* Coordinate.swift */,
 				83FB29E61C473F140093EBC8 /* City+CoreDataProperties.swift */,
 				83FB29E71C473F140093EBC8 /* City.swift */,
-				83FB29E81C473F140093EBC8 /* Neighbourhood+CoreDataProperties.swift */,
-				83FB29E91C473F140093EBC8 /* Neighbourhood.swift */,
+				83FB29F51C4AC4000093EBC8 /* Address+CoreDataProperties.swift */,
+				83FB29F61C4AC4000093EBC8 /* Address.swift */,
+				83FB29F71C4AC4000093EBC8 /* Neighbourhood+CoreDataProperties.swift */,
+				83FB29F81C4AC4000093EBC8 /* Neighbourhood.swift */,
+				83FB29F91C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift */,
+				83FB29FA1C4AC4000093EBC8 /* DevApp.swift */,
+				83FB29FB1C4AC4000093EBC8 /* Status+CoreDataProperties.swift */,
+				83FB29FC1C4AC4000093EBC8 /* Status.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -247,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				83EE7D541C14DF3000CEDF0D /* AR5Logger.swift */,
+				83FB29F01C4A9D480093EBC8 /* ConnectionManager.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -452,20 +473,27 @@
 				8317C9831C25F5250088DEAA /* ApplicationDetailViewController.swift in Sources */,
 				83FB29961C4322720093EBC8 /* Milieu.xcdatamodeld in Sources */,
 				8317C97D1C25AFE10088DEAA /* ApplicationInfo.swift in Sources */,
-				83FB29ED1C473F140093EBC8 /* Neighbourhood.swift in Sources */,
 				83405D101C38278D00F16F4D /* UIImage+Resize.swift in Sources */,
+				83FB29F11C4A9D480093EBC8 /* ConnectionManager.swift in Sources */,
 				83FB29921C4321760093EBC8 /* CoreDataStack.swift in Sources */,
 				83FB29A51C44AE8E0093EBC8 /* Coordinate+CoreDataProperties.swift in Sources */,
+				83FB2A021C4AC4000093EBC8 /* DevApp.swift in Sources */,
+				83FB2A031C4AC4000093EBC8 /* Status+CoreDataProperties.swift in Sources */,
+				83FB2A001C4AC4000093EBC8 /* Neighbourhood.swift in Sources */,
 				83FB29EA1C473F140093EBC8 /* City+CoreDataProperties.swift in Sources */,
 				834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */,
 				83405D071C37435A00F16F4D /* CommentCell.swift in Sources */,
 				83EE7D551C14DF3000CEDF0D /* AR5Logger.swift in Sources */,
 				834E87F21C1C67E0002A763C /* LocationSelectionViewController.swift in Sources */,
 				8317C9861C25FFF20088DEAA /* Constants.swift in Sources */,
+				83FB29FD1C4AC4000093EBC8 /* Address+CoreDataProperties.swift in Sources */,
 				83FB29A61C44AE8E0093EBC8 /* Coordinate.swift in Sources */,
+				83FB2A011C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift in Sources */,
+				83FB2A041C4AC4000093EBC8 /* Status.swift in Sources */,
 				83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */,
+				83FB29FF1C4AC4000093EBC8 /* Neighbourhood+CoreDataProperties.swift in Sources */,
+				83FB29FE1C4AC4000093EBC8 /* Address.swift in Sources */,
 				83FB29EF1C4A979B0093EBC8 /* LaunchViewController.swift in Sources */,
-				83FB29EC1C473F140093EBC8 /* Neighbourhood+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

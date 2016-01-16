@@ -22,16 +22,19 @@ enum ApplicationType: String{
 */
 class ApplicationInfo : NSObject, MKAnnotation{
     let title: String?
-    let type: ApplicationType
-    let image: UIImage
+//    let type: ApplicationType
+//    let image: UIImage
+    let generalDescription: String?
     let coordinate: CLLocationCoordinate2D
     
-    init(title: String, type: ApplicationType, coordinate: CLLocationCoordinate2D, image: UIImage){
-        self.title = title
-        self.type = type
-        self.coordinate = coordinate
-        self.image = image
+    init(devApp: DevApp) {
+        // Set the title
+        generalDescription = devApp.generalDesription
         
-        super.init()
+        let devAppAddress = devApp.addresses?.allObjects.first as? Address
+        title = devAppAddress!.street!
+        let lat = devAppAddress!.latitude?.doubleValue
+        let lon = devAppAddress!.longitude?.doubleValue
+        coordinate = CLLocationCoordinate2DMake(lat!, lon!)
     }
 }

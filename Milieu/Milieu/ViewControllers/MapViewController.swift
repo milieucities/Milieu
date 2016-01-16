@@ -92,30 +92,6 @@ class MapViewController: UIViewController {
     }
     
     /**
-     Show a fake location that always has a certain distance with the current user location
-    */
-    func showFakeApplication(){
-        if createFakeLocation{
-            let coordinateA = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) + 0.003, (location?.coordinate.longitude ?? -75.702) + 0.002)
-            let coordinateB = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) - 0.002, (location?.coordinate.longitude ?? -75.702) - 0.004)
-            let coordinateC = CLLocationCoordinate2DMake((location?.coordinate.latitude ?? 45.423) + 0.005, (location?.coordinate.longitude ?? -75.702) - 0.006)
-            
-            let imageA: UIImage = UIImage(named: "office_building_example.png")!
-            let imageB: UIImage = UIImage(named: "construction_example.png")!
-            let imageC: UIImage = UIImage(named: "demolition_example.png")!
-            
-            let applicationA = ApplicationInfo(title: "Hello, office", type: ApplicationType.OfficeBuilding, coordinate: coordinateA, image: imageA)
-            let applicationB = ApplicationInfo(title: "Don't touch", type: ApplicationType.Construction, coordinate: coordinateB, image: imageB)
-            let applicationC = ApplicationInfo(title: "Say bye-bye", type: ApplicationType.Demolition, coordinate: coordinateC, image: imageC)
-            mapView.addAnnotation(applicationA)
-            mapView.addAnnotation(applicationB)
-            mapView.addAnnotation(applicationC)
-            
-            createFakeLocation = false
-        }
-    }
-    
-    /**
      Center the map to the given location region
     */
     func centerMapOnLocation(location: CLLocation){
@@ -146,7 +122,6 @@ class MapViewController: UIViewController {
     
     @IBAction func recenterUserLocation(sender: AnyObject) {
         showUser()
-        showFakeApplication()
     }
     
 }
@@ -159,17 +134,16 @@ extension MapViewController: MKMapViewDelegate{
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? ApplicationInfo{
             // Make unique reusable identifier for these type annotation
-            let identifier = annotation.type.rawValue
-            var view: MKAnnotationView
+            let identifier = "pin"
+            var view: MKPinAnnotationView
             
             // dequeue annotation and reusable annotation based on identifier
-            if let dequeuedView: MKAnnotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier){
+            if let dequeuedView: MKPinAnnotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView{
                 dequeuedView.annotation = annotation
                 view = dequeuedView
             }else{
                 // No reusable annotation found, Create a new one
-                view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.image = UIImage(named: annotation.type.rawValue)
+                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             }
             
             return view
@@ -350,7 +324,6 @@ extension MapViewController: CLLocationManagerDelegate{
                 // Load the user current initial location once
                 if self.loadInitialLocation{
                     self.centerMapOnLocation(self.location ?? CLLocation(latitude: 45.423, longitude: -75.702))
-                    self.showFakeApplication()
                     self.loadInitialLocation = false
                 }
 
@@ -382,13 +355,26 @@ extension MapViewController: CLLocationManagerDelegate{
         
         presentViewController(alert, animated: true, completion: nil)
     }
+
 }
     
     extension MapViewController: LocationSelectionDelegate{
         func selectNeighbourhood(neighbourhood: Neighbourhood, withRegion region: MKCoordinateRegion?) {
             if let region = region{
-                mapView.region = region
-                print("Show the area: \(neighbourhood.name!)")
+                
+                var applicationInfos = [ApplicationInfo]()
+                for item in neighbourhood.devApps!{
+                    let app = item as! DevApp
+                    if let _ = app.addresses?.allObjects.first as? Address{
+                        let appInfo = ApplicationInfo(devApp: app)
+                        applicationInfos.append(appInfo)
+                    }
+                    
+                }
+                mapView.removeAnnotations(mapView.annotations)
+                mapView.addAnnotations(applicationInfos)
+                mapView.showsUserLocation = true
+                mapView.setRegion(region, animated: true)
             }
         }
     }

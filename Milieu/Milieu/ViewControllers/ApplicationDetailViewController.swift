@@ -19,7 +19,6 @@ class ApplicationDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = annotation.title
-        applicationImageView.image = annotation.image
     }
 
     override func didReceiveMemoryWarning() {

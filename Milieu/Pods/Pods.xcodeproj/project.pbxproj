@@ -7,115 +7,200 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09D29DD6F4735883B72F8D40F23EA377 /* STPopupLeftBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F6538DE89AEABD44AD41048E0C8AC2 /* STPopupLeftBarItem.m */; };
-		0DC41822C73188E352473D7D2F8DFB71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		17B46B9F102704B1CEA99239F523E938 /* STPopup-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BBF9F71B0A87D2810624D3B34523E36F /* STPopup-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		28E7A40AEA36ED4527C72E524B2ADDA3 /* STPopupController.h in Headers */ = {isa = PBXBuildFile; fileRef = DBB088436A1570B07ECD7408F6AEBB40 /* STPopupController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		31536E44CA9ACC2DC59C90C4C06E19CB /* STPopupNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 74296330E670788F4A7890C8FC31FA0C /* STPopupNavigationBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		34771A9691B31C520447FE2EBBA6A35F /* STPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7EC4D2CE6F3D3B2219EA552BF55447 /* STPopupController.m */; };
-		36AF621550F1539BA236C5A0C20038A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
-		3714F4C2A2727038B867B184BA66A1E6 /* UIViewController+STPopup.h in Headers */ = {isa = PBXBuildFile; fileRef = F126D9DEC05A4BB03A959BF84055AD8E /* UIViewController+STPopup.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5B5E4CD82FEF86D471A85993AF1FEF14 /* Pods-Milieu-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C5795AB17C3452C5FC7E38FFEFD6C2 /* Pods-Milieu-dummy.m */; };
-		632EA7371D4FE644372B02E0DD9E5FE2 /* UIViewController+STPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = B183C467257A11028F380E0AF0D007F4 /* UIViewController+STPopup.m */; };
-		6D3A21BF9E8851F0DEC6929A791F6451 /* STPopup.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A047CDAED482558ABE2D88EF4ED74E /* STPopup.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7A788D8765A55DDB15C5D04FA6B66938 /* STPopupLeftBarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = B1982AB58D6C47ABA7D7E0E4068EA19B /* STPopupLeftBarItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A0E63D782F65DBE927C41645DA9BDA78 /* Pods-Milieu-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A8CB7068EB5ED746826A9C41F5079E94 /* Pods-Milieu-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ACCF245F9ADF0A93550E92F0769A97AB /* STPopupNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C79028B4EE9EB7715ACBC849B2764D22 /* STPopupNavigationBar.m */; };
-		C7B5C708654ABA03FB187345CC3E8647 /* STPopup-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 13DC6261F96A61907DA55ABCEEA6B70D /* STPopup-dummy.m */; };
-		D6E00E79FA58B33A8A1131CED16FFB4F /* UIResponder+STPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7B06D755A5216BE900E5B0A4BBCDBD /* UIResponder+STPopup.m */; };
-		DD5D2249FD31A9EF6869F2DCBEE2788D /* UIResponder+STPopup.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FB02C7AE1874B918EE791D3DC8E5778 /* UIResponder+STPopup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		004C4CD2DF4D6E4374266BEC7FBA51F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		03F494989CC1A8857B68A317D5D6860F /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FCF416641E77886ED7E35D41AE7F4E /* Response.swift */; };
+		043016DE016A84920173F3F342DF8956 /* STPopup-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC10685EB01AF3BB493F1264658AA7D7 /* STPopup-dummy.m */; };
+		0681ADC8BAE2C3185F13487BAAB4D9DD /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B73518AE305147CE6F5B626B8882C6 /* Upload.swift */; };
+		134F1377E4F4B936CE0ED5A32C42FB72 /* STPopup-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C5430E2C29B47F0C3022475AFD39E08 /* STPopup-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2C5450AC69398958CF6F7539EF7D99E5 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 764942256BE3D1CD84610BAB21090EC5 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4DE5FCC41D100B113B6645EA64410F16 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D3B63A81EFEFDC04595B837FB2B31E /* ParameterEncoding.swift */; };
+		63F061F3B8F3408A49FC0DA6A6880621 /* STPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67F3134B7BD822B8A9A0C28D0714E50A /* STPopupController.m */; };
+		643B8B4D071D55017A52D9897C5ED2EB /* STPopupNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = A26948D20AC93EA557FC7E919921CD4F /* STPopupNavigationBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7C9E782ABC075B6FCAD93E20E4274DF9 /* Pods-Milieu-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A8CB7068EB5ED746826A9C41F5079E94 /* Pods-Milieu-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80F496237530D382A045A29654D8C11C /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6A05E1D343F040C89282EC3D0FE7B1 /* ServerTrustPolicy.swift */; };
+		82971968CBDAB224212EEB4607C9FB8D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F3BCCEEE2E0CF4E108A2B6D399CBBB /* Result.swift */; };
+		8399DBEE3E2D98EB1F466132E476F4D9 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6F673EED2813798A652EE71FFB1CB /* MultipartFormData.swift */; };
+		8F840AC43F4D25F70AF35D53D138BD5B /* STPopupLeftBarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 791323445F5B80FCB9F7F45FC747C0EB /* STPopupLeftBarItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96D99D0C2472535A169DED65CB231CD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		A040D43AB82E5C0C66D221B78487F4D1 /* UIResponder+STPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 4457EB74799D4E1CF54ECAE23E076088 /* UIResponder+STPopup.m */; };
+		A2C172FE407C0BC3478ADCA91A6C9CEC /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794BF9D5A8805ACA6CE4C12BF03513C3 /* Manager.swift */; };
+		A3505FA2FB3067D53847AD288AC04F03 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40ACB61D1C389E7C3A2D8238E9B067A /* Download.swift */; };
+		B0FB4B01682814B9E3D32F9DC4A5E762 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742ABCF324491361FD5EFB9A160D4EF4 /* Alamofire.swift */; };
+		B2D204A4AAF947A825B3549B40A8CFFF /* Pods-Milieu-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C5795AB17C3452C5FC7E38FFEFD6C2 /* Pods-Milieu-dummy.m */; };
+		B4EDFC53EF47DDE7C30EDF89D778075E /* STPopup.h in Headers */ = {isa = PBXBuildFile; fileRef = 3817AC325149D56441EB268B0E8CA139 /* STPopup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B6D2DC3E3DA44CD382B9B425F40E11C1 /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A116D09966E5FE76EC3D3368BBD02CF9 /* Alamofire-dummy.m */; };
+		C145ECA56228EFC8867F27A61AF4B2BB /* STPopupLeftBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C137AAA5757DDCACC0D515498BF1D895 /* STPopupLeftBarItem.m */; };
+		C1D59DAF9BF492A2BC27A6217CF0390E /* UIViewController+STPopup.h in Headers */ = {isa = PBXBuildFile; fileRef = BED7FC17BB825F35EFFB0AE7B686F9DF /* UIViewController+STPopup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C2E17534BFF5B1B4AFA0A3AD1F535B17 /* STPopupNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1056C6CAAA9B172EA2DA78AC8907FA /* STPopupNavigationBar.m */; };
+		C6303E9F3B0577480177044A37063F83 /* STPopupController.h in Headers */ = {isa = PBXBuildFile; fileRef = C4004371D89FE45FD9A2AB7B57E77AAC /* STPopupController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C75519F0450166A6F28126ECC7664E9C /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CE95FE6A3F379D5CD4A68A1B0753B5 /* Validation.swift */; };
+		CE9BAC648FC2175ED1A560A25CD7F699 /* UIResponder+STPopup.h in Headers */ = {isa = PBXBuildFile; fileRef = B77971358F9AF132847F58AC4244DD70 /* UIResponder+STPopup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D21B7325B3642887BFBE977E021F2D26 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DAE1C9473DD3EE5A090AFA2A33C81ED /* ResponseSerialization.swift */; };
+		D75CA395D510E08C404E55F5BDAE55CE /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2110EDC32C3EE0401B7C9E3BE197EE94 /* Error.swift */; };
+		E71408089F808A21652B019E3793CA3E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		ED4DC54F22DA4157F0D43D304E346AFF /* UIViewController+STPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC90966A42563BA3D6003C89385EE26 /* UIViewController+STPopup.m */; };
+		FC14480CECE872865A9C6E584F886DA3 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE1FE0C44AE8030AA39A0F583021B78 /* Request.swift */; };
+		FEF0D7653948988B804226129471C1EC /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD075AC940E2C6383121536FBD950580 /* Stream.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		03B29871CAE1A9A5BF254189A992A8CE /* PBXContainerItemProxy */ = {
+		EAD609B802E53032463525A29AD9126D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 63B96A82BE56D83A3450C8C226336A08;
+			remoteGlobalIDString = 432ECC54282C84882B482CCB4CF227FC;
+			remoteInfo = Alamofire;
+		};
+		F61DFA06452FE54793D06F46D28112E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CEAA1265BA390FF48C7FA4A93FEBFB11;
 			remoteInfo = STPopup;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		057AFAFB40F81A070022AE383D061E18 /* STPopup.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = STPopup.xcconfig; sourceTree = "<group>"; };
-		0CAE65F1C0D68A7CE0C489EB2F787876 /* STPopup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = STPopup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		11F6538DE89AEABD44AD41048E0C8AC2 /* STPopupLeftBarItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPopupLeftBarItem.m; path = STPopup/STPopupLeftBarItem.m; sourceTree = "<group>"; };
-		13DC6261F96A61907DA55ABCEEA6B70D /* STPopup-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "STPopup-dummy.m"; sourceTree = "<group>"; };
 		17160469FA955A4766981692D638410B /* Pods-Milieu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Milieu.debug.xcconfig"; sourceTree = "<group>"; };
+		1C5430E2C29B47F0C3022475AFD39E08 /* STPopup-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "STPopup-umbrella.h"; sourceTree = "<group>"; };
 		1F612A4DC3587DBFDB132E443616E89E /* Pods-Milieu-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Milieu-acknowledgements.markdown"; sourceTree = "<group>"; };
-		1FB02C7AE1874B918EE791D3DC8E5778 /* UIResponder+STPopup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIResponder+STPopup.h"; path = "STPopup/UIResponder+STPopup.h"; sourceTree = "<group>"; };
+		2110EDC32C3EE0401B7C9E3BE197EE94 /* Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Source/Error.swift; sourceTree = "<group>"; };
+		2829A22C47B32CD77D02B96498F3D584 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
+		2C6A05E1D343F040C89282EC3D0FE7B1 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
+		3817AC325149D56441EB268B0E8CA139 /* STPopup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPopup.h; path = STPopup/STPopup.h; sourceTree = "<group>"; };
 		3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		5A7B06D755A5216BE900E5B0A4BBCDBD /* UIResponder+STPopup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIResponder+STPopup.m"; path = "STPopup/UIResponder+STPopup.m"; sourceTree = "<group>"; };
-		73B2DAFC4A1C1EFDE7E7A092CC690742 /* STPopup.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = STPopup.modulemap; sourceTree = "<group>"; };
-		74296330E670788F4A7890C8FC31FA0C /* STPopupNavigationBar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPopupNavigationBar.h; path = STPopup/STPopupNavigationBar.h; sourceTree = "<group>"; };
+		42F23E5BB2B44BC9375E219DB86E47AD /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
+		4457EB74799D4E1CF54ECAE23E076088 /* UIResponder+STPopup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIResponder+STPopup.m"; path = "STPopup/UIResponder+STPopup.m"; sourceTree = "<group>"; };
+		44A6F673EED2813798A652EE71FFB1CB /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
+		50CE95FE6A3F379D5CD4A68A1B0753B5 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
+		58B73518AE305147CE6F5B626B8882C6 /* Upload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Upload.swift; path = Source/Upload.swift; sourceTree = "<group>"; };
+		59D3B63A81EFEFDC04595B837FB2B31E /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
+		6180398988B07E7D76068827B6DC7DB1 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		67F3134B7BD822B8A9A0C28D0714E50A /* STPopupController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPopupController.m; path = STPopup/STPopupController.m; sourceTree = "<group>"; };
+		742ABCF324491361FD5EFB9A160D4EF4 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 		761383C377B507B8FA780EEA43B76847 /* Pods-Milieu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Milieu.modulemap"; sourceTree = "<group>"; };
-		A82EFF662C8ED77F128D1121BF261B1A /* Pods_Milieu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Milieu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		764942256BE3D1CD84610BAB21090EC5 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
+		784E9C82C57D8F8E8D3FA9FDB85493D4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		791323445F5B80FCB9F7F45FC747C0EB /* STPopupLeftBarItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPopupLeftBarItem.h; path = STPopup/STPopupLeftBarItem.h; sourceTree = "<group>"; };
+		794BF9D5A8805ACA6CE4C12BF03513C3 /* Manager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = Source/Manager.swift; sourceTree = "<group>"; };
+		7EC90966A42563BA3D6003C89385EE26 /* UIViewController+STPopup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+STPopup.m"; path = "STPopup/UIViewController+STPopup.m"; sourceTree = "<group>"; };
+		80DE81A90E25695CD237915A336E7E55 /* STPopup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = STPopup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1056C6CAAA9B172EA2DA78AC8907FA /* STPopupNavigationBar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPopupNavigationBar.m; path = STPopup/STPopupNavigationBar.m; sourceTree = "<group>"; };
+		9AEB593D7E906920F8FD72B39A6B2075 /* STPopup.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = STPopup.modulemap; sourceTree = "<group>"; };
+		9D3F67A53D7FBDE58FB173EB7892B6B9 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Alamofire.modulemap; sourceTree = "<group>"; };
+		9DAE1C9473DD3EE5A090AFA2A33C81ED /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
+		9FE1FE0C44AE8030AA39A0F583021B78 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
+		A116D09966E5FE76EC3D3368BBD02CF9 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
+		A1FCF416641E77886ED7E35D41AE7F4E /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
+		A26948D20AC93EA557FC7E919921CD4F /* STPopupNavigationBar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPopupNavigationBar.h; path = STPopup/STPopupNavigationBar.h; sourceTree = "<group>"; };
 		A8CB7068EB5ED746826A9C41F5079E94 /* Pods-Milieu-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Milieu-umbrella.h"; sourceTree = "<group>"; };
-		AF7141E0175C82DE028FBC6FDA2ABEED /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B183C467257A11028F380E0AF0D007F4 /* UIViewController+STPopup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+STPopup.m"; path = "STPopup/UIViewController+STPopup.m"; sourceTree = "<group>"; };
-		B1982AB58D6C47ABA7D7E0E4068EA19B /* STPopupLeftBarItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPopupLeftBarItem.h; path = STPopup/STPopupLeftBarItem.h; sourceTree = "<group>"; };
 		B3812B4D57FD40093E9EEE43BFA78382 /* Pods-Milieu-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Milieu-acknowledgements.plist"; sourceTree = "<group>"; };
+		B77971358F9AF132847F58AC4244DD70 /* UIResponder+STPopup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIResponder+STPopup.h"; path = "STPopup/UIResponder+STPopup.h"; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		BBF9F71B0A87D2810624D3B34523E36F /* STPopup-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "STPopup-umbrella.h"; sourceTree = "<group>"; };
+		BD075AC940E2C6383121536FBD950580 /* Stream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stream.swift; path = Source/Stream.swift; sourceTree = "<group>"; };
 		BEBD85538BDE2A9168503A67B147E4DF /* Pods-Milieu-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Milieu-resources.sh"; sourceTree = "<group>"; };
-		C1A047CDAED482558ABE2D88EF4ED74E /* STPopup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPopup.h; path = STPopup/STPopup.h; sourceTree = "<group>"; };
-		C36E7E81BACC355EF819F0C7C1518BA7 /* STPopup-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "STPopup-prefix.pch"; sourceTree = "<group>"; };
-		C79028B4EE9EB7715ACBC849B2764D22 /* STPopupNavigationBar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPopupNavigationBar.m; path = STPopup/STPopupNavigationBar.m; sourceTree = "<group>"; };
+		BED7FC17BB825F35EFFB0AE7B686F9DF /* UIViewController+STPopup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+STPopup.h"; path = "STPopup/UIViewController+STPopup.h"; sourceTree = "<group>"; };
+		C137AAA5757DDCACC0D515498BF1D895 /* STPopupLeftBarItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPopupLeftBarItem.m; path = STPopup/STPopupLeftBarItem.m; sourceTree = "<group>"; };
+		C4004371D89FE45FD9A2AB7B57E77AAC /* STPopupController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPopupController.h; path = STPopup/STPopupController.h; sourceTree = "<group>"; };
 		C9C5795AB17C3452C5FC7E38FFEFD6C2 /* Pods-Milieu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Milieu-dummy.m"; sourceTree = "<group>"; };
-		CC7EC4D2CE6F3D3B2219EA552BF55447 /* STPopupController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPopupController.m; path = STPopup/STPopupController.m; sourceTree = "<group>"; };
-		DBB088436A1570B07ECD7408F6AEBB40 /* STPopupController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPopupController.h; path = STPopup/STPopupController.h; sourceTree = "<group>"; };
+		C9F3BCCEEE2E0CF4E108A2B6D399CBBB /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
+		D77589B0CBE1BBB063E1773A40C14E6E /* Pods_Milieu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Milieu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDF19375429BB87EAD80355D1765CD8B /* STPopup.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = STPopup.xcconfig; sourceTree = "<group>"; };
 		DFA46C234526F3DAFE6B2955084A83A6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F126D9DEC05A4BB03A959BF84055AD8E /* UIViewController+STPopup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+STPopup.h"; path = "STPopup/UIViewController+STPopup.h"; sourceTree = "<group>"; };
+		E947B19511F5D6E07A6DFFD34E8F2A4F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC10685EB01AF3BB493F1264658AA7D7 /* STPopup-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "STPopup-dummy.m"; sourceTree = "<group>"; };
+		EF453D77343CE69DDCA8F0405D0A884D /* STPopup-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "STPopup-prefix.pch"; sourceTree = "<group>"; };
+		F40ACB61D1C389E7C3A2D8238E9B067A /* Download.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Download.swift; path = Source/Download.swift; sourceTree = "<group>"; };
 		F4ED51CAEF61DBF8228733B848A18D8B /* Pods-Milieu-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Milieu-frameworks.sh"; sourceTree = "<group>"; };
 		FDE14BD1F2B0AD072A6037A1C535DA72 /* Pods-Milieu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Milieu.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		35CE487E509C080F5A707AEC34E21FEF /* Frameworks */ = {
+		29A14FF2ED5C48CBD85AB0FCA523ECF9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36AF621550F1539BA236C5A0C20038A9 /* Foundation.framework in Frameworks */,
+				004C4CD2DF4D6E4374266BEC7FBA51F4 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A233781F097930C14C764319599C2A14 /* Frameworks */ = {
+		42BC794081712E8243B955352066651C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DC41822C73188E352473D7D2F8DFB71 /* Foundation.framework in Frameworks */,
+				E71408089F808A21652B019E3793CA3E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5AE1D340C4A0691EC28EEA8241C9FCD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96D99D0C2472535A169DED65CB231CD7 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2B29CD6F0E1B897370A5BE158451D9C1 /* STPopup */ = {
+		18D2E70B1654B80E6181D39E45213C3A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C1A047CDAED482558ABE2D88EF4ED74E /* STPopup.h */,
-				DBB088436A1570B07ECD7408F6AEBB40 /* STPopupController.h */,
-				CC7EC4D2CE6F3D3B2219EA552BF55447 /* STPopupController.m */,
-				B1982AB58D6C47ABA7D7E0E4068EA19B /* STPopupLeftBarItem.h */,
-				11F6538DE89AEABD44AD41048E0C8AC2 /* STPopupLeftBarItem.m */,
-				74296330E670788F4A7890C8FC31FA0C /* STPopupNavigationBar.h */,
-				C79028B4EE9EB7715ACBC849B2764D22 /* STPopupNavigationBar.m */,
-				1FB02C7AE1874B918EE791D3DC8E5778 /* UIResponder+STPopup.h */,
-				5A7B06D755A5216BE900E5B0A4BBCDBD /* UIResponder+STPopup.m */,
-				F126D9DEC05A4BB03A959BF84055AD8E /* UIViewController+STPopup.h */,
-				B183C467257A11028F380E0AF0D007F4 /* UIViewController+STPopup.m */,
-				A5A2063BC37F9190436B6E3646DCE187 /* Support Files */,
-			);
-			path = STPopup;
-			sourceTree = "<group>";
-		};
-		52FA8D570969D59EDD58D89E14E2CCF3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A82EFF662C8ED77F128D1121BF261B1A /* Pods_Milieu.framework */,
-				0CAE65F1C0D68A7CE0C489EB2F787876 /* STPopup.framework */,
+				6180398988B07E7D76068827B6DC7DB1 /* Alamofire.framework */,
+				D77589B0CBE1BBB063E1773A40C14E6E /* Pods_Milieu.framework */,
+				80DE81A90E25695CD237915A336E7E55 /* STPopup.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		245A57C477252AB96BEF474F17EF82B1 /* Alamofire */ = {
+			isa = PBXGroup;
+			children = (
+				742ABCF324491361FD5EFB9A160D4EF4 /* Alamofire.swift */,
+				F40ACB61D1C389E7C3A2D8238E9B067A /* Download.swift */,
+				2110EDC32C3EE0401B7C9E3BE197EE94 /* Error.swift */,
+				794BF9D5A8805ACA6CE4C12BF03513C3 /* Manager.swift */,
+				44A6F673EED2813798A652EE71FFB1CB /* MultipartFormData.swift */,
+				59D3B63A81EFEFDC04595B837FB2B31E /* ParameterEncoding.swift */,
+				9FE1FE0C44AE8030AA39A0F583021B78 /* Request.swift */,
+				A1FCF416641E77886ED7E35D41AE7F4E /* Response.swift */,
+				9DAE1C9473DD3EE5A090AFA2A33C81ED /* ResponseSerialization.swift */,
+				C9F3BCCEEE2E0CF4E108A2B6D399CBBB /* Result.swift */,
+				2C6A05E1D343F040C89282EC3D0FE7B1 /* ServerTrustPolicy.swift */,
+				BD075AC940E2C6383121536FBD950580 /* Stream.swift */,
+				58B73518AE305147CE6F5B626B8882C6 /* Upload.swift */,
+				50CE95FE6A3F379D5CD4A68A1B0753B5 /* Validation.swift */,
+				2B14EFECC147F51BC5F260231D03BB56 /* Support Files */,
+			);
+			path = Alamofire;
+			sourceTree = "<group>";
+		};
+		2B14EFECC147F51BC5F260231D03BB56 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9D3F67A53D7FBDE58FB173EB7892B6B9 /* Alamofire.modulemap */,
+				2829A22C47B32CD77D02B96498F3D584 /* Alamofire.xcconfig */,
+				A116D09966E5FE76EC3D3368BBD02CF9 /* Alamofire-dummy.m */,
+				42F23E5BB2B44BC9375E219DB86E47AD /* Alamofire-prefix.pch */,
+				764942256BE3D1CD84610BAB21090EC5 /* Alamofire-umbrella.h */,
+				E947B19511F5D6E07A6DFFD34E8F2A4F /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Alamofire";
+			sourceTree = "<group>";
+		};
+		55D40E2FCEEB16947C37202E6E9F770D /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				784E9C82C57D8F8E8D3FA9FDB85493D4 /* Info.plist */,
+				9AEB593D7E906920F8FD72B39A6B2075 /* STPopup.modulemap */,
+				DDF19375429BB87EAD80355D1765CD8B /* STPopup.xcconfig */,
+				EC10685EB01AF3BB493F1264658AA7D7 /* STPopup-dummy.m */,
+				EF453D77343CE69DDCA8F0405D0A884D /* STPopup-prefix.pch */,
+				1C5430E2C29B47F0C3022475AFD39E08 /* STPopup-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/STPopup";
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -123,32 +208,29 @@
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				7F4CD1558D246BAA89793F22B17F414E /* Pods */,
-				52FA8D570969D59EDD58D89E14E2CCF3 /* Products */,
+				CFA84E0FE147E81AC0BED5C1AAA7DEDE /* Pods */,
+				18D2E70B1654B80E6181D39E45213C3A /* Products */,
 				E1575680C2B187FD73A51F07B2690FF0 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		7F4CD1558D246BAA89793F22B17F414E /* Pods */ = {
+		A101E5B8B761DBFF46651DA7602BF80E /* STPopup */ = {
 			isa = PBXGroup;
 			children = (
-				2B29CD6F0E1B897370A5BE158451D9C1 /* STPopup */,
+				3817AC325149D56441EB268B0E8CA139 /* STPopup.h */,
+				C4004371D89FE45FD9A2AB7B57E77AAC /* STPopupController.h */,
+				67F3134B7BD822B8A9A0C28D0714E50A /* STPopupController.m */,
+				791323445F5B80FCB9F7F45FC747C0EB /* STPopupLeftBarItem.h */,
+				C137AAA5757DDCACC0D515498BF1D895 /* STPopupLeftBarItem.m */,
+				A26948D20AC93EA557FC7E919921CD4F /* STPopupNavigationBar.h */,
+				8D1056C6CAAA9B172EA2DA78AC8907FA /* STPopupNavigationBar.m */,
+				B77971358F9AF132847F58AC4244DD70 /* UIResponder+STPopup.h */,
+				4457EB74799D4E1CF54ECAE23E076088 /* UIResponder+STPopup.m */,
+				BED7FC17BB825F35EFFB0AE7B686F9DF /* UIViewController+STPopup.h */,
+				7EC90966A42563BA3D6003C89385EE26 /* UIViewController+STPopup.m */,
+				55D40E2FCEEB16947C37202E6E9F770D /* Support Files */,
 			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		A5A2063BC37F9190436B6E3646DCE187 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				AF7141E0175C82DE028FBC6FDA2ABEED /* Info.plist */,
-				73B2DAFC4A1C1EFDE7E7A092CC690742 /* STPopup.modulemap */,
-				057AFAFB40F81A070022AE383D061E18 /* STPopup.xcconfig */,
-				13DC6261F96A61907DA55ABCEEA6B70D /* STPopup-dummy.m */,
-				C36E7E81BACC355EF819F0C7C1518BA7 /* STPopup-prefix.pch */,
-				BBF9F71B0A87D2810624D3B34523E36F /* STPopup-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/STPopup";
+			path = STPopup;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -185,6 +267,15 @@
 			path = "Target Support Files/Pods-Milieu";
 			sourceTree = "<group>";
 		};
+		CFA84E0FE147E81AC0BED5C1AAA7DEDE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				245A57C477252AB96BEF474F17EF82B1 /* Alamofire */,
+				A101E5B8B761DBFF46651DA7602BF80E /* STPopup */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E1575680C2B187FD73A51F07B2690FF0 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,38 +287,82 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		18C6D84F7A099D945952C93D3B684E0C /* Headers */ = {
+		4C2BFC377CD7CEDE2C3797AAF8DAF97F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0E63D782F65DBE927C41645DA9BDA78 /* Pods-Milieu-umbrella.h in Headers */,
+				134F1377E4F4B936CE0ED5A32C42FB72 /* STPopup-umbrella.h in Headers */,
+				B4EDFC53EF47DDE7C30EDF89D778075E /* STPopup.h in Headers */,
+				C6303E9F3B0577480177044A37063F83 /* STPopupController.h in Headers */,
+				8F840AC43F4D25F70AF35D53D138BD5B /* STPopupLeftBarItem.h in Headers */,
+				643B8B4D071D55017A52D9897C5ED2EB /* STPopupNavigationBar.h in Headers */,
+				CE9BAC648FC2175ED1A560A25CD7F699 /* UIResponder+STPopup.h in Headers */,
+				C1D59DAF9BF492A2BC27A6217CF0390E /* UIViewController+STPopup.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EC12FC8274C92364E063F026E209481D /* Headers */ = {
+		5F7B61281F714E2A64A51E80A2C9C062 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				17B46B9F102704B1CEA99239F523E938 /* STPopup-umbrella.h in Headers */,
-				6D3A21BF9E8851F0DEC6929A791F6451 /* STPopup.h in Headers */,
-				28E7A40AEA36ED4527C72E524B2ADDA3 /* STPopupController.h in Headers */,
-				7A788D8765A55DDB15C5D04FA6B66938 /* STPopupLeftBarItem.h in Headers */,
-				31536E44CA9ACC2DC59C90C4C06E19CB /* STPopupNavigationBar.h in Headers */,
-				DD5D2249FD31A9EF6869F2DCBEE2788D /* UIResponder+STPopup.h in Headers */,
-				3714F4C2A2727038B867B184BA66A1E6 /* UIViewController+STPopup.h in Headers */,
+				2C5450AC69398958CF6F7539EF7D99E5 /* Alamofire-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A23CA7875DBF4D946B93989B11DEF869 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C9E782ABC075B6FCAD93E20E4274DF9 /* Pods-Milieu-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		63B96A82BE56D83A3450C8C226336A08 /* STPopup */ = {
+		432ECC54282C84882B482CCB4CF227FC /* Alamofire */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A00EE30F5C9E6F53F7FEBAF2006815B /* Build configuration list for PBXNativeTarget "STPopup" */;
+			buildConfigurationList = 8B2B2DA2F7F80D41B1FDB5FACFA4B3DE /* Build configuration list for PBXNativeTarget "Alamofire" */;
 			buildPhases = (
-				DAAFE40CA49F3CBC54CC08D22867BC69 /* Sources */,
-				A233781F097930C14C764319599C2A14 /* Frameworks */,
-				EC12FC8274C92364E063F026E209481D /* Headers */,
+				EF659EFF40D426A3A32A82CDB98CC6EE /* Sources */,
+				A5AE1D340C4A0691EC28EEA8241C9FCD /* Frameworks */,
+				5F7B61281F714E2A64A51E80A2C9C062 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Alamofire;
+			productName = Alamofire;
+			productReference = 6180398988B07E7D76068827B6DC7DB1 /* Alamofire.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		55A90D2D03167D2BAA454420C3DD940E /* Pods-Milieu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 677E1ABD820268654170D856C29D9293 /* Build configuration list for PBXNativeTarget "Pods-Milieu" */;
+			buildPhases = (
+				0EFDAF24122EA1580D55E14E55E5D991 /* Sources */,
+				29A14FF2ED5C48CBD85AB0FCA523ECF9 /* Frameworks */,
+				A23CA7875DBF4D946B93989B11DEF869 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE49C07E63DF71FED1AE73893006AD9D /* PBXTargetDependency */,
+				9519601649A6923385ED5033B04D1B46 /* PBXTargetDependency */,
+			);
+			name = "Pods-Milieu";
+			productName = "Pods-Milieu";
+			productReference = D77589B0CBE1BBB063E1773A40C14E6E /* Pods_Milieu.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CEAA1265BA390FF48C7FA4A93FEBFB11 /* STPopup */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6168C6505869174F47AC3AC6544CC7E7 /* Build configuration list for PBXNativeTarget "STPopup" */;
+			buildPhases = (
+				A8763B35FD108F173E3A6A19E6D1BF47 /* Sources */,
+				42BC794081712E8243B955352066651C /* Frameworks */,
+				4C2BFC377CD7CEDE2C3797AAF8DAF97F /* Headers */,
 			);
 			buildRules = (
 			);
@@ -235,25 +370,7 @@
 			);
 			name = STPopup;
 			productName = STPopup;
-			productReference = 0CAE65F1C0D68A7CE0C489EB2F787876 /* STPopup.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		C833B2D95E3DD92FFA9A9ED69A9B1090 /* Pods-Milieu */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8BAA40A02BB6FE585262086546B9DE0F /* Build configuration list for PBXNativeTarget "Pods-Milieu" */;
-			buildPhases = (
-				BA118E686CE7A6D29ECA9CF6FA36939F /* Sources */,
-				35CE487E509C080F5A707AEC34E21FEF /* Frameworks */,
-				18C6D84F7A099D945952C93D3B684E0C /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B8D5D1E997F1321190593D085BFD13B9 /* PBXTargetDependency */,
-			);
-			name = "Pods-Milieu";
-			productName = "Pods-Milieu";
-			productReference = A82EFF662C8ED77F128D1121BF261B1A /* Pods_Milieu.framework */;
+			productReference = 80DE81A90E25695CD237915A336E7E55 /* STPopup.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -264,11 +381,6 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
-				TargetAttributes = {
-					63B96A82BE56D83A3450C8C226336A08 = {
-						DevelopmentTeam = B6FY248JPJ;
-					};
-				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -278,84 +390,83 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 52FA8D570969D59EDD58D89E14E2CCF3 /* Products */;
+			productRefGroup = 18D2E70B1654B80E6181D39E45213C3A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C833B2D95E3DD92FFA9A9ED69A9B1090 /* Pods-Milieu */,
-				63B96A82BE56D83A3450C8C226336A08 /* STPopup */,
+				432ECC54282C84882B482CCB4CF227FC /* Alamofire */,
+				55A90D2D03167D2BAA454420C3DD940E /* Pods-Milieu */,
+				CEAA1265BA390FF48C7FA4A93FEBFB11 /* STPopup */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BA118E686CE7A6D29ECA9CF6FA36939F /* Sources */ = {
+		0EFDAF24122EA1580D55E14E55E5D991 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B5E4CD82FEF86D471A85993AF1FEF14 /* Pods-Milieu-dummy.m in Sources */,
+				B2D204A4AAF947A825B3549B40A8CFFF /* Pods-Milieu-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DAAFE40CA49F3CBC54CC08D22867BC69 /* Sources */ = {
+		A8763B35FD108F173E3A6A19E6D1BF47 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7B5C708654ABA03FB187345CC3E8647 /* STPopup-dummy.m in Sources */,
-				34771A9691B31C520447FE2EBBA6A35F /* STPopupController.m in Sources */,
-				09D29DD6F4735883B72F8D40F23EA377 /* STPopupLeftBarItem.m in Sources */,
-				ACCF245F9ADF0A93550E92F0769A97AB /* STPopupNavigationBar.m in Sources */,
-				D6E00E79FA58B33A8A1131CED16FFB4F /* UIResponder+STPopup.m in Sources */,
-				632EA7371D4FE644372B02E0DD9E5FE2 /* UIViewController+STPopup.m in Sources */,
+				043016DE016A84920173F3F342DF8956 /* STPopup-dummy.m in Sources */,
+				63F061F3B8F3408A49FC0DA6A6880621 /* STPopupController.m in Sources */,
+				C145ECA56228EFC8867F27A61AF4B2BB /* STPopupLeftBarItem.m in Sources */,
+				C2E17534BFF5B1B4AFA0A3AD1F535B17 /* STPopupNavigationBar.m in Sources */,
+				A040D43AB82E5C0C66D221B78487F4D1 /* UIResponder+STPopup.m in Sources */,
+				ED4DC54F22DA4157F0D43D304E346AFF /* UIViewController+STPopup.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF659EFF40D426A3A32A82CDB98CC6EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6D2DC3E3DA44CD382B9B425F40E11C1 /* Alamofire-dummy.m in Sources */,
+				B0FB4B01682814B9E3D32F9DC4A5E762 /* Alamofire.swift in Sources */,
+				A3505FA2FB3067D53847AD288AC04F03 /* Download.swift in Sources */,
+				D75CA395D510E08C404E55F5BDAE55CE /* Error.swift in Sources */,
+				A2C172FE407C0BC3478ADCA91A6C9CEC /* Manager.swift in Sources */,
+				8399DBEE3E2D98EB1F466132E476F4D9 /* MultipartFormData.swift in Sources */,
+				4DE5FCC41D100B113B6645EA64410F16 /* ParameterEncoding.swift in Sources */,
+				FC14480CECE872865A9C6E584F886DA3 /* Request.swift in Sources */,
+				03F494989CC1A8857B68A317D5D6860F /* Response.swift in Sources */,
+				D21B7325B3642887BFBE977E021F2D26 /* ResponseSerialization.swift in Sources */,
+				82971968CBDAB224212EEB4607C9FB8D /* Result.swift in Sources */,
+				80F496237530D382A045A29654D8C11C /* ServerTrustPolicy.swift in Sources */,
+				FEF0D7653948988B804226129471C1EC /* Stream.swift in Sources */,
+				0681ADC8BAE2C3185F13487BAAB4D9DD /* Upload.swift in Sources */,
+				C75519F0450166A6F28126ECC7664E9C /* Validation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B8D5D1E997F1321190593D085BFD13B9 /* PBXTargetDependency */ = {
+		9519601649A6923385ED5033B04D1B46 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = STPopup;
-			target = 63B96A82BE56D83A3450C8C226336A08 /* STPopup */;
-			targetProxy = 03B29871CAE1A9A5BF254189A992A8CE /* PBXContainerItemProxy */;
+			target = CEAA1265BA390FF48C7FA4A93FEBFB11 /* STPopup */;
+			targetProxy = F61DFA06452FE54793D06F46D28112E4 /* PBXContainerItemProxy */;
+		};
+		FE49C07E63DF71FED1AE73893006AD9D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			target = 432ECC54282C84882B482CCB4CF227FC /* Alamofire */;
+			targetProxy = EAD609B802E53032463525A29AD9126D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		16D7BA36982620B2D4B69627D2149F82 /* Debug */ = {
+		7140907CBF581DC0EE122FBB732DF144 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 057AFAFB40F81A070022AE383D061E18 /* STPopup.xcconfig */;
+			baseConfigurationReference = DDF19375429BB87EAD80355D1765CD8B /* STPopup.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/STPopup/STPopup-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/STPopup/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/STPopup/STPopup.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = STPopup;
-				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		9E7A683B2071088588B1F9374743D725 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 057AFAFB40F81A070022AE383D061E18 /* STPopup.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -371,7 +482,94 @@
 				MODULEMAP_FILE = "Target Support Files/STPopup/STPopup.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = STPopup;
-				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		82D58FB794A766FD1BF88C78DFEA7168 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 17160469FA955A4766981692D638410B /* Pods-Milieu.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Milieu/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Milieu/Pods-Milieu.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_Milieu;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		84D0C381D754DB77EAB7DF1FD0EAF5D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDE14BD1F2B0AD072A6037A1C535DA72 /* Pods-Milieu.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Milieu/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Milieu/Pods-Milieu.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_Milieu;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A3427C918F24207B5FD3A44958345D7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2829A22C47B32CD77D02B96498F3D584 /* Alamofire.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Alamofire;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -419,9 +617,9 @@
 			};
 			name = Debug;
 		};
-		B67C2A5EDFC720EAF3929DF53AF68BC5 /* Release */ = {
+		C993D8405F342C8E23BAD4EDF32D79E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FDE14BD1F2B0AD072A6037A1C535DA72 /* Pods-Milieu.release.xcconfig */;
+			baseConfigurationReference = 2829A22C47B32CD77D02B96498F3D584 /* Alamofire.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -430,28 +628,26 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-Milieu/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Milieu/Pods-Milieu.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_Milieu;
+				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Alamofire;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
-		EB819EC81BD49D2B2DF85519B5D881C7 /* Debug */ = {
+		D485F1FC394F4CE59DF0BB42BFABD73E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 17160469FA955A4766981692D638410B /* Pods-Milieu.debug.xcconfig */;
+			baseConfigurationReference = DDF19375429BB87EAD80355D1765CD8B /* STPopup.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -460,17 +656,14 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-Milieu/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/STPopup/STPopup-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/STPopup/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Milieu/Pods-Milieu.modulemap";
+				MODULEMAP_FILE = "Target Support Files/STPopup/STPopup.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_Milieu;
+				PRODUCT_NAME = STPopup;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -516,15 +709,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1A00EE30F5C9E6F53F7FEBAF2006815B /* Build configuration list for PBXNativeTarget "STPopup" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				16D7BA36982620B2D4B69627D2149F82 /* Debug */,
-				9E7A683B2071088588B1F9374743D725 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -534,11 +718,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8BAA40A02BB6FE585262086546B9DE0F /* Build configuration list for PBXNativeTarget "Pods-Milieu" */ = {
+		6168C6505869174F47AC3AC6544CC7E7 /* Build configuration list for PBXNativeTarget "STPopup" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EB819EC81BD49D2B2DF85519B5D881C7 /* Debug */,
-				B67C2A5EDFC720EAF3929DF53AF68BC5 /* Release */,
+				D485F1FC394F4CE59DF0BB42BFABD73E /* Debug */,
+				7140907CBF581DC0EE122FBB732DF144 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		677E1ABD820268654170D856C29D9293 /* Build configuration list for PBXNativeTarget "Pods-Milieu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82D58FB794A766FD1BF88C78DFEA7168 /* Debug */,
+				84D0C381D754DB77EAB7DF1FD0EAF5D2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B2B2DA2F7F80D41B1FDB5FACFA4B3DE /* Build configuration list for PBXNativeTarget "Alamofire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C993D8405F342C8E23BAD4EDF32D79E0 /* Debug */,
+				A3427C918F24207B5FD3A44958345D7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

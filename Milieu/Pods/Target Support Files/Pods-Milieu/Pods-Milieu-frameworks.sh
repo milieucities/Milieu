@@ -84,8 +84,10 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-Milieu/Alamofire.framework"
   install_framework "Pods-Milieu/STPopup.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-Milieu/Alamofire.framework"
   install_framework "Pods-Milieu/STPopup.framework"
 fi

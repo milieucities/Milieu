@@ -1,5 +1,5 @@
 //
-//  Neighbourhood.swift
+//  Address.swift
 //  Milieu
 //
 //  Created by Xiaoxi Pang on 2016-01-16.
@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-class Neighbourhood: NSManagedObject {
+class Address: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 
