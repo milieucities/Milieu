@@ -37,6 +37,7 @@
 		83FB29EB1C473F140093EBC8 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29E71C473F140093EBC8 /* City.swift */; };
 		83FB29EC1C473F140093EBC8 /* Neighbourhood+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29E81C473F140093EBC8 /* Neighbourhood+CoreDataProperties.swift */; };
 		83FB29ED1C473F140093EBC8 /* Neighbourhood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29E91C473F140093EBC8 /* Neighbourhood.swift */; };
+		83FB29EF1C4A979B0093EBC8 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29EE1C4A979B0093EBC8 /* LaunchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		83FB29E71C473F140093EBC8 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = City.swift; path = Models/City.swift; sourceTree = "<group>"; };
 		83FB29E81C473F140093EBC8 /* Neighbourhood+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Neighbourhood+CoreDataProperties.swift"; path = "Models/Neighbourhood+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		83FB29E91C473F140093EBC8 /* Neighbourhood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Neighbourhood.swift; path = Models/Neighbourhood.swift; sourceTree = "<group>"; };
+		83FB29EE1C4A979B0093EBC8 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LaunchViewController.swift; path = ViewControllers/LaunchViewController.swift; sourceTree = "<group>"; };
 		FF4869C0DF401998CD305FAD /* Pods-Milieu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Milieu.release.xcconfig"; path = "Pods/Target Support Files/Pods-Milieu/Pods-Milieu.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,6 +173,7 @@
 		834E87EC1C1C6687002A763C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				83FB29EE1C4A979B0093EBC8 /* LaunchViewController.swift */,
 				834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */,
 				834E87ED1C1C6734002A763C /* MapViewController.swift */,
 				8317C9821C25F5250088DEAA /* ApplicationDetailViewController.swift */,
@@ -461,6 +464,7 @@
 				8317C9861C25FFF20088DEAA /* Constants.swift in Sources */,
 				83FB29A61C44AE8E0093EBC8 /* Coordinate.swift in Sources */,
 				83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */,
+				83FB29EF1C4A979B0093EBC8 /* LaunchViewController.swift in Sources */,
 				83FB29EC1C473F140093EBC8 /* Neighbourhood+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
