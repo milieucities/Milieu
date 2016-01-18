@@ -1,10 +1,13 @@
 PODS:
+  - Alamofire (3.1.4)
   - STPopup (1.5.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 3.0)
   - STPopup (~> 1.5.0)
 
 SPEC CHECKSUMS:
+  Alamofire: fbc829692f351fa1d8a31dd75fd7f7f56fea31fb
   STPopup: 0c5bfe21b39ce422593f93d8f7f5df3d1bc6d1d3
 
 COCOAPODS: 0.39.0
