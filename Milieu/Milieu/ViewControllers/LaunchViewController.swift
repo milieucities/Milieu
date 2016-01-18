@@ -15,10 +15,12 @@ class LaunchViewController: UIViewController {
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     var coreDataStack: CoreDataStack!
+    
     var neighbourhoods: [Neighbourhood]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        coreDataStack = CoreDataManager.sharedManager.coreDataStack
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -27,15 +29,6 @@ class LaunchViewController: UIViewController {
         indicator.startAnimating()
         preloadData()
         }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "launchToMap"{
-            let tabBarController = segue.destinationViewController as! UITabBarController
-            let mapVC = tabBarController.viewControllers![0] as! MapViewController
-            mapVC.coreDataStack = coreDataStack
-        }
-    }
-    
     
     /**
      Preload all required data either from the data base or server connection

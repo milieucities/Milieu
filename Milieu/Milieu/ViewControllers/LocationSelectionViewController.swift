@@ -29,6 +29,7 @@ class LocationSelectionViewController: UIViewController, UIPickerViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        coreDataStack = CoreDataManager.sharedManager.coreDataStack
         
         self.picker.delegate = self
         self.picker.dataSource = self

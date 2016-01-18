@@ -16,6 +16,7 @@ class MapViewController: UIViewController {
 
     // MARK: - UI Labels
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
     
     // MARK: - VC properties
@@ -38,11 +39,21 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        coreDataStack = CoreDataManager.sharedManager.coreDataStack
+        
+        
         
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if revealViewController() != nil{
+            revealViewController().rightViewRevealWidth = 150
+            menuButton.target = revealViewController()
+            menuButton.action = "rightRevealToggle:"
+        }
+        
         getLocation()
     }
     

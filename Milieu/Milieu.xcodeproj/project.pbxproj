@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10B9E3E21C4D539900DE21B9 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B9E3E11C4D539900DE21B9 /* SWRevealViewController.m */; };
+		10B9E3E41C4D58C600DE21B9 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9E3E31C4D58C600DE21B9 /* MenuController.swift */; };
+		10B9E3E61C4D59B800DE21B9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9E3E51C4D59B800DE21B9 /* CoreDataManager.swift */; };
 		8317C97D1C25AFE10088DEAA /* ApplicationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C97C1C25AFE10088DEAA /* ApplicationInfo.swift */; };
 		8317C9801C25ECAC0088DEAA /* Acknowledgement&Legal in Resources */ = {isa = PBXBuildFile; fileRef = 8317C97F1C25ECAC0088DEAA /* Acknowledgement&Legal */; };
 		8317C9831C25F5250088DEAA /* ApplicationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C9821C25F5250088DEAA /* ApplicationDetailViewController.swift */; };
@@ -65,6 +68,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		10B9E3DC1C4D534300DE21B9 /* Milieu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Milieu-Bridging-Header.h"; sourceTree = "<group>"; };
+		10B9E3E01C4D539900DE21B9 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = ViewControllers/SWRevealViewController/SWRevealViewController.h; sourceTree = "<group>"; };
+		10B9E3E11C4D539900DE21B9 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = ViewControllers/SWRevealViewController/SWRevealViewController.m; sourceTree = "<group>"; };
+		10B9E3E31C4D58C600DE21B9 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		10B9E3E51C4D59B800DE21B9 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataManager.swift; path = Models/CoreDataManager.swift; sourceTree = "<group>"; };
 		29EB07C9FD9733E26F0EDB5F /* Pods-Milieu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Milieu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Milieu/Pods-Milieu.debug.xcconfig"; sourceTree = "<group>"; };
 		2C21667E9BAC5A927CE45449 /* Pods_Milieu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Milieu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8317C97C1C25AFE10088DEAA /* ApplicationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationInfo.swift; path = Models/ApplicationInfo.swift; sourceTree = "<group>"; };
@@ -140,6 +148,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10B9E3DB1C4D532E00DE21B9 /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				10B9E3E01C4D539900DE21B9 /* SWRevealViewController.h */,
+				10B9E3E11C4D539900DE21B9 /* SWRevealViewController.m */,
+				10B9E3DC1C4D534300DE21B9 /* Milieu-Bridging-Header.h */,
+			);
+			name = SWRevealViewController;
+			sourceTree = "<group>";
+		};
 		35396455B9935E0C6B783374 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +187,7 @@
 				83FB29FA1C4AC4000093EBC8 /* DevApp.swift */,
 				83FB29FB1C4AC4000093EBC8 /* Status+CoreDataProperties.swift */,
 				83FB29FC1C4AC4000093EBC8 /* Status.swift */,
+				10B9E3E51C4D59B800DE21B9 /* CoreDataManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -193,12 +212,14 @@
 		834E87EC1C1C6687002A763C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				10B9E3DB1C4D532E00DE21B9 /* SWRevealViewController */,
 				83FB29EE1C4A979B0093EBC8 /* LaunchViewController.swift */,
 				834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */,
 				834E87ED1C1C6734002A763C /* MapViewController.swift */,
 				8317C9821C25F5250088DEAA /* ApplicationDetailViewController.swift */,
 				83405D031C37424200F16F4D /* CommentsViewController.swift */,
 				834E87EE1C1C6734002A763C /* SecondViewController.swift */,
+				10B9E3E31C4D58C600DE21B9 /* MenuController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -345,7 +366,7 @@
 		839C88651C14C1D200D80D0A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Atelier Ruderal";
 				TargetAttributes = {
@@ -476,6 +497,8 @@
 				83405D101C38278D00F16F4D /* UIImage+Resize.swift in Sources */,
 				83FB29F11C4A9D480093EBC8 /* ConnectionManager.swift in Sources */,
 				83FB29921C4321760093EBC8 /* CoreDataStack.swift in Sources */,
+				10B9E3E41C4D58C600DE21B9 /* MenuController.swift in Sources */,
+				10B9E3E61C4D59B800DE21B9 /* CoreDataManager.swift in Sources */,
 				83FB29A51C44AE8E0093EBC8 /* Coordinate+CoreDataProperties.swift in Sources */,
 				83FB2A021C4AC4000093EBC8 /* DevApp.swift in Sources */,
 				83FB2A031C4AC4000093EBC8 /* Status+CoreDataProperties.swift in Sources */,
@@ -489,6 +512,7 @@
 				83FB29FD1C4AC4000093EBC8 /* Address+CoreDataProperties.swift in Sources */,
 				83FB29A61C44AE8E0093EBC8 /* Coordinate.swift in Sources */,
 				83FB2A011C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift in Sources */,
+				10B9E3E21C4D539900DE21B9 /* SWRevealViewController.m in Sources */,
 				83FB2A041C4AC4000093EBC8 /* Status.swift in Sources */,
 				83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */,
 				83FB29FF1C4AC4000093EBC8 /* Neighbourhood+CoreDataProperties.swift in Sources */,
@@ -634,11 +658,14 @@
 			baseConfigurationReference = 29EB07C9FD9733E26F0EDB5F /* Pods-Milieu.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Milieu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Zingoer.Milieu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Milieu/Milieu-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -647,11 +674,13 @@
 			baseConfigurationReference = FF4869C0DF401998CD305FAD /* Pods-Milieu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Milieu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Zingoer.Milieu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Milieu/Milieu-Bridging-Header.h";
 			};
 			name = Release;
 		};
