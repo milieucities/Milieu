@@ -219,7 +219,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sD4-aL-HLp">
-                        <barButtonItem key="rightBarButtonItem" title="Menu" id="p02-jL-gZ3"/>
+                        <barButtonItem key="rightBarButtonItem" image="menuIcon" id="p02-jL-gZ3"/>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="tJI-7c-s5M" id="Y4M-ZN-dp7"/>
@@ -634,5 +634,6 @@
         <image name="arrow" width="125" height="125"/>
         <image name="comment_b" width="198" height="198"/>
         <image name="first" width="30" height="30"/>
+        <image name="menuIcon" width="24" height="18"/>
     </resources>
 </document>
