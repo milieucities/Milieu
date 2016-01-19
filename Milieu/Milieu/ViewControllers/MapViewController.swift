@@ -17,6 +17,7 @@ class MapViewController: UIViewController {
     // MARK: - UI Labels
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
+    @IBOutlet weak var locationMenuButton: UIBarButtonItem!
     
     
     // MARK: - VC properties
@@ -43,6 +44,10 @@ class MapViewController: UIViewController {
         coreDataStack = CoreDataManager.sharedManager.coreDataStack
         
         if revealViewController() != nil{
+            revealViewController().rearViewRevealWidth = 260
+            locationMenuButton.target = revealViewController()
+            locationMenuButton.action = "revealToggle:"
+            
             revealViewController().rightViewRevealWidth = 220
             menuButton.target = revealViewController()
             menuButton.action = "rightRevealToggle:"
@@ -53,6 +58,12 @@ class MapViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
+        let neighbourManager = NeighbourManager.sharedManager
+        if let neighbourhood = neighbourManager.currentNeighbour, let region = neighbourManager.currentRegion{
+            populateMapSectionWithNeighbour(neighbourhood, withRegion: 	region)
+            neighbourManager.reset()
+        }
+        
         getLocation()
     }
     
@@ -69,10 +80,9 @@ class MapViewController: UIViewController {
         if defaultLocation == nil || defaultLocation!.isEmpty{
             showLocationSelectionView()
         }else if defaultLocation != DefaultsValue.UserCurrentLocation{
-            let coreDataManager = CoreDataManager.sharedManager
-            if let neighbourhood = coreDataManager.fetchNeighbourhood(defaultLocation!), let region = coreDataManager.regionForSelectedNeighbourhood(defaultLocation!){
-                populateMapSectionWithNeighbour(neighbourhood, withRegion: 	region)
-            }
+            let neighbourManager = NeighbourManager.sharedManager
+            neighbourManager.setCurrentNeighbourWithName(defaultLocation!)
+            populateMapSectionWithNeighbour(neighbourManager.currentNeighbour!, withRegion: neighbourManager.currentRegion)
         }
         
         shouldUpdateMap = false
@@ -130,6 +140,10 @@ class MapViewController: UIViewController {
                 }
                 
             }
+            
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject(neighbourhood.name, forKey: DefaultsKey.SelectedNeighbour)
+            defaults.synchronize()
             
             mapView.removeAnnotations(mapView.annotations)
             mapView.addAnnotations(applicationInfos)
@@ -403,10 +417,6 @@ extension MapViewController: CLLocationManagerDelegate{
     
     extension MapViewController: LocationSelectionDelegate{
         func selectNeighbourhood(neighbourhood: Neighbourhood, withRegion region: MKCoordinateRegion?) {
-            let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setObject(neighbourhood.name, forKey: DefaultsKey.SelectedNeighbour)
-            defaults.synchronize()
-            
             populateMapSectionWithNeighbour(neighbourhood, withRegion: region)
         }
     }

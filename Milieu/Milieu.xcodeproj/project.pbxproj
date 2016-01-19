@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		10B9E3E21C4D539900DE21B9 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B9E3E11C4D539900DE21B9 /* SWRevealViewController.m */; };
-		10B9E3E41C4D58C600DE21B9 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9E3E31C4D58C600DE21B9 /* MainMenuController.swift */; };
 		10B9E3E61C4D59B800DE21B9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9E3E51C4D59B800DE21B9 /* CoreDataManager.swift */; };
 		8317C97D1C25AFE10088DEAA /* ApplicationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C97C1C25AFE10088DEAA /* ApplicationInfo.swift */; };
 		8317C9801C25ECAC0088DEAA /* Acknowledgement&Legal in Resources */ = {isa = PBXBuildFile; fileRef = 8317C97F1C25ECAC0088DEAA /* Acknowledgement&Legal */; };
@@ -16,6 +15,9 @@
 		8317C9861C25FFF20088DEAA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C9851C25FFF20088DEAA /* Constants.swift */; };
 		831A89A31C4DE03F0066A874 /* UserAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A89A21C4DE03F0066A874 /* UserAccountController.swift */; };
 		831A89A51C4DE79B0066A874 /* EulaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A89A41C4DE79B0066A874 /* EulaController.swift */; };
+		831A89A91C4E01870066A874 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A89A81C4E01870066A874 /* MainMenuController.swift */; };
+		831A89AB1C4E01900066A874 /* LocationMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A89AA1C4E01900066A874 /* LocationMenuController.swift */; };
+		831A89AE1C4E14060066A874 /* NeighbourManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A89AD1C4E14060066A874 /* NeighbourManager.swift */; };
 		83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D031C37424200F16F4D /* CommentsViewController.swift */; };
 		83405D071C37435A00F16F4D /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D061C37435A00F16F4D /* CommentCell.swift */; };
 		83405D091C37487200F16F4D /* ApplicationComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D081C37487200F16F4D /* ApplicationComments.swift */; };
@@ -72,7 +74,6 @@
 		10B9E3DC1C4D534300DE21B9 /* Milieu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Milieu-Bridging-Header.h"; sourceTree = "<group>"; };
 		10B9E3E01C4D539900DE21B9 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = ViewControllers/SWRevealViewController/SWRevealViewController.h; sourceTree = "<group>"; };
 		10B9E3E11C4D539900DE21B9 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = ViewControllers/SWRevealViewController/SWRevealViewController.m; sourceTree = "<group>"; };
-		10B9E3E31C4D58C600DE21B9 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
 		10B9E3E51C4D59B800DE21B9 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataManager.swift; path = Models/CoreDataManager.swift; sourceTree = "<group>"; };
 		29EB07C9FD9733E26F0EDB5F /* Pods-Milieu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Milieu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Milieu/Pods-Milieu.debug.xcconfig"; sourceTree = "<group>"; };
 		2C21667E9BAC5A927CE45449 /* Pods_Milieu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Milieu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +83,9 @@
 		8317C9851C25FFF20088DEAA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Constants/Constants.swift; sourceTree = "<group>"; };
 		831A89A21C4DE03F0066A874 /* UserAccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAccountController.swift; path = ViewControllers/UserAccountController.swift; sourceTree = "<group>"; };
 		831A89A41C4DE79B0066A874 /* EulaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EulaController.swift; path = ViewControllers/EulaController.swift; sourceTree = "<group>"; };
+		831A89A81C4E01870066A874 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainMenuController.swift; path = ViewControllers/MainMenuController.swift; sourceTree = "<group>"; };
+		831A89AA1C4E01900066A874 /* LocationMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationMenuController.swift; path = ViewControllers/LocationMenuController.swift; sourceTree = "<group>"; };
+		831A89AD1C4E14060066A874 /* NeighbourManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NeighbourManager.swift; path = Models/NeighbourManager.swift; sourceTree = "<group>"; };
 		83405D031C37424200F16F4D /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentsViewController.swift; path = ViewControllers/CommentsViewController.swift; sourceTree = "<group>"; };
 		83405D061C37435A00F16F4D /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentCell.swift; path = Views/CommentCell.swift; sourceTree = "<group>"; };
 		83405D081C37487200F16F4D /* ApplicationComments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationComments.swift; path = Models/ApplicationComments.swift; sourceTree = "<group>"; };
@@ -190,6 +194,7 @@
 				83FB29FB1C4AC4000093EBC8 /* Status+CoreDataProperties.swift */,
 				83FB29FC1C4AC4000093EBC8 /* Status.swift */,
 				10B9E3E51C4D59B800DE21B9 /* CoreDataManager.swift */,
+				831A89AD1C4E14060066A874 /* NeighbourManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -200,6 +205,15 @@
 				8317C9851C25FFF20088DEAA /* Constants.swift */,
 			);
 			name = Constants;
+			sourceTree = "<group>";
+		};
+		831A89AC1C4E02D90066A874 /* MenuControllers */ = {
+			isa = PBXGroup;
+			children = (
+				831A89A81C4E01870066A874 /* MainMenuController.swift */,
+				831A89AA1C4E01900066A874 /* LocationMenuController.swift */,
+			);
+			name = MenuControllers;
 			sourceTree = "<group>";
 		};
 		83405D051C37431400F16F4D /* Views */ = {
@@ -214,13 +228,13 @@
 		834E87EC1C1C6687002A763C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				831A89AC1C4E02D90066A874 /* MenuControllers */,
 				10B9E3DB1C4D532E00DE21B9 /* SWRevealViewController */,
 				83FB29EE1C4A979B0093EBC8 /* LaunchViewController.swift */,
 				834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */,
 				834E87ED1C1C6734002A763C /* MapViewController.swift */,
 				8317C9821C25F5250088DEAA /* ApplicationDetailViewController.swift */,
 				83405D031C37424200F16F4D /* CommentsViewController.swift */,
-				10B9E3E31C4D58C600DE21B9 /* MainMenuController.swift */,
 				831A89A21C4DE03F0066A874 /* UserAccountController.swift */,
 				831A89A41C4DE79B0066A874 /* EulaController.swift */,
 			);
@@ -500,7 +514,6 @@
 				83405D101C38278D00F16F4D /* UIImage+Resize.swift in Sources */,
 				83FB29F11C4A9D480093EBC8 /* ConnectionManager.swift in Sources */,
 				83FB29921C4321760093EBC8 /* CoreDataStack.swift in Sources */,
-				10B9E3E41C4D58C600DE21B9 /* MainMenuController.swift in Sources */,
 				10B9E3E61C4D59B800DE21B9 /* CoreDataManager.swift in Sources */,
 				83FB29A51C44AE8E0093EBC8 /* Coordinate+CoreDataProperties.swift in Sources */,
 				83FB2A021C4AC4000093EBC8 /* DevApp.swift in Sources */,
@@ -509,9 +522,12 @@
 				83FB29EA1C473F140093EBC8 /* City+CoreDataProperties.swift in Sources */,
 				834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */,
 				83405D071C37435A00F16F4D /* CommentCell.swift in Sources */,
+				831A89AB1C4E01900066A874 /* LocationMenuController.swift in Sources */,
 				83EE7D551C14DF3000CEDF0D /* AR5Logger.swift in Sources */,
 				834E87F21C1C67E0002A763C /* LocationSelectionViewController.swift in Sources */,
+				831A89A91C4E01870066A874 /* MainMenuController.swift in Sources */,
 				8317C9861C25FFF20088DEAA /* Constants.swift in Sources */,
+				831A89AE1C4E14060066A874 /* NeighbourManager.swift in Sources */,
 				83FB29FD1C4AC4000093EBC8 /* Address+CoreDataProperties.swift in Sources */,
 				831A89A51C4DE79B0066A874 /* EulaController.swift in Sources */,
 				83FB29A61C44AE8E0093EBC8 /* Coordinate.swift in Sources */,

@@ -178,7 +178,7 @@
         <!--Applications-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="MapViewController" customModule="Milieu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="9pv-A4-QxB" customClass="MapViewController" customModule="Milieu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -212,11 +212,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Applications" id="sD4-aL-HLp">
+                        <barButtonItem key="leftBarButtonItem" image="locations" id="4eF-w8-yxG"/>
                         <barButtonItem key="rightBarButtonItem" image="menuIcon" id="p02-jL-gZ3">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="locationMenuButton" destination="4eF-w8-yxG" id="tkN-OB-mVq"/>
                         <outlet property="mapView" destination="tJI-7c-s5M" id="Y4M-ZN-dp7"/>
                         <outlet property="menuButton" destination="p02-jL-gZ3" id="ebM-rS-5jl"/>
                         <segue destination="tcV-Za-7jb" kind="presentation" identifier="mapToLocationSelection" modalTransitionStyle="crossDissolve" id="bK4-d6-u8U"/>
@@ -497,11 +499,51 @@
                     <connections>
                         <segue destination="03i-yJ-k2g" kind="custom" identifier="sw_right" customClass="SWRevealViewControllerSegueSetController" id="Ma9-Yb-XQp"/>
                         <segue destination="wKV-Hb-w1j" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="9a6-Pz-itI"/>
+                        <segue destination="7U0-QC-37G" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="dvq-VT-aMs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-sE-5Vh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1229" y="252"/>
+        </scene>
+        <!--Location Menu Controller-->
+        <scene sceneID="4FB-WB-9IV">
+            <objects>
+                <tableViewController id="7U0-QC-37G" customClass="LocationMenuController" customModule="Milieu" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="xHj-bm-YSL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.41176470588235292" green="0.4823529411764706" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="neighbourNameCell" textLabel="v5d-WE-oqQ" style="IBUITableViewCellStyleDefault" id="xq7-pP-En8">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xq7-pP-En8" id="0vM-4I-yBe">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v5d-WE-oqQ">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.60784313725490191" green="0.69411764705882351" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.60784313729999995" green="0.69411764710000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="7U0-QC-37G" id="sDX-Y3-3Zn"/>
+                            <outlet property="delegate" destination="7U0-QC-37G" id="Lme-ej-Y5h"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1d2-zk-AJW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1229" y="1043"/>
         </scene>
         <!--Main Menu Controller-->
         <scene sceneID="ZuS-pP-B3N">
@@ -793,7 +835,7 @@
         <!--Navigation Controller-->
         <scene sceneID="KIl-7M-vso">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wKV-Hb-w1j" userLabel="Navigation Controller" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MapNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="wKV-Hb-w1j" userLabel="Navigation Controller" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="J6A-gz-0f7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -890,6 +932,7 @@
         <image name="applications" width="24" height="23"/>
         <image name="arrow" width="125" height="125"/>
         <image name="comment_b" width="198" height="198"/>
+        <image name="locations" width="23" height="23"/>
         <image name="menuIcon" width="21" height="17"/>
         <image name="terms" width="22" height="23"/>
         <image name="user" width="14" height="21"/>
@@ -897,5 +940,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="cCt-t6-mn4"/>
     </inferredMetricsTieBreakers>
-    <color key="tintColor" red="0.61960784310000006" green="0.82745098039999998" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

@@ -42,12 +42,15 @@ class LocationSelectionViewController: UIViewController, UIPickerViewDelegate, U
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        neighbourhoods = fetchNeighbourhoods()
+        neighbourhoods = NeighbourManager.sharedManager.fetchNeighbourhoods()
     }
     
     @IBAction func showLocation(sender: AnyObject) {
         if let neighbour = selectedNeighbourhood{
-            self.delegate?.selectNeighbourhood(neighbour, withRegion: CoreDataManager.sharedManager.regionForSelectedNeighbourhood(neighbour.name!))
+            let neighbourManager = NeighbourManager.sharedManager
+            neighbourManager.currentNeighbour = neighbour
+            neighbourManager.createRegionForCurrentNeighbourhood()
+            self.delegate?.selectNeighbourhood(neighbour, withRegion: neighbourManager.currentRegion!)
             
             self.dismissViewControllerAnimated(true, completion: nil)
         }else{
@@ -60,24 +63,6 @@ class LocationSelectionViewController: UIViewController, UIPickerViewDelegate, U
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(DefaultsValue.UserCurrentLocation, forKey: DefaultsKey.SelectedNeighbour)
         self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    
-    // Mark: - Get Ward Data
-    func fetchNeighbourhoods() -> [Neighbourhood]{
-        let fetchRequest = NSFetchRequest(entityName: "Neighbourhood")
-        let predicate = NSPredicate(format: "city.name == %@", "OTTAWA")
-        fetchRequest.predicate = predicate
-        
-        do{
-            let results = try coreDataStack.context.executeFetchRequest(fetchRequest) as! [Neighbourhood]
-            
-            return results
-            
-        }catch let error as NSError{
-            print("ERROR: \(error.localizedDescription)")
-            return [Neighbourhood]()
-        }
     }
     
     // MARK: - Populate Picker View
