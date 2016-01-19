@@ -8,6 +8,6 @@
 
 import UIKit
 
-class MenuController: UITableViewController {
+class MainMenuController: UITableViewController {
 
 }

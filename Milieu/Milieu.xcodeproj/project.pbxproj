@@ -14,13 +14,14 @@
 		8317C9801C25ECAC0088DEAA /* Acknowledgement&Legal in Resources */ = {isa = PBXBuildFile; fileRef = 8317C97F1C25ECAC0088DEAA /* Acknowledgement&Legal */; };
 		8317C9831C25F5250088DEAA /* ApplicationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C9821C25F5250088DEAA /* ApplicationDetailViewController.swift */; };
 		8317C9861C25FFF20088DEAA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C9851C25FFF20088DEAA /* Constants.swift */; };
+		831A89A31C4DE03F0066A874 /* UserAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A89A21C4DE03F0066A874 /* UserAccountController.swift */; };
+		831A89A51C4DE79B0066A874 /* EulaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A89A41C4DE79B0066A874 /* EulaController.swift */; };
 		83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D031C37424200F16F4D /* CommentsViewController.swift */; };
 		83405D071C37435A00F16F4D /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D061C37435A00F16F4D /* CommentCell.swift */; };
 		83405D091C37487200F16F4D /* ApplicationComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D081C37487200F16F4D /* ApplicationComments.swift */; };
 		83405D0D1C374F4100F16F4D /* Comments.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83405D0C1C374F4100F16F4D /* Comments.plist */; };
 		83405D101C38278D00F16F4D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D0F1C38278D00F16F4D /* UIImage+Resize.swift */; };
 		834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E87ED1C1C6734002A763C /* MapViewController.swift */; };
-		834E87F01C1C6734002A763C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E87EE1C1C6734002A763C /* SecondViewController.swift */; };
 		834E87F21C1C67E0002A763C /* LocationSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */; };
 		839C88711C14C1D200D80D0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839C88701C14C1D200D80D0A /* AppDelegate.swift */; };
 		839C88781C14C1D200D80D0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839C88761C14C1D200D80D0A /* Main.storyboard */; };
@@ -79,13 +80,14 @@
 		8317C97F1C25ECAC0088DEAA /* Acknowledgement&Legal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Acknowledgement&Legal"; sourceTree = "<group>"; };
 		8317C9821C25F5250088DEAA /* ApplicationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationDetailViewController.swift; path = ViewControllers/ApplicationDetailViewController.swift; sourceTree = "<group>"; };
 		8317C9851C25FFF20088DEAA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Constants/Constants.swift; sourceTree = "<group>"; };
+		831A89A21C4DE03F0066A874 /* UserAccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAccountController.swift; path = ViewControllers/UserAccountController.swift; sourceTree = "<group>"; };
+		831A89A41C4DE79B0066A874 /* EulaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EulaController.swift; path = ViewControllers/EulaController.swift; sourceTree = "<group>"; };
 		83405D031C37424200F16F4D /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentsViewController.swift; path = ViewControllers/CommentsViewController.swift; sourceTree = "<group>"; };
 		83405D061C37435A00F16F4D /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentCell.swift; path = Views/CommentCell.swift; sourceTree = "<group>"; };
 		83405D081C37487200F16F4D /* ApplicationComments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationComments.swift; path = Models/ApplicationComments.swift; sourceTree = "<group>"; };
 		83405D0C1C374F4100F16F4D /* Comments.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Comments.plist; sourceTree = "<group>"; };
 		83405D0F1C38278D00F16F4D /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Resize.swift"; path = "Views/UIImage+Resize.swift"; sourceTree = "<group>"; };
 		834E87ED1C1C6734002A763C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ViewControllers/MapViewController.swift; sourceTree = "<group>"; };
-		834E87EE1C1C6734002A763C /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecondViewController.swift; path = ViewControllers/SecondViewController.swift; sourceTree = "<group>"; };
 		834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationSelectionViewController.swift; path = ViewControllers/LocationSelectionViewController.swift; sourceTree = "<group>"; };
 		839C886D1C14C1D200D80D0A /* Milieu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milieu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		839C88701C14C1D200D80D0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -218,8 +220,9 @@
 				834E87ED1C1C6734002A763C /* MapViewController.swift */,
 				8317C9821C25F5250088DEAA /* ApplicationDetailViewController.swift */,
 				83405D031C37424200F16F4D /* CommentsViewController.swift */,
-				834E87EE1C1C6734002A763C /* SecondViewController.swift */,
 				10B9E3E31C4D58C600DE21B9 /* MenuController.swift */,
+				831A89A21C4DE03F0066A874 /* UserAccountController.swift */,
+				831A89A41C4DE79B0066A874 /* EulaController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -488,11 +491,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				83405D091C37487200F16F4D /* ApplicationComments.swift in Sources */,
-				834E87F01C1C6734002A763C /* SecondViewController.swift in Sources */,
 				83FB29EB1C473F140093EBC8 /* City.swift in Sources */,
 				839C88711C14C1D200D80D0A /* AppDelegate.swift in Sources */,
 				8317C9831C25F5250088DEAA /* ApplicationDetailViewController.swift in Sources */,
 				83FB29961C4322720093EBC8 /* Milieu.xcdatamodeld in Sources */,
+				831A89A31C4DE03F0066A874 /* UserAccountController.swift in Sources */,
 				8317C97D1C25AFE10088DEAA /* ApplicationInfo.swift in Sources */,
 				83405D101C38278D00F16F4D /* UIImage+Resize.swift in Sources */,
 				83FB29F11C4A9D480093EBC8 /* ConnectionManager.swift in Sources */,
@@ -510,6 +513,7 @@
 				834E87F21C1C67E0002A763C /* LocationSelectionViewController.swift in Sources */,
 				8317C9861C25FFF20088DEAA /* Constants.swift in Sources */,
 				83FB29FD1C4AC4000093EBC8 /* Address+CoreDataProperties.swift in Sources */,
+				831A89A51C4DE79B0066A874 /* EulaController.swift in Sources */,
 				83FB29A61C44AE8E0093EBC8 /* Coordinate.swift in Sources */,
 				83FB2A011C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift in Sources */,
 				10B9E3E21C4D539900DE21B9 /* SWRevealViewController.m in Sources */,

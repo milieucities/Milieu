@@ -49,7 +49,7 @@ class MapViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if revealViewController() != nil{
-            revealViewController().rightViewRevealWidth = 150
+            revealViewController().rightViewRevealWidth = 220
             menuButton.target = revealViewController()
             menuButton.action = "rightRevealToggle:"
         }
