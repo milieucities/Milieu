@@ -18,9 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        let launchViewController = self.window!.rootViewController as! LaunchViewController
-        launchViewController.coreDataStack = coreDataStack
-        
         return true
     }
 
@@ -30,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        NSUserDefaults.standardUserDefaults().removeObjectForKey(DefaultsKey.Location)
+//        NSUserDefaults.standardUserDefaults().removeObjectForKey(DefaultsKey.Location)
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
