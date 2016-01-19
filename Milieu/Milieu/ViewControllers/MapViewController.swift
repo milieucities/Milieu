@@ -55,37 +55,33 @@ class MapViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
         let neighbourManager = NeighbourManager.sharedManager
         if let neighbourhood = neighbourManager.currentNeighbour, let region = neighbourManager.currentRegion{
             populateMapSectionWithNeighbour(neighbourhood, withRegion: 	region)
             neighbourManager.reset()
+        }else{
+            if !shouldUpdateMap{
+                return
+            }
+            
+            // Load the defaults value
+            let defaults = NSUserDefaults.standardUserDefaults()
+            let defaultLocation: String? = defaults.objectForKey(DefaultsKey.SelectedNeighbour) as? String
+            if defaultLocation == nil || defaultLocation!.isEmpty{
+                showLocationSelectionView()
+            }else if defaultLocation != DefaultsValue.UserCurrentLocation{
+                let neighbourManager = NeighbourManager.sharedManager
+                neighbourManager.setCurrentNeighbourWithName(defaultLocation!)
+                populateMapSectionWithNeighbour(neighbourManager.currentNeighbour!, withRegion: neighbourManager.currentRegion)
+            }else{
+                getLocation()
+            }
+            
+            shouldUpdateMap = false
         }
-        
-        getLocation()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if !shouldUpdateMap{
-            return
-        }
-        
-        // Load the defaults value
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let defaultLocation: String? = defaults.objectForKey(DefaultsKey.SelectedNeighbour) as? String
-        if defaultLocation == nil || defaultLocation!.isEmpty{
-            showLocationSelectionView()
-        }else if defaultLocation != DefaultsValue.UserCurrentLocation{
-            let neighbourManager = NeighbourManager.sharedManager
-            neighbourManager.setCurrentNeighbourWithName(defaultLocation!)
-            populateMapSectionWithNeighbour(neighbourManager.currentNeighbour!, withRegion: neighbourManager.currentRegion)
-        }
-        
-        shouldUpdateMap = false
     }
 
     // MARK: - Map Display
@@ -146,9 +142,9 @@ class MapViewController: UIViewController {
             defaults.synchronize()
             
             mapView.removeAnnotations(mapView.annotations)
-            mapView.addAnnotations(applicationInfos)
             mapView.showsUserLocation = true
-            mapView.setRegion(region, animated: true)
+            mapView.setRegion(region, animated: false)
+            mapView.addAnnotations(applicationInfos)
         }
     }
     
@@ -179,7 +175,46 @@ class MapViewController: UIViewController {
     
 }
 
+    // MARK: - MapViewDelegate Extension
 extension MapViewController: MKMapViewDelegate{
+    
+    /**
+     Add animation when the annotation is added
+    */
+    func mapView(mapView: MKMapView, didAddAnnotationViews views: [MKAnnotationView]) {
+        
+        var i = -1
+        
+        for view in views{
+            i++
+            
+            if view.annotation is MKUserLocation{
+                continue
+            }
+            
+            let endFrame:CGRect = view.frame;
+            
+            // Move annotation out of view
+            view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y - self.view.frame.size.height, view.frame.size.width, view.frame.size.height);
+            
+            // Animate drop
+            let delay = 0.03 * Double(i)
+            UIView.animateWithDuration(0.3, delay: delay, options: UIViewAnimationOptions.CurveEaseIn, animations:{() in
+                view.frame = endFrame
+                // Animate squash
+                }, completion:{(Bool) in
+                    UIView.animateWithDuration(0.05, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations:{() in
+                        view.transform = CGAffineTransformMakeScale(1.0, 0.8)
+                        
+                        }, completion: {(Bool) in
+                            UIView.animateWithDuration(0.2, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations:{() in
+                                view.transform = CGAffineTransformIdentity
+                                }, completion: nil)
+                    })
+                    
+            })
+        }
+    }
     
     /**
      Create and customize the annotation view
