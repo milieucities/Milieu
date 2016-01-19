@@ -9,5 +9,9 @@
 import Foundation
 
 struct DefaultsKey {
-    static let Location = "location"
+    static let SelectedNeighbour = "SelectedNeighbour"
+}
+
+struct DefaultsValue{
+    static let UserCurrentLocation = "UserCurrentLocation"
 }

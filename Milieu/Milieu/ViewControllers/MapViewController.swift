@@ -33,6 +33,7 @@ class MapViewController: UIViewController {
     var createFakeLocation: Bool = true
     var loadInitialLocation: Bool = true
     var coreDataStack: CoreDataStack!
+    var shouldUpdateMap: Bool = true
     
     // MARK: - VC methods
     
@@ -41,39 +42,43 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         coreDataStack = CoreDataManager.sharedManager.coreDataStack
         
-        
-        
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
         if revealViewController() != nil{
             revealViewController().rightViewRevealWidth = 220
             menuButton.target = revealViewController()
             menuButton.action = "rightRevealToggle:"
         }
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
         getLocation()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        showLocationSelectionView()
-//        // Load the defaults value
-//        let defaults = NSUserDefaults.standardUserDefaults()
-//        let defaultLocation: String? = defaults.objectForKey(DefaultsKey.Location) as? String
-//        if defaultLocation == nil || defaultLocation!.isEmpty{
-//            showLocationSelectionView()
-//        }
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
+        if !shouldUpdateMap{
+            return
+        }
         
+        // Load the defaults value
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaultLocation: String? = defaults.objectForKey(DefaultsKey.SelectedNeighbour) as? String
+        if defaultLocation == nil || defaultLocation!.isEmpty{
+            showLocationSelectionView()
+        }else if defaultLocation != DefaultsValue.UserCurrentLocation{
+            let coreDataManager = CoreDataManager.sharedManager
+            if let neighbourhood = coreDataManager.fetchNeighbourhood(defaultLocation!), let region = coreDataManager.regionForSelectedNeighbourhood(defaultLocation!){
+                populateMapSectionWithNeighbour(neighbourhood, withRegion: 	region)
+            }
+        }
+        
+        shouldUpdateMap = false
     }
 
+    // MARK: - Map Display
     /**
      Update the coordinate and location labels
     */
@@ -108,6 +113,29 @@ class MapViewController: UIViewController {
     func centerMapOnLocation(location: CLLocation){
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRedius * 2.0, regionRedius * 2.0)
         mapView.setRegion(coordinateRegion, animated: false)
+    }
+    
+    /**
+     Populate the annotations on the map according to the neighbourhood and the region
+    */
+    func populateMapSectionWithNeighbour(neighbourhood: Neighbourhood, withRegion region: MKCoordinateRegion?){
+        if let region = region{
+            
+            var applicationInfos = [ApplicationInfo]()
+            for item in neighbourhood.devApps!{
+                let app = item as! DevApp
+                if let _ = app.addresses?.allObjects.first as? Address{
+                    let appInfo = ApplicationInfo(devApp: app)
+                    applicationInfos.append(appInfo)
+                }
+                
+            }
+            
+            mapView.removeAnnotations(mapView.annotations)
+            mapView.addAnnotations(applicationInfos)
+            mapView.showsUserLocation = true
+            mapView.setRegion(region, animated: true)
+        }
     }
     
     // MARK: - Blur Effect
@@ -145,16 +173,20 @@ extension MapViewController: MKMapViewDelegate{
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? ApplicationInfo{
             // Make unique reusable identifier for these type annotation
-            let identifier = "pin"
-            var view: MKPinAnnotationView
+            let identifier = "GeneralAnnotation"
+            var view: MKAnnotationView
             
             // dequeue annotation and reusable annotation based on identifier
-            if let dequeuedView: MKPinAnnotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView{
+            if let dequeuedView: MKAnnotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier){
                 dequeuedView.annotation = annotation
                 view = dequeuedView
             }else{
                 // No reusable annotation found, Create a new one
-                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                let image = UIImage(named: "generalAnnotation")
+                view.image = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+                // TODO: Make it be able to use tint color
+                view.tintColor = UIColor(red: 158.0/255.0, green: 211.0/255.0, blue: 225.0/255.0, alpha: 1.0)
             }
             
             return view
@@ -371,22 +403,11 @@ extension MapViewController: CLLocationManagerDelegate{
     
     extension MapViewController: LocationSelectionDelegate{
         func selectNeighbourhood(neighbourhood: Neighbourhood, withRegion region: MKCoordinateRegion?) {
-            if let region = region{
-                
-                var applicationInfos = [ApplicationInfo]()
-                for item in neighbourhood.devApps!{
-                    let app = item as! DevApp
-                    if let _ = app.addresses?.allObjects.first as? Address{
-                        let appInfo = ApplicationInfo(devApp: app)
-                        applicationInfos.append(appInfo)
-                    }
-                    
-                }
-                mapView.removeAnnotations(mapView.annotations)
-                mapView.addAnnotations(applicationInfos)
-                mapView.showsUserLocation = true
-                mapView.setRegion(region, animated: true)
-            }
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject(neighbourhood.name, forKey: DefaultsKey.SelectedNeighbour)
+            defaults.synchronize()
+            
+            populateMapSectionWithNeighbour(neighbourhood, withRegion: region)
         }
     }
 

@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        NSUserDefaults.standardUserDefaults().removeObjectForKey(DefaultsKey.Location)
+//        NSUserDefaults.standardUserDefaults().removeObjectForKey(DefaultsKey.Location)
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

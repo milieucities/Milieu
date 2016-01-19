@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		10B9E3E21C4D539900DE21B9 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B9E3E11C4D539900DE21B9 /* SWRevealViewController.m */; };
-		10B9E3E41C4D58C600DE21B9 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9E3E31C4D58C600DE21B9 /* MenuController.swift */; };
+		10B9E3E41C4D58C600DE21B9 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9E3E31C4D58C600DE21B9 /* MainMenuController.swift */; };
 		10B9E3E61C4D59B800DE21B9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9E3E51C4D59B800DE21B9 /* CoreDataManager.swift */; };
 		8317C97D1C25AFE10088DEAA /* ApplicationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C97C1C25AFE10088DEAA /* ApplicationInfo.swift */; };
 		8317C9801C25ECAC0088DEAA /* Acknowledgement&Legal in Resources */ = {isa = PBXBuildFile; fileRef = 8317C97F1C25ECAC0088DEAA /* Acknowledgement&Legal */; };
@@ -72,7 +72,7 @@
 		10B9E3DC1C4D534300DE21B9 /* Milieu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Milieu-Bridging-Header.h"; sourceTree = "<group>"; };
 		10B9E3E01C4D539900DE21B9 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = ViewControllers/SWRevealViewController/SWRevealViewController.h; sourceTree = "<group>"; };
 		10B9E3E11C4D539900DE21B9 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = ViewControllers/SWRevealViewController/SWRevealViewController.m; sourceTree = "<group>"; };
-		10B9E3E31C4D58C600DE21B9 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		10B9E3E31C4D58C600DE21B9 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
 		10B9E3E51C4D59B800DE21B9 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataManager.swift; path = Models/CoreDataManager.swift; sourceTree = "<group>"; };
 		29EB07C9FD9733E26F0EDB5F /* Pods-Milieu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Milieu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Milieu/Pods-Milieu.debug.xcconfig"; sourceTree = "<group>"; };
 		2C21667E9BAC5A927CE45449 /* Pods_Milieu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Milieu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,7 +220,7 @@
 				834E87ED1C1C6734002A763C /* MapViewController.swift */,
 				8317C9821C25F5250088DEAA /* ApplicationDetailViewController.swift */,
 				83405D031C37424200F16F4D /* CommentsViewController.swift */,
-				10B9E3E31C4D58C600DE21B9 /* MenuController.swift */,
+				10B9E3E31C4D58C600DE21B9 /* MainMenuController.swift */,
 				831A89A21C4DE03F0066A874 /* UserAccountController.swift */,
 				831A89A41C4DE79B0066A874 /* EulaController.swift */,
 			);
@@ -500,7 +500,7 @@
 				83405D101C38278D00F16F4D /* UIImage+Resize.swift in Sources */,
 				83FB29F11C4A9D480093EBC8 /* ConnectionManager.swift in Sources */,
 				83FB29921C4321760093EBC8 /* CoreDataStack.swift in Sources */,
-				10B9E3E41C4D58C600DE21B9 /* MenuController.swift in Sources */,
+				10B9E3E41C4D58C600DE21B9 /* MainMenuController.swift in Sources */,
 				10B9E3E61C4D59B800DE21B9 /* CoreDataManager.swift in Sources */,
 				83FB29A51C44AE8E0093EBC8 /* Coordinate+CoreDataProperties.swift in Sources */,
 				83FB2A021C4AC4000093EBC8 /* DevApp.swift in Sources */,
