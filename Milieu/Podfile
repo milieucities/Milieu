@@ -6,7 +6,7 @@
 
 target 'Milieu' do
 
-  pod 'STPopup', '~> 1.5.0'
+  pod 'STPopup', '~> 1.6'
   pod 'Alamofire', '~> 3.0'
 
 end

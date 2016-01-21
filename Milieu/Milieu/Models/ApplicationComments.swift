@@ -14,6 +14,13 @@ struct ApplicationComments {
     let date: NSDate
     let content: String
     let userAvatar: String
+    
+    init(userName: String, date: NSDate, content: String, userAvatar: String){
+        self.userName = userName
+        self.date = date
+        self.content = content
+        self.userAvatar = userAvatar
+    }
 }
 
 extension ApplicationComments{

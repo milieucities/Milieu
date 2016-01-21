@@ -14,11 +14,35 @@ class ApplicationDetailViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var applicationTypeLabel: UILabel!
+    @IBOutlet weak var applicationIdLabel: UILabel!
+    @IBOutlet weak var reviewStatusLabel: UILabel!
+    @IBOutlet weak var statusDataLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
+    
     @IBOutlet weak var applicationImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = annotation.title
+        applicationTypeLabel.text = annotation.type
+        applicationIdLabel.text = annotation.devId
+        reviewStatusLabel.text = annotation.newestStatus
+        descriptionTextView.text = annotation.generalDescription
+        
+        if let date = annotation.newestDate{
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+            if let dateObject = dateFormatter.dateFromString(date){
+                statusDataLabel.text = NSDateFormatter.localizedStringFromDate(dateObject, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
+            }else{
+                statusDataLabel.text = date
+            }
+            
+        }else{
+            statusDataLabel.text = "Unknown"
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
