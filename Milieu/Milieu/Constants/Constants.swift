@@ -10,6 +10,7 @@ import Foundation
 
 struct DefaultsKey {
     static let SelectedNeighbour = "SelectedNeighbour"
+    static let UserInfo = "UserInfo"
 }
 
 struct DefaultsValue{
