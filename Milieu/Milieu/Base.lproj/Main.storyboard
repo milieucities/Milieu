@@ -446,7 +446,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" id="e4H-kE-ypo" customClass="CommentCell" customModule="Milieu" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="66" width="300" height="74"/>
+                                        <rect key="frame" x="0.0" y="22" width="300" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e4H-kE-ypo" id="zSN-To-61c">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="74"/>

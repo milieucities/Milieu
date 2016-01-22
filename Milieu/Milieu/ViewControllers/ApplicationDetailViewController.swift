@@ -30,14 +30,9 @@ class ApplicationDetailViewController: UIViewController {
         descriptionTextView.text = annotation.generalDescription
         
         if let date = annotation.newestDate{
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-            if let dateObject = dateFormatter.dateFromString(date){
-                statusDataLabel.text = NSDateFormatter.localizedStringFromDate(dateObject, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
-            }else{
-                statusDataLabel.text = date
-            }
+            
+            // Transform the date from UTC standard string to human readable string with medium style
+            statusDataLabel.text = DateUtil.transformStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .MediumStyle, stringFormat: MilieuDateFormat.UTCStandardFormat)
             
         }else{
             statusDataLabel.text = "Unknown"
@@ -58,7 +53,9 @@ class ApplicationDetailViewController: UIViewController {
     }
     
     @IBAction func commentBtnDidTap(sender: AnyObject) {
-        popupController?.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommentsViewController"), animated: true)
+        let commentsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommentsViewController") as! CommentsViewController
+        commentsController.devSiteId = annotation.devSiteUid
+        popupController?.pushViewController(commentsController, animated: true)
     }
 
     /*

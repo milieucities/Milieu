@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import Alamofire
 
 class CommentsViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commentTextView: UITextView!
 
-    var comments = [ApplicationComments]()
+    var devSiteComments = [ApplicationComments]()
+    var devSiteId: Int!
+    
+    let serverUrl = "http://159.203.32.15"
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,15 +27,38 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
     }
     
     override func viewDidLoad() {
-        comments = ApplicationComments.loadAllApplicationComments()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 80.0
         commentTextView.scrollEnabled = false
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchAllComments()
+    }
+    
     
     func doneBtnDidTap(){
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    
+    func displayComments(result: AnyObject){
+        
+        if let comments = (result[0] as! NSDictionary)["all_comments_of_devsite"] as? NSArray{
+            if comments.count > 0{
+                var appComments = [ApplicationComments]()
+                for comment in comments{
+                    let commentObject = ApplicationComments(comment: comment as! NSDictionary)
+                    appComments.append(commentObject)
+                }
+                devSiteComments = appComments
+                tableView.reloadData()
+            }else{
+                // TODO: Add a empty view to saying that there is no comment yet
+                AR5Logger.debug("No comments found")
+            }
+        }
     }
     
     @IBAction func sendComment(sender: AnyObject) {
@@ -40,8 +67,8 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
         }
         
         let commentString = commentTextView.text
-        let newComment = ApplicationComments(userName: "Jonny L. Digger", date: NSDate(), content: commentString, userAvatar: "jonny")
-        comments.append(newComment)
+        let newComment = ApplicationComments(userName: "Jonny L. Digger", date: DateUtil.transformStringFromDate(NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.MediumStyle), dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.ShortStyle, stringFormat: MilieuDateFormat.NoFormat), content: commentString, userAvatar: "jonny")
+        devSiteComments.append(newComment)
         commentTextView.text = ""
         
         self.tableView.reloadData()
@@ -62,6 +89,42 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
         
     }
     
+    // TODO: Server Communication
+    func fetchAllComments(){
+        
+        AR5Logger.debug("DevSiteUID: \(devSiteId)")
+        
+        Alamofire.request(.GET, NSURL(string: "\(serverUrl)\(RequestType.FetchCommentsForDevSite.rawValue)?dev_site_id=\(devSiteId)")!).responseJSON{
+            response in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if let result = response.result.value{
+                    self.displayComments(result)
+                }
+            })
+        }
+        
+    }
+    
+    func commitComment(message: String){
+        Alamofire.request(.GET, NSURL(string: "\(serverUrl)\(RequestType.FetchCommentsForDevSite.rawValue)?dev_site_id=\(devSiteId)")!).responseJSON{
+            response in
+            
+            debugPrint(response.result.error)
+            debugPrint(response.response)
+            debugPrint(response.request)
+            debugPrint(response.result.value)
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if let result = response.result.value{
+                    self.displayComments(result)
+                }
+            })
+        }
+
+    }
+    
 }
 
 extension CommentsViewController: UITableViewDataSource, UITableViewDelegate{
@@ -69,19 +132,24 @@ extension CommentsViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell", forIndexPath: indexPath) as! CommentCell
-        let comment = comments[indexPath.row]
+        let comment = devSiteComments[indexPath.row]
         cell.nameLabel.text = comment.userName
         
-        let dateString = NSDateFormatter.localizedStringFromDate(comment.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+        let dateString = comment.date
         cell.dateLabel.text = dateString
-        cell.avatarImageView.image = UIImage(named: comment.userAvatar)
+        if comment.userAvatar.isEmpty{
+            cell.avatarImageView.image = nil
+        }else{
+            cell.avatarImageView.image = UIImage(named: comment.userAvatar)
+        }
+        
         cell.commentLabel.text = comment.content
         
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return comments.count
+        return devSiteComments.count
     }
     
     // MARK: - UITableViewDelegate
@@ -94,4 +162,7 @@ extension CommentsViewController: UITableViewDataSource, UITableViewDelegate{
         return size.height
     }
 
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
 }

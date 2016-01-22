@@ -177,17 +177,18 @@ class LaunchViewController: UIViewController {
         let siteApps = (result[0] as! NSDictionary)["siteApps"] as! NSDictionary
         
         for i in 1...siteApps.count{
-            let app = siteApps["\(i-1)"] as! NSDictionary
-            if let wardNum: Int = app["ward_num"] as? Int {
-                let appObject = NSEntityDescription.insertNewObjectForEntityForName("DevApp", inManagedObjectContext: coreDataStack.context) as! DevApp
-                appObject.applicationId = app["application_id"] as? String
-                appObject.applicationType = app["application_type"] as? String
-                appObject.developmentId = app["development_id"] as? String
-                appObject.id = NSNumber(integer: (app["id"] as? Int)!)
-                appObject.generalDesription = app["description"] as? String
-                addAddressesForDevApp(appObject, addresses: app["addresses"] as! NSArray)
-                addStatusesForDevApp(appObject, statuses: app["statuses"] as! NSArray)
-                addDevAppInNeighbourhood(appObject, withWardNum: wardNum)
+            if let app = siteApps["\(i-1)"] as? NSDictionary{
+                if let wardNum: Int = app["ward_num"] as? Int {
+                    let appObject = NSEntityDescription.insertNewObjectForEntityForName("DevApp", inManagedObjectContext: coreDataStack.context) as! DevApp
+                    appObject.applicationId = app["application_id"] as? String
+                    appObject.applicationType = app["application_type"] as? String
+                    appObject.developmentId = app["development_id"] as? String
+                    appObject.id = NSNumber(integer: (app["id"] as? Int)!)
+                    appObject.generalDesription = app["description"] as? String
+                    addAddressesForDevApp(appObject, addresses: app["addresses"] as! NSArray)
+                    addStatusesForDevApp(appObject, statuses: app["statuses"] as! NSArray)
+                    addDevAppInNeighbourhood(appObject, withWardNum: wardNum)
+                }
             }
         }
     }

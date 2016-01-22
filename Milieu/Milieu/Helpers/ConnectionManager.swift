@@ -12,6 +12,7 @@ let errorDomain = "ConnectionError"
 
 enum RequestType: String{
     case FetchAllApplications = "/dev_sites"
+    case FetchCommentsForDevSite = "/all_devsite_comments"
 }
 
 protocol ConnectionManagerDelegate: class{

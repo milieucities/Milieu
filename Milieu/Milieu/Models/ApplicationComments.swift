@@ -11,50 +11,21 @@ import UIKit
 
 struct ApplicationComments {
     let userName: String
-    let date: NSDate
+    let date: String
     let content: String
-    let userAvatar: String
+    var userAvatar: String = ""
     
-    init(userName: String, date: NSDate, content: String, userAvatar: String){
+    init(userName: String, date: String, content: String, userAvatar: String){
         self.userName = userName
         self.date = date
         self.content = content
         self.userAvatar = userAvatar
     }
-}
-
-extension ApplicationComments{
     
     
-    static func loadAllApplicationComments() -> [ApplicationComments]{
-        return loadAllApplicationCommentsFromPlistNamed("Comments")
-    }
-    
-    private static func loadAllApplicationCommentsFromPlistNamed(plistName: String) -> [ApplicationComments]{
-        guard
-            let path = NSBundle.mainBundle().pathForResource(plistName, ofType: "plist"),
-            let dictionaryArray = NSArray(contentsOfFile: path) as? [[String : AnyObject]]
-            else{
-                fatalError("An error occurred while reading \(plistName).plist")
-        }
-        
-        var comments = [ApplicationComments]()
-        
-        for dict in dictionaryArray{
-            guard
-            let userName = dict["userName"] as? String,
-            let userAvatar = dict["userAvatar"] as? String,
-            let date = dict["date"] as? NSDate,
-            let content = dict["content"] as? String
-                else{
-                    fatalError("Error parsing dict \(dict)")
-            }
-            
-            let comment = ApplicationComments(
-                userName: userName, date: date, content: content, userAvatar: userAvatar)
-            
-            comments.append(comment)
-        }
-        return comments
+    init(comment: NSDictionary){
+        self.userName = comment["username"] as? String ?? "Anonymous"
+        self.date = DateUtil.transformStringFromDate(comment["created_at"] as? String, dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.ShortStyle, stringFormat: MilieuDateFormat.UTCStandardFormat)
+        self.content = comment["body"] as? String ?? "Error comment"
     }
 }

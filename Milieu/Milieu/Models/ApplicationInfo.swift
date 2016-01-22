@@ -29,6 +29,7 @@ class ApplicationInfo : NSObject, MKAnnotation{
     let generalDescription: String?
     let coordinate: CLLocationCoordinate2D
     let devId: String?
+    let devSiteUid: Int?
     
     init(devApp: DevApp) {
         // Set the title
@@ -38,6 +39,7 @@ class ApplicationInfo : NSObject, MKAnnotation{
         newestStatus = devAppStatus?.status
         newestDate = devAppStatus?.statusDate
         devId = devApp.developmentId
+        devSiteUid = devApp.id?.integerValue
         
         let devAppAddress = devApp.addresses?.allObjects.first as? Address
         title = devAppAddress!.street!
