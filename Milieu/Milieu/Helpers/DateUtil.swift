@@ -47,19 +47,4 @@ class DateUtil{
         
     }
     
-    class func transformDateFromString(dateString: String, stringFormat: MilieuDateFormat) -> NSDate?{
-
-            let dateFormatter = NSDateFormatter()
-            
-            switch stringFormat{
-            case .UTCStandardFormat:
-                dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-            case .NoFormat:
-                return nil
-            }
-            
-            return dateFormatter.dateFromString(dateString)
-    }
-    
 }
