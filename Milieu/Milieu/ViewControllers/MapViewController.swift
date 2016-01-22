@@ -35,6 +35,7 @@ class MapViewController: UIViewController {
     var loadInitialLocation: Bool = true
     var coreDataStack: CoreDataStack!
     var shouldUpdateMap: Bool = true
+    var events: [EventInfo]!
     
     // MARK: - VC methods
     
@@ -52,7 +53,7 @@ class MapViewController: UIViewController {
             menuButton.target = revealViewController()
             menuButton.action = "rightRevealToggle:"
         }
-        
+        events = EventInfo.loadAllEvents()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -127,14 +128,19 @@ class MapViewController: UIViewController {
     func populateMapSectionWithNeighbour(neighbourhood: Neighbourhood, withRegion region: MKCoordinateRegion?){
         if let region = region{
             
-            var applicationInfos = [ApplicationInfo]()
+            var applicationInfos = [MilieuAnnotation]()
             for item in neighbourhood.devApps!{
                 let app = item as! DevApp
                 if let _ = app.addresses?.allObjects.first as? Address{
                     let appInfo = ApplicationInfo(devApp: app)
                     applicationInfos.append(appInfo)
                 }
-                
+            }
+            
+            for event in events{
+                if event.wardName == neighbourhood.name{
+                    applicationInfos.append(event)
+                }
             }
             
             let defaults = NSUserDefaults.standardUserDefaults()
@@ -221,9 +227,9 @@ extension MapViewController: MKMapViewDelegate{
      Create and customize the annotation view
     */
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if let annotation = annotation as? ApplicationInfo{
+        if let annotation = annotation as? MilieuAnnotation{
             // Make unique reusable identifier for these type annotation
-            let identifier = "GeneralAnnotation"
+            let identifier = annotation.category.rawValue
             var view: MKAnnotationView
             
             // dequeue annotation and reusable annotation based on identifier
@@ -233,7 +239,7 @@ extension MapViewController: MKMapViewDelegate{
             }else{
                 // No reusable annotation found, Create a new one
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                let image = UIImage(named: "generalAnnotation")
+                let image = UIImage(named: annotation.category.rawValue)
                 view.image = image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
                 // TODO: Make it be able to use tint color
                 view.tintColor = UIColor(red: 158.0/255.0, green: 211.0/255.0, blue: 225.0/255.0, alpha: 1.0)
@@ -253,6 +259,20 @@ extension MapViewController: MKMapViewDelegate{
         if let annotation = view.annotation as? ApplicationInfo{
             // Create the ApplicationDetailViewController by storyboard
             let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ApplicationDetailViewController") as? ApplicationDetailViewController
+            
+            // Set the annotation
+            viewController?.annotation = annotation
+            
+            // Use the STPopupController to make the fancy view controller
+            let popupController = STPopupController(rootViewController: viewController)
+            popupController.cornerRadius = 4
+            
+            // Show it on top of the map view
+            popupController.presentInViewController(self)
+            
+        }else if let annotation = view.annotation as? EventInfo{
+            // Create the ApplicationDetailViewController by storyboard
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("EventDetailViewController") as? EventDetailViewController
             
             // Set the annotation
             viewController?.annotation = annotation
