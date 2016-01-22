@@ -18,6 +18,7 @@ class ApplicationDetailViewController: UIViewController {
     @IBOutlet weak var reviewStatusLabel: UILabel!
     @IBOutlet weak var statusDataLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var commentButton: UIButton!
     
     @IBOutlet weak var applicationImageView: UIImageView!
     
@@ -28,6 +29,9 @@ class ApplicationDetailViewController: UIViewController {
         applicationIdLabel.text = annotation.devId
         reviewStatusLabel.text = annotation.newestStatus
         descriptionTextView.text = annotation.generalDescription
+        if annotation.category == AnnotationCategory.InComment{
+            commentButton.hidden = false
+        }
         
         if let date = annotation.newestDate{
             

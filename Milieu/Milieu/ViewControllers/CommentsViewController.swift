@@ -165,4 +165,23 @@ extension CommentsViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if devSiteComments.count == 0{
+            let label = UILabel(frame: CGRectMake(0,0,tableView.bounds.size.width, tableView.bounds.size.height))
+            label.text = "🤔😱😶👇📝👍👎🏛😘🇨🇦"
+            label.textAlignment = .Center
+            label.sizeToFit()
+            tableView.backgroundView = label
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+            
+            return 0
+        }else{
+            tableView.backgroundView = nil
+            return 1
+        }
+        
+
+    }
+    
 }
