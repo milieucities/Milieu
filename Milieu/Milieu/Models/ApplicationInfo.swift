@@ -22,14 +22,24 @@ enum ApplicationType: String{
 */
 class ApplicationInfo : NSObject, MKAnnotation{
     let title: String?
-//    let type: ApplicationType
+    let type: String?
+    let newestStatus: String?
+    let newestDate: String?
 //    let image: UIImage
     let generalDescription: String?
     let coordinate: CLLocationCoordinate2D
+    let devId: String?
+    let devSiteUid: Int?
     
     init(devApp: DevApp) {
         // Set the title
         generalDescription = devApp.generalDesription
+        type = devApp.applicationType
+        let devAppStatus = devApp.statuses?.allObjects.first as? Status
+        newestStatus = devAppStatus?.status
+        newestDate = devAppStatus?.statusDate
+        devId = devApp.developmentId
+        devSiteUid = devApp.id?.integerValue
         
         let devAppAddress = devApp.addresses?.allObjects.first as? Address
         title = devAppAddress!.street!

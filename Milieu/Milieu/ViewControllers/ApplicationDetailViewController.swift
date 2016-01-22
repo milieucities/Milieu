@@ -14,11 +14,30 @@ class ApplicationDetailViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var applicationTypeLabel: UILabel!
+    @IBOutlet weak var applicationIdLabel: UILabel!
+    @IBOutlet weak var reviewStatusLabel: UILabel!
+    @IBOutlet weak var statusDataLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
+    
     @IBOutlet weak var applicationImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = annotation.title
+        applicationTypeLabel.text = annotation.type
+        applicationIdLabel.text = annotation.devId
+        reviewStatusLabel.text = annotation.newestStatus
+        descriptionTextView.text = annotation.generalDescription
+        
+        if let date = annotation.newestDate{
+            
+            // Transform the date from UTC standard string to human readable string with medium style
+            statusDataLabel.text = DateUtil.transformStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .MediumStyle, stringFormat: MilieuDateFormat.UTCStandardFormat)
+            
+        }else{
+            statusDataLabel.text = "Unknown"
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,7 +53,9 @@ class ApplicationDetailViewController: UIViewController {
     }
     
     @IBAction func commentBtnDidTap(sender: AnyObject) {
-        popupController?.pushViewController(UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommentsViewController"), animated: true)
+        let commentsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommentsViewController") as! CommentsViewController
+        commentsController.devSiteId = annotation.devSiteUid
+        popupController?.pushViewController(commentsController, animated: true)
     }
 
     /*
