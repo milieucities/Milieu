@@ -76,11 +76,11 @@ class MapViewController: UIViewController {
                 let neighbourManager = NeighbourManager.sharedManager
                 neighbourManager.setCurrentNeighbourWithName(defaultLocation!)
                 populateMapSectionWithNeighbour(neighbourManager.currentNeighbour!, withRegion: neighbourManager.currentRegion)
+                neighbourManager.reset()
             }else{
                 getLocation()
+                shouldUpdateMap = false
             }
-            
-            shouldUpdateMap = false
         }
     }
 
@@ -145,6 +145,7 @@ class MapViewController: UIViewController {
             mapView.showsUserLocation = true
             mapView.setRegion(region, animated: false)
             mapView.addAnnotations(applicationInfos)
+            shouldUpdateMap = false
         }
     }
     
