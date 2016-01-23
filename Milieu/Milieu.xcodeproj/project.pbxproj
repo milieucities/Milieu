@@ -30,6 +30,8 @@
 		837BDF821C51F7700000A9E4 /* Events.plist in Resources */ = {isa = PBXBuildFile; fileRef = 837BDF811C51F7700000A9E4 /* Events.plist */; };
 		837BDF841C51FC640000A9E4 /* EventInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BDF831C51FC640000A9E4 /* EventInfo.swift */; };
 		837BDF861C5201990000A9E4 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BDF851C5201990000A9E4 /* EventDetailViewController.swift */; };
+		837BDF881C5329B40000A9E4 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BDF871C5329B40000A9E4 /* FloatRatingView.swift */; };
+		837BDF8A1C532EF30000A9E4 /* VotingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BDF891C532EF30000A9E4 /* VotingController.swift */; };
 		839C88711C14C1D200D80D0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839C88701C14C1D200D80D0A /* AppDelegate.swift */; };
 		839C88781C14C1D200D80D0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839C88761C14C1D200D80D0A /* Main.storyboard */; };
 		839C887A1C14C1D200D80D0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 839C88791C14C1D200D80D0A /* Assets.xcassets */; };
@@ -103,6 +105,8 @@
 		837BDF811C51F7700000A9E4 /* Events.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Events.plist; sourceTree = "<group>"; };
 		837BDF831C51FC640000A9E4 /* EventInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventInfo.swift; path = Models/EventInfo.swift; sourceTree = "<group>"; };
 		837BDF851C5201990000A9E4 /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		837BDF871C5329B40000A9E4 /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingView.swift; sourceTree = "<group>"; };
+		837BDF891C532EF30000A9E4 /* VotingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VotingController.swift; path = ViewControllers/VotingController.swift; sourceTree = "<group>"; };
 		839C886D1C14C1D200D80D0A /* Milieu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milieu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		839C88701C14C1D200D80D0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		839C88771C14C1D200D80D0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -218,6 +222,7 @@
 			children = (
 				83405D061C37435A00F16F4D /* CommentCell.swift */,
 				83405D0F1C38278D00F16F4D /* UIImage+Resize.swift */,
+				837BDF871C5329B40000A9E4 /* FloatRatingView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -233,6 +238,7 @@
 				8317C9821C25F5250088DEAA /* ApplicationDetailViewController.swift */,
 				837BDF851C5201990000A9E4 /* EventDetailViewController.swift */,
 				83405D031C37424200F16F4D /* CommentsViewController.swift */,
+				837BDF891C532EF30000A9E4 /* VotingController.swift */,
 				831A89A21C4DE03F0066A874 /* UserAccountController.swift */,
 				831A89A41C4DE79B0066A874 /* EulaController.swift */,
 			);
@@ -560,9 +566,11 @@
 				83405D071C37435A00F16F4D /* CommentCell.swift in Sources */,
 				831A89AB1C4E01900066A874 /* LocationMenuController.swift in Sources */,
 				83EE7D551C14DF3000CEDF0D /* AR5Logger.swift in Sources */,
+				837BDF881C5329B40000A9E4 /* FloatRatingView.swift in Sources */,
 				834E87F21C1C67E0002A763C /* LocationSelectionViewController.swift in Sources */,
 				831A89A91C4E01870066A874 /* MainMenuController.swift in Sources */,
 				8317C9861C25FFF20088DEAA /* Constants.swift in Sources */,
+				837BDF8A1C532EF30000A9E4 /* VotingController.swift in Sources */,
 				831A89AE1C4E14060066A874 /* NeighbourManager.swift in Sources */,
 				83FB29FD1C4AC4000093EBC8 /* Address+CoreDataProperties.swift in Sources */,
 				831A89A51C4DE79B0066A874 /* EulaController.swift in Sources */,

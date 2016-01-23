@@ -43,11 +43,6 @@ class ApplicationDetailViewController: UIViewController {
         }
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     deinit{
         AR5Logger.debug("Deinit the view!")
@@ -61,15 +56,12 @@ class ApplicationDetailViewController: UIViewController {
         commentsController.devSiteId = annotation.devSiteUid
         popupController?.pushViewController(commentsController, animated: true)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func votingBtnDidTap(sender: AnyObject) {
+        let votingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("VotingController") as! VotingController
+        votingController.annotation = annotation
+        popupController?.pushViewController(votingController, animated: true)
     }
-    */
+
 
 }
