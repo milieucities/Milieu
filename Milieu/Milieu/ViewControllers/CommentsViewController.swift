@@ -17,8 +17,6 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
     var devSiteComments = [ApplicationComments]()
     var devSiteId: Int!
     
-    let serverUrl = "http://159.203.32.15"
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.contentSizeInPopup = CGSizeMake(300, 400)
@@ -94,7 +92,7 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
         
         AR5Logger.debug("DevSiteUID: \(devSiteId)")
         
-        Alamofire.request(.GET, NSURL(string: "\(serverUrl)\(RequestType.FetchCommentsForDevSite.rawValue)?dev_site_id=\(devSiteId)")!).responseJSON{
+        Alamofire.request(.GET, NSURL(string: "\(Connection.BaseUrl)\(RequestType.FetchCommentsForDevSite.rawValue)?dev_site_id=\(devSiteId)")!).responseJSON{
             response in
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -108,7 +106,7 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
     }
     
     func commitComment(message: String){
-        Alamofire.request(.GET, NSURL(string: "\(serverUrl)\(RequestType.FetchCommentsForDevSite.rawValue)?dev_site_id=\(devSiteId)")!).responseJSON{
+        Alamofire.request(.GET, NSURL(string: "\(Connection.BaseUrl)\(RequestType.FetchCommentsForDevSite.rawValue)?dev_site_id=\(devSiteId)")!).responseJSON{
             response in
             
             debugPrint(response.result.error)

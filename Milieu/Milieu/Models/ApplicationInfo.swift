@@ -48,7 +48,8 @@ class ApplicationInfo : MilieuAnnotation{
                 }
             }
         }
+        let address = devAppAddress?.street
         
-        super.init(title: devAppAddress!.street!, category: appCategory, description: devApp.generalDesription!, coordinate: CLLocationCoordinate2DMake(lat!, lon!))
+        super.init(title: address, category: appCategory, description: devApp.generalDesription, coordinate: CLLocationCoordinate2DMake(lat!, lon!))
     }
 }

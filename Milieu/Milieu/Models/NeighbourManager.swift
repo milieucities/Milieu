@@ -15,6 +15,11 @@ class NeighbourManager{
     var currentNeighbour: Neighbourhood?
     var currentRegion: MKCoordinateRegion?
     
+    lazy var neighbourNameSortDescriptor: NSSortDescriptor = {
+        var sd = NSSortDescriptor(key: "name", ascending: true)
+        return sd
+    }()
+    
     // MARK: - Manipulate neighbour data
     func createRegionForCurrentNeighbourhood(){
         
@@ -130,6 +135,7 @@ class NeighbourManager{
         let fetchRequest = NSFetchRequest(entityName: "Neighbourhood")
         let predicate = NSPredicate(format: "city.name == %@", "OTTAWA")
         fetchRequest.predicate = predicate
+        fetchRequest.sortDescriptors = [neighbourNameSortDescriptor]
         
         do{
             let results = try CoreDataManager.sharedManager.coreDataStack.context.executeFetchRequest(fetchRequest) as! [Neighbourhood]

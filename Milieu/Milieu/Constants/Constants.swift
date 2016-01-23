@@ -15,3 +15,8 @@ struct DefaultsKey {
 struct DefaultsValue{
     static let UserCurrentLocation = "UserCurrentLocation"
 }
+
+struct Connection{
+    static let BaseUrl = "http://159.203.32.15"
+    static let AddictionalHttpHeaders = ["Content-Type": "application/json", "Accept": "application/json"]
+}

@@ -16,7 +16,7 @@ class LocationMenuController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let neighbourManager = NeighbourManager.sharedManager
-        neighbourManager.currentNeighbour = neighbourhoods[indexPath.row]
+        neighbourManager.currentNeighbour = neighbourhoods[indexPath.row - 1]
         neighbourManager.createRegionForCurrentNeighbourhood()
         
         if revealViewController() != nil{
@@ -26,12 +26,17 @@ class LocationMenuController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("neighbourNameCell")! as UITableViewCell
-        let neighbour = neighbourhoods[indexPath.row] as Neighbourhood
-        
-        cell.textLabel?.text = neighbour.name
-        
-        return cell
+        if indexPath.row == 0{
+            let cell = tableView.dequeueReusableCellWithIdentifier("neighbourTitleCell")! as UITableViewCell
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCellWithIdentifier("neighbourNameCell")! as UITableViewCell
+            let neighbour = neighbourhoods[indexPath.row - 1] as Neighbourhood
+            
+            cell.textLabel?.text = neighbour.name
+            
+            return cell
+        }
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
