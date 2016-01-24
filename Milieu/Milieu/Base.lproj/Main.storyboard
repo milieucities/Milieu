@@ -242,7 +242,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dto-UT-kLN">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dto-UT-kLN">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="133"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="6k2-nB-foY">
@@ -332,11 +332,11 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mP7-no-gNt">
                                 <rect key="frame" x="8" y="259" width="284" height="133"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Description: Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Description: Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OV8-Yp-rPc">
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OV8-Yp-rPc">
                                 <rect key="frame" x="224" y="141" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="OV8-Yp-rPc" secondAttribute="height" multiplier="1:1" id="ZuC-oH-oGd"/>
@@ -355,9 +355,32 @@
                                     <constraint firstAttribute="width" secondItem="Ivc-3D-3Cr" secondAttribute="height" multiplier="1:1" id="0j3-Md-DRe"/>
                                 </constraints>
                                 <color key="tintColor" red="0.61960784310000006" green="0.82745098039999998" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Button" image="starEmpty"/>
                                 <connections>
                                     <action selector="votingBtnDidTap:" destination="bDM-NY-UMg" eventType="touchUpInside" id="vnA-dL-uhA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xq5-5Z-9Aq">
+                                <rect key="frame" x="262" y="95" width="30" height="30"/>
+                                <color key="tintColor" red="0.40679140949999998" green="0.6398743107" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="heartEmpty"/>
+                                <connections>
+                                    <action selector="heartBtnDidTap:" destination="bDM-NY-UMg" eventType="touchUpInside" id="vnF-WV-EaH"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFO-Nf-OxB">
+                                <rect key="frame" x="262" y="66" width="30" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVA-oq-Rdg">
+                                <rect key="frame" x="262" y="28" width="30" height="30"/>
+                                <color key="tintColor" red="1" green="0.48320511109999997" blue="0.47266961880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="upHeartEmpty"/>
+                                <connections>
+                                    <action selector="upHeartBtnDidTap:" destination="bDM-NY-UMg" eventType="touchUpInside" id="vPh-Es-lRg"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -365,20 +388,31 @@
                         <constraints>
                             <constraint firstItem="Ivc-3D-3Cr" firstAttribute="top" secondItem="dto-UT-kLN" secondAttribute="bottom" constant="8" id="3jh-4S-5Kh"/>
                             <constraint firstItem="dto-UT-kLN" firstAttribute="height" secondItem="z89-lI-f9o" secondAttribute="height" multiplier="1:3" id="3zO-lN-UMq"/>
+                            <constraint firstItem="Xq5-5Z-9Aq" firstAttribute="width" secondItem="Ivc-3D-3Cr" secondAttribute="width" id="4NW-0m-aZa"/>
+                            <constraint firstItem="Xq5-5Z-9Aq" firstAttribute="bottom" secondItem="dto-UT-kLN" secondAttribute="bottom" constant="-8" id="6EH-bU-ymd"/>
                             <constraint firstItem="6k2-nB-foY" firstAttribute="top" secondItem="dto-UT-kLN" secondAttribute="bottom" constant="8" id="74w-aA-uiP"/>
+                            <constraint firstItem="Xq5-5Z-9Aq" firstAttribute="centerX" secondItem="Ivc-3D-3Cr" secondAttribute="centerX" id="7Ty-At-xhk"/>
+                            <constraint firstItem="Xq5-5Z-9Aq" firstAttribute="top" secondItem="gFO-Nf-OxB" secondAttribute="bottom" constant="8" id="EOj-tB-QFg"/>
+                            <constraint firstItem="iVA-oq-Rdg" firstAttribute="width" secondItem="gFO-Nf-OxB" secondAttribute="width" id="Fbu-yn-ApT"/>
                             <constraint firstItem="hYS-Hv-CEz" firstAttribute="top" secondItem="mP7-no-gNt" secondAttribute="bottom" constant="8" id="HRa-KD-DSb"/>
+                            <constraint firstItem="gFO-Nf-OxB" firstAttribute="width" secondItem="Xq5-5Z-9Aq" secondAttribute="width" id="Hc6-lg-Wag"/>
+                            <constraint firstItem="gFO-Nf-OxB" firstAttribute="centerX" secondItem="Xq5-5Z-9Aq" secondAttribute="centerX" id="ID7-GJ-jWD"/>
                             <constraint firstItem="6k2-nB-foY" firstAttribute="leading" secondItem="mP7-no-gNt" secondAttribute="leading" id="Q2s-XS-wDX"/>
                             <constraint firstItem="mP7-no-gNt" firstAttribute="height" secondItem="z89-lI-f9o" secondAttribute="height" multiplier="1:3" id="TFn-nT-k5v"/>
                             <constraint firstItem="OV8-Yp-rPc" firstAttribute="centerY" secondItem="Ivc-3D-3Cr" secondAttribute="centerY" id="TZR-eW-WZl"/>
                             <constraint firstAttribute="trailing" secondItem="Ivc-3D-3Cr" secondAttribute="trailing" constant="8" id="Xit-7I-jHN"/>
                             <constraint firstItem="dto-UT-kLN" firstAttribute="top" secondItem="GGw-xC-qgI" secondAttribute="bottom" id="b9Q-ag-qsY"/>
                             <constraint firstItem="Ivc-3D-3Cr" firstAttribute="leading" secondItem="OV8-Yp-rPc" secondAttribute="trailing" constant="8" id="fmr-SH-oee"/>
+                            <constraint firstItem="gFO-Nf-OxB" firstAttribute="top" secondItem="iVA-oq-Rdg" secondAttribute="bottom" constant="8" id="htm-di-QY0"/>
                             <constraint firstItem="dto-UT-kLN" firstAttribute="leading" secondItem="z89-lI-f9o" secondAttribute="leading" id="ih5-gV-Ymt"/>
                             <constraint firstItem="mP7-no-gNt" firstAttribute="leading" secondItem="z89-lI-f9o" secondAttribute="leading" constant="8" id="kSM-96-CYa"/>
+                            <constraint firstItem="Xq5-5Z-9Aq" firstAttribute="height" secondItem="Ivc-3D-3Cr" secondAttribute="height" id="lPU-EH-gsf"/>
                             <constraint firstAttribute="trailing" secondItem="dto-UT-kLN" secondAttribute="trailing" id="nZ4-BW-RGh"/>
                             <constraint firstItem="mP7-no-gNt" firstAttribute="top" secondItem="6k2-nB-foY" secondAttribute="bottom" constant="8" id="nuv-tZ-4Z1"/>
                             <constraint firstItem="OV8-Yp-rPc" firstAttribute="height" secondItem="Ivc-3D-3Cr" secondAttribute="height" id="py7-rF-tuv"/>
                             <constraint firstAttribute="trailing" secondItem="mP7-no-gNt" secondAttribute="trailing" constant="8" id="sFv-Lu-0Xo"/>
+                            <constraint firstItem="iVA-oq-Rdg" firstAttribute="height" secondItem="Xq5-5Z-9Aq" secondAttribute="height" id="tj7-bh-gJ8"/>
+                            <constraint firstItem="iVA-oq-Rdg" firstAttribute="centerX" secondItem="gFO-Nf-OxB" secondAttribute="centerX" id="w7i-Zo-0rO"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -398,9 +432,12 @@
                         <outlet property="applicationTypeLabel" destination="X6w-8c-2Kk" id="jnZ-Id-2hH"/>
                         <outlet property="commentButton" destination="OV8-Yp-rPc" id="Duu-5q-oqF"/>
                         <outlet property="descriptionTextView" destination="mP7-no-gNt" id="EKu-jB-77a"/>
+                        <outlet property="heartButton" destination="Xq5-5Z-9Aq" id="zFH-dX-XJL"/>
+                        <outlet property="heartLabel" destination="gFO-Nf-OxB" id="WdF-06-yY7"/>
                         <outlet property="reviewStatusLabel" destination="g2C-UP-vbj" id="0yY-L4-72A"/>
                         <outlet property="statusDataLabel" destination="ROw-jY-rE5" id="DJe-Wx-AUl"/>
                         <outlet property="titleLabel" destination="MyW-1n-YFX" id="pc6-t2-8WQ"/>
+                        <outlet property="upHeartButton" destination="iVA-oq-Rdg" id="ozs-em-bhS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ILA-Lt-LB7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1427,11 +1464,13 @@
         <image name="applications" width="24" height="23"/>
         <image name="arrow" width="125" height="125"/>
         <image name="comment_b" width="22" height="22"/>
+        <image name="heartEmpty" width="25" height="23"/>
         <image name="locations" width="23" height="23"/>
         <image name="menuIcon" width="21" height="17"/>
         <image name="starEmpty" width="23" height="23"/>
         <image name="starFull" width="23" height="23"/>
         <image name="terms" width="22" height="23"/>
+        <image name="upHeartEmpty" width="25" height="23"/>
         <image name="user" width="14" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>

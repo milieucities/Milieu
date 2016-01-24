@@ -9,6 +9,12 @@
 import UIKit
 import Alamofire
 
+enum BackStatus{
+    case Empty
+    case Like
+    case Dislike
+}
+
 class ApplicationDetailViewController: UIViewController {
     
     var annotation: ApplicationInfo!
@@ -21,7 +27,13 @@ class ApplicationDetailViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var commentButton: UIButton!
     
+    @IBOutlet weak var heartButton: UIButton!
+    @IBOutlet weak var upHeartButton: UIButton!
+    @IBOutlet weak var heartLabel: UILabel!
+    
     @IBOutlet weak var applicationImageView: UIImageView!
+    
+    var backStatus: BackStatus = BackStatus.Empty
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +59,9 @@ class ApplicationDetailViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        fetchHeartLabel()
         fetchImage()
+        
     }
 
     
@@ -58,7 +72,7 @@ class ApplicationDetailViewController: UIViewController {
         
         let escapeAddress = annotation.title?.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
         
-        let urlString = "https://maps.googleapis.com/maps/api/streetview?size=400x200&location=\(escapeAddress!)"
+        let urlString = "https://maps.googleapis.com/maps/api/streetview?size=500x250&location=\(escapeAddress!)"
         Alamofire.request(Method.GET, urlString).response{
             request, response, data, error in
             
@@ -78,6 +92,23 @@ class ApplicationDetailViewController: UIViewController {
             }
             
         }
+    }
+    
+    func fetchHeartLabel(){
+        Alamofire.request(.GET, NSURL(string: "\(Connection.BaseUrl)\(RequestType.Like.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders)
+        Alamofire.request(.GET, NSURL(string: "\(Connection.BaseUrl)\(RequestType.Dislike.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders).responseJSON{
+            response in
+            
+            if let result = response.result.value as? NSArray{
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.upHeartButton.setImage(UIImage(named: "upHeartEmpty"), forState: .Normal)
+                    self.heartButton.setImage(UIImage(named: "heartEmpty"), forState: .Normal)
+                    self.heartLabel.text = String(result[0]["total_hearts"] as! Int)
+                })
+            }
+        }
+
+
     }
 	
     
@@ -100,5 +131,49 @@ class ApplicationDetailViewController: UIViewController {
         popupController?.pushViewController(votingController, animated: true)
     }
 
+    @IBAction func upHeartBtnDidTap(sender: AnyObject) {
+        if backStatus == BackStatus.Like{
+            return
+        }
+        upHeartButton.enabled = true
+        heartButton.enabled = true
+        Alamofire.request(.GET, NSURL(string: "\(Connection.BaseUrl)\(RequestType.Like.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders).responseJSON{
+            response in
+            
+            if let result = response.result.value as? NSArray{
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.upHeartButton.enabled = true
+                    self.heartButton.enabled = true
+                    self.upHeartButton.setImage(UIImage(named: "upHeartFull"), forState: .Normal)
+                    self.heartButton.setImage(UIImage(named: "heartEmpty"), forState: .Normal)
+                    self.heartLabel.text = String(result[0]["total_hearts"] as! Int)
+                    self.backStatus = .Like
+                })
+            }
+        }
 
+    }
+    
+    @IBAction func heartBtnDidTap(sender: AnyObject) {
+        if backStatus == BackStatus.Dislike{
+            return
+        }
+        upHeartButton.enabled = false
+        heartButton.enabled = false
+        Alamofire.request(.GET, NSURL(string: "\(Connection.BaseUrl)\(RequestType.Dislike.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders).responseJSON{
+            response in
+            
+            if let result = response.result.value as? NSArray{
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.upHeartButton.enabled = true
+                    self.heartButton.enabled = true
+                    self.upHeartButton.setImage(UIImage(named: "upHeartEmpty"), forState: .Normal)
+                    self.heartButton.setImage(UIImage(named: "heartFull"), forState: .Normal)
+                    self.heartLabel.text = String(result[0]["total_hearts"] as! Int)
+                    self.backStatus = .Dislike
+                })
+            }
+        }
+
+    }
 }

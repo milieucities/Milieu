@@ -33,7 +33,7 @@ class ApplicationInfo : MilieuAnnotation{
         let lat = devAppAddress!.latitude?.doubleValue
         let lon = devAppAddress!.longitude?.doubleValue
 
-        let devAppStatus = devApp.statuses?.allObjects.first as? Status
+        let devAppStatus = devApp.statuses?.firstObject as? Status
         newestStatus = devAppStatus?.status
         newestDate = devAppStatus?.statusDate
         devId = devApp.developmentId
@@ -41,6 +41,19 @@ class ApplicationInfo : MilieuAnnotation{
         type = devApp.applicationType
         
         var appCategory: AnnotationCategory = AnnotationCategory.General
+        
+        
+        // TODO: Change the status to a NSOrderedSet!
+        if let statuses: NSOrderedSet = devApp.statuses{
+            let array = Array(statuses)
+            if array.count > 0{
+                if let status = array[0] as? Status{
+                    if status.status == "Comment Period in Progress"{
+                        appCategory = AnnotationCategory.InComment
+                    }
+                }
+            }
+        }
         
         for vacant in preDefinedVacants{
             if devId == vacant{
@@ -52,17 +65,6 @@ class ApplicationInfo : MilieuAnnotation{
             appCategory = AnnotationCategory.Vacant
         }
         
-        // TODO: Change the status to a NSOrderedSet!
-        if let statuses: NSSet = devApp.statuses{
-            let array = Array(statuses)
-            if array.count > 0{
-                if let status = array[0] as? Status{
-                    if status.status == "Comment Period in Progress"{
-                        appCategory = AnnotationCategory.InComment
-                    }
-                }
-            }
-        }
         let address = devAppAddress?.street
         
         super.init(title: address, category: appCategory, description: devApp.generalDesription, coordinate: CLLocationCoordinate2DMake(lat!, lon!))

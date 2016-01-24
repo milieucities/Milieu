@@ -136,8 +136,10 @@ class MapViewController: UIViewController {
             let predicate4 = NSPredicate(format: "statuses[FIRST].statusDate BEGINSWITH '2015-10'")
             let predicate5 = NSPredicate(format: "statuses[FIRST].statusDate BEGINSWITH '2015-09'")
             let predicate6 = NSPredicate(format: "statuses[FIRST].statusDate BEGINSWITH '2015-08'")
+            let predicate7 = NSPredicate(format: "statuses[FIRST].statusDate BEGINSWITH '2015-07'")
+            let predicate8 = NSPredicate(format: "statuses[FIRST].statusDate BEGINSWITH '2015-06'")
             
-            let predicate = NSCompoundPredicate(type: .OrPredicateType, subpredicates: [predicate1, predicate2, predicate3, predicate4, predicate5, predicate6])
+            let predicate = NSCompoundPredicate(type: .OrPredicateType, subpredicates: [predicate1, predicate2, predicate3, predicate4, predicate5, predicate6, predicate7, predicate8])
             let filteredDevApps = (neighbourhood.devApps! as NSSet).filteredSetUsingPredicate(predicate)
             
             for item in filteredDevApps{
@@ -153,7 +155,7 @@ class MapViewController: UIViewController {
                     applicationInfos.append(event)
                 }
             }
-            
+
             let defaults = NSUserDefaults.standardUserDefaults()
             defaults.setObject(neighbourhood.name, forKey: DefaultsKey.SelectedNeighbour)
             defaults.synchronize()

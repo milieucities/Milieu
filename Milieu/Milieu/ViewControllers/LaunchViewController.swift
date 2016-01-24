@@ -239,12 +239,14 @@ class LaunchViewController: UIViewController {
                         }
                     }
                     count++
-                    if count % (Int(siteApps.count/100)) == 0{
+                    if count % (Int(siteApps.count/10)) == 0{
                         
                         dispatch_async(dispatch_get_main_queue(), {
                             self.percentLabel.text = "\(percent) %"
                         })
-                        percent++
+                        if percent <= 100{
+                            percent += 10
+                        }
                     }
                 }
                 dispatch_async(dispatch_get_main_queue(), {
