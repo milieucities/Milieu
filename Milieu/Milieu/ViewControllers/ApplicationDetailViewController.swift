@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class ApplicationDetailViewController: UIViewController {
     
@@ -43,6 +44,42 @@ class ApplicationDetailViewController: UIViewController {
         }
         
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchImage()
+    }
+
+    
+    func fetchImage(){
+        if annotation.title == nil{
+            return
+        }
+        
+        let escapeAddress = annotation.title?.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
+        
+        let urlString = "https://maps.googleapis.com/maps/api/streetview?size=400x200&location=\(escapeAddress!)"
+        Alamofire.request(Method.GET, urlString).response{
+            request, response, data, error in
+            
+            debugPrint(error)
+            debugPrint(response)
+            debugPrint(request)
+            debugPrint(data)
+            
+            if let data = data{
+                dispatch_async(dispatch_get_main_queue(),{
+                    print(data)
+                    let image = UIImage(data: data)
+                    print("Image: \(image)")
+                    self.applicationImageView.image = image
+                    
+                })
+            }
+            
+        }
+    }
+	
     
     deinit{
         AR5Logger.debug("Deinit the view!")
