@@ -1,13 +1,19 @@
 PODS:
   - Alamofire (3.1.4)
+  - PNChart (0.8.8):
+    - UICountingLabel (~> 1.2.0)
   - STPopup (1.6.0)
+  - UICountingLabel (1.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
+  - PNChart (~> 0.8)
   - STPopup (~> 1.6)
 
 SPEC CHECKSUMS:
   Alamofire: fbc829692f351fa1d8a31dd75fd7f7f56fea31fb
+  PNChart: 25f91e9c4688af49c3647489760624d037f5383f
   STPopup: 7975883c48560e4cb16ea1c6f351312ed2cd2bc0
+  UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
 
 COCOAPODS: 0.39.0
