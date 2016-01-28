@@ -11,6 +11,7 @@ import MapKit
 
 enum AnnotationCategory: String{
     case InComment = "commentAnnotation"
+    case Vacant = "vacantAnnotation"
     case General = "generalAnnotation"
     case Event = "eventAnnotation"
 }

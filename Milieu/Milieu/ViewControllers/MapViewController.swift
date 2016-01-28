@@ -129,7 +129,20 @@ class MapViewController: UIViewController {
         if let region = region{
             
             var applicationInfos = [MilieuAnnotation]()
-            for item in neighbourhood.devApps!{
+ 
+            let predicate1 = NSPredicate(format: "statuses[FIRST].statusDate BEGINSWITH '2016-01'")
+            let predicate2 = NSPredicate(format: "statuses[FIRST].statusDate BEGINSWITH '2015-12'")
+            let predicate3 = NSPredicate(format: "statuses[FIRST].statusDate BEGINSWITH '2015-11'")
+            let predicate4 = NSPredicate(format: "statuses[FIRST].statusDate BEGINSWITH '2015-10'")
+            let predicate5 = NSPredicate(format: "statuses[FIRST].statusDate BEGINSWITH '2015-09'")
+            let predicate6 = NSPredicate(format: "statuses[FIRST].statusDate BEGINSWITH '2015-08'")
+            let predicate7 = NSPredicate(format: "statuses[FIRST].statusDate BEGINSWITH '2015-07'")
+            let predicate8 = NSPredicate(format: "statuses[FIRST].statusDate BEGINSWITH '2015-06'")
+            
+            let predicate = NSCompoundPredicate(type: .OrPredicateType, subpredicates: [predicate1, predicate2, predicate3, predicate4, predicate5, predicate6, predicate7, predicate8])
+            let filteredDevApps = (neighbourhood.devApps! as NSSet).filteredSetUsingPredicate(predicate)
+            
+            for item in filteredDevApps{
                 let app = item as! DevApp
                 if let _ = app.addresses?.allObjects.first as? Address{
                     let appInfo = ApplicationInfo(devApp: app)
@@ -142,7 +155,7 @@ class MapViewController: UIViewController {
                     applicationInfos.append(event)
                 }
             }
-            
+
             let defaults = NSUserDefaults.standardUserDefaults()
             defaults.setObject(neighbourhood.name, forKey: DefaultsKey.SelectedNeighbour)
             defaults.synchronize()
@@ -153,6 +166,50 @@ class MapViewController: UIViewController {
             mapView.addAnnotations(applicationInfos)
             shouldUpdateMap = false
         }
+    }
+    
+    func getCurrentDate() -> (year: Int, month: Int){
+        let currentDate = NSDate()
+        let calendar = NSCalendar.currentCalendar
+        let components = calendar().components([.Day, .Month, .Year], fromDate: currentDate)
+        return(components.year, components.month)
+    }
+    
+    // TODO: Improve to support general case
+    func createRecentPredicate(months: Int) -> [NSPredicate]{
+        let currentYear = getCurrentDate().year
+        let currentMonth = getCurrentDate().month
+        
+        var predicates = [NSPredicate]()
+        var m: Int
+        for m = 0; m < months; ++m{
+            
+            let predicate: NSPredicate
+            if currentMonth - m > 0{
+                
+                if currentMonth - m < 10{
+                    predicate =  NSPredicate(format: "statuses[FIRST].statusDate BEGINSWITH '%d-0%d'", currentYear, currentMonth - m)
+                    let string = String(format: "statuses[FIRST].statusDate BEGINSWITH '%d-0%d'", currentYear, currentMonth - m)
+                    print("\(string)")
+                }else{
+                    predicate =  NSPredicate(format: "statuses[FIRST].statusDate BEGINSWITH '%d-%d'", currentYear, currentMonth - m)
+                    print("\(String(format: "statuses[FIRST].statusDate BEGINSWITH '%d-%d'", currentYear, currentMonth - m))")
+                }
+                
+            }else{
+                
+                if currentMonth + 12 - m < 10{
+                    predicate =  NSPredicate(format: "statuses[FIRST].statusDate BEGINSWITH '%d-0%d'", currentYear - 1, currentMonth + 12 - m)
+                    print("\(String(format: "statuses[FIRST].statusDate BEGINSWITH '%d-0%d'", currentYear - 1, currentMonth + 12 - m))")
+                }else{
+                    predicate =  NSPredicate(format: "statuses[FIRST].statusDate BEGINSWITH '%d-%d'", currentYear - 1, currentMonth + 12 - m)
+                    print("\(String(format: "statuses[FIRST].statusDate BEGINSWITH '%d-%d'", currentYear - 1, currentMonth + 12 - m))")
+                }
+            }
+            predicates.append(predicate)
+        }
+        
+        return predicates
     }
     
     // MARK: - Blur Effect

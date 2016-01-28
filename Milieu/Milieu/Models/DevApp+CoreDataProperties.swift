@@ -21,6 +21,6 @@ extension DevApp {
     @NSManaged var id: NSNumber?
     @NSManaged var neighbourhood: Neighbourhood?
     @NSManaged var addresses: NSSet?
-    @NSManaged var statuses: NSSet?
+    @NSManaged var statuses: NSOrderedSet?
 
 }

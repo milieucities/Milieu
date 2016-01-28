@@ -26,7 +26,7 @@
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="addresses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Address" inverseName="devApp" inverseEntity="Address" syncable="YES"/>
         <relationship name="neighbourhood" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Neighbourhood" inverseName="devApps" inverseEntity="Neighbourhood" syncable="YES"/>
-        <relationship name="statuses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Status" inverseName="devApp" inverseEntity="Status" syncable="YES"/>
+        <relationship name="statuses" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Status" inverseName="devApp" inverseEntity="Status" syncable="YES"/>
     </entity>
     <entity name="Neighbourhood" representedClassName="Milieu.Neighbourhood" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -47,7 +47,7 @@
         <element name="Address" positionX="0" positionY="-150" width="128" height="148"/>
         <element name="City" positionX="-578" positionY="-133" width="128" height="73"/>
         <element name="Coordinate" positionX="-209" positionY="-259" width="128" height="88"/>
-        <element name="DevApp" positionX="-209" positionY="-34" width="128" height="163"/>
+        <element name="DevApp" positionX="-209" positionY="-34" width="128" height="165"/>
         <element name="Neighbourhood" positionX="-387" positionY="-117" width="128" height="118"/>
         <element name="Status" positionX="0" positionY="45" width="128" height="133"/>
     </elements>
