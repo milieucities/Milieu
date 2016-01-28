@@ -212,10 +212,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Applications" id="sD4-aL-HLp">
-                        <barButtonItem key="leftBarButtonItem" image="locations" id="4eF-w8-yxG">
+                        <barButtonItem key="leftBarButtonItem" image="pin" id="4eF-w8-yxG">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="menuIcon" id="p02-jL-gZ3">
+                        <barButtonItem key="rightBarButtonItem" image="menu" id="p02-jL-gZ3">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
@@ -343,8 +343,7 @@
                                     <constraint firstAttribute="height" constant="30" id="ebZ-6p-iuf"/>
                                 </constraints>
                                 <color key="tintColor" red="0.61960784310000006" green="0.82745098039999998" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <inset key="contentEdgeInsets" minX="0.0" minY="3" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" image="comment_b"/>
+                                <state key="normal" image="message"/>
                                 <connections>
                                     <action selector="commentBtnDidTap:" destination="bDM-NY-UMg" eventType="touchUpInside" id="iw7-1i-Ktc"/>
                                 </connections>
@@ -355,10 +354,10 @@
                                     <constraint firstAttribute="width" secondItem="Ivc-3D-3Cr" secondAttribute="height" multiplier="1:1" id="0j3-Md-DRe"/>
                                 </constraints>
                                 <color key="tintColor" red="0.61960784310000006" green="0.82745098039999998" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Button" image="starEmpty"/>
+                                <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Button" image="analysis"/>
                                 <connections>
-                                    <action selector="votingBtnDidTap:" destination="bDM-NY-UMg" eventType="touchUpInside" id="vnA-dL-uhA"/>
+                                    <action selector="analysisBtnDidTap:" destination="bDM-NY-UMg" eventType="touchUpInside" id="OBg-GH-tS8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xq5-5Z-9Aq">
@@ -442,7 +441,53 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ILA-Lt-LB7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="944" y="16"/>
+            <point key="canvasLocation" x="1955" y="-298"/>
+        </scene>
+        <!--Analysis Controller-->
+        <scene sceneID="48k-c2-q7Z">
+            <objects>
+                <viewController storyboardIdentifier="AnalysisController" id="g9N-4L-ahV" customClass="AnalysisController" customModule="Milieu" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5ZJ-Id-gWt"/>
+                        <viewControllerLayoutGuide type="bottom" id="fh8-Hx-AP5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xMH-Pv-264">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="laT-mj-GVF">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <color key="barTintColor" red="0.61960784310000006" green="0.82745098039999998" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Analysis" id="ssC-MU-C0h">
+                                        <barButtonItem key="leftBarButtonItem" title="&lt;" id="7rp-JX-H3D">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="back:" destination="g9N-4L-ahV" id="Z3j-MJ-wGE"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="laT-mj-GVF" firstAttribute="top" secondItem="5ZJ-Id-gWt" secondAttribute="bottom" id="8R2-Dy-xEg"/>
+                            <constraint firstItem="laT-mj-GVF" firstAttribute="leading" secondItem="xMH-Pv-264" secondAttribute="leading" id="PiQ-MC-CWy"/>
+                            <constraint firstAttribute="trailing" secondItem="laT-mj-GVF" secondAttribute="trailing" id="V3L-YD-95Q"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="XDp-7B-qae">
+                        <barButtonItem key="backBarButtonItem" title="&lt;" id="pmT-Ze-mdd"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xud-6n-hfs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2543" y="-728"/>
         </scene>
         <!--Comments-->
         <scene sceneID="0yA-QD-W10">
@@ -605,7 +650,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0dT-oX-cvb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1299" y="-290"/>
+            <point key="canvasLocation" x="1163" y="-815"/>
         </scene>
         <!--Reveal View Controller-->
         <scene sceneID="BpW-WY-Az9">
@@ -766,7 +811,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="applications" translatesAutoresizingMaskIntoConstraints="NO" id="GV1-i1-Cdh">
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="house" translatesAutoresizingMaskIntoConstraints="NO" id="GV1-i1-Cdh">
                                                     <rect key="frame" x="381" y="4" width="35" height="35"/>
                                                     <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -806,7 +851,7 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="terms" translatesAutoresizingMaskIntoConstraints="NO" id="hNU-q0-0Mo">
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="file" translatesAutoresizingMaskIntoConstraints="NO" id="hNU-q0-0Mo">
                                                     <rect key="frame" x="381" y="4" width="35" height="35"/>
                                                     <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -988,7 +1033,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sign Up" id="Vsj-cg-dew">
-                        <barButtonItem key="rightBarButtonItem" image="menuIcon" id="RrG-Wa-vNL">
+                        <barButtonItem key="rightBarButtonItem" image="menu" id="RrG-Wa-vNL">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
@@ -1060,7 +1105,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Terms and Conditions" id="RJJ-JS-AeI">
-                        <barButtonItem key="rightBarButtonItem" image="menuIcon" id="RrZ-dn-vrR">
+                        <barButtonItem key="rightBarButtonItem" image="menu" id="RrZ-dn-vrR">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
@@ -1239,7 +1284,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kkr-8A-wxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1679" y="16"/>
+            <point key="canvasLocation" x="1955" y="-815"/>
         </scene>
         <!--Voting-->
         <scene sceneID="rkf-Ye-Fih">
@@ -1456,22 +1501,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3sw-44-ZF1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1299" y="173"/>
+            <point key="canvasLocation" x="1559" y="-815"/>
         </scene>
     </scenes>
     <resources>
         <image name="LaunchScreen" width="1242" height="2208"/>
-        <image name="applications" width="24" height="23"/>
+        <image name="analysis" width="22" height="22"/>
         <image name="arrow" width="125" height="125"/>
-        <image name="comment_b" width="22" height="22"/>
+        <image name="file" width="19" height="24"/>
         <image name="heartEmpty" width="25" height="23"/>
-        <image name="locations" width="23" height="23"/>
-        <image name="menuIcon" width="21" height="17"/>
+        <image name="house" width="22" height="22"/>
+        <image name="menu" width="22" height="13"/>
+        <image name="message" width="22" height="22"/>
+        <image name="pin" width="20" height="24"/>
         <image name="starEmpty" width="23" height="23"/>
         <image name="starFull" width="23" height="23"/>
-        <image name="terms" width="22" height="23"/>
         <image name="upHeartEmpty" width="25" height="23"/>
-        <image name="user" width="14" height="21"/>
+        <image name="user" width="17" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="cCt-t6-mn4"/>

@@ -38,6 +38,7 @@
 		839C887D1C14C1D200D80D0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839C887B1C14C1D200D80D0A /* LaunchScreen.storyboard */; };
 		839C88881C14C1D200D80D0A /* MilieuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839C88871C14C1D200D80D0A /* MilieuTests.swift */; };
 		839C88931C14C1D200D80D0A /* MilieuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839C88921C14C1D200D80D0A /* MilieuUITests.swift */; };
+		83C75F6D1C59B4F300174B9F /* AnalysisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C75F6C1C59B4F300174B9F /* AnalysisController.swift */; };
 		83C7A361A4F2FA7C99651EFC /* Pods_Milieu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C21667E9BAC5A927CE45449 /* Pods_Milieu.framework */; };
 		83EE7D531C14D9F100CEDF0D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83EE7D521C14D9F100CEDF0D /* MapKit.framework */; };
 		83EE7D551C14DF3000CEDF0D /* AR5Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE7D541C14DF3000CEDF0D /* AR5Logger.swift */; };
@@ -119,6 +120,7 @@
 		839C888E1C14C1D200D80D0A /* MilieuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MilieuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		839C88921C14C1D200D80D0A /* MilieuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilieuUITests.swift; sourceTree = "<group>"; };
 		839C88941C14C1D200D80D0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83C75F6C1C59B4F300174B9F /* AnalysisController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisController.swift; sourceTree = "<group>"; };
 		83EE7D521C14D9F100CEDF0D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		83EE7D541C14DF3000CEDF0D /* AR5Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AR5Logger.swift; path = Helpers/AR5Logger.swift; sourceTree = "<group>"; };
 		83FB298F1C43208D0093EBC8 /* ottawa_wards_2010.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ottawa_wards_2010.json; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				837BDF891C532EF30000A9E4 /* VotingController.swift */,
 				831A89A21C4DE03F0066A874 /* UserAccountController.swift */,
 				831A89A41C4DE79B0066A874 /* EulaController.swift */,
+				83C75F6C1C59B4F300174B9F /* AnalysisController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				83FB29A61C44AE8E0093EBC8 /* Coordinate.swift in Sources */,
 				83FB2A011C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift in Sources */,
 				10B9E3E21C4D539900DE21B9 /* SWRevealViewController.m in Sources */,
+				83C75F6D1C59B4F300174B9F /* AnalysisController.swift in Sources */,
 				83FB2A041C4AC4000093EBC8 /* Status.swift in Sources */,
 				83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */,
 				83FB29FF1C4AC4000093EBC8 /* Neighbourhood+CoreDataProperties.swift in Sources */,
