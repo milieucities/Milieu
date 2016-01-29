@@ -14,20 +14,25 @@ import Foundation
 
 class AnalysisController: UIViewController {
 
-    let supportVsOppose:[PNPieChartDataItem] = [PNPieChartDataItem(value: 50, color: UIColor(red: 255.0/255.0, green: 123.0/255.0, blue: 121.0/255.0, alpha: 1.0), description: "Support"),
-                            PNPieChartDataItem(value: 50, color: UIColor(red: 104.0/255.0, green: 163.0/255.0, blue: 255.0/255.0, alpha: 1.0), description: "Oppose")]
+    var supportVsOppose:[PNPieChartDataItem]!
     
-    let voterOccupation:[PNPieChartDataItem] = [PNPieChartDataItem(value: 10, color: UIColor(red:0.87, green:0.37, blue:0.43, alpha:1), description: "Researchers"),
-                            PNPieChartDataItem(value: 20, color: UIColor(red:0.92, green:0.64, blue:0.62, alpha:1), description: "Others"),
-                            PNPieChartDataItem(value: 30, color: UIColor(red:0.96, green:0.81, blue:0.69, alpha:1), description: "Students"),
-                            PNPieChartDataItem(value: 5, color: UIColor(red:0.78, green:0.77, blue:0.67, alpha:1), description: "Goverment employees"),
-                            PNPieChartDataItem(value: 40, color: UIColor(red:0.55, green:0.67, blue:0.61, alpha:1), description: "Urban Developer")]
+    var voterOccupation:[PNPieChartDataItem]!
 
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
+        
+        let randomSupport = randomNumber(1...99)
+        supportVsOppose = [PNPieChartDataItem(value: randomSupport, color: UIColor(red: 255.0/255.0, green: 123.0/255.0, blue: 121.0/255.0, alpha: 1.0), description: "Support"),
+        PNPieChartDataItem(value: 100 - randomSupport, color: UIColor(red: 104.0/255.0, green: 163.0/255.0, blue: 255.0/255.0, alpha: 1.0), description: "Oppose")]
+        
+        voterOccupation = [PNPieChartDataItem(value: randomNumber(), color: UIColor(red:0.87, green:0.37, blue:0.43, alpha:1), description: "Researchers"),
+        PNPieChartDataItem(value: randomNumber(), color: UIColor(red:0.92, green:0.64, blue:0.62, alpha:1), description: "Others"),
+        PNPieChartDataItem(value: randomNumber(), color: UIColor(red:0.96, green:0.81, blue:0.69, alpha:1), description: "Students"),
+        PNPieChartDataItem(value: randomNumber(), color: UIColor(red:0.78, green:0.77, blue:0.67, alpha:1), description: "Goverment employees"),
+        PNPieChartDataItem(value: randomNumber(), color: UIColor(red:0.55, green:0.67, blue:0.61, alpha:1), description: "Urban Developer")]
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -65,6 +70,12 @@ class AnalysisController: UIViewController {
         legend.frame = CGRectMake(0, startY, legendView.frame.size.width, legendView.frame.size.height)
         
         legendView.addSubview(legend)
+    }
+    
+    func randomNumber(range: Range<Int> = 1...50) -> CGFloat {
+        let min = range.startIndex
+        let max = range.endIndex
+        return CGFloat(arc4random_uniform(UInt32(max - min))) + CGFloat(min)
     }
 
 }
