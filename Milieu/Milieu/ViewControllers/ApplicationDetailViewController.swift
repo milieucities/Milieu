@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import STPopup
 
 enum BackStatus{
     case Empty
@@ -55,6 +56,10 @@ class ApplicationDetailViewController: UIViewController {
             statusDataLabel.text = "Unknown"
         }
         
+        STPopupNavigationBar.appearance().barTintColor = UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1)
+        STPopupNavigationBar.appearance().tintColor = UIColor.whiteColor()
+        STPopupNavigationBar.appearance().barStyle = UIBarStyle.Default
+        STPopupNavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
     }
     
     override func viewDidAppear(animated: Bool) {
