@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>userName</key>
+		<string>Jonny L. Digger</string>
+		<key>userAvatar</key>
+		<string>jonny</string>
+		<key>content</key>
+		<string>The renderings looks pretty convincing and this ia a nice project to be in the downtown core? A little more street connection to engage the context will definitly make it better. But still it looks a bit generic.</string>
+		<key>date</key>
+		<date>2016-01-02T00:22:26Z</date>
+	</dict>
+	<dict>
+		<key>userName</key>
+		<string>Annie Waterfall</string>
+		<key>userAvatar</key>
+		<string>annie</string>
+		<key>content</key>
+		<string>I agree. I hope it does not look like another glass cube with a tower on top at the end...The area has so much potential and why shouldn&apos;t Ottawa have a more progressive mixed-use community?</string>
+		<key>date</key>
+		<date>2016-01-02T17:40:14Z</date>
+	</dict>
+	<dict>
+		<key>userName</key>
+		<string>Jonny L. Digger</string>
+		<key>userAvatar</key>
+		<string>jonny</string>
+		<key>content</key>
+		<string>Not to comment on the form but yes, it does look very disengaged from the streets. Although the rendering suggests losts of options to connect to the context...hummm</string>
+		<key>date</key>
+		<date>2016-01-02T17:50:26Z</date>
+	</dict>
+	<dict>
+		<key>userName</key>
+		<string>Jonny L. Digger</string>
+		<key>userAvatar</key>
+		<string>jonny</string>
+		<key>content</key>
+		<string>The rendering looks pretty convincing and this is a nice project to be in the downtown core? A little more street connection to engage the context will definitly make it better. But still it looks a bit generic.</string>
+		<key>date</key>
+		<date>2016-01-02T17:50:26Z</date>
+	</dict>
+</array>
+</plist>
