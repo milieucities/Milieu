@@ -19,6 +19,7 @@ enum BackStatus{
 class ApplicationDetailViewController: UIViewController {
     
     var annotation: ApplicationInfo!
+    var image: UIImage?
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var applicationTypeLabel: UILabel!
@@ -60,6 +61,15 @@ class ApplicationDetailViewController: UIViewController {
         STPopupNavigationBar.appearance().tintColor = UIColor.whiteColor()
         STPopupNavigationBar.appearance().barStyle = UIBarStyle.Default
         STPopupNavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Detail", style: UIBarButtonItemStyle.Plain, target: self, action: "detailBtnDidTap")
+    }
+    
+    func detailBtnDidTap(){
+        let navController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("DetailNavigationController") as! UINavigationController
+        let detailController = navController.topViewController as! FullDetailController
+        detailController.annotation = annotation
+        presentViewController(navController, animated: true, completion: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -84,9 +94,9 @@ class ApplicationDetailViewController: UIViewController {
             
             if let data = data{
                 dispatch_async(dispatch_get_main_queue(),{
-                    let image = UIImage(data: data)
-                    print("Image: \(image)")
-                    self.applicationImageView.image = image
+                    self.image = UIImage(data: data)
+                    print("Image: \(self.image)")
+                    self.applicationImageView.image = self.image
                     
                 })
             }
@@ -135,6 +145,7 @@ class ApplicationDetailViewController: UIViewController {
         let analysisController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AnalysisController") as! AnalysisController
         presentViewController(analysisController, animated: true, completion: nil)
     }
+    
 
     @IBAction func upHeartBtnDidTap(sender: AnyObject) {
         if backStatus == BackStatus.Like{
