@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import STPopup
 
 enum BackStatus{
     case Empty
@@ -55,6 +56,10 @@ class ApplicationDetailViewController: UIViewController {
             statusDataLabel.text = "Unknown"
         }
         
+        STPopupNavigationBar.appearance().barTintColor = UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1)
+        STPopupNavigationBar.appearance().tintColor = UIColor.whiteColor()
+        STPopupNavigationBar.appearance().barStyle = UIBarStyle.Default
+        STPopupNavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -72,18 +77,13 @@ class ApplicationDetailViewController: UIViewController {
         
         let escapeAddress = annotation.title?.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
         
-        let urlString = "https://maps.googleapis.com/maps/api/streetview?size=500x250&location=\(escapeAddress!)"
+        let urlString = "https://maps.googleapis.com/maps/api/streetview?size=500x250&location=\(escapeAddress!)%2COttawa%2COntario$2CCanada"
+
         Alamofire.request(Method.GET, urlString).response{
             request, response, data, error in
             
-            debugPrint(error)
-            debugPrint(response)
-            debugPrint(request)
-            debugPrint(data)
-            
             if let data = data{
                 dispatch_async(dispatch_get_main_queue(),{
-                    print(data)
                     let image = UIImage(data: data)
                     print("Image: \(image)")
                     self.applicationImageView.image = image
@@ -129,6 +129,11 @@ class ApplicationDetailViewController: UIViewController {
         let votingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("VotingController") as! VotingController
         votingController.annotation = annotation
         popupController?.pushViewController(votingController, animated: true)
+    }
+
+    @IBAction func analysisBtnDidTap(sender: AnyObject) {
+        let analysisController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AnalysisController") as! AnalysisController
+        presentViewController(analysisController, animated: true, completion: nil)
     }
 
     @IBAction func upHeartBtnDidTap(sender: AnyObject) {
