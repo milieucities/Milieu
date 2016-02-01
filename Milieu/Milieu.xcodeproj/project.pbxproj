@@ -19,6 +19,7 @@
 		831A89A91C4E01870066A874 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A89A81C4E01870066A874 /* MainMenuController.swift */; };
 		831A89AB1C4E01900066A874 /* LocationMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A89AA1C4E01900066A874 /* LocationMenuController.swift */; };
 		831A89AE1C4E14060066A874 /* NeighbourManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A89AD1C4E14060066A874 /* NeighbourManager.swift */; };
+		83383D681C5F46F100FE15F2 /* SummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83383D671C5F46F100FE15F2 /* SummaryCell.swift */; };
 		83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D031C37424200F16F4D /* CommentsViewController.swift */; };
 		83405D071C37435A00F16F4D /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D061C37435A00F16F4D /* CommentCell.swift */; };
 		83405D091C37487200F16F4D /* ApplicationComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D081C37487200F16F4D /* ApplicationComments.swift */; };
@@ -102,6 +103,7 @@
 		831A89A81C4E01870066A874 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainMenuController.swift; path = ViewControllers/MainMenuController.swift; sourceTree = "<group>"; };
 		831A89AA1C4E01900066A874 /* LocationMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationMenuController.swift; path = ViewControllers/LocationMenuController.swift; sourceTree = "<group>"; };
 		831A89AD1C4E14060066A874 /* NeighbourManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NeighbourManager.swift; path = Models/NeighbourManager.swift; sourceTree = "<group>"; };
+		83383D671C5F46F100FE15F2 /* SummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryCell.swift; path = Views/SummaryCell.swift; sourceTree = "<group>"; };
 		83405D031C37424200F16F4D /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentsViewController.swift; path = ViewControllers/CommentsViewController.swift; sourceTree = "<group>"; };
 		83405D061C37435A00F16F4D /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentCell.swift; path = Views/CommentCell.swift; sourceTree = "<group>"; };
 		83405D081C37487200F16F4D /* ApplicationComments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationComments.swift; path = Models/ApplicationComments.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				83DEF4111C5D26540051002C /* DescriptionCell.swift */,
 				83DEF40D1C5D25140051002C /* GeneralInfoCell.swift */,
 				83DEF40F1C5D25CD0051002C /* HeaderImageCell.swift */,
+				83383D671C5F46F100FE15F2 /* SummaryCell.swift */,
 				83DEF4151C5D39BA0051002C /* UIImageView+DownloadImage.swift */,
 			);
 			name = Views;
@@ -603,6 +606,7 @@
 				83DEF4141C5D26790051002C /* StatusesCell.swift in Sources */,
 				83FB29FD1C4AC4000093EBC8 /* Address+CoreDataProperties.swift in Sources */,
 				831A89A51C4DE79B0066A874 /* EulaController.swift in Sources */,
+				83383D681C5F46F100FE15F2 /* SummaryCell.swift in Sources */,
 				83FB29A61C44AE8E0093EBC8 /* Coordinate.swift in Sources */,
 				83FB2A011C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift in Sources */,
 				10B9E3E21C4D539900DE21B9 /* SWRevealViewController.m in Sources */,

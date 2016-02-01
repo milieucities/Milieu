@@ -85,20 +85,31 @@ class ApplicationDetailViewController: UIViewController {
             return
         }
         
-        let escapeAddress = annotation.title?.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
-        
-        let urlString = "https://maps.googleapis.com/maps/api/streetview?size=500x250&location=\(escapeAddress!)%2COttawa%2COntario$2CCanada"
-
-        Alamofire.request(Method.GET, urlString).response{
-            request, response, data, error in
+        if annotation.title == "350 Sparks Street"{
+            self.image = UIImage(named: "350Sparks1")
+            self.applicationImageView.image = self.image
+            self.applicationImageView.contentMode = .ScaleAspectFit
+        }else if annotation.title == "400 Albert Street"{
+            self.image = UIImage(named: "400Albert1")
+            self.applicationImageView.image = self.image
+            self.applicationImageView.contentMode = .ScaleAspectFit
+        }else{
+            let escapeAddress = annotation.title?.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
             
-            if let data = data{
-                dispatch_async(dispatch_get_main_queue(),{
-                    self.image = UIImage(data: data)
-                    print("Image: \(self.image)")
-                    self.applicationImageView.image = self.image
-                    
-                })
+            let urlString = "https://maps.googleapis.com/maps/api/streetview?size=500x250&location=\(escapeAddress!)%2COttawa%2COntario$2CCanada"
+            
+            Alamofire.request(Method.GET, urlString).response{
+                request, response, data, error in
+                
+                if let data = data{
+                    dispatch_async(dispatch_get_main_queue(),{
+                        self.image = UIImage(data: data)
+                        self.applicationImageView.image = self.image
+                        self.applicationImageView.contentMode = .ScaleAspectFill
+                        
+                    })
+                }
+                
             }
             
         }

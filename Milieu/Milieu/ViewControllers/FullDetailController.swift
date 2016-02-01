@@ -12,7 +12,7 @@ import Alamofire
 class FullDetailController: UITableViewController{
     
     var annotation: ApplicationInfo!
-    var cardSizeArray = [200, 228, 300, 316]
+    var cardSizeArray = [200, 228, 300, 272]
     
     override func viewDidLoad() {
         tableView.separatorColor = UIColor.clearColor()
@@ -33,9 +33,17 @@ class FullDetailController: UITableViewController{
             let escapeAddress = annotation.title?.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
             
             let urlString = "https://maps.googleapis.com/maps/api/streetview?size=500x250&location=\(escapeAddress!)%2COttawa%2COntario$2CCanada"
+            if annotation.title == "350 Sparks Street"{
+                cell.appImageView.image = UIImage(named: "350Sparks1")
+                cell.appImageView.contentMode = .ScaleAspectFit
+            }else if annotation.title == "400 Albert Street"{
+                cell.appImageView.image = UIImage(named: "400Albert1")
+                cell.appImageView.contentMode = .ScaleAspectFit
+            }else{
             
-            cell.appImageView.loadImageWithURL(urlString)
-
+                cell.appImageView.loadImageWithURL(urlString)
+                cell.appImageView.contentMode = .ScaleAspectFill
+            }
             return cell
         }else if indexPath.row == 1{
             let cell = tableView.dequeueReusableCellWithIdentifier("GeneralInfoCell") as! GeneralInfoCell

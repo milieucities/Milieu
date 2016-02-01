@@ -35,27 +35,11 @@ class ApplicationInfo : MilieuAnnotation{
         let lat = devAppAddress!.latitude?.doubleValue
         let lon = devAppAddress!.longitude?.doubleValue
 
-        let devAppStatus = devApp.statuses?.firstObject as? Status
-        newestStatus = devAppStatus?.status
-        newestDate = devAppStatus?.statusDate
         devId = devApp.developmentId
         devSiteUid = devApp.id?.integerValue
         type = devApp.applicationType
         
         var appCategory: AnnotationCategory = AnnotationCategory.General
-        
-        
-        // TODO: Change the status to a NSOrderedSet!
-        if let statuses: NSOrderedSet = devApp.statuses{
-            let array = Array(statuses)
-            if array.count > 0{
-                if let status = array[array.count-1] as? Status{
-                    if status.status == "Comment Period in Progress"{
-                        appCategory = AnnotationCategory.InComment
-                    }
-                }
-            }
-        }
         
         for vacant in preDefinedVacants{
             if devId == vacant{
@@ -66,6 +50,23 @@ class ApplicationInfo : MilieuAnnotation{
         if type == "Demolition Control"{
             appCategory = AnnotationCategory.Vacant
         }
+        
+        let devAppStatus = devApp.statuses?.reverse().first as? Status
+        newestStatus = devAppStatus?.status
+        newestDate = devAppStatus?.statusDate
+        
+        // TODO: Change the status to a NSOrderedSet!
+        if let statuses = devApp.statuses?.reverse(){
+  
+            if statuses.count > 0{
+                if let status = statuses[0] as? Status{
+                    if status.status == "Comment Period in Progress"{
+                        appCategory = AnnotationCategory.InComment
+                    }
+                }
+            }
+        }
+        
         
         let address = devAppAddress?.street
         
