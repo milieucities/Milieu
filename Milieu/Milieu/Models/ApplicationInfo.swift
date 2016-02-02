@@ -47,24 +47,12 @@ class ApplicationInfo : MilieuAnnotation{
             }
         }
         
-        if type == "Demolition Control"{
-            appCategory = AnnotationCategory.Vacant
-        }
-        
         let devAppStatus = devApp.statuses?.reverse().first as? Status
         newestStatus = devAppStatus?.status
         newestDate = devAppStatus?.statusDate
         
-        // TODO: Change the status to a NSOrderedSet!
-        if let statuses = devApp.statuses?.reverse(){
-  
-            if statuses.count > 0{
-                if let status = statuses[0] as? Status{
-                    if status.status == "Comment Period in Progress"{
-                        appCategory = AnnotationCategory.InComment
-                    }
-                }
-            }
+        if newestStatus == "Comment Period in Progress"{
+            appCategory = AnnotationCategory.InComment
         }
         
         

@@ -31,7 +31,6 @@ class ApplicationDetailViewController: UIViewController {
     
     @IBOutlet weak var heartButton: UIButton!
     @IBOutlet weak var upHeartButton: UIButton!
-    @IBOutlet weak var heartLabel: UILabel!
     
     @IBOutlet weak var applicationImageView: UIImageView!
     
@@ -104,6 +103,7 @@ class ApplicationDetailViewController: UIViewController {
                 if let data = data{
                     dispatch_async(dispatch_get_main_queue(),{
                         self.image = UIImage(data: data)
+
                         self.applicationImageView.image = self.image
                         self.applicationImageView.contentMode = .ScaleAspectFill
                         
@@ -122,9 +122,8 @@ class ApplicationDetailViewController: UIViewController {
             
             if let result = response.result.value as? NSArray{
                 dispatch_async(dispatch_get_main_queue(),{
-                    self.upHeartButton.setImage(UIImage(named: "upHeartEmpty"), forState: .Normal)
-                    self.heartButton.setImage(UIImage(named: "heartEmpty"), forState: .Normal)
-                    self.heartLabel.text = String(result[0]["total_hearts"] as! Int)
+                    self.upHeartButton.setImage(UIImage(named: "heartEmpty"), forState: .Normal)
+                    self.heartButton.setImage(UIImage(named: "upHeartEmpty"), forState: .Normal)
                 })
             }
         }
@@ -171,9 +170,8 @@ class ApplicationDetailViewController: UIViewController {
                 dispatch_async(dispatch_get_main_queue(),{
                     self.upHeartButton.enabled = true
                     self.heartButton.enabled = true
-                    self.upHeartButton.setImage(UIImage(named: "upHeartFull"), forState: .Normal)
-                    self.heartButton.setImage(UIImage(named: "heartEmpty"), forState: .Normal)
-                    self.heartLabel.text = String(result[0]["total_hearts"] as! Int)
+                    self.upHeartButton.setImage(UIImage(named: "heartFull"), forState: .Normal)
+                    self.heartButton.setImage(UIImage(named: "upHeartEmpty"), forState: .Normal)
                     self.backStatus = .Like
                 })
             }
@@ -194,9 +192,8 @@ class ApplicationDetailViewController: UIViewController {
                 dispatch_async(dispatch_get_main_queue(),{
                     self.upHeartButton.enabled = true
                     self.heartButton.enabled = true
-                    self.upHeartButton.setImage(UIImage(named: "upHeartEmpty"), forState: .Normal)
-                    self.heartButton.setImage(UIImage(named: "heartFull"), forState: .Normal)
-                    self.heartLabel.text = String(result[0]["total_hearts"] as! Int)
+                    self.upHeartButton.setImage(UIImage(named: "heartEmpty"), forState: .Normal)
+                    self.heartButton.setImage(UIImage(named: "upHeartFull"), forState: .Normal)
                     self.backStatus = .Dislike
                 })
             }
