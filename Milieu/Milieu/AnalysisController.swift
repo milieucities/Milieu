@@ -17,6 +17,7 @@ class AnalysisController: UIViewController {
     var supportVsOppose:[PNPieChartDataItem]!
     
     var voterOccupation:[PNPieChartDataItem]!
+    var cellArrayHeight = [240, 264]
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -83,27 +84,30 @@ class AnalysisController: UIViewController {
 extension AnalysisController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let identifier = "ChartCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier)! as UITableViewCell
+
         if indexPath.row == 0{
+            let cell = tableView.dequeueReusableCellWithIdentifier("ChartCell")! as UITableViewCell
             let title = cell.contentView.viewWithTag(101) as! UILabel
-            title.text = "Support VS. Oppose"
+            title.text = "Project Support vs. Opposed"
             let chartView = cell.contentView.viewWithTag(102)! as UIView
             let legendView = cell.contentView.viewWithTag(103)! as UIView
             drawPieChart(chartView, legendView: legendView, items: supportVsOppose)
+            return cell
         }else if indexPath.row == 1{
-            let title = cell.contentView.viewWithTag(101) as! UILabel
-            title.text = "Voter's Occupation"
-            let chartView = cell.contentView.viewWithTag(102)! as UIView
-            let legendView = cell.contentView.viewWithTag(103)! as UIView
-            drawPieChart(chartView, legendView: legendView, items: voterOccupation)
-
+            let cell = tableView.dequeueReusableCellWithIdentifier("SummaryCell") as! SummaryCell
+            return cell
+        }else{
+            return UITableViewCell()
         }
-        return cell
+
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return CGFloat(cellArrayHeight[indexPath.row] as Int)
     }
 }
 

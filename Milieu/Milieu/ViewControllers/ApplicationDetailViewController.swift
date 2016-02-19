@@ -19,6 +19,7 @@ enum BackStatus{
 class ApplicationDetailViewController: UIViewController {
     
     var annotation: ApplicationInfo!
+    var image: UIImage?
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var applicationTypeLabel: UILabel!
@@ -30,7 +31,6 @@ class ApplicationDetailViewController: UIViewController {
     
     @IBOutlet weak var heartButton: UIButton!
     @IBOutlet weak var upHeartButton: UIButton!
-    @IBOutlet weak var heartLabel: UILabel!
     
     @IBOutlet weak var applicationImageView: UIImageView!
     
@@ -60,6 +60,15 @@ class ApplicationDetailViewController: UIViewController {
         STPopupNavigationBar.appearance().tintColor = UIColor.whiteColor()
         STPopupNavigationBar.appearance().barStyle = UIBarStyle.Default
         STPopupNavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Detail", style: UIBarButtonItemStyle.Plain, target: self, action: "detailBtnDidTap")
+    }
+    
+    func detailBtnDidTap(){
+        let navController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("DetailNavigationController") as! UINavigationController
+        let detailController = navController.topViewController as! FullDetailController
+        detailController.annotation = annotation
+        presentViewController(navController, animated: true, completion: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -75,20 +84,32 @@ class ApplicationDetailViewController: UIViewController {
             return
         }
         
-        let escapeAddress = annotation.title?.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
-        
-        let urlString = "https://maps.googleapis.com/maps/api/streetview?size=500x250&location=\(escapeAddress!)%2COttawa%2COntario$2CCanada"
-
-        Alamofire.request(Method.GET, urlString).response{
-            request, response, data, error in
+        if annotation.title == "350 Sparks Street"{
+            self.image = UIImage(named: "350Sparks1")
+            self.applicationImageView.image = self.image
+            self.applicationImageView.contentMode = .ScaleAspectFit
+        }else if annotation.title == "400 Albert Street"{
+            self.image = UIImage(named: "400Albert1")
+            self.applicationImageView.image = self.image
+            self.applicationImageView.contentMode = .ScaleAspectFit
+        }else{
+            let escapeAddress = annotation.title?.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
             
-            if let data = data{
-                dispatch_async(dispatch_get_main_queue(),{
-                    let image = UIImage(data: data)
-                    print("Image: \(image)")
-                    self.applicationImageView.image = image
-                    
-                })
+            let urlString = "https://maps.googleapis.com/maps/api/streetview?size=500x250&location=\(escapeAddress!)%2COttawa%2COntario$2CCanada"
+            
+            Alamofire.request(Method.GET, urlString).response{
+                request, response, data, error in
+                
+                if let data = data{
+                    dispatch_async(dispatch_get_main_queue(),{
+                        self.image = UIImage(data: data)
+
+                        self.applicationImageView.image = self.image
+                        self.applicationImageView.contentMode = .ScaleAspectFill
+                        
+                    })
+                }
+                
             }
             
         }
@@ -101,9 +122,8 @@ class ApplicationDetailViewController: UIViewController {
             
             if let result = response.result.value as? NSArray{
                 dispatch_async(dispatch_get_main_queue(),{
-                    self.upHeartButton.setImage(UIImage(named: "upHeartEmpty"), forState: .Normal)
-                    self.heartButton.setImage(UIImage(named: "heartEmpty"), forState: .Normal)
-                    self.heartLabel.text = String(result[0]["total_hearts"] as! Int)
+                    self.upHeartButton.setImage(UIImage(named: "heartEmpty"), forState: .Normal)
+                    self.heartButton.setImage(UIImage(named: "upHeartEmpty"), forState: .Normal)
                 })
             }
         }
@@ -135,6 +155,7 @@ class ApplicationDetailViewController: UIViewController {
         let analysisController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AnalysisController") as! AnalysisController
         presentViewController(analysisController, animated: true, completion: nil)
     }
+    
 
     @IBAction func upHeartBtnDidTap(sender: AnyObject) {
         if backStatus == BackStatus.Like{
@@ -149,9 +170,8 @@ class ApplicationDetailViewController: UIViewController {
                 dispatch_async(dispatch_get_main_queue(),{
                     self.upHeartButton.enabled = true
                     self.heartButton.enabled = true
-                    self.upHeartButton.setImage(UIImage(named: "upHeartFull"), forState: .Normal)
-                    self.heartButton.setImage(UIImage(named: "heartEmpty"), forState: .Normal)
-                    self.heartLabel.text = String(result[0]["total_hearts"] as! Int)
+                    self.upHeartButton.setImage(UIImage(named: "heartFull"), forState: .Normal)
+                    self.heartButton.setImage(UIImage(named: "upHeartEmpty"), forState: .Normal)
                     self.backStatus = .Like
                 })
             }
@@ -172,9 +192,8 @@ class ApplicationDetailViewController: UIViewController {
                 dispatch_async(dispatch_get_main_queue(),{
                     self.upHeartButton.enabled = true
                     self.heartButton.enabled = true
-                    self.upHeartButton.setImage(UIImage(named: "upHeartEmpty"), forState: .Normal)
-                    self.heartButton.setImage(UIImage(named: "heartFull"), forState: .Normal)
-                    self.heartLabel.text = String(result[0]["total_hearts"] as! Int)
+                    self.upHeartButton.setImage(UIImage(named: "heartEmpty"), forState: .Normal)
+                    self.heartButton.setImage(UIImage(named: "upHeartFull"), forState: .Normal)
                     self.backStatus = .Dislike
                 })
             }

@@ -19,6 +19,7 @@
 		831A89A91C4E01870066A874 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A89A81C4E01870066A874 /* MainMenuController.swift */; };
 		831A89AB1C4E01900066A874 /* LocationMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A89AA1C4E01900066A874 /* LocationMenuController.swift */; };
 		831A89AE1C4E14060066A874 /* NeighbourManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A89AD1C4E14060066A874 /* NeighbourManager.swift */; };
+		83383D681C5F46F100FE15F2 /* SummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83383D671C5F46F100FE15F2 /* SummaryCell.swift */; };
 		83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D031C37424200F16F4D /* CommentsViewController.swift */; };
 		83405D071C37435A00F16F4D /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D061C37435A00F16F4D /* CommentCell.swift */; };
 		83405D091C37487200F16F4D /* ApplicationComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D081C37487200F16F4D /* ApplicationComments.swift */; };
@@ -40,6 +41,13 @@
 		839C88931C14C1D200D80D0A /* MilieuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839C88921C14C1D200D80D0A /* MilieuUITests.swift */; };
 		83C75F6D1C59B4F300174B9F /* AnalysisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C75F6C1C59B4F300174B9F /* AnalysisController.swift */; };
 		83C7A361A4F2FA7C99651EFC /* Pods_Milieu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C21667E9BAC5A927CE45449 /* Pods_Milieu.framework */; };
+		83DEF3F91C5C48490051002C /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DEF3F81C5C48490051002C /* CardCell.swift */; };
+		83DEF3FB1C5C4A400051002C /* FullDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DEF3FA1C5C4A400051002C /* FullDetailController.swift */; };
+		83DEF40E1C5D25140051002C /* GeneralInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DEF40D1C5D25140051002C /* GeneralInfoCell.swift */; };
+		83DEF4101C5D25CD0051002C /* HeaderImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DEF40F1C5D25CD0051002C /* HeaderImageCell.swift */; };
+		83DEF4121C5D26540051002C /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DEF4111C5D26540051002C /* DescriptionCell.swift */; };
+		83DEF4141C5D26790051002C /* StatusesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DEF4131C5D26790051002C /* StatusesCell.swift */; };
+		83DEF4161C5D39BA0051002C /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DEF4151C5D39BA0051002C /* UIImageView+DownloadImage.swift */; };
 		83EE7D531C14D9F100CEDF0D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83EE7D521C14D9F100CEDF0D /* MapKit.framework */; };
 		83EE7D551C14DF3000CEDF0D /* AR5Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE7D541C14DF3000CEDF0D /* AR5Logger.swift */; };
 		83FB29901C43208D0093EBC8 /* ottawa_wards_2010.json in Resources */ = {isa = PBXBuildFile; fileRef = 83FB298F1C43208D0093EBC8 /* ottawa_wards_2010.json */; };
@@ -95,6 +103,7 @@
 		831A89A81C4E01870066A874 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainMenuController.swift; path = ViewControllers/MainMenuController.swift; sourceTree = "<group>"; };
 		831A89AA1C4E01900066A874 /* LocationMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationMenuController.swift; path = ViewControllers/LocationMenuController.swift; sourceTree = "<group>"; };
 		831A89AD1C4E14060066A874 /* NeighbourManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NeighbourManager.swift; path = Models/NeighbourManager.swift; sourceTree = "<group>"; };
+		83383D671C5F46F100FE15F2 /* SummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryCell.swift; path = Views/SummaryCell.swift; sourceTree = "<group>"; };
 		83405D031C37424200F16F4D /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentsViewController.swift; path = ViewControllers/CommentsViewController.swift; sourceTree = "<group>"; };
 		83405D061C37435A00F16F4D /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentCell.swift; path = Views/CommentCell.swift; sourceTree = "<group>"; };
 		83405D081C37487200F16F4D /* ApplicationComments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationComments.swift; path = Models/ApplicationComments.swift; sourceTree = "<group>"; };
@@ -121,6 +130,13 @@
 		839C88921C14C1D200D80D0A /* MilieuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilieuUITests.swift; sourceTree = "<group>"; };
 		839C88941C14C1D200D80D0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83C75F6C1C59B4F300174B9F /* AnalysisController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisController.swift; sourceTree = "<group>"; };
+		83DEF3F81C5C48490051002C /* CardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		83DEF3FA1C5C4A400051002C /* FullDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FullDetailController.swift; path = ViewControllers/FullDetailController.swift; sourceTree = "<group>"; };
+		83DEF40D1C5D25140051002C /* GeneralInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeneralInfoCell.swift; path = Views/GeneralInfoCell.swift; sourceTree = "<group>"; };
+		83DEF40F1C5D25CD0051002C /* HeaderImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderImageCell.swift; sourceTree = "<group>"; };
+		83DEF4111C5D26540051002C /* DescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DescriptionCell.swift; path = Views/DescriptionCell.swift; sourceTree = "<group>"; };
+		83DEF4131C5D26790051002C /* StatusesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusesCell.swift; path = Views/StatusesCell.swift; sourceTree = "<group>"; };
+		83DEF4151C5D39BA0051002C /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+DownloadImage.swift"; path = "Views/UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 		83EE7D521C14D9F100CEDF0D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		83EE7D541C14DF3000CEDF0D /* AR5Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AR5Logger.swift; path = Helpers/AR5Logger.swift; sourceTree = "<group>"; };
 		83FB298F1C43208D0093EBC8 /* ottawa_wards_2010.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ottawa_wards_2010.json; sourceTree = "<group>"; };
@@ -225,6 +241,13 @@
 				83405D061C37435A00F16F4D /* CommentCell.swift */,
 				83405D0F1C38278D00F16F4D /* UIImage+Resize.swift */,
 				837BDF871C5329B40000A9E4 /* FloatRatingView.swift */,
+				83DEF3F81C5C48490051002C /* CardCell.swift */,
+				83DEF4131C5D26790051002C /* StatusesCell.swift */,
+				83DEF4111C5D26540051002C /* DescriptionCell.swift */,
+				83DEF40D1C5D25140051002C /* GeneralInfoCell.swift */,
+				83DEF40F1C5D25CD0051002C /* HeaderImageCell.swift */,
+				83383D671C5F46F100FE15F2 /* SummaryCell.swift */,
+				83DEF4151C5D39BA0051002C /* UIImageView+DownloadImage.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -244,6 +267,7 @@
 				831A89A21C4DE03F0066A874 /* UserAccountController.swift */,
 				831A89A41C4DE79B0066A874 /* EulaController.swift */,
 				83C75F6C1C59B4F300174B9F /* AnalysisController.swift */,
+				83DEF3FA1C5C4A400051002C /* FullDetailController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -545,12 +569,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83DEF3FB1C5C4A400051002C /* FullDetailController.swift in Sources */,
 				83405D091C37487200F16F4D /* ApplicationComments.swift in Sources */,
 				837BDF7E1C51E7C70000A9E4 /* MilieuAnnotation.swift in Sources */,
 				83FB29EB1C473F140093EBC8 /* City.swift in Sources */,
 				839C88711C14C1D200D80D0A /* AppDelegate.swift in Sources */,
 				8317C9831C25F5250088DEAA /* ApplicationDetailViewController.swift in Sources */,
+				83DEF4101C5D25CD0051002C /* HeaderImageCell.swift in Sources */,
 				83FB29961C4322720093EBC8 /* Milieu.xcdatamodeld in Sources */,
+				83DEF4121C5D26540051002C /* DescriptionCell.swift in Sources */,
 				831A89A31C4DE03F0066A874 /* UserAccountController.swift in Sources */,
 				837BDF841C51FC640000A9E4 /* EventInfo.swift in Sources */,
 				830F879A1C51CED90039CC8D /* DateUtil.swift in Sources */,
@@ -574,15 +601,20 @@
 				831A89A91C4E01870066A874 /* MainMenuController.swift in Sources */,
 				8317C9861C25FFF20088DEAA /* Constants.swift in Sources */,
 				837BDF8A1C532EF30000A9E4 /* VotingController.swift in Sources */,
+				83DEF40E1C5D25140051002C /* GeneralInfoCell.swift in Sources */,
 				831A89AE1C4E14060066A874 /* NeighbourManager.swift in Sources */,
+				83DEF4141C5D26790051002C /* StatusesCell.swift in Sources */,
 				83FB29FD1C4AC4000093EBC8 /* Address+CoreDataProperties.swift in Sources */,
 				831A89A51C4DE79B0066A874 /* EulaController.swift in Sources */,
+				83383D681C5F46F100FE15F2 /* SummaryCell.swift in Sources */,
 				83FB29A61C44AE8E0093EBC8 /* Coordinate.swift in Sources */,
 				83FB2A011C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift in Sources */,
 				10B9E3E21C4D539900DE21B9 /* SWRevealViewController.m in Sources */,
+				83DEF3F91C5C48490051002C /* CardCell.swift in Sources */,
 				83C75F6D1C59B4F300174B9F /* AnalysisController.swift in Sources */,
 				83FB2A041C4AC4000093EBC8 /* Status.swift in Sources */,
 				83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */,
+				83DEF4161C5D39BA0051002C /* UIImageView+DownloadImage.swift in Sources */,
 				83FB29FF1C4AC4000093EBC8 /* Neighbourhood+CoreDataProperties.swift in Sources */,
 				83FB29FE1C4AC4000093EBC8 /* Address.swift in Sources */,
 				83FB29EF1C4A979B0093EBC8 /* LaunchViewController.swift in Sources */,
