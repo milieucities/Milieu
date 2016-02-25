@@ -186,18 +186,7 @@
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tJI-7c-s5M">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                            </mapView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="tJI-7c-s5M" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="5Pb-dw-VCs"/>
-                            <constraint firstItem="tJI-7c-s5M" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="Bl0-Ft-5jO"/>
-                            <constraint firstAttribute="trailing" secondItem="tJI-7c-s5M" secondAttribute="trailing" id="KdP-CD-zx4"/>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="tJI-7c-s5M" secondAttribute="bottom" id="KxR-XO-6Ks"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Applications" id="sD4-aL-HLp">
                         <barButtonItem key="leftBarButtonItem" image="pin" id="4eF-w8-yxG">
@@ -209,7 +198,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="locationMenuButton" destination="4eF-w8-yxG" id="tkN-OB-mVq"/>
-                        <outlet property="mapView" destination="tJI-7c-s5M" id="Y4M-ZN-dp7"/>
                         <outlet property="menuButton" destination="p02-jL-gZ3" id="ebM-rS-5jl"/>
                         <segue destination="tcV-Za-7jb" kind="presentation" identifier="mapToLocationSelection" modalTransitionStyle="crossDissolve" id="bK4-d6-u8U"/>
                     </connections>
