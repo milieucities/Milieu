@@ -18,6 +18,11 @@ enum RequestType: String{
     case Dislike = "/break_heart"
 }
 
+enum OpenNorthApi: String{
+    case FindOttawaWards = "/boundaries/ottawa-wards/?limit=30"
+    case FindOttawaWardsSimpleShape = "/boundaries/ottawa-wards/simple_shape"
+}
+
 protocol ConnectionManagerDelegate: class{
     func requestDidSucceed(data: NSData)
     func requestDidFail(error: NSError)

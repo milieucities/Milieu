@@ -116,11 +116,11 @@ class ApplicationDetailViewController: UIViewController {
     }
     
     func fetchHeartLabel(){
-        Alamofire.request(.GET, NSURL(string: "\(Connection.BaseUrl)\(RequestType.Like.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders)
-        Alamofire.request(.GET, NSURL(string: "\(Connection.BaseUrl)\(RequestType.Dislike.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders).responseJSON{
+        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Like.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders)
+        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Dislike.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders).responseJSON{
             response in
             
-            if let result = response.result.value as? NSArray{
+            if let _ = response.result.value as? NSArray{
                 dispatch_async(dispatch_get_main_queue(),{
                     self.upHeartButton.setImage(UIImage(named: "heartEmpty"), forState: .Normal)
                     self.heartButton.setImage(UIImage(named: "upHeartEmpty"), forState: .Normal)
@@ -163,10 +163,10 @@ class ApplicationDetailViewController: UIViewController {
         }
         upHeartButton.enabled = true
         heartButton.enabled = true
-        Alamofire.request(.GET, NSURL(string: "\(Connection.BaseUrl)\(RequestType.Like.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders).responseJSON{
+        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Like.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders).responseJSON{
             response in
             
-            if let result = response.result.value as? NSArray{
+            if let _ = response.result.value as? NSArray{
                 dispatch_async(dispatch_get_main_queue(),{
                     self.upHeartButton.enabled = true
                     self.heartButton.enabled = true
@@ -185,10 +185,10 @@ class ApplicationDetailViewController: UIViewController {
         }
         upHeartButton.enabled = false
         heartButton.enabled = false
-        Alamofire.request(.GET, NSURL(string: "\(Connection.BaseUrl)\(RequestType.Dislike.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders).responseJSON{
+        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Dislike.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders).responseJSON{
             response in
             
-            if let result = response.result.value as? NSArray{
+            if let _ = response.result.value as? NSArray{
                 dispatch_async(dispatch_get_main_queue(),{
                     self.upHeartButton.enabled = true
                     self.heartButton.enabled = true

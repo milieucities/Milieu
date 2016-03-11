@@ -55,7 +55,6 @@ class LaunchViewController: UIViewController {
             // If there is no data, load json file in
             if results.first!.integerValue == 0{
                 preloadWardsData()
-                preloadApplictionsIfNeeded()
             }else{
                 // Check the devapp objects count
                 let fetchRequest = NSFetchRequest(entityName: "DevApp")
@@ -91,6 +90,154 @@ class LaunchViewController: UIViewController {
     load and parse wards geojson file
     */
     func preloadWardsData(){
+        insertWardsDataFromApi()
+    }
+    
+    func insertWardsDataFromApi(){
+        
+        // TODO: change to fetch wards page by page.
+        Alamofire.request(.GET, NSURL(string: "\(Connection.OpenNorthBaseUrl)\(OpenNorthApi.FindOttawaWards.rawValue)")!).responseJSON{
+            response in
+            
+            debugPrint(response.result.error)
+            if let _ = response.result.error{
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.informationLabel.text = "Oops! Can not find the secret path, \nrelaunch the app pls ..."
+                })
+                AR5Logger.debug("\(response.result.error?.userInfo)")
+                return
+            }
+            
+            debugPrint(response.response)
+            
+            
+            if let result = response.result.value{
+              debugPrint(result)
+                self.privateContext.performBlock{
+                    self.parseWardsFromDict(result as! [String: AnyObject])
+                }
+              
+            }
+        }
+    }
+    
+    func parseWardsFromDict(dict: [String: AnyObject]){
+        let wards = dict["objects"] as! [[String: AnyObject]]
+        debugPrint(wards.count)
+        // TODO: If the coredata city wards count is less than Api returned wards count, update the coredata
+        
+        // Create city in the CoreData
+        let cityEntity = NSEntityDescription.entityForName("City", inManagedObjectContext: self.privateContext)!
+        let city = City(entity: cityEntity, insertIntoManagedObjectContext:  privateContext)
+        city.name = "OTTAWA"
+        
+        // Create entity description
+        let entity = NSEntityDescription.entityForName("Neighbourhood", inManagedObjectContext: self.privateContext)!
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.informationLabel.text = "Desgining the blueprint ..."
+            self.percentLabel.hidden = false
+            self.percentLabel.text = "0 %"
+        })
+        
+        for ward in wards{
+            let wardNumber = Int(ward["external_id"] as! String)!
+            let wardName = ward["name"] as! String
+            
+            // Create entity
+            let neighbourhood = Neighbourhood(entity: entity, insertIntoManagedObjectContext: self.privateContext)
+            neighbourhood.name = wardName
+            neighbourhood.number = NSNumber(integer: wardNumber)
+            neighbourhood.city = city
+        }
+        
+        do{
+            try self.privateContext.save()
+            self.privateContext.reset()
+            insertWardBoundsFromApi()
+        }catch let error as NSError{
+            AR5Logger.debug("Error: \(error.localizedDescription)")
+            dispatch_async(dispatch_get_main_queue(), {
+                self.informationLabel.text = "Oops! A fatal error occurs ..."
+            })
+        }
+    }
+    
+    func insertWardBoundsFromApi(){
+        // TODO: change to fetch wards page by page.
+        Alamofire.request(.GET, NSURL(string: "\(Connection.OpenNorthBaseUrl)\(OpenNorthApi.FindOttawaWardsSimpleShape.rawValue)")!).responseJSON{
+            response in
+            
+            debugPrint(response.result.error)
+            if let _ = response.result.error{
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.informationLabel.text = "Oops! Can not find the secret path, \nrelaunch the app pls ..."
+                })
+                AR5Logger.debug("\(response.result.error?.userInfo)")
+                return
+            }
+            
+            debugPrint(response.response)
+            
+            if let result = response.result.value{
+                debugPrint(result)
+                self.privateContext.performBlock{
+                    self.parseBoundariesFromDict(result as! [String: AnyObject])
+                }
+            }
+        }
+    }
+    
+    func parseBoundariesFromDict(dict: [String: AnyObject]){
+        let boundaries = dict["objects"] as! [[String: AnyObject]]
+        debugPrint(boundaries.count)
+        
+        var count = 0
+        for boundary in boundaries{
+            
+            let simpleShape = boundary["simple_shape"] as! [String: AnyObject]
+            let coordinates = (simpleShape["coordinates"] as! NSArray)[0][0] as! NSArray
+            
+            // Find or Create Neighbourhood Data
+            let fetchRequest = NSFetchRequest(entityName: "Neighbourhood")
+            let predicate = NSPredicate(format: "name == %@", (boundary["name"] as! String))
+            fetchRequest.predicate = predicate
+            
+            do{
+                // Check the neighbourhood objects count
+                let results = try self.privateContext.executeFetchRequest(fetchRequest) as! [Neighbourhood]
+                
+                // If there is no data, load json file in
+                if results.count > 0{
+                    let neighbourhood = results.first!
+                    
+                    addCoordinatesForNeighbourhood(neighbourhood, coordinates: coordinates)
+                }
+                
+                try self.privateContext.save()
+                self.privateContext.reset()
+                
+                count++
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.percentLabel.text = "\(Int (count * 100 / boundaries.count)) %"
+                })
+                
+            }catch let error as NSError{
+                AR5Logger.debug("Error: \(error.localizedDescription)")
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.informationLabel.text = "Oops! A fatal error occurs ..."
+                })
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.percentLabel.hidden = true
+        })
+        
+        preloadApplictionsIfNeeded()
+    }
+    
+    func insertWardsDataFromJson(){
         
         // Find json file path
         let jsonURL = NSBundle.mainBundle().URLForResource("ottawa_wards_2010", withExtension: "json")!
@@ -147,6 +294,7 @@ class LaunchViewController: UIViewController {
                 self.percentLabel.hidden = true
             })
             
+            preloadApplictionsIfNeeded()
         }catch let error as NSError{
             AR5Logger.debug("Error: \(error.localizedDescription)")
             dispatch_async(dispatch_get_main_queue(), {
@@ -185,7 +333,7 @@ class LaunchViewController: UIViewController {
         let headers = ["Accept": "application/json"]
         
         informationLabel.text = "Looking up for most interesting urban activities ..."
-        Alamofire.request(.GET, NSURL(string: "\(Connection.BaseUrl)\(RequestType.FetchAllApplications.rawValue)")!, headers: headers).responseJSON{
+        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.FetchAllApplications.rawValue)")!, headers: headers).responseJSON{
             response in
             
             debugPrint(response.result.error)
@@ -328,7 +476,7 @@ class LaunchViewController: UIViewController {
         }catch let error as NSError{
             AR5Logger.debug("Can't fetch data: \(error.localizedDescription)")
             dispatch_async(dispatch_get_main_queue(), {
-                self.informationLabel.text = "Oops! Map is teared by puppy"
+                self.informationLabel.text = "Oops! Map is teared by the kitten"
             })
         }
     }
