@@ -7,6 +7,7 @@
 //
 
 import Mapbox
+import STPopup
 import UIKit
 
 class MapViewController: UIViewController{
@@ -14,11 +15,10 @@ class MapViewController: UIViewController{
     // View
     var map: MGLMapView!
     
-    // Annotation Data
-    
     // CoreData
     var coreDataStack: CoreDataStack!
     var selectedNeighbour: Neighbourhood?
+    var events: [EventInfo]!
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var locationMenuButton: UIBarButtonItem!
@@ -35,6 +35,8 @@ class MapViewController: UIViewController{
         // Add gesture to change the map style
         map.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
             action: "changeStyle:"))
+        
+        events = EventInfo.loadAllEvents()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -108,7 +110,8 @@ class MapViewController: UIViewController{
         // Try to find the neighbourhood bounds
         // Use the current one if those can't be found
         let bounds = NeighbourManager.findBoundsFromNeighbourhood(selectedNeighbour) ?? map.visibleCoordinateBounds
-        map.setVisibleCoordinateBounds(bounds, animated: true)
+
+        map.setVisibleCoordinateBounds(bounds, edgePadding: UIEdgeInsetsMake(5.0, 10.0, 5.0, 10.0), animated: true)
     }
     
     func populateAnnotations(){
@@ -119,6 +122,8 @@ class MapViewController: UIViewController{
                 let app = item as! DevApp
                 if let _ = app.addresses?.allObjects.first as? Address{
                     let appInfo = ApplicationInfo(devApp: app)
+                    
+                    
                     applicationInfos.append(appInfo)
                 }
             }
@@ -129,11 +134,13 @@ class MapViewController: UIViewController{
         }
     }
     
+    
 }
 
 // MARK: - MGLMapViewDelegate
 
 extension MapViewController: MGLMapViewDelegate{
+    
     func mapView(mapView: MGLMapView, imageForAnnotation annotation: MGLAnnotation) -> MGLAnnotationImage? {
         let annotation = annotation as! MilieuAnnotation
         // Make unique reusable identifier for one annotation type
@@ -150,6 +157,24 @@ extension MapViewController: MGLMapViewDelegate{
     }
     
     func mapView(mapView: MGLMapView, didSelectAnnotation annotation: MGLAnnotation) {
-        print("Annotation is selected")
+        
+        // Deselect the annotation so that it can be chosen again after dismissing the detail view controller
+        mapView.deselectAnnotation(annotation, animated: false)
+        
+        if let annotation = annotation as? ApplicationInfo{
+            
+            // Create the ApplicationDetailViewController by storyboard
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ApplicationDetailViewController") as? ApplicationDetailViewController
+            
+            // Set the annotation
+            viewController?.annotation = annotation
+            
+            // Use the STPopupController to make the fancy view controller
+            let popupController = STPopupController(rootViewController: viewController)
+            popupController.containerView.layer.cornerRadius = 4
+            
+            // Show it on top of the map view
+            popupController.presentInViewController(self)
+        }
     }
 }

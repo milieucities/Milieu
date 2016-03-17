@@ -46,7 +46,7 @@ class VotingController: UIViewController {
         if let date = annotation.newestDate{
             
             // Transform the date from UTC standard string to human readable string with medium style
-            statusDateLabel.text = DateUtil.transformStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .MediumStyle, stringFormat: MilieuDateFormat.UTCStandardFormat)
+            statusDateLabel.text = DateUtil.transformStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
             
         }else{
             statusDateLabel.text = "Unknown"

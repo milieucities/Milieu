@@ -444,9 +444,9 @@ class LaunchViewController: UIViewController {
             let statusObject = NSEntityDescription.insertNewObjectForEntityForName("Status", inManagedObjectContext: self.privateContext) as! Status
             statusObject.id = NSNumber(integer: (status["id"] as? Int)!)
             statusObject.status = status["status"] as? String
-            statusObject.createdDate = status["created_at"] as? String
-            statusObject.statusDate = status["status_date"] as? String
-            statusObject.updatedDate = status["updated_at"] as? String
+            statusObject.createdDate = DateUtil.transformDateFromString(status["created_at"] as? String, withFormat: .UTCStandardFormat)
+            statusObject.statusDate = DateUtil.transformDateFromString(status["status_date"] as? String, withFormat: .UTCStandardFormat)
+            statusObject.updatedDate = DateUtil.transformDateFromString(status["updated_at"] as? String, withFormat: .UTCStandardFormat)
             statusObject.devApp = devApp
         }
     }

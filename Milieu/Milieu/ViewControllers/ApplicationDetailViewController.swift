@@ -50,7 +50,7 @@ class ApplicationDetailViewController: UIViewController {
         if let date = annotation.newestDate{
             
             // Transform the date from UTC standard string to human readable string with medium style
-            statusDataLabel.text = DateUtil.transformStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .MediumStyle, stringFormat: MilieuDateFormat.UTCStandardFormat)
+            statusDataLabel.text = DateUtil.transformStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
             
         }else{
             statusDataLabel.text = "Unknown"

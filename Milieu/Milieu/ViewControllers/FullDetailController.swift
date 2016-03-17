@@ -51,7 +51,7 @@ class FullDetailController: UITableViewController{
             cell.applicationTypeLabel.text = annotation.type
             cell.applicationIdLabel.text = annotation.devId
             cell.newestStatusLabel.text = annotation.newestStatus
-            cell.statusDateLabel.text = DateUtil.transformStringFromDate(annotation.newestDate, dateStyle: .MediumStyle, timeStyle: .MediumStyle, stringFormat: MilieuDateFormat.UTCStandardFormat)
+            cell.statusDateLabel.text = DateUtil.transformStringFromDate(annotation.newestDate, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
             return cell
         }else if indexPath.row == 2{
             let cell = tableView.dequeueReusableCellWithIdentifier("DescriptionCell") as! DescriptionCell
@@ -71,7 +71,7 @@ class FullDetailController: UITableViewController{
                 if i < count{
                     let status = statuses![i] as! Status
                     let date = status.statusDate!
-                    let readableDate = DateUtil.transformStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .NoStyle, stringFormat: MilieuDateFormat.UTCStandardFormat)
+                    let readableDate = DateUtil.transformStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .NoStyle)
                     statusKey.append(status.status!)
                     statusDate.append(readableDate)
                 }else{
