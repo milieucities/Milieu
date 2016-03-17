@@ -16,7 +16,7 @@ import MapKit
 class ApplicationInfo : MilieuAnnotation{
 
     let newestStatus: String?
-    let newestDate: String?
+    let newestDate: NSDate?
 //    let image: UIImage
     let devId: String?
     let devSiteUid: Int?

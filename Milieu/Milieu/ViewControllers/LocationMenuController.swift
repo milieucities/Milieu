@@ -15,23 +15,16 @@ class LocationMenuController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let neighbourManager = NeighbourManager.sharedManager
-        neighbourManager.currentNeighbour = neighbourhoods[indexPath.row - 1]
-        neighbourManager.createRegionForCurrentNeighbourhood()
-        
-        if revealViewController() != nil{
-            let navController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MapNavigationViewController") as! UINavigationController
-            revealViewController().pushFrontViewController(navController, animated: true)
-        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0{
             let cell = tableView.dequeueReusableCellWithIdentifier("neighbourTitleCell")! as UITableViewCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
             return cell
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier("neighbourNameCell")! as UITableViewCell
-            let neighbour = neighbourhoods[indexPath.row - 1] as Neighbourhood
+            let neighbour = neighbourhoods[indexPath.row - 1]
             
             cell.textLabel?.text = neighbour.name
             
@@ -41,5 +34,15 @@ class LocationMenuController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return neighbourhoods.count
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "SelectNeighbourToMap"){
+            let navController = segue.destinationViewController as! UINavigationController
+            let mapController = navController.topViewController as! MapViewController
+            
+            let indexPath = tableView.indexPathForSelectedRow!
+            mapController.selectedNeighbour = neighbourhoods[indexPath.row - 1]
+        }
     }
 }

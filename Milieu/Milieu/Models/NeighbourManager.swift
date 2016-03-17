@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import MapKit
+import Mapbox
 
 class NeighbourManager{
     static let sharedManager = NeighbourManager()
@@ -30,10 +31,10 @@ class NeighbourManager{
         fetchRequest.resultType = .DictionaryResultType
         
         
-        let minLatExpressionDesc = createExpressionDesc("minLat", keyPath: "latitude", function: "min:")
-        let minLonExpressionDesc = createExpressionDesc("minLon", keyPath: "longitude", function: "min:")
-        let maxLatExpressionDesc = createExpressionDesc("maxLat", keyPath: "latitude", function: "max:")
-        let maxLonExpressionDesc = createExpressionDesc("maxLon", keyPath: "longitude", function: "max:")
+        let minLatExpressionDesc = NeighbourManager.createExpressionDesc("minLat", keyPath: "latitude", function: "min:")
+        let minLonExpressionDesc = NeighbourManager.createExpressionDesc("minLon", keyPath: "longitude", function: "min:")
+        let maxLatExpressionDesc = NeighbourManager.createExpressionDesc("maxLat", keyPath: "latitude", function: "max:")
+        let maxLonExpressionDesc = NeighbourManager.createExpressionDesc("maxLon", keyPath: "longitude", function: "max:")
         
         fetchRequest.propertiesToFetch = [minLatExpressionDesc, minLonExpressionDesc, maxLatExpressionDesc, maxLonExpressionDesc]
         
@@ -75,6 +76,50 @@ class NeighbourManager{
         }
     }
     
+    class func findBoundsFromNeighbourhood(neighbour: Neighbourhood?) -> MGLCoordinateBounds?{
+        
+        guard neighbour != nil else{
+            return nil
+        }
+        
+        // Create the fetch request for the coordinate entity
+        let fetchRequest = NSFetchRequest(entityName: "Coordinate")
+        let predicate = NSPredicate(format: "neighbourhood.name == %@", (neighbour!.name)!)
+        fetchRequest.predicate = predicate
+        fetchRequest.resultType = .DictionaryResultType
+        
+        
+        let minLatExpressionDesc = NeighbourManager.createExpressionDesc("minLat", keyPath: "latitude", function: "min:")
+        let minLonExpressionDesc = NeighbourManager.createExpressionDesc("minLon", keyPath: "longitude", function: "min:")
+        let maxLatExpressionDesc = NeighbourManager.createExpressionDesc("maxLat", keyPath: "latitude", function: "max:")
+        let maxLonExpressionDesc = NeighbourManager.createExpressionDesc("maxLon", keyPath: "longitude", function: "max:")
+        
+        fetchRequest.propertiesToFetch = [minLatExpressionDesc, minLonExpressionDesc, maxLatExpressionDesc, maxLonExpressionDesc]
+        
+        do{
+            // Fetch the coordinates belongs to this neighbourhood
+            let results = try CoreDataManager.sharedManager.coreDataStack.context.executeFetchRequest(fetchRequest) as! [NSDictionary]
+            let resultDict = results.first!
+            let minLat = resultDict["minLat"] as! CLLocationDegrees
+            let minLon = resultDict["minLon"] as! CLLocationDegrees
+            let maxLat = resultDict["maxLat"] as! CLLocationDegrees
+            let maxLon = resultDict["maxLon"] as! CLLocationDegrees
+            
+            // For Ottawa, minLat is lower and maxLat is higher, minLon is left and maxLon is right
+            let sw = CLLocationCoordinate2DMake(minLat, minLon)
+            let ne = CLLocationCoordinate2DMake(maxLat, maxLon)
+            
+            let bounds = MGLCoordinateBoundsMake(sw, ne)
+            
+            return bounds
+            
+        }catch let error as NSError{
+            AR5Logger.debug("Can't fetch coordinates: \(error), \(error.userInfo)")
+            return nil
+        }
+    }
+
+    
     /**
      Get the distance between two coordinates using Haversine Fomula
      Reference: http://rosettacode.org/wiki/Haversine_formula#Swift
@@ -102,7 +147,7 @@ class NeighbourManager{
      - Parameter function: The function to use for caculation
      - Returns: The specific expression description
      */
-    func createExpressionDesc(name: String, keyPath: String, function: String) -> NSExpressionDescription{
+    class func createExpressionDesc(name: String, keyPath: String, function: String) -> NSExpressionDescription{
         let expressionDescription = NSExpressionDescription()
         expressionDescription.name = name
         

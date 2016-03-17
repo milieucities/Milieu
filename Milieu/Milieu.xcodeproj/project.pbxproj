@@ -39,6 +39,8 @@
 		839C887D1C14C1D200D80D0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839C887B1C14C1D200D80D0A /* LaunchScreen.storyboard */; };
 		839C88881C14C1D200D80D0A /* MilieuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839C88871C14C1D200D80D0A /* MilieuTests.swift */; };
 		839C88931C14C1D200D80D0A /* MilieuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839C88921C14C1D200D80D0A /* MilieuUITests.swift */; };
+		83C32B861C95FAB900F1BF5C /* Status+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C32B841C95FAB900F1BF5C /* Status+CoreDataProperties.swift */; };
+		83C32B871C95FAB900F1BF5C /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C32B851C95FAB900F1BF5C /* Status.swift */; };
 		83C75F6D1C59B4F300174B9F /* AnalysisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C75F6C1C59B4F300174B9F /* AnalysisController.swift */; };
 		83C7A361A4F2FA7C99651EFC /* Pods_Milieu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C21667E9BAC5A927CE45449 /* Pods_Milieu.framework */; };
 		83DEF3F91C5C48490051002C /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DEF3F81C5C48490051002C /* CardCell.swift */; };
@@ -65,8 +67,6 @@
 		83FB2A001C4AC4000093EBC8 /* Neighbourhood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29F81C4AC4000093EBC8 /* Neighbourhood.swift */; };
 		83FB2A011C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29F91C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift */; };
 		83FB2A021C4AC4000093EBC8 /* DevApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29FA1C4AC4000093EBC8 /* DevApp.swift */; };
-		83FB2A031C4AC4000093EBC8 /* Status+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29FB1C4AC4000093EBC8 /* Status+CoreDataProperties.swift */; };
-		83FB2A041C4AC4000093EBC8 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29FC1C4AC4000093EBC8 /* Status.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +129,8 @@
 		839C888E1C14C1D200D80D0A /* MilieuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MilieuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		839C88921C14C1D200D80D0A /* MilieuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilieuUITests.swift; sourceTree = "<group>"; };
 		839C88941C14C1D200D80D0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83C32B841C95FAB900F1BF5C /* Status+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Status+CoreDataProperties.swift"; path = "Models/CoreData/Status+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		83C32B851C95FAB900F1BF5C /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Status.swift; path = Models/CoreData/Status.swift; sourceTree = "<group>"; };
 		83C75F6C1C59B4F300174B9F /* AnalysisController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisController.swift; sourceTree = "<group>"; };
 		83DEF3F81C5C48490051002C /* CardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		83DEF3FA1C5C4A400051002C /* FullDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FullDetailController.swift; path = ViewControllers/FullDetailController.swift; sourceTree = "<group>"; };
@@ -154,8 +156,6 @@
 		83FB29F81C4AC4000093EBC8 /* Neighbourhood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Neighbourhood.swift; path = Models/Neighbourhood.swift; sourceTree = "<group>"; };
 		83FB29F91C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DevApp+CoreDataProperties.swift"; path = "Models/DevApp+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		83FB29FA1C4AC4000093EBC8 /* DevApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DevApp.swift; path = Models/DevApp.swift; sourceTree = "<group>"; };
-		83FB29FB1C4AC4000093EBC8 /* Status+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Status+CoreDataProperties.swift"; path = "Models/Status+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		83FB29FC1C4AC4000093EBC8 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Status.swift; path = Models/Status.swift; sourceTree = "<group>"; };
 		FF4869C0DF401998CD305FAD /* Pods-Milieu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Milieu.release.xcconfig"; path = "Pods/Target Support Files/Pods-Milieu/Pods-Milieu.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -298,8 +298,8 @@
 				83FB29F81C4AC4000093EBC8 /* Neighbourhood.swift */,
 				83FB29F91C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift */,
 				83FB29FA1C4AC4000093EBC8 /* DevApp.swift */,
-				83FB29FB1C4AC4000093EBC8 /* Status+CoreDataProperties.swift */,
-				83FB29FC1C4AC4000093EBC8 /* Status.swift */,
+				83C32B841C95FAB900F1BF5C /* Status+CoreDataProperties.swift */,
+				83C32B851C95FAB900F1BF5C /* Status.swift */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -592,6 +592,8 @@
 				83DEF4101C5D25CD0051002C /* HeaderImageCell.swift in Sources */,
 				83FB29961C4322720093EBC8 /* Milieu.xcdatamodeld in Sources */,
 				83DEF4121C5D26540051002C /* DescriptionCell.swift in Sources */,
+				83C32B871C95FAB900F1BF5C /* Status.swift in Sources */,
+				83C32B861C95FAB900F1BF5C /* Status+CoreDataProperties.swift in Sources */,
 				831A89A31C4DE03F0066A874 /* UserAccountController.swift in Sources */,
 				837BDF841C51FC640000A9E4 /* EventInfo.swift in Sources */,
 				830F879A1C51CED90039CC8D /* DateUtil.swift in Sources */,
@@ -602,7 +604,6 @@
 				10B9E3E61C4D59B800DE21B9 /* CoreDataManager.swift in Sources */,
 				83FB29A51C44AE8E0093EBC8 /* Coordinate+CoreDataProperties.swift in Sources */,
 				83FB2A021C4AC4000093EBC8 /* DevApp.swift in Sources */,
-				83FB2A031C4AC4000093EBC8 /* Status+CoreDataProperties.swift in Sources */,
 				83FB2A001C4AC4000093EBC8 /* Neighbourhood.swift in Sources */,
 				83FB29EA1C473F140093EBC8 /* City+CoreDataProperties.swift in Sources */,
 				834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */,
@@ -626,7 +627,6 @@
 				10B9E3E21C4D539900DE21B9 /* SWRevealViewController.m in Sources */,
 				83DEF3F91C5C48490051002C /* CardCell.swift in Sources */,
 				83C75F6D1C59B4F300174B9F /* AnalysisController.swift in Sources */,
-				83FB2A041C4AC4000093EBC8 /* Status.swift in Sources */,
 				83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */,
 				83DEF4161C5D39BA0051002C /* UIImageView+DownloadImage.swift in Sources */,
 				83FB29FF1C4AC4000093EBC8 /* Neighbourhood+CoreDataProperties.swift in Sources */,

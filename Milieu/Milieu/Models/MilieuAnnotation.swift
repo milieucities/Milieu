@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import MapKit
+import Mapbox
 
 enum AnnotationCategory: String{
     case InComment = "commentAnnotation"
@@ -16,7 +16,7 @@ enum AnnotationCategory: String{
     case Event = "eventAnnotation"
 }
 
-class MilieuAnnotation : NSObject, MKAnnotation{
+class MilieuAnnotation : NSObject, MGLAnnotation{
     let title: String?
     let category: AnnotationCategory
     let generalDescription: String?
