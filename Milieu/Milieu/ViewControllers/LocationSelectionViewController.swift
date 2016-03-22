@@ -45,23 +45,7 @@ class LocationSelectionViewController: UIViewController, UIPickerViewDelegate, U
         neighbourhoods = NeighbourManager.sharedManager.fetchNeighbourhoods()
     }
     
-    @IBAction func showLocation(sender: AnyObject) {
-        if let neighbour = selectedNeighbourhood{
-            let neighbourManager = NeighbourManager.sharedManager
-            neighbourManager.currentNeighbour = neighbour
-            neighbourManager.createRegionForCurrentNeighbourhood()
-            self.delegate?.selectNeighbourhood(neighbour, withRegion: neighbourManager.currentRegion!)
-            
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }else{
-            selectedLoctionBtn.setTitle("Please choose a location", forState: .Normal)
-        }
-        
-    }
-    
     @IBAction func useCurrentLocation(sender: AnyObject) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(DefaultsValue.UserCurrentLocation, forKey: DefaultsKey.SelectedNeighbour)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
