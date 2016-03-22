@@ -18,7 +18,16 @@ class MapViewController: UIViewController{
     // CoreData
     var coreDataStack: CoreDataStack!
     var selectedNeighbour: Neighbourhood?
+    
     var events: [EventInfo]!
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
+    let certainDate: NSDate = {
+       let comps = NSDateComponents()
+        // Always show recent 6 months result
+        comps.month = -6
+        return NSCalendar.currentCalendar().dateByAddingComponents(comps, toDate: NSDate(), options: [])!
+    }()
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var locationMenuButton: UIBarButtonItem!
@@ -31,16 +40,20 @@ class MapViewController: UIViewController{
         linkMenuController()
         createMapView()
         
-        
         // Add gesture to change the map style
         map.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
             action: "changeStyle:"))
         
         events = EventInfo.loadAllEvents()
+        
+        if selectedNeighbour == nil{
+            loadDefaultLocationIfAny()
+        }else{
+            showApplicationsInSelectedNeighbour()
+        }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    func showApplicationsInSelectedNeighbour(){
         displaySelectedNeighbour()
         populateAnnotations()
     }
@@ -65,7 +78,6 @@ class MapViewController: UIViewController{
         map = MGLMapView(frame: view.bounds, styleURL: MGLStyle.lightStyleURL())
         map.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         
-        settleUserLocation()
         view.addSubview(map)
         
         // Set Map Delegate
@@ -75,6 +87,18 @@ class MapViewController: UIViewController{
     func settleUserLocation(){
         map.showsUserLocation = true
         map.userTrackingMode = .Follow
+    }
+    
+    func loadDefaultLocationIfAny(){
+        // Load the defaults value
+        let defaultNeighbour = defaults.objectForKey(DefaultsKey.SelectedNeighbour) as? String
+        selectedNeighbour = NeighbourManager.sharedManager.fetchNeighbourhood(defaultNeighbour ?? "")
+        if selectedNeighbour == nil{
+            settleUserLocation()
+            showLocationSelectionView()
+        }else{
+            showApplicationsInSelectedNeighbour()
+        }
     }
     
 
@@ -110,8 +134,9 @@ class MapViewController: UIViewController{
         // Try to find the neighbourhood bounds
         // Use the current one if those can't be found
         let bounds = NeighbourManager.findBoundsFromNeighbourhood(selectedNeighbour) ?? map.visibleCoordinateBounds
-
         map.setVisibleCoordinateBounds(bounds, edgePadding: UIEdgeInsetsMake(5.0, 10.0, 5.0, 10.0), animated: true)
+        defaults.setObject(selectedNeighbour!.name, forKey: DefaultsKey.SelectedNeighbour)
+        defaults.synchronize()
     }
     
     func populateAnnotations(){
@@ -123,8 +148,13 @@ class MapViewController: UIViewController{
                 if let _ = app.addresses?.allObjects.first as? Address{
                     let appInfo = ApplicationInfo(devApp: app)
                     
-                    
-                    applicationInfos.append(appInfo)
+                    if let devAppStatus = app.statuses?.reverse().first as? Status{
+                        if let statusDate = devAppStatus.statusDate{
+                            if statusDate >= certainDate{
+                                applicationInfos.append(appInfo)
+                            }
+                        }
+                    }
                 }
             }
             
@@ -135,6 +165,28 @@ class MapViewController: UIViewController{
     }
     
     
+    // MARK: - Segue
+    func showLocationSelectionView(){
+        self.performSegueWithIdentifier("mapToLocationSelection", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "mapToLocationSelection"{
+            let locationSelectionVC = segue.destinationViewController as! LocationSelectionViewController
+            
+            // Show the location selection view on top of the current map view
+            locationSelectionVC.view.frame = self.view.bounds
+            locationSelectionVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+            locationSelectionVC.hidesBottomBarWhenPushed = true
+        }
+    }
+    
+    // MARK: - Callback from LocationSelectionViewController
+    @IBAction func unwindFromLocationSelection(segue: UIStoryboardSegue){
+        let locationSelectionController = segue.sourceViewController as! LocationSelectionViewController
+        selectedNeighbour = locationSelectionController.selectedNeighbourhood
+        showApplicationsInSelectedNeighbour()
+    }
 }
 
 // MARK: - MGLMapViewDelegate
