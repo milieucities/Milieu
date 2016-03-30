@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>South Urban Community Water Upgrades</string>
+		<key>address1</key>
+		<string>Rideauview Community Centre</string>
+		<key>address2</key>
+		<string>4310 Shoreline Drive</string>
+		<key>time</key>
+		<string>January 28th, 2016. 6:30 to 8 p.m.</string>
+		<key>email</key>
+		<string>fraser.smith@ottawa.ca</string>
+		<key>telephone</key>
+		<string>613-580-2424 ext. 25095</string>
+		<key>generalDescription</key>
+		<string>None</string>
+		<key>latitude</key>
+		<string>45.277477</string>
+		<key>longitude</key>
+		<string>-75.687125</string>
+		<key>wardNum</key>
+		<integer>22</integer>
+		<key>wardName</key>
+		<string>GLOUCESTER-SOUTH NEPEAN</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Redevelopment of LeBreton Flats</string>
+		<key>address1</key>
+		<string>Canadian War Museum</string>
+		<key>address2</key>
+		<string>1 Vimy Place
+</string>
+		<key>time</key>
+		<string>January 26 at 4:00 PM to January 27 at 9:30 PM</string>
+		<key>contactName</key>
+		<string>Mario Tremblay</string>
+		<key>position</key>
+		<string>Communications Advisor</string>
+		<key>email</key>
+		<string>mario.tremblay@ncc-ccn.ca</string>
+		<key>telephone</key>
+		<string>613-239-5678 extension 5665 (office), 613-859-9596 (cellular) </string>
+		<key>generalDescription</key>
+		<string>The NCC will hold a public consultation on the proposals for the redevelopment of LeBreton Flats. LeBreton Flats represents one of the most significant urban development opportunities in Canada’s Capital.</string>
+		<key>latitude</key>
+		<string>45.417190</string>
+		<key>longitude</key>
+		<string>-75.716826</string>
+		<key>wardNum</key>
+		<string>14</string>
+		<key>wardName</key>
+		<string>SOMERSET</string>
+	</dict>
+</array>
+</plist>
