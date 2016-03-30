@@ -11,6 +11,7 @@ target 'Milieu' do
   pod 'PNChart'
   pod 'Fabric'
   pod 'Mapbox-iOS-SDK'
+  pod 'NVActivityIndicatorView'
 
 end
 

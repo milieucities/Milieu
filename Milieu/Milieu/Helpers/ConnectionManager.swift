@@ -11,7 +11,7 @@ import Foundation
 let errorDomain = "ConnectionError"
 
 enum RequestType: String{
-    case FetchAllApplications = "/dev_sites"
+    case FetchAllApplications = "/api/v1/dev_sites"
     case FetchCommentsForDevSite = "/all_devsite_comments"
     case SubmitVoting = "/rate"
     case Like = "/heart"

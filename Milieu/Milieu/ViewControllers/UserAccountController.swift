@@ -17,7 +17,7 @@ class UserAccountController: UIViewController {
         if revealViewController() != nil{
             revealViewController().rightViewRevealWidth = 220
             menuButton.target = revealViewController()
-            menuButton.action = "rightRevealToggle:"
+            menuButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
     }
