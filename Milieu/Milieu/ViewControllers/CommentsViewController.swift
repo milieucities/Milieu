@@ -43,7 +43,7 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
     
     func displayComments(result: AnyObject){
         
-        if let comments = (result[0] as! NSDictionary)["all_comments_of_devsite"] as? NSArray{
+        if let comments = ((result as! NSArray)[0] as! NSDictionary)["all_comments_of_devsite"] as? NSArray{
             if comments.count > 0{
                 var appComments = [ApplicationComments]()
                 for comment in comments{

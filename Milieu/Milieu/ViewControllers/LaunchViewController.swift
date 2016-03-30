@@ -185,7 +185,7 @@ class LaunchViewController: UIViewController {
         for boundary in boundaries{
             
             let simpleShape = boundary["simple_shape"] as! [String: AnyObject]
-            let coordinates = (simpleShape["coordinates"] as! NSArray)[0][0] as! NSArray
+            let coordinates = ((simpleShape["coordinates"] as! NSArray)[0] as! NSArray)[0] as! NSArray
             
             // Find or Create Neighbourhood Data
             let fetchRequest = NSFetchRequest(entityName: "Neighbourhood")
@@ -302,8 +302,9 @@ class LaunchViewController: UIViewController {
         
         for xyz in coordinates{
             let coordinate = NSEntityDescription.insertNewObjectForEntityForName("Coordinate", inManagedObjectContext: self.privateContext) as! Coordinate
-            coordinate.longitude = NSNumber(double: xyz[0] as! Double)
-            coordinate.latitude = NSNumber(double: xyz[1] as! Double)
+            let point = xyz as! NSArray
+            coordinate.longitude = NSNumber(double: point[0] as! Double)
+            coordinate.latitude = NSNumber(double: point[1] as! Double)
             coordinate.neighbourhood = neighbourhood
         }
     }
