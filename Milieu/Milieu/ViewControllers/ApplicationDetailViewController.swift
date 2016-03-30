@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import STPopup
+import NVActivityIndicatorView
 
 enum BackStatus{
     case Empty
@@ -19,7 +20,6 @@ enum BackStatus{
 class ApplicationDetailViewController: UIViewController {
     
     var annotation: ApplicationInfo!
-    var image: UIImage?
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var applicationTypeLabel: UILabel!
@@ -33,6 +33,8 @@ class ApplicationDetailViewController: UIViewController {
     @IBOutlet weak var upHeartButton: UIButton!
     
     @IBOutlet weak var applicationImageView: UIImageView!
+    
+    var activityIndicator: NVActivityIndicatorView!
     
     var backStatus: BackStatus = BackStatus.Empty
     
@@ -61,7 +63,12 @@ class ApplicationDetailViewController: UIViewController {
         STPopupNavigationBar.appearance().barStyle = UIBarStyle.Default
         STPopupNavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Detail", style: UIBarButtonItemStyle.Plain, target: self, action: "detailBtnDidTap")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Detail", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ApplicationDetailViewController.detailBtnDidTap))
+        
+        activityIndicator = NVActivityIndicatorView(frame:CGRectMake(0, 0, 30, 30), type: .BallGridBeat, color: UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1))
+        activityIndicator.center = applicationImageView.convertPoint(applicationImageView.center, fromView: applicationImageView)
+        activityIndicator.hidesWhenStopped = true
+        applicationImageView.addSubview(activityIndicator)
     }
     
     func detailBtnDidTap(){
@@ -85,33 +92,41 @@ class ApplicationDetailViewController: UIViewController {
         }
         
         if annotation.title == "350 Sparks Street"{
-            self.image = UIImage(named: "350Sparks1")
-            self.applicationImageView.image = self.image
+            annotation.image = UIImage(named: "350Sparks1")
+            self.applicationImageView.image = annotation.image
             self.applicationImageView.contentMode = .ScaleAspectFit
         }else if annotation.title == "400 Albert Street"{
-            self.image = UIImage(named: "400Albert1")
-            self.applicationImageView.image = self.image
+            annotation.image = UIImage(named: "400Albert1")
+            self.applicationImageView.image = annotation.image
             self.applicationImageView.contentMode = .ScaleAspectFit
         }else{
-            let escapeAddress = annotation.title?.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
             
-            let urlString = "https://maps.googleapis.com/maps/api/streetview?size=500x250&location=\(escapeAddress!)%2COttawa%2COntario$2CCanada"
-            
-            Alamofire.request(Method.GET, urlString).response{
-                request, response, data, error in
+            if let image = annotation.image{
+                self.applicationImageView.image = image
+                self.applicationImageView.contentMode = .ScaleAspectFill
+                return
+            }else{
+                let escapeAddress = annotation.title?.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
                 
-                if let data = data{
-                    dispatch_async(dispatch_get_main_queue(),{
-                        self.image = UIImage(data: data)
-
-                        self.applicationImageView.image = self.image
-                        self.applicationImageView.contentMode = .ScaleAspectFill
-                        
-                    })
+                let urlString = "https://maps.googleapis.com/maps/api/streetview?size=500x250&location=\(escapeAddress!)%2COttawa%2COntario$2CCanada"
+                
+                activityIndicator.startAnimation()
+                Alamofire.request(Method.GET, urlString).response{
+                    request, response, data, error in
+                    
+                    if let data = data{
+                        dispatch_async(dispatch_get_main_queue(),{
+                            self.annotation.image = UIImage(data: data)
+                            
+                            self.applicationImageView.image = self.annotation.image
+                            self.applicationImageView.contentMode = .ScaleAspectFill
+                            self.activityIndicator.stopAnimation()
+                            
+                        })
+                    }
+                    
                 }
-                
             }
-            
         }
     }
     
@@ -137,6 +152,7 @@ class ApplicationDetailViewController: UIViewController {
         applicationImageView = nil
         titleLabel = nil
         applicationTypeLabel = nil
+        activityIndicator = nil
     }
     
     @IBAction func commentBtnDidTap(sender: AnyObject) {

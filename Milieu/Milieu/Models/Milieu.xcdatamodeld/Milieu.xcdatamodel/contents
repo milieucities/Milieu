@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
     <entity name="Address" representedClassName="Milieu.Address" syncable="YES">
         <attribute name="createdDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -24,6 +24,7 @@
         <attribute name="developmentId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="generalDesription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="addresses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Address" inverseName="devApp" inverseEntity="Address" syncable="YES"/>
         <relationship name="neighbourhood" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Neighbourhood" inverseName="devApps" inverseEntity="Neighbourhood" syncable="YES"/>
         <relationship name="statuses" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Status" inverseName="devApp" inverseEntity="Status" syncable="YES"/>
@@ -47,7 +48,7 @@
         <element name="Address" positionX="0" positionY="-150" width="128" height="148"/>
         <element name="City" positionX="-578" positionY="-133" width="128" height="73"/>
         <element name="Coordinate" positionX="-209" positionY="-259" width="128" height="88"/>
-        <element name="DevApp" positionX="-209" positionY="-34" width="128" height="165"/>
+        <element name="DevApp" positionX="-209" positionY="-34" width="128" height="180"/>
         <element name="Neighbourhood" positionX="-387" positionY="-117" width="128" height="118"/>
         <element name="Status" positionX="0" positionY="45" width="128" height="133"/>
     </elements>

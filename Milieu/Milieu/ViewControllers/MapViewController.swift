@@ -42,7 +42,7 @@ class MapViewController: UIViewController{
         
         // Add gesture to change the map style
         map.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
-            action: "changeStyle:"))
+            action: #selector(MapViewController.changeStyle(_:))))
         
         events = EventInfo.loadAllEvents()
         
@@ -64,11 +64,11 @@ class MapViewController: UIViewController{
         if revealViewController() != nil{
             revealViewController().rearViewRevealWidth = 260
             locationMenuButton.target = revealViewController()
-            locationMenuButton.action = "revealToggle:"
+            locationMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             
             revealViewController().rightViewRevealWidth = 220
             menuButton.target = revealViewController()
-            menuButton.action = "rightRevealToggle:"
+            menuButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
         }
     }
     

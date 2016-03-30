@@ -99,7 +99,6 @@ class LaunchViewController: UIViewController {
         Alamofire.request(.GET, NSURL(string: "\(Connection.OpenNorthBaseUrl)\(OpenNorthApi.FindOttawaWards.rawValue)")!).responseJSON{
             response in
             
-            debugPrint(response.result.error)
             if let _ = response.result.error{
                 dispatch_async(dispatch_get_main_queue(), {
                     self.informationLabel.text = "Oops! Can not find the secret path, \nrelaunch the app pls ..."
@@ -108,11 +107,7 @@ class LaunchViewController: UIViewController {
                 return
             }
             
-            debugPrint(response.response)
-            
-            
             if let result = response.result.value{
-              debugPrint(result)
                 self.privateContext.performBlock{
                     self.parseWardsFromDict(result as! [String: AnyObject])
                 }
@@ -123,7 +118,6 @@ class LaunchViewController: UIViewController {
     
     func parseWardsFromDict(dict: [String: AnyObject]){
         let wards = dict["objects"] as! [[String: AnyObject]]
-        debugPrint(wards.count)
         // TODO: If the coredata city wards count is less than Api returned wards count, update the coredata
         
         // Create city in the CoreData
@@ -168,7 +162,6 @@ class LaunchViewController: UIViewController {
         Alamofire.request(.GET, NSURL(string: "\(Connection.OpenNorthBaseUrl)\(OpenNorthApi.FindOttawaWardsSimpleShape.rawValue)")!).responseJSON{
             response in
             
-            debugPrint(response.result.error)
             if let _ = response.result.error{
                 dispatch_async(dispatch_get_main_queue(), {
                     self.informationLabel.text = "Oops! Can not find the secret path, \nrelaunch the app pls ..."
@@ -177,10 +170,7 @@ class LaunchViewController: UIViewController {
                 return
             }
             
-            debugPrint(response.response)
-            
             if let result = response.result.value{
-                debugPrint(result)
                 self.privateContext.performBlock{
                     self.parseBoundariesFromDict(result as! [String: AnyObject])
                 }
@@ -190,13 +180,12 @@ class LaunchViewController: UIViewController {
     
     func parseBoundariesFromDict(dict: [String: AnyObject]){
         let boundaries = dict["objects"] as! [[String: AnyObject]]
-        debugPrint(boundaries.count)
         
         var count = 0
         for boundary in boundaries{
             
             let simpleShape = boundary["simple_shape"] as! [String: AnyObject]
-            let coordinates = (simpleShape["coordinates"] as! NSArray)[0][0] as! NSArray
+            let coordinates = ((simpleShape["coordinates"] as! NSArray)[0] as! NSArray)[0] as! NSArray
             
             // Find or Create Neighbourhood Data
             let fetchRequest = NSFetchRequest(entityName: "Neighbourhood")
@@ -217,7 +206,7 @@ class LaunchViewController: UIViewController {
                 try self.privateContext.save()
                 self.privateContext.reset()
                 
-                count++
+                count += 1
                 dispatch_async(dispatch_get_main_queue(), {
                     self.percentLabel.text = "\(Int (count * 100 / boundaries.count)) %"
                 })
@@ -281,7 +270,7 @@ class LaunchViewController: UIViewController {
                 
                 // Add coordinates into the neighbourhood
                 addCoordinatesForNeighbourhood(neighbourhood, coordinates: xyzArrays)
-                count++
+                count += 1
                 dispatch_async(dispatch_get_main_queue(), {
                     self.percentLabel.text = "\(Int (count * 100 / features.count)) %"
                 })
@@ -313,8 +302,9 @@ class LaunchViewController: UIViewController {
         
         for xyz in coordinates{
             let coordinate = NSEntityDescription.insertNewObjectForEntityForName("Coordinate", inManagedObjectContext: self.privateContext) as! Coordinate
-            coordinate.longitude = NSNumber(double: xyz[0] as! Double)
-            coordinate.latitude = NSNumber(double: xyz[1] as! Double)
+            let point = xyz as! NSArray
+            coordinate.longitude = NSNumber(double: point[0] as! Double)
+            coordinate.latitude = NSNumber(double: point[1] as! Double)
             coordinate.neighbourhood = neighbourhood
         }
     }
@@ -329,8 +319,11 @@ class LaunchViewController: UIViewController {
     /**
      Use Alamofire for the data fetching
      */
+    
     func fetchDevAppsFromServer(){
-        let headers = ["Accept": "application/json"]
+        let headers = ["Accept": "application/json",
+                       "Content-Type": "application/json",
+                       "Authorization": "Token token=NaBb7MPyvmNG2lOP1Xv1rQtt"]
         
         informationLabel.text = "Looking up for most interesting urban activities ..."
         Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.FetchAllApplications.rawValue)")!, headers: headers).responseJSON{
@@ -360,7 +353,7 @@ class LaunchViewController: UIViewController {
     
     func handleDevAppResults(result: AnyObject){
         
-        if let siteApps = (result[0] as! NSDictionary)["siteApps"] as? NSDictionary{
+        if let siteApps = result as? NSDictionary{
             privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
             privateContext.persistentStoreCoordinator = coreDataStack.context.persistentStoreCoordinator
             privateContext.performBlock{
@@ -371,9 +364,10 @@ class LaunchViewController: UIViewController {
                 })
                 var count = 0
                 var percent = 0
-                AR5Logger.debug("\(siteApps.count)")
-                for i in 1...siteApps.count{
-                    if let app = siteApps["\(i-1)"] as? NSDictionary{
+                let appsCount = siteApps.count
+                AR5Logger.debug("Total Apps: \(appsCount)")
+                for i in 1...appsCount{
+                    if let app = siteApps["\(i)"] as? NSDictionary{
                         if let wardNum: Int = app["ward_num"] as? Int {
                             let appObject = NSEntityDescription.insertNewObjectForEntityForName("DevApp", inManagedObjectContext: self.privateContext) as! DevApp
                             appObject.applicationId = app["application_id"] as? String
@@ -381,13 +375,14 @@ class LaunchViewController: UIViewController {
                             appObject.developmentId = app["development_id"] as? String
                             appObject.id = NSNumber(integer: (app["id"] as? Int)!)
                             appObject.generalDesription = app["description"] as? String
+                            appObject.imageUrl = app["image_url"] as? String
                             self.addAddressesForDevApp(appObject, addresses: app["addresses"] as! NSArray)
                             self.addStatusesForDevApp(appObject, statuses: app["statuses"] as! NSArray)
                             self.addDevAppInNeighbourhood(appObject, withWardNum: wardNum)
                         }
                     }
-                    count++
-                    if count % (Int(siteApps.count/10)) == 0{
+                    count += 1
+                    if count % (Int(appsCount/10)) == 0{
                         
                         dispatch_async(dispatch_get_main_queue(), {
                             self.percentLabel.text = "\(percent) %"
@@ -404,9 +399,7 @@ class LaunchViewController: UIViewController {
                 
                 self.finishPreload()
             }
-            
         }
-        
     }
     
     /**
@@ -418,7 +411,7 @@ class LaunchViewController: UIViewController {
     func addAddressesForDevApp(devApp: DevApp, addresses: NSArray){
         
         for address in addresses{
-            if let lat = address["lat"] as? Double, let lon = address["lon"] as? Double, let street = address["street"] as? String{
+            if let lat = address["lat"] as? Double, lon = address["lon"] as? Double, street = address["street"] as? String{
                 let addressObject = NSEntityDescription.insertNewObjectForEntityForName("Address", inManagedObjectContext: self.privateContext) as! Address
                 addressObject.id = NSNumber(integer: (address["id"] as? Int)!)
                 addressObject.latitude = NSNumber(double: lat)

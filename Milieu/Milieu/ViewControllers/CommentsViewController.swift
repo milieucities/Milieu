@@ -21,7 +21,7 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
         super.awakeFromNib()
         self.contentSizeInPopup = CGSizeMake(300, 400)
         self.landscapeContentSizeInPopup = CGSizeMake(400, 200)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneBtnDidTap")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(CommentsViewController.doneBtnDidTap))
     }
     
     override func viewDidLoad() {
@@ -43,7 +43,7 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
     
     func displayComments(result: AnyObject){
         
-        if let comments = (result[0] as! NSDictionary)["all_comments_of_devsite"] as? NSArray{
+        if let comments = ((result as! NSArray)[0] as! NSDictionary)["all_comments_of_devsite"] as? NSArray{
             if comments.count > 0{
                 var appComments = [ApplicationComments]()
                 for comment in comments{

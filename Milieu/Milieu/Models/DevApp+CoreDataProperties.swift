@@ -18,6 +18,7 @@ extension DevApp {
     @NSManaged var developmentId: String?
     @NSManaged var applicationType: String?
     @NSManaged var generalDesription: String?
+    @NSManaged var imageUrl: String?
     @NSManaged var id: NSNumber?
     @NSManaged var neighbourhood: Neighbourhood?
     @NSManaged var addresses: NSSet?

@@ -31,7 +31,7 @@ class VotingController: UIViewController {
         super.awakeFromNib()
         self.contentSizeInPopup = CGSizeMake(300, 400)
         self.landscapeContentSizeInPopup = CGSizeMake(400, 200)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "doneBtnDidTap")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(VotingController.doneBtnDidTap))
     }
     
     override func viewDidLoad() {
