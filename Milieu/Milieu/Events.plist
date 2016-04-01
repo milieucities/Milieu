@@ -51,7 +51,7 @@
 		<key>longitude</key>
 		<string>-75.716826</string>
 		<key>wardNum</key>
-		<string>14</string>
+		<integer>14</integer>
 		<key>wardName</key>
 		<string>SOMERSET</string>
 	</dict>

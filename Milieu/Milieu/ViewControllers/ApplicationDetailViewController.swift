@@ -58,11 +58,6 @@ class ApplicationDetailViewController: UIViewController {
             statusDataLabel.text = "Unknown"
         }
         
-        STPopupNavigationBar.appearance().barTintColor = UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1)
-        STPopupNavigationBar.appearance().tintColor = UIColor.whiteColor()
-        STPopupNavigationBar.appearance().barStyle = UIBarStyle.Default
-        STPopupNavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Detail", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ApplicationDetailViewController.detailBtnDidTap))
         
         activityIndicator = NVActivityIndicatorView(frame:CGRectMake(0, 0, 30, 30), type: .BallGridBeat, color: UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1))
