@@ -197,7 +197,6 @@
 			children = (
 				10B9E3E01C4D539900DE21B9 /* SWRevealViewController.h */,
 				10B9E3E11C4D539900DE21B9 /* SWRevealViewController.m */,
-				10B9E3DC1C4D534300DE21B9 /* Milieu-Bridging-Header.h */,
 			);
 			name = SWRevealViewController;
 			sourceTree = "<group>";
@@ -365,6 +364,7 @@
 				839C88791C14C1D200D80D0A /* Assets.xcassets */,
 				839C887B1C14C1D200D80D0A /* LaunchScreen.storyboard */,
 				839C887E1C14C1D200D80D0A /* Info.plist */,
+				10B9E3DC1C4D534300DE21B9 /* Milieu-Bridging-Header.h */,
 				83FB298F1C43208D0093EBC8 /* ottawa_wards_2010.json */,
 				8317C97F1C25ECAC0088DEAA /* Acknowledgement&Legal */,
 			);
