@@ -8,10 +8,12 @@
 
 import UIKit
 import Alamofire
+import NVActivityIndicatorView
 
 class EventDetailViewController: UIViewController {
 
     var annotation: EventInfo!
+    var activityIndicator: NVActivityIndicatorView!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var address1Label: UILabel!
@@ -29,6 +31,11 @@ class EventDetailViewController: UIViewController {
         timeLabel.text = annotation.time
         contactLabel.text = annotation.email
         descriptionTextView.text = annotation.generalDescription
+        
+        activityIndicator = NVActivityIndicatorView(frame:CGRectMake(0, 0, 30, 30), type: .BallGridBeat, color: UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1))
+        activityIndicator.center = imageView.convertPoint(imageView.center, fromView: imageView)
+        activityIndicator.hidesWhenStopped = true
+        imageView.addSubview(activityIndicator)
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -45,6 +52,7 @@ class EventDetailViewController: UIViewController {
         
         let urlString = "https://maps.googleapis.com/maps/api/streetview?size=500x250&location=\(escapeAddress!)%2COttawa%2COntario$2CCanada"
         
+        activityIndicator.startAnimation()
         Alamofire.request(Method.GET, urlString).response{
             request, response, data, error in
             
@@ -52,7 +60,7 @@ class EventDetailViewController: UIViewController {
                 dispatch_async(dispatch_get_main_queue(),{
                     self.imageView.image = UIImage(data: data)
                     self.imageView.contentMode = .ScaleAspectFill
-                    
+                    self.activityIndicator.stopAnimation()
                 })
             }
             

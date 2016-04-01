@@ -25,7 +25,7 @@ class MapViewController: UIViewController{
     let certainDate: NSDate = {
        let comps = NSDateComponents()
         // Always show recent 6 months result
-        comps.month = -6
+        comps.month = -10
         return NSCalendar.currentCalendar().dateByAddingComponents(comps, toDate: NSDate(), options: [])!
     }()
     
@@ -51,6 +51,12 @@ class MapViewController: UIViewController{
         }else{
             showApplicationsInSelectedNeighbour()
         }
+        
+        // Set the bar appearance in MapView to solve the bug that the first showing close button color is dark blue
+        STPopupNavigationBar.appearance().barTintColor = UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1)
+        STPopupNavigationBar.appearance().tintColor = UIColor.whiteColor()
+        STPopupNavigationBar.appearance().barStyle = UIBarStyle.Default
+        STPopupNavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
     }
     
     func showApplicationsInSelectedNeighbour(){
@@ -158,6 +164,12 @@ class MapViewController: UIViewController{
                 }
             }
             
+            for event in events{
+                if event.wardNum == neighbour.number{
+                    applicationInfos.append(event)
+                }
+            }
+            
             map.removeAnnotations(map.annotations ?? [MGLAnnotation]())
             map.showsUserLocation = true
             map.addAnnotations(applicationInfos)
@@ -217,6 +229,20 @@ extension MapViewController: MGLMapViewDelegate{
             
             // Create the ApplicationDetailViewController by storyboard
             let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ApplicationDetailViewController") as? ApplicationDetailViewController
+            
+            // Set the annotation
+            viewController?.annotation = annotation
+            
+            // Use the STPopupController to make the fancy view controller
+            let popupController = STPopupController(rootViewController: viewController)
+            popupController.containerView.layer.cornerRadius = 4
+
+            // Show it on top of the map view
+            popupController.presentInViewController(self)
+            
+        }else if let annotation = annotation as? EventInfo{
+            // Create the ApplicationDetailViewController by storyboard
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("EventDetailViewController") as? EventDetailViewController
             
             // Set the annotation
             viewController?.annotation = annotation
