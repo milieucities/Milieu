@@ -24,8 +24,8 @@ class MapViewController: UIViewController{
     
     let certainDate: NSDate = {
        let comps = NSDateComponents()
-        // Always show recent 6 months result
-        comps.month = -10
+        // Always show recent 1 year result
+        comps.year = -1
         return NSCalendar.currentCalendar().dateByAddingComponents(comps, toDate: NSDate(), options: [])!
     }()
     
@@ -81,7 +81,7 @@ class MapViewController: UIViewController{
     // MARK: - Map View Setup
     func createMapView(){
         // Create the Map View
-        map = MGLMapView(frame: view.bounds, styleURL: MGLStyle.lightStyleURL())
+        map = MGLMapView(frame: view.bounds, styleURL: MGLStyle.streetsStyleURLWithVersion(9))
         map.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         
         view.addSubview(map)
@@ -111,12 +111,12 @@ class MapViewController: UIViewController{
     func changeStyle(longPress: UILongPressGestureRecognizer) {
         if longPress.state == .Began {
             let styleURLs = [
-                MGLStyle.lightStyleURL(),
-                MGLStyle.streetsStyleURL(),
-                MGLStyle.emeraldStyleURL(),
-                MGLStyle.darkStyleURL(),
-                MGLStyle.satelliteStyleURL(),
-                MGLStyle.hybridStyleURL()
+                MGLStyle.lightStyleURLWithVersion(9),
+                MGLStyle.streetsStyleURLWithVersion(9),
+                MGLStyle.outdoorsStyleURLWithVersion(9),
+                MGLStyle.darkStyleURLWithVersion(9),
+                MGLStyle.satelliteStyleURLWithVersion(9),
+                MGLStyle.satelliteStreetsStyleURLWithVersion(9)
             ]
             var index = 0
             for styleURL in styleURLs {

@@ -34,7 +34,7 @@ class ConnectionManager {
     weak var delegate: ConnectionManagerDelegate?
     
     func createRequest(type: RequestType) -> NSURLRequest{
-        let serverUrl = "http://159.203.32.15"
+        let serverUrl = "https://milieu.io"
         
         let url = NSURL(string: "\(serverUrl)\(type.rawValue)")
         let request = NSMutableURLRequest(URL: url!)

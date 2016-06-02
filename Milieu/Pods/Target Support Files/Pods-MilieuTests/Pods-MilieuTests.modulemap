@@ -1,0 +1,6 @@
+framework module Pods_MilieuTests {
+  umbrella header "Pods-MilieuTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

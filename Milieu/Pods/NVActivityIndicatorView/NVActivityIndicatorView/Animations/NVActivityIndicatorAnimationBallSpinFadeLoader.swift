@@ -43,7 +43,7 @@ class NVActivityIndicatorAnimationBallSpinFadeLoader: NVActivityIndicatorAnimati
         animation.removedOnCompletion = false
         
         // Draw circles
-        for var i = 0; i < 8; i++ {
+        for i in 0 ..< 8 {
             let circle = circleAt(angle: CGFloat(M_PI_4 * Double(i)),
                 size: circleSize,
                 origin: CGPoint(x: x, y: y),
@@ -57,11 +57,11 @@ class NVActivityIndicatorAnimationBallSpinFadeLoader: NVActivityIndicatorAnimati
     }
     
     func circleAt(angle angle: CGFloat, size: CGFloat, origin: CGPoint, containerSize: CGSize, color: UIColor) -> CALayer {
-        let radius = containerSize.width / 2
+        let radius = containerSize.width / 2 - size / 2
         let circle = NVActivityIndicatorShape.Circle.createLayerWith(size: CGSize(width: size, height: size), color: color)
         let frame = CGRect(
-            x: origin.x + radius * (cos(angle) + 1) - size / 2,
-            y: origin.y + radius * (sin(angle) + 1) - size / 2,
+            x: origin.x + radius * (cos(angle) + 1),
+            y: origin.y + radius * (sin(angle) + 1),
             width: size,
             height: size)
         
