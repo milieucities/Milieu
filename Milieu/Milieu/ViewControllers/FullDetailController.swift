@@ -14,12 +14,39 @@ class FullDetailController: UITableViewController{
     var annotation: ApplicationInfo!
     var cardSizeArray = [200, 228, 300, 272]
     
+    // Header View
+    private let kTableHeaderHeight: CGFloat = 200.0
+    var headerView: UIView!
+    
     override func viewDidLoad() {
         tableView.separatorColor = UIColor.clearColor()
+    
+        headerView = tableView.tableHeaderView
+        tableView.tableHeaderView = nil
+        tableView.addSubview(headerView)
+        tableView.contentInset = UIEdgeInsets(top: kTableHeaderHeight, left: 0, bottom: 0, right: 0)
+        tableView.contentOffset = CGPoint(x: 0, y: -kTableHeaderHeight)
+        
+        fillHeader()
+        updateHeaderView()
+    }
+    
+    func updateHeaderView(){
+        var headerRect = CGRect(x: 0, y: -kTableHeaderHeight, width: tableView.bounds.width, height: kTableHeaderHeight)
+        if tableView.contentOffset.y < -kTableHeaderHeight{
+            headerRect.origin.y = tableView.contentOffset.y
+            headerRect.size.height = -tableView.contentOffset.y
+        }
+        
+        headerView.frame = headerRect
+    }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        updateHeaderView()
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 3
     }
     
     @IBAction func back(sender: AnyObject) {
@@ -28,30 +55,6 @@ class FullDetailController: UITableViewController{
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0{
-            let cell = tableView.dequeueReusableCellWithIdentifier("ImageCell") as! HeaderImageCell
-            
-            if let image = annotation.image{
-                cell.appImageView.image = image
-                cell.appImageView.contentMode = .ScaleAspectFit
-            }else{
-                let escapeAddress = annotation.title?.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
-                
-                let urlString = "https://maps.googleapis.com/maps/api/streetview?size=500x250&location=\(escapeAddress!)%2COttawa%2COntario$2CCanada"
-                if annotation.title == "350 Sparks Street"{
-                    cell.appImageView.image = UIImage(named: "350Sparks1")
-                    cell.appImageView.contentMode = .ScaleAspectFit
-                }else if annotation.title == "400 Albert Street"{
-                    cell.appImageView.image = UIImage(named: "400Albert1")
-                    cell.appImageView.contentMode = .ScaleAspectFit
-                }else{
-                    
-                    cell.appImageView.loadImageWithURL(urlString)
-                    cell.appImageView.contentMode = .ScaleAspectFill
-                }
-            }
-            
-            return cell
-        }else if indexPath.row == 1{
             let cell = tableView.dequeueReusableCellWithIdentifier("GeneralInfoCell") as! GeneralInfoCell
             cell.addressLabel.text = annotation.title
             cell.applicationTypeLabel.text = annotation.type
@@ -59,11 +62,11 @@ class FullDetailController: UITableViewController{
             cell.newestStatusLabel.text = annotation.newestStatus
             cell.statusDateLabel.text = DateUtil.transformStringFromDate(annotation.newestDate, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
             return cell
-        }else if indexPath.row == 2{
+        }else if indexPath.row == 1{
             let cell = tableView.dequeueReusableCellWithIdentifier("DescriptionCell") as! DescriptionCell
             cell.descriptionTextView.text = annotation.generalDescription
             return cell
-        }else {
+        } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("StatusesCell") as! StatusesCell
             
             let devApp = annotation.devApp
@@ -99,6 +102,23 @@ class FullDetailController: UITableViewController{
             cell.date5Label.text = statusDate[4]
             cell.date6Label.text = statusDate[5]
             return cell
+        }
+    }
+    
+    func fillHeader(){
+        let imageView = headerView.viewWithTag(1) as! UIImageView
+        if let image = annotation.image{
+            imageView.image = image
+        }else{
+            let escapeAddress = annotation.title?.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
+            let urlString = "https://maps.googleapis.com/maps/api/streetview?size=500x250&location=\(escapeAddress!)%2COttawa%2COntario$2CCanada"
+            if annotation.title == "350 Sparks Street"{
+                imageView.image = UIImage(named: "350Sparks1")
+            }else if annotation.title == "400 Albert Street"{
+                imageView.image = UIImage(named: "400Albert1")
+            }else{
+                imageView.loadImageWithURL(urlString)
+            }
         }
     }
     

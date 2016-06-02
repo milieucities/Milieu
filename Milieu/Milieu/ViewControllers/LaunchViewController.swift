@@ -343,6 +343,7 @@ class LaunchViewController: UIViewController {
             dispatch_async(dispatch_get_main_queue(), {
                 
                 if let result = response.result.value{
+                    AR5Logger.debug("\(result)")
                     self.handleDevAppResults(result)
                 }
             })
@@ -366,8 +367,8 @@ class LaunchViewController: UIViewController {
                 var percent = 0
                 let appsCount = siteApps.count
                 AR5Logger.debug("Total Apps: \(appsCount)")
-                for i in 1...appsCount{
-                    if let app = siteApps["\(i)"] as? NSDictionary{
+                for app in siteApps.allValues{
+                    if let app = app as? NSDictionary{
                         if let wardNum: Int = app["ward_num"] as? Int {
                             let appObject = NSEntityDescription.insertNewObjectForEntityForName("DevApp", inManagedObjectContext: self.privateContext) as! DevApp
                             appObject.applicationId = app["application_id"] as? String
@@ -387,11 +388,12 @@ class LaunchViewController: UIViewController {
                         dispatch_async(dispatch_get_main_queue(), {
                             self.percentLabel.text = "\(percent) %"
                         })
-                        if percent <= 100{
+                        if percent < 100{
                             percent += 10
                         }
                     }
                 }
+
                 dispatch_async(dispatch_get_main_queue(), {
                     self.informationLabel.hidden = false
                     self.percentLabel.hidden = false
