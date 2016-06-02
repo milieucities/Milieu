@@ -17,7 +17,7 @@ struct DefaultsValue{
 }
 
 struct Connection{
-    static let MilieuServerBaseUrl = "http://159.203.32.15"
+    static let MilieuServerBaseUrl = "https://milieu.io"
     static let AddictionalHttpHeaders = ["Content-Type": "application/json", "Accept": "application/json"]
     static let OpenNorthBaseUrl = "http://represent.opennorth.ca"
 }

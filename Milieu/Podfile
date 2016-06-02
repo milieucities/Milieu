@@ -3,6 +3,7 @@
 # Uncomment this line if you're using Swift
  use_frameworks!
 
+pod 'Mapbox-iOS-SDK','~> 3.1'
 
 target 'Milieu' do
 
@@ -10,7 +11,6 @@ target 'Milieu' do
   pod 'Alamofire', '~> 3.0'
   pod 'PNChart'
   pod 'Fabric'
-  pod 'Mapbox-iOS-SDK'
   pod 'NVActivityIndicatorView'
 
 end
