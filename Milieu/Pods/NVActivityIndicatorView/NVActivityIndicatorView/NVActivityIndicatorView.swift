@@ -41,6 +41,7 @@ import UIKit
  - BallGridBeat:            BallGridBeat animation.
  - SemiCircleSpin:          SemiCircleSpin animation.
  - BallRotateChase:         BallRotateChase animation.
+ - Orbit:                   Orbit animation.
  */
 public enum NVActivityIndicatorType: Int {
     /**
@@ -223,8 +224,20 @@ public enum NVActivityIndicatorType: Int {
      - returns: Instance of NVActivityIndicatorAnimationBallRotateChase.
      */
     case BallRotateChase
+    /**
+     Orbit.
+     
+     - returns: Instance of NVActivityIndicatorAnimationOrbit.
+     */
+    case Orbit
+    /**
+     AudioEqualizer.
+     
+     - returns: Instance of NVActivityIndicatorAnimationAudioEqualizer.
+     */
+    case AudioEqualizer
     
-    private static let allTypes = (Blank.rawValue ... BallRotateChase.rawValue).map{ NVActivityIndicatorType(rawValue: $0)! }
+    private static let allTypes = (Blank.rawValue ... Orbit.rawValue).map{ NVActivityIndicatorType(rawValue: $0)! }
 
     private func animation() -> NVActivityIndicatorAnimationDelegate {
         switch self {
@@ -288,14 +301,23 @@ public enum NVActivityIndicatorType: Int {
             return NVActivityIndicatorAnimationSemiCircleSpin()
         case .BallRotateChase:
             return NVActivityIndicatorAnimationBallRotateChase()
+        case .Orbit:
+            return NVActivityIndicatorAnimationOrbit()
+        case .AudioEqualizer:
+            return NVActivityIndicatorAnimationAudioEqualizer()
         }
     }
 }
 
 /// Activity indicator view with nice animations
 public class NVActivityIndicatorView: UIView {
+    /// Default type. Default value is .BallSpinFadeLoader.
     public static var DEFAULT_TYPE: NVActivityIndicatorType = .BallSpinFadeLoader
+    
+    /// Default color. Default value is UIColor.whiteColor().
     public static var DEFAULT_COLOR = UIColor.whiteColor()
+    
+    /// Default padding. Default value is 0.
     public static var DEFAULT_PADDING: CGFloat = 0
     
     /// Animation type, value of NVActivityIndicatorType enum.
