@@ -75,8 +75,7 @@ class FullDetailController: UITableViewController{
             var statusKey = [String]()
             var statusDate = [String]()
             
-            var i: Int = 0
-            for i = 0; i < 6; i += 1{
+            for i in 0...5{
                 if i < count{
                     let status = statuses![i] as! Status
                     let date = status.statusDate!
