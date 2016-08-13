@@ -151,14 +151,14 @@ class MapViewController: UIViewController{
             
             for item in neighbour.devApps!{
                 let app = item as! DevApp
-                if let _ = app.addresses?.allObjects.first as? Address{
+                if let _ = app.address{
                     let appInfo = ApplicationInfo(devApp: app)
                     
                     if let devAppStatus = app.statuses?.reverse().first as? Status{
                         if let statusDate = devAppStatus.statusDate{
-                            if statusDate >= certainDate{
+//                            if statusDate >= certainDate{
                                 applicationInfos.append(appInfo)
-                            }
+//                            }
                         }
                     }
                 }

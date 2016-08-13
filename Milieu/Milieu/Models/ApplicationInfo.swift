@@ -31,10 +31,12 @@ class ApplicationInfo : MilieuAnnotation{
     
     init(devApp: DevApp) {
         self.devApp = devApp
-        let devAppAddress = devApp.addresses?.allObjects.first as? Address
         
-        let lat = devAppAddress!.latitude?.doubleValue
-        let lon = devAppAddress!.longitude?.doubleValue
+        let latMid = self.devApp.latitude
+        let lonMid = self.devApp.longitude
+        let lat = latMid?.doubleValue
+        let lon = lonMid?.doubleValue
+        
 
         devId = devApp.developmentId
         devSiteUid = devApp.id?.integerValue
@@ -57,7 +59,7 @@ class ApplicationInfo : MilieuAnnotation{
         }
         
         
-        let address = devAppAddress?.street
+        let address = self.devApp.address
         
         super.init(title: address, category: appCategory, description: devApp.generalDesription, coordinate: CLLocationCoordinate2DMake(lat!, lon!))
     }

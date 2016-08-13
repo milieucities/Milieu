@@ -24,34 +24,36 @@ public extension NVActivityIndicatorViewable where Self: UIViewController {
     /**
      Create a activity indicator view with specified frame, type, color and padding and start animation.
      
-     - parameter frame: view's frame.
+     - parameter size: activity indicator view's size. Default size is 60x60.
+     - parameter message: message under activity indicator view.
      - parameter type: animation type, value of NVActivityIndicatorType enum. Default type is BallSpinFadeLoader.
      - parameter color: color of activity indicator view. Default color is white.
      - parameter padding: view's padding. Default padding is 0.
      */
-    public func startActivityAnimating(message: String? = nil, type: NVActivityIndicatorType? = nil, color: UIColor? = nil, padding: CGFloat? = nil) {
+    public func startActivityAnimating(size: CGSize? = nil, message: String? = nil, type: NVActivityIndicatorType? = nil, color: UIColor? = nil, padding: CGFloat? = nil) {
         let activityContainer: UIView = UIView(frame: view.bounds)
+        
         activityContainer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         activityContainer.restorationIdentifier = activityRestorationIdentifier
         
-        let width = activityContainer.frame.size.width / 3
-        let height = width
-        
+        let actualSize = size ?? NVActivityIndicatorView.DEFAULT_BLOCKER_SIZE
         let activityIndicatorView = NVActivityIndicatorView(
-            frame: CGRectMake(0, 0, width, height),
+            frame: CGRectMake(0, 0, actualSize.width, actualSize.height),
             type: type,
             color: color,
             padding: padding)
+        
         activityIndicatorView.center = activityContainer.center
         activityIndicatorView.hidesWhenStopped = true
         activityIndicatorView.startAnimation()
         activityContainer.addSubview(activityIndicatorView)
         
+        let width = activityContainer.frame.size.width / 3
         if let message = message where !message.isEmpty {
             let label = UILabel(frame: CGRectMake(0, 0, width, 30))
             label.center = CGPointMake(
                 activityIndicatorView.center.x,
-                activityIndicatorView.center.y + height)
+                activityIndicatorView.center.y + actualSize.height)
             label.textAlignment = .Center
             label.text = message
             label.font = UIFont.boldSystemFontOfSize(20)

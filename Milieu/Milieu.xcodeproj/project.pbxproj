@@ -38,6 +38,8 @@
 		83405D101C38278D00F16F4D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D0F1C38278D00F16F4D /* UIImage+Resize.swift */; };
 		834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E87ED1C1C6734002A763C /* MapViewController.swift */; };
 		834E87F21C1C67E0002A763C /* LocationSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */; };
+		835A1C191D486F400054C2F0 /* DevApp+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835A1C171D486F400054C2F0 /* DevApp+CoreDataProperties.swift */; };
+		835A1C1A1D486F400054C2F0 /* DevApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835A1C181D486F400054C2F0 /* DevApp.swift */; };
 		837BDF7E1C51E7C70000A9E4 /* MilieuAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BDF7D1C51E7C70000A9E4 /* MilieuAnnotation.swift */; };
 		837BDF821C51F7700000A9E4 /* Events.plist in Resources */ = {isa = PBXBuildFile; fileRef = 837BDF811C51F7700000A9E4 /* Events.plist */; };
 		837BDF841C51FC640000A9E4 /* EventInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BDF831C51FC640000A9E4 /* EventInfo.swift */; };
@@ -69,8 +71,6 @@
 		83FB29FE1C4AC4000093EBC8 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29F61C4AC4000093EBC8 /* Address.swift */; };
 		83FB29FF1C4AC4000093EBC8 /* Neighbourhood+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29F71C4AC4000093EBC8 /* Neighbourhood+CoreDataProperties.swift */; };
 		83FB2A001C4AC4000093EBC8 /* Neighbourhood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29F81C4AC4000093EBC8 /* Neighbourhood.swift */; };
-		83FB2A011C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29F91C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift */; };
-		83FB2A021C4AC4000093EBC8 /* DevApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29FA1C4AC4000093EBC8 /* DevApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +133,8 @@
 		83405D0F1C38278D00F16F4D /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Resize.swift"; path = "Views/UIImage+Resize.swift"; sourceTree = "<group>"; };
 		834E87ED1C1C6734002A763C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ViewControllers/MapViewController.swift; sourceTree = "<group>"; };
 		834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationSelectionViewController.swift; path = ViewControllers/LocationSelectionViewController.swift; sourceTree = "<group>"; };
+		835A1C171D486F400054C2F0 /* DevApp+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DevApp+CoreDataProperties.swift"; path = "Models/CoreData/DevApp+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		835A1C181D486F400054C2F0 /* DevApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DevApp.swift; path = Models/CoreData/DevApp.swift; sourceTree = "<group>"; };
 		837BDF7D1C51E7C70000A9E4 /* MilieuAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MilieuAnnotation.swift; path = Models/MilieuAnnotation.swift; sourceTree = "<group>"; };
 		837BDF811C51F7700000A9E4 /* Events.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Events.plist; sourceTree = "<group>"; };
 		837BDF831C51FC640000A9E4 /* EventInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventInfo.swift; path = Models/EventInfo.swift; sourceTree = "<group>"; };
@@ -170,8 +172,6 @@
 		83FB29F61C4AC4000093EBC8 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Address.swift; path = Models/Address.swift; sourceTree = "<group>"; };
 		83FB29F71C4AC4000093EBC8 /* Neighbourhood+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Neighbourhood+CoreDataProperties.swift"; path = "Models/Neighbourhood+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		83FB29F81C4AC4000093EBC8 /* Neighbourhood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Neighbourhood.swift; path = Models/Neighbourhood.swift; sourceTree = "<group>"; };
-		83FB29F91C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DevApp+CoreDataProperties.swift"; path = "Models/DevApp+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		83FB29FA1C4AC4000093EBC8 /* DevApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DevApp.swift; path = Models/DevApp.swift; sourceTree = "<group>"; };
 		D056CEAE89D1358962784003 /* Pods_MilieuUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MilieuUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F0C6DC201940C8B7B419B3 /* Pods-MilieuUITests.alpha.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MilieuUITests.alpha.xcconfig"; path = "Pods/Target Support Files/Pods-MilieuUITests/Pods-MilieuUITests.alpha.xcconfig"; sourceTree = "<group>"; };
 		EA88F4F32A7ED403AC009A18 /* Pods_Milieu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Milieu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,6 +325,8 @@
 				10B9E3E51C4D59B800DE21B9 /* CoreDataManager.swift */,
 				83FB29911C4321760093EBC8 /* CoreDataStack.swift */,
 				83FB29941C4322720093EBC8 /* Milieu.xcdatamodeld */,
+				835A1C171D486F400054C2F0 /* DevApp+CoreDataProperties.swift */,
+				835A1C181D486F400054C2F0 /* DevApp.swift */,
 				83FB29A11C44AE8E0093EBC8 /* Coordinate+CoreDataProperties.swift */,
 				83FB29A21C44AE8E0093EBC8 /* Coordinate.swift */,
 				83FB29E61C473F140093EBC8 /* City+CoreDataProperties.swift */,
@@ -333,8 +335,6 @@
 				83FB29F61C4AC4000093EBC8 /* Address.swift */,
 				83FB29F71C4AC4000093EBC8 /* Neighbourhood+CoreDataProperties.swift */,
 				83FB29F81C4AC4000093EBC8 /* Neighbourhood.swift */,
-				83FB29F91C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift */,
-				83FB29FA1C4AC4000093EBC8 /* DevApp.swift */,
 				83C32B841C95FAB900F1BF5C /* Status+CoreDataProperties.swift */,
 				83C32B851C95FAB900F1BF5C /* Status.swift */,
 			);
@@ -723,6 +723,7 @@
 				83FB29961C4322720093EBC8 /* Milieu.xcdatamodeld in Sources */,
 				83DEF4121C5D26540051002C /* DescriptionCell.swift in Sources */,
 				83C32B871C95FAB900F1BF5C /* Status.swift in Sources */,
+				835A1C1A1D486F400054C2F0 /* DevApp.swift in Sources */,
 				83C32B861C95FAB900F1BF5C /* Status+CoreDataProperties.swift in Sources */,
 				831A89A31C4DE03F0066A874 /* UserAccountController.swift in Sources */,
 				831C22591CAB64A0003351B1 /* BackendAgent.swift in Sources */,
@@ -736,10 +737,10 @@
 				83FB29921C4321760093EBC8 /* CoreDataStack.swift in Sources */,
 				10B9E3E61C4D59B800DE21B9 /* CoreDataManager.swift in Sources */,
 				83FB29A51C44AE8E0093EBC8 /* Coordinate+CoreDataProperties.swift in Sources */,
-				83FB2A021C4AC4000093EBC8 /* DevApp.swift in Sources */,
 				83FB2A001C4AC4000093EBC8 /* Neighbourhood.swift in Sources */,
 				831C224D1CAB5EA5003351B1 /* CardCell.swift in Sources */,
 				83FB29EA1C473F140093EBC8 /* City+CoreDataProperties.swift in Sources */,
+				835A1C191D486F400054C2F0 /* DevApp+CoreDataProperties.swift in Sources */,
 				834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */,
 				831C224F1CAB5EBC003351B1 /* HeaderImageCell.swift in Sources */,
 				83405D071C37435A00F16F4D /* CommentCell.swift in Sources */,
@@ -757,7 +758,6 @@
 				831A89A51C4DE79B0066A874 /* EulaController.swift in Sources */,
 				83383D681C5F46F100FE15F2 /* SummaryCell.swift in Sources */,
 				83FB29A61C44AE8E0093EBC8 /* Coordinate.swift in Sources */,
-				83FB2A011C4AC4000093EBC8 /* DevApp+CoreDataProperties.swift in Sources */,
 				10B9E3E21C4D539900DE21B9 /* SWRevealViewController.m in Sources */,
 				83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */,
 				83DEF4161C5D39BA0051002C /* UIImageView+DownloadImage.swift in Sources */,
@@ -864,7 +864,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				INFOPLIST_FILE = Milieu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Zingoer.Milieu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.milieu.Milieu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Milieu/Milieu-Bridging-Header.h";
 			};
@@ -942,7 +942,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				INFOPLIST_FILE = Milieu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Zingoer.Milieu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.milieu.Milieu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Milieu/Milieu-Bridging-Header.h";
 			};
@@ -1064,7 +1064,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Milieu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Zingoer.Milieu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.milieu.Milieu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Milieu/Milieu-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1080,7 +1080,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				INFOPLIST_FILE = Milieu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Zingoer.Milieu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.milieu.Milieu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Milieu/Milieu-Bridging-Header.h";
 			};

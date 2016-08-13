@@ -322,8 +322,7 @@ class LaunchViewController: UIViewController {
     
     func fetchDevAppsFromServer(){
         let headers = ["Accept": "application/json",
-                       "Content-Type": "application/json",
-                       "Authorization": "Token token=NaBb7MPyvmNG2lOP1Xv1rQtt"]
+                       "Content-Type": "application/json"		]
         
         informationLabel.text = "Looking up for most interesting urban activities ..."
         Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.FetchAllApplications.rawValue)")!, headers: headers).responseJSON{
@@ -354,7 +353,7 @@ class LaunchViewController: UIViewController {
     
     func handleDevAppResults(result: AnyObject){
         
-        if let siteApps = result as? NSDictionary{
+        if let siteApps = result as? NSArray{
             privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
             privateContext.persistentStoreCoordinator = coreDataStack.context.persistentStoreCoordinator
             privateContext.performBlock{
@@ -367,16 +366,28 @@ class LaunchViewController: UIViewController {
                 var percent = 0
                 let appsCount = siteApps.count
                 AR5Logger.debug("Total Apps: \(appsCount)")
-                for app in siteApps.allValues{
+                for app in siteApps{
                     if let app = app as? NSDictionary{
                         if let wardNum: Int = app["ward_num"] as? Int {
+                            AR5Logger.debug("App Info: \(app)")
                             let appObject = NSEntityDescription.insertNewObjectForEntityForName("DevApp", inManagedObjectContext: self.privateContext) as! DevApp
-                            appObject.applicationId = app["application_id"] as? String
+                            appObject.applicationId = app["id"] as? String
                             appObject.applicationType = app["application_type"] as? String
-                            appObject.developmentId = app["development_id"] as? String
+                            appObject.developmentId = app["devID"] as? String
                             appObject.id = NSNumber(integer: (app["id"] as? Int)!)
                             appObject.generalDesription = app["description"] as? String
                             appObject.imageUrl = app["image_url"] as? String
+                            appObject.address = app["address"] as? String
+                            if let lon = app["longitude"] as? Double{
+                                let number = NSNumber(double: lon)
+                                AR5Logger.debug("\(NSNumber(double: lon))")
+                                appObject.longitude = NSNumber(double: lon)
+                            }
+                            if let lat = app["latitude"] as? Double{
+                                AR5Logger.debug("\(NSNumber(double: lat))")
+                                appObject.latitude = NSNumber(double: lat)
+                            }
+
                             self.addAddressesForDevApp(appObject, addresses: app["addresses"] as! NSArray)
                             self.addStatusesForDevApp(appObject, statuses: app["statuses"] as! NSArray)
                             self.addDevAppInNeighbourhood(appObject, withWardNum: wardNum)
@@ -413,14 +424,10 @@ class LaunchViewController: UIViewController {
     func addAddressesForDevApp(devApp: DevApp, addresses: NSArray){
         
         for address in addresses{
-            if let lat = address["lat"] as? Double, lon = address["lon"] as? Double, street = address["street"] as? String{
+            if let street = address["street"] as? String{
                 let addressObject = NSEntityDescription.insertNewObjectForEntityForName("Address", inManagedObjectContext: self.privateContext) as! Address
                 addressObject.id = NSNumber(integer: (address["id"] as? Int)!)
-                addressObject.latitude = NSNumber(double: lat)
-                addressObject.longitude = NSNumber(double: lon)
                 addressObject.street = street
-                addressObject.createdDate = address["created_at"] as? String
-                addressObject.updatedDate = address["updated_at"] as? String
                 addressObject.devApp = devApp
             }
         }
@@ -439,9 +446,7 @@ class LaunchViewController: UIViewController {
             let statusObject = NSEntityDescription.insertNewObjectForEntityForName("Status", inManagedObjectContext: self.privateContext) as! Status
             statusObject.id = NSNumber(integer: (status["id"] as? Int)!)
             statusObject.status = status["status"] as? String
-            statusObject.createdDate = DateUtil.transformDateFromString(status["created_at"] as? String, withFormat: .UTCStandardFormat)
             statusObject.statusDate = DateUtil.transformDateFromString(status["status_date"] as? String, withFormat: .UTCStandardFormat)
-            statusObject.updatedDate = DateUtil.transformDateFromString(status["updated_at"] as? String, withFormat: .UTCStandardFormat)
             statusObject.devApp = devApp
         }
     }
