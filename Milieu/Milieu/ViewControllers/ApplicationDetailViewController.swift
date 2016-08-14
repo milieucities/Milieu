@@ -126,8 +126,8 @@ class ApplicationDetailViewController: UIViewController {
     }
     
     func fetchHeartLabel(){
-        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Like.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders)
-        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Dislike.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders).responseJSON{
+        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Like.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AdditionalHttpHeaders)
+        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Dislike.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AdditionalHttpHeaders).responseJSON{
             response in
             
             if let _ = response.result.value as? NSArray{
@@ -174,7 +174,7 @@ class ApplicationDetailViewController: UIViewController {
         }
         upHeartButton.enabled = true
         heartButton.enabled = true
-        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Like.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders).responseJSON{
+        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Like.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AdditionalHttpHeaders).responseJSON{
             response in
             
             if let _ = response.result.value as? NSArray{
@@ -196,7 +196,7 @@ class ApplicationDetailViewController: UIViewController {
         }
         upHeartButton.enabled = false
         heartButton.enabled = false
-        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Dislike.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders).responseJSON{
+        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Dislike.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AdditionalHttpHeaders).responseJSON{
             response in
             
             if let _ = response.result.value as? NSArray{

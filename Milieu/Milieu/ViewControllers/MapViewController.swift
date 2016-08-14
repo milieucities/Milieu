@@ -9,6 +9,7 @@
 import Mapbox
 import STPopup
 import UIKit
+import Alamofire
 
 class MapViewController: UIViewController{
     
@@ -57,6 +58,17 @@ class MapViewController: UIViewController{
         STPopupNavigationBar.appearance().tintColor = UIColor.whiteColor()
         STPopupNavigationBar.appearance().barStyle = UIBarStyle.Default
         STPopupNavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        
+        // TODO: Delete the debug code
+        Webservice().load(DevSite.all){
+            result in
+            print(result)
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+//        displaySitesNearUserLocation()
     }
     
     func showApplicationsInSelectedNeighbour(){
@@ -101,9 +113,25 @@ class MapViewController: UIViewController{
         selectedNeighbour = NeighbourManager.sharedManager.fetchNeighbourhood(defaultNeighbour ?? "")
         if selectedNeighbour == nil{
             settleUserLocation()
-            showLocationSelectionView()
         }else{
             showApplicationsInSelectedNeighbour()
+        }
+    }
+    
+    /**
+     Displaying sites near user location
+    */
+    func displaySitesNearUserLocation(){
+        if let userCoordinate = map.userLocation?.location?.coordinate{
+            AR5Logger.debug("\(userCoordinate)")
+            
+            let userLocUrl = NSURL(string:"\(Connection.MilieuServerBaseUrl)\(RequestType.FetchAllApplications.rawValue)?page=0&latitude=\(userCoordinate.latitude)&longitude=\(userCoordinate.longitude)")
+            AR5Logger.debug("\(userLocUrl)")
+            
+            Alamofire.request(.GET, userLocUrl!, headers: Connection.AdditionalHttpHeaders).responseJSON(completionHandler: {
+                response in
+                AR5Logger.debug("\(response.result.value)")
+            })
         }
     }
     
@@ -173,23 +201,6 @@ class MapViewController: UIViewController{
             map.removeAnnotations(map.annotations ?? [MGLAnnotation]())
             map.showsUserLocation = true
             map.addAnnotations(applicationInfos)
-        }
-    }
-    
-    
-    // MARK: - Segue
-    func showLocationSelectionView(){
-        self.performSegueWithIdentifier("mapToLocationSelection", sender: self)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "mapToLocationSelection"{
-            let locationSelectionVC = segue.destinationViewController as! LocationSelectionViewController
-            
-            // Show the location selection view on top of the current map view
-            locationSelectionVC.view.frame = self.view.bounds
-            locationSelectionVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-            locationSelectionVC.hidesBottomBarWhenPushed = true
         }
     }
     

@@ -27,8 +27,6 @@
 		831C22511CAB5ED0003351B1 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C22501CAB5ED0003351B1 /* FloatRatingView.swift */; };
 		831C22531CAB5EE3003351B1 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C22521CAB5EE3003351B1 /* EventDetailViewController.swift */; };
 		831C22551CAB5F06003351B1 /* AnalysisController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C22541CAB5F06003351B1 /* AnalysisController.swift */; };
-		831C22591CAB64A0003351B1 /* BackendAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C22581CAB64A0003351B1 /* BackendAgent.swift */; };
-		831C225B1CAB65FD003351B1 /* RequestBuilderV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C225A1CAB65FD003351B1 /* RequestBuilderV1.swift */; };
 		831F7B2D1CA0EB5400FC9EBD /* NSDate+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831F7B2C1CA0EB5400FC9EBD /* NSDate+Comparable.swift */; };
 		83383D681C5F46F100FE15F2 /* SummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83383D671C5F46F100FE15F2 /* SummaryCell.swift */; };
 		83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D031C37424200F16F4D /* CommentsViewController.swift */; };
@@ -58,6 +56,9 @@
 		83DEF4141C5D26790051002C /* StatusesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DEF4131C5D26790051002C /* StatusesCell.swift */; };
 		83DEF4161C5D39BA0051002C /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DEF4151C5D39BA0051002C /* UIImageView+DownloadImage.swift */; };
 		83EE7D551C14DF3000CEDF0D /* AR5Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE7D541C14DF3000CEDF0D /* AR5Logger.swift */; };
+		83FA343B1D60D0740061276F /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FA343A1D60D0740061276F /* Webservice.swift */; };
+		83FA343E1D60D1CB0061276F /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FA343D1D60D1CB0061276F /* Resource.swift */; };
+		83FA34401D6125510061276F /* DevSite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FA343F1D6125510061276F /* DevSite.swift */; };
 		83FB29901C43208D0093EBC8 /* ottawa_wards_2010.json in Resources */ = {isa = PBXBuildFile; fileRef = 83FB298F1C43208D0093EBC8 /* ottawa_wards_2010.json */; };
 		83FB29921C4321760093EBC8 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29911C4321760093EBC8 /* CoreDataStack.swift */; };
 		83FB29961C4322720093EBC8 /* Milieu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83FB29941C4322720093EBC8 /* Milieu.xcdatamodeld */; };
@@ -122,8 +123,6 @@
 		831C22501CAB5ED0003351B1 /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatRatingView.swift; path = Views/FloatRatingView.swift; sourceTree = "<group>"; };
 		831C22521CAB5EE3003351B1 /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventDetailViewController.swift; path = ViewControllers/EventDetailViewController.swift; sourceTree = "<group>"; };
 		831C22541CAB5F06003351B1 /* AnalysisController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnalysisController.swift; path = ViewControllers/AnalysisController.swift; sourceTree = "<group>"; };
-		831C22581CAB64A0003351B1 /* BackendAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackendAgent.swift; path = Connection/BackendAgent.swift; sourceTree = "<group>"; };
-		831C225A1CAB65FD003351B1 /* RequestBuilderV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestBuilderV1.swift; path = "Connection/Server API V1/RequestBuilderV1.swift"; sourceTree = "<group>"; };
 		831F7B2C1CA0EB5400FC9EBD /* NSDate+Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Comparable.swift"; path = "Models/NSDate+Comparable.swift"; sourceTree = "<group>"; };
 		83383D671C5F46F100FE15F2 /* SummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryCell.swift; path = Views/SummaryCell.swift; sourceTree = "<group>"; };
 		83405D031C37424200F16F4D /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentsViewController.swift; path = ViewControllers/CommentsViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +158,9 @@
 		83DEF4131C5D26790051002C /* StatusesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusesCell.swift; path = Views/StatusesCell.swift; sourceTree = "<group>"; };
 		83DEF4151C5D39BA0051002C /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+DownloadImage.swift"; path = "Views/UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 		83EE7D541C14DF3000CEDF0D /* AR5Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AR5Logger.swift; path = Helpers/AR5Logger.swift; sourceTree = "<group>"; };
+		83FA343A1D60D0740061276F /* Webservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Webservice.swift; path = Networking/Webservice.swift; sourceTree = "<group>"; };
+		83FA343D1D60D1CB0061276F /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Resource.swift; path = Networking/Resources/Resource.swift; sourceTree = "<group>"; };
+		83FA343F1D6125510061276F /* DevSite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DevSite.swift; path = Networking/Resources/DevSite.swift; sourceTree = "<group>"; };
 		83FB298F1C43208D0093EBC8 /* ottawa_wards_2010.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ottawa_wards_2010.json; sourceTree = "<group>"; };
 		83FB29911C4321760093EBC8 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = Models/CoreDataStack.swift; sourceTree = "<group>"; };
 		83FB29951C4322720093EBC8 /* Milieu.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Milieu.xcdatamodel; sourceTree = "<group>"; };
@@ -255,21 +257,13 @@
 			name = MenuControllers;
 			sourceTree = "<group>";
 		};
-		831C22561CAB6408003351B1 /* Connection */ = {
+		831C22561CAB6408003351B1 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				831C22581CAB64A0003351B1 /* BackendAgent.swift */,
-				831C22571CAB640F003351B1 /* Server API V1 */,
+				83FA343A1D60D0740061276F /* Webservice.swift */,
+				83FA343C1D60D19B0061276F /* Resources */,
 			);
-			name = Connection;
-			sourceTree = "<group>";
-		};
-		831C22571CAB640F003351B1 /* Server API V1 */ = {
-			isa = PBXGroup;
-			children = (
-				831C225A1CAB65FD003351B1 /* RequestBuilderV1.swift */,
-			);
-			name = "Server API V1";
+			name = Networking;
 			sourceTree = "<group>";
 		};
 		83405D051C37431400F16F4D /* Views */ = {
@@ -366,7 +360,7 @@
 		839C886F1C14C1D200D80D0A /* Milieu */ = {
 			isa = PBXGroup;
 			children = (
-				831C22561CAB6408003351B1 /* Connection */,
+				831C22561CAB6408003351B1 /* Networking */,
 				83405D051C37431400F16F4D /* Views */,
 				8317C9841C25FFD50088DEAA /* Constants */,
 				8317C97B1C25AF420088DEAA /* Models */,
@@ -410,6 +404,15 @@
 				830F87991C51CED90039CC8D /* DateUtil.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		83FA343C1D60D19B0061276F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				83FA343D1D60D1CB0061276F /* Resource.swift */,
+				83FA343F1D6125510061276F /* DevSite.swift */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		EEE7BFB3EA2FEEBA4DB59971 /* Pods */ = {
@@ -716,7 +719,6 @@
 				83405D091C37487200F16F4D /* ApplicationComments.swift in Sources */,
 				837BDF7E1C51E7C70000A9E4 /* MilieuAnnotation.swift in Sources */,
 				83FB29EB1C473F140093EBC8 /* City.swift in Sources */,
-				831C225B1CAB65FD003351B1 /* RequestBuilderV1.swift in Sources */,
 				839C88711C14C1D200D80D0A /* AppDelegate.swift in Sources */,
 				831C22551CAB5F06003351B1 /* AnalysisController.swift in Sources */,
 				8317C9831C25F5250088DEAA /* ApplicationDetailViewController.swift in Sources */,
@@ -726,7 +728,7 @@
 				835A1C1A1D486F400054C2F0 /* DevApp.swift in Sources */,
 				83C32B861C95FAB900F1BF5C /* Status+CoreDataProperties.swift in Sources */,
 				831A89A31C4DE03F0066A874 /* UserAccountController.swift in Sources */,
-				831C22591CAB64A0003351B1 /* BackendAgent.swift in Sources */,
+				83FA343E1D60D1CB0061276F /* Resource.swift in Sources */,
 				837BDF841C51FC640000A9E4 /* EventInfo.swift in Sources */,
 				830F879A1C51CED90039CC8D /* DateUtil.swift in Sources */,
 				8317C97D1C25AFE10088DEAA /* ApplicationInfo.swift in Sources */,
@@ -737,6 +739,7 @@
 				83FB29921C4321760093EBC8 /* CoreDataStack.swift in Sources */,
 				10B9E3E61C4D59B800DE21B9 /* CoreDataManager.swift in Sources */,
 				83FB29A51C44AE8E0093EBC8 /* Coordinate+CoreDataProperties.swift in Sources */,
+				83FA34401D6125510061276F /* DevSite.swift in Sources */,
 				83FB2A001C4AC4000093EBC8 /* Neighbourhood.swift in Sources */,
 				831C224D1CAB5EA5003351B1 /* CardCell.swift in Sources */,
 				83FB29EA1C473F140093EBC8 /* City+CoreDataProperties.swift in Sources */,
@@ -764,6 +767,7 @@
 				83FB29FF1C4AC4000093EBC8 /* Neighbourhood+CoreDataProperties.swift in Sources */,
 				83FB29FE1C4AC4000093EBC8 /* Address.swift in Sources */,
 				83FB29EF1C4A979B0093EBC8 /* LaunchViewController.swift in Sources */,
+				83FA343B1D60D0740061276F /* Webservice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

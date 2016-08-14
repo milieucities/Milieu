@@ -74,7 +74,7 @@ class VotingController: UIViewController {
     
     func sendResults(params: [String: AnyObject]){
         
-        Alamofire.request(.POST, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.SubmitVoting.rawValue)")!, parameters: params, headers: Connection.AddictionalHttpHeaders, encoding: .JSON).responseJSON{
+        Alamofire.request(.POST, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.SubmitVoting.rawValue)")!, parameters: params, headers: Connection.AdditionalHttpHeaders, encoding: .JSON).responseJSON{
             response in
             
             debugPrint(response.result.error)
