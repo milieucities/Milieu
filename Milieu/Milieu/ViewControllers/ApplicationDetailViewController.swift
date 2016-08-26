@@ -41,22 +41,22 @@ class ApplicationDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = annotation.title
-        applicationTypeLabel.text = annotation.type
-        applicationIdLabel.text = annotation.devId
-        reviewStatusLabel.text = annotation.newestStatus
+//        applicationTypeLabel.text = annotation.type
+//        applicationIdLabel.text = annotation.devId
+//        reviewStatusLabel.text = annotation.newestStatus
         descriptionTextView.text = annotation.generalDescription
         if annotation.category == AnnotationCategory.InComment{
             commentButton.hidden = false
         }
         
-        if let date = annotation.newestDate{
-            
-            // Transform the date from UTC standard string to human readable string with medium style
-            statusDataLabel.text = DateUtil.transformStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
-            
-        }else{
-            statusDataLabel.text = "Unknown"
-        }
+//        if let date = annotation.newestDate{
+//            
+//            // Transform the date from UTC standard string to human readable string with medium style
+//            statusDataLabel.text = DateUtil.transformStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
+//            
+//        }else{
+//            statusDataLabel.text = "Unknown"
+//        }
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Detail", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ApplicationDetailViewController.detailBtnDidTap))
         
@@ -82,61 +82,61 @@ class ApplicationDetailViewController: UIViewController {
 
     
     func fetchImage(){
-        if annotation.title == nil{
-            return
-        }
-        
-        if annotation.title == "350 Sparks Street"{
-            annotation.image = UIImage(named: "350Sparks1")
-            self.applicationImageView.image = annotation.image
-            self.applicationImageView.contentMode = .ScaleAspectFit
-        }else if annotation.title == "400 Albert Street"{
-            annotation.image = UIImage(named: "400Albert1")
-            self.applicationImageView.image = annotation.image
-            self.applicationImageView.contentMode = .ScaleAspectFit
-        }else{
-            
-            if let image = annotation.image{
-                self.applicationImageView.image = image
-                self.applicationImageView.contentMode = .ScaleAspectFill
-                return
-            }else{
-                let escapeAddress = annotation.title?.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
-                
-                let urlString = "https://maps.googleapis.com/maps/api/streetview?size=500x250&location=\(escapeAddress!)%2COttawa%2COntario$2CCanada"
-                
-                activityIndicator.startAnimation()
-                Alamofire.request(Method.GET, urlString).response{
-                    request, response, data, error in
-                    
-                    if let data = data{
-                        dispatch_async(dispatch_get_main_queue(),{
-                            self.annotation.image = UIImage(data: data)
-                            
-                            self.applicationImageView.image = self.annotation.image
-                            self.applicationImageView.contentMode = .ScaleAspectFill
-                            self.activityIndicator.stopAnimation()
-                            
-                        })
-                    }
-                    
-                }
-            }
-        }
+//        if annotation.title == nil{
+//            return
+//        }
+//        
+//        if annotation.title == "350 Sparks Street"{
+//            annotation.image = UIImage(named: "350Sparks1")
+//            self.applicationImageView.image = annotation.image
+//            self.applicationImageView.contentMode = .ScaleAspectFit
+//        }else if annotation.title == "400 Albert Street"{
+//            annotation.image = UIImage(named: "400Albert1")
+//            self.applicationImageView.image = annotation.image
+//            self.applicationImageView.contentMode = .ScaleAspectFit
+//        }else{
+//            
+//            if let image = annotation.image{
+//                self.applicationImageView.image = image
+//                self.applicationImageView.contentMode = .ScaleAspectFill
+//                return
+//            }else{
+//                let escapeAddress = annotation.title?.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
+//                
+//                let urlString = "https://maps.googleapis.com/maps/api/streetview?size=500x250&location=\(escapeAddress!)%2COttawa%2COntario$2CCanada"
+//                
+//                activityIndicator.startAnimation()
+//                Alamofire.request(Method.GET, urlString).response{
+//                    request, response, data, error in
+//                    
+//                    if let data = data{
+//                        dispatch_async(dispatch_get_main_queue(),{
+//                            self.annotation.image = UIImage(data: data)
+//                            
+//                            self.applicationImageView.image = self.annotation.image
+//                            self.applicationImageView.contentMode = .ScaleAspectFill
+//                            self.activityIndicator.stopAnimation()
+//                            
+//                        })
+//                    }
+//                    
+//                }
+//            }
+//        }
     }
     
     func fetchHeartLabel(){
-        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Like.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AdditionalHttpHeaders)
-        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Dislike.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AdditionalHttpHeaders).responseJSON{
-            response in
-            
-            if let _ = response.result.value as? NSArray{
-                dispatch_async(dispatch_get_main_queue(),{
-                    self.upHeartButton.setImage(UIImage(named: "heartEmpty"), forState: .Normal)
-                    self.heartButton.setImage(UIImage(named: "upHeartEmpty"), forState: .Normal)
-                })
-            }
-        }
+//        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Like.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AdditionalHttpHeaders)
+//        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Dislike.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AdditionalHttpHeaders).responseJSON{
+//            response in
+//            
+//            if let _ = response.result.value as? NSArray{
+//                dispatch_async(dispatch_get_main_queue(),{
+//                    self.upHeartButton.setImage(UIImage(named: "heartEmpty"), forState: .Normal)
+//                    self.heartButton.setImage(UIImage(named: "upHeartEmpty"), forState: .Normal)
+//                })
+//            }
+//        }
 
 
     }
@@ -151,9 +151,9 @@ class ApplicationDetailViewController: UIViewController {
     }
     
     @IBAction func commentBtnDidTap(sender: AnyObject) {
-        let commentsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommentsViewController") as! CommentsViewController
-        commentsController.devSiteId = annotation.devSiteUid
-        popupController?.pushViewController(commentsController, animated: true)
+//        let commentsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommentsViewController") as! CommentsViewController
+//        commentsController.devSiteId = annotation.devSiteUid
+//        popupController?.pushViewController(commentsController, animated: true)
     }
     
     @IBAction func votingBtnDidTap(sender: AnyObject) {
@@ -174,19 +174,19 @@ class ApplicationDetailViewController: UIViewController {
         }
         upHeartButton.enabled = true
         heartButton.enabled = true
-        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Like.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AdditionalHttpHeaders).responseJSON{
-            response in
-            
-            if let _ = response.result.value as? NSArray{
-                dispatch_async(dispatch_get_main_queue(),{
-                    self.upHeartButton.enabled = true
-                    self.heartButton.enabled = true
-                    self.upHeartButton.setImage(UIImage(named: "heartFull"), forState: .Normal)
-                    self.heartButton.setImage(UIImage(named: "upHeartEmpty"), forState: .Normal)
-                    self.backStatus = .Like
-                })
-            }
-        }
+//        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Like.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AdditionalHttpHeaders).responseJSON{
+//            response in
+//            
+//            if let _ = response.result.value as? NSArray{
+//                dispatch_async(dispatch_get_main_queue(),{
+//                    self.upHeartButton.enabled = true
+//                    self.heartButton.enabled = true
+//                    self.upHeartButton.setImage(UIImage(named: "heartFull"), forState: .Normal)
+//                    self.heartButton.setImage(UIImage(named: "upHeartEmpty"), forState: .Normal)
+//                    self.backStatus = .Like
+//                })
+//            }
+//        }
 
     }
     
@@ -196,19 +196,19 @@ class ApplicationDetailViewController: UIViewController {
         }
         upHeartButton.enabled = false
         heartButton.enabled = false
-        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Dislike.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AdditionalHttpHeaders).responseJSON{
-            response in
-            
-            if let _ = response.result.value as? NSArray{
-                dispatch_async(dispatch_get_main_queue(),{
-                    self.upHeartButton.enabled = true
-                    self.heartButton.enabled = true
-                    self.upHeartButton.setImage(UIImage(named: "heartEmpty"), forState: .Normal)
-                    self.heartButton.setImage(UIImage(named: "upHeartFull"), forState: .Normal)
-                    self.backStatus = .Dislike
-                })
-            }
-        }
+//        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Dislike.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AdditionalHttpHeaders).responseJSON{
+//            response in
+//            
+//            if let _ = response.result.value as? NSArray{
+//                dispatch_async(dispatch_get_main_queue(),{
+//                    self.upHeartButton.enabled = true
+//                    self.heartButton.enabled = true
+//                    self.upHeartButton.setImage(UIImage(named: "heartEmpty"), forState: .Normal)
+//                    self.heartButton.setImage(UIImage(named: "upHeartFull"), forState: .Normal)
+//                    self.backStatus = .Dislike
+//                })
+//            }
+//        }
 
     }
 }

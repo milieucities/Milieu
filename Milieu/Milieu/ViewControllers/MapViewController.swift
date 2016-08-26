@@ -23,6 +23,8 @@ class MapViewController: UIViewController{
     var events: [EventInfo]!
     let defaults = NSUserDefaults.standardUserDefaults()
     
+    var devSiteCache: [DevSite]?
+    
     let certainDate: NSDate = {
        let comps = NSDateComponents()
         // Always show recent 1 year result
@@ -45,30 +47,27 @@ class MapViewController: UIViewController{
         map.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
             action: #selector(MapViewController.changeStyle(_:))))
         
-        events = EventInfo.loadAllEvents()
+        settleUserLocation()
         
-        if selectedNeighbour == nil{
-            loadDefaultLocationIfAny()
-        }else{
-            showApplicationsInSelectedNeighbour()
-        }
+//        events = EventInfo.loadAllEvents()
+        
+//        if selectedNeighbour == nil{
+//            loadDefaultLocationIfAny()
+//        }else{
+//            showApplicationsInSelectedNeighbour()
+//        }
         
         // Set the bar appearance in MapView to solve the bug that the first showing close button color is dark blue
         STPopupNavigationBar.appearance().barTintColor = UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1)
         STPopupNavigationBar.appearance().tintColor = UIColor.whiteColor()
         STPopupNavigationBar.appearance().barStyle = UIBarStyle.Default
         STPopupNavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
-        
-        // TODO: Delete the debug code
-        Webservice().load(DevSite.all){
-            result in
-            print(result)
-        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-//        displaySitesNearUserLocation()
+        
+        displaySitesNearUserLocation()
     }
     
     func showApplicationsInSelectedNeighbour(){
@@ -125,13 +124,12 @@ class MapViewController: UIViewController{
         if let userCoordinate = map.userLocation?.location?.coordinate{
             AR5Logger.debug("\(userCoordinate)")
             
-            let userLocUrl = NSURL(string:"\(Connection.MilieuServerBaseUrl)\(RequestType.FetchAllApplications.rawValue)?page=0&latitude=\(userCoordinate.latitude)&longitude=\(userCoordinate.longitude)")
-            AR5Logger.debug("\(userLocUrl)")
-            
-            Alamofire.request(.GET, userLocUrl!, headers: Connection.AdditionalHttpHeaders).responseJSON(completionHandler: {
-                response in
-                AR5Logger.debug("\(response.result.value)")
-            })
+            // Fetch the nearby dev sites
+            Webservice().load(DevSite.nearby(userCoordinate)){
+                result in
+                self.devSiteCache = result
+                self.populateAnnotations()
+            }
         }
     }
     
@@ -174,33 +172,11 @@ class MapViewController: UIViewController{
     }
     
     func populateAnnotations(){
-        if let neighbour = selectedNeighbour{
-            var applicationInfos = [MilieuAnnotation]()
-            
-            for item in neighbour.devApps!{
-                let app = item as! DevApp
-                if let _ = app.address{
-                    let appInfo = ApplicationInfo(devApp: app)
-                    
-                    if let devAppStatus = app.statuses?.reverse().first as? Status{
-                        if let statusDate = devAppStatus.statusDate{
-//                            if statusDate >= certainDate{
-                                applicationInfos.append(appInfo)
-//                            }
-                        }
-                    }
-                }
-            }
-            
-            for event in events{
-                if event.wardNum == neighbour.number{
-                    applicationInfos.append(event)
-                }
-            }
-            
+        if let devSiteCache = devSiteCache{
+            let devSites = devSiteCache.map{ApplicationInfo(devSite: $0)}
             map.removeAnnotations(map.annotations ?? [MGLAnnotation]())
             map.showsUserLocation = true
-            map.addAnnotations(applicationInfos)
+            map.addAnnotations(devSites)
         }
     }
     

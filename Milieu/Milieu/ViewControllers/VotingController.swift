@@ -40,17 +40,17 @@ class VotingController: UIViewController {
         typeRatingView.delegate = self
         
         addressLabel.text = annotation.title
-        typeLabel.text = annotation.type
-        applicationIdLabel.text = annotation.devId
-        reviewStatusLabel.text = annotation.newestStatus
-        if let date = annotation.newestDate{
-            
-            // Transform the date from UTC standard string to human readable string with medium style
-            statusDateLabel.text = DateUtil.transformStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
-            
-        }else{
-            statusDateLabel.text = "Unknown"
-        }
+//        typeLabel.text = annotation.type
+//        applicationIdLabel.text = annotation.devId
+//        reviewStatusLabel.text = annotation.newestStatus
+//        if let date = annotation.newestDate{
+//            
+//            // Transform the date from UTC standard string to human readable string with medium style
+//            statusDateLabel.text = DateUtil.transformStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
+//            
+//        }else{
+//            statusDateLabel.text = "Unknown"
+//        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -65,11 +65,11 @@ class VotingController: UIViewController {
     
     @IBAction func submitVoting(sender: AnyObject) {
         
-        let locationParams: [String: AnyObject] = ["score":locationRate, "dimension":"location", "klass":"DevSite", "id": annotation.devSiteUid!]
-        let typeParams: [String: AnyObject] = ["score":typeRate, "dimension":"app_type", "klass":"DevSite", "id": annotation.devSiteUid!]
-        submitButton.hidden = true
-        sendResults(locationParams)
-        sendResults(typeParams)
+//        let locationParams: [String: AnyObject] = ["score":locationRate, "dimension":"location", "klass":"DevSite", "id": annotation.devSiteUid!]
+//        let typeParams: [String: AnyObject] = ["score":typeRate, "dimension":"app_type", "klass":"DevSite", "id": annotation.devSiteUid!]
+//        submitButton.hidden = true
+//        sendResults(locationParams)
+//        sendResults(typeParams)
     }
     
     func sendResults(params: [String: AnyObject]){

@@ -33,15 +33,13 @@ class MilieuAnnotation : NSObject, MGLAnnotation{
     let generalDescription: String?
     let coordinate: CLLocationCoordinate2D
     
-    init(title: String?, category: AnnotationCategory, description: String?, coordinate: CLLocationCoordinate2D) {
-        
-        self.category = category
-        self.generalDescription = description
-        self.coordinate = coordinate
+    init(devSite: DevSite) {
+        category = AnnotationCategory.General
+        coordinate = CLLocationCoordinate2DMake(devSite.latitude, devSite.longitude)
+        generalDescription = devSite.devId
         
         super.init()
         
-        self.title = title
-        
+        title = devSite.devId
     }
 }
