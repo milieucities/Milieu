@@ -11,7 +11,7 @@ import UIKit
 import Alamofire
 
 extension UIImageView{
-    func loadImageWithURL(url: String){
+    func loadImageWithURL(url: String, completion:()->Void){
         
         Alamofire.request(Method.GET, url).response{
             request, response, data, error in
@@ -19,6 +19,8 @@ extension UIImageView{
             if let data = data{
                 dispatch_async(dispatch_get_main_queue(),{
                         self.image = UIImage(data: data)
+                        self.contentMode = .ScaleAspectFill
+                        completion()
                 })
             }
             

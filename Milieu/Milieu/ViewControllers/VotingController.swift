@@ -39,7 +39,7 @@ class VotingController: UIViewController {
         locationRatingView.delegate = self
         typeRatingView.delegate = self
         
-        addressLabel.text = annotation.title
+//        addressLabel.text = annotation.title
 //        typeLabel.text = annotation.type
 //        applicationIdLabel.text = annotation.devId
 //        reviewStatusLabel.text = annotation.newestStatus

@@ -56,7 +56,7 @@ class FullDetailController: UITableViewController{
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0{
             let cell = tableView.dequeueReusableCellWithIdentifier("GeneralInfoCell") as! GeneralInfoCell
-            cell.addressLabel.text = annotation.title
+//            cell.addressLabel.text = annotation.title
 //            cell.applicationTypeLabel.text = annotation.type
 //            cell.applicationIdLabel.text = annotation.devId
 //            cell.newestStatusLabel.text = annotation.newestStatus
@@ -64,7 +64,7 @@ class FullDetailController: UITableViewController{
             return cell
         }else if indexPath.row == 1{
             let cell = tableView.dequeueReusableCellWithIdentifier("DescriptionCell") as! DescriptionCell
-            cell.descriptionTextView.text = annotation.generalDescription
+//            cell.descriptionTextView.text = annotation.generalDescription
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("StatusesCell") as! StatusesCell

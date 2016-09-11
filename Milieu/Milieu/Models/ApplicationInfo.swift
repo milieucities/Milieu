@@ -15,7 +15,11 @@ import MapKit
 */
 class ApplicationInfo : MilieuAnnotation{
     
-    override init(devSite: DevSite) {
-        super.init(devSite: devSite)
+    let devSite: DevSite!
+    
+    init(devSite: DevSite) {
+        self.devSite = devSite
+        super.init(coordinate: CLLocationCoordinate2DMake(devSite.latitude, devSite.longitude))
+        category = AnnotationCategory.General
     }
 }

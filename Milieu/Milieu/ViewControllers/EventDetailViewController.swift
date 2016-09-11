@@ -25,12 +25,12 @@ class EventDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleLabel.text = annotation.title
+//        titleLabel.text = annotation.title
 //        address1Label.text = annotation.address1
 //        address2Label.text = annotation.address2
 //        timeLabel.text = annotation.time
 //        contactLabel.text = annotation.email
-        descriptionTextView.text = annotation.generalDescription
+//        descriptionTextView.text = annotation.generalDescription
         
         activityIndicator = NVActivityIndicatorView(frame:CGRectMake(0, 0, 30, 30), type: .BallGridBeat, color: UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1))
         activityIndicator.center = imageView.convertPoint(imageView.center, fromView: imageView)
@@ -44,10 +44,10 @@ class EventDetailViewController: UIViewController {
     }
     
     func fetchImage(){
-        if annotation.title == nil{
-            return
-        }
-        
+//        if annotation.title == nil{
+//            return
+//        }
+//        
 //        let escapeAddress = annotation.address2?.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
 //        
 //        let urlString = "https://maps.googleapis.com/maps/api/streetview?size=500x250&location=\(escapeAddress!)%2COttawa%2COntario$2CCanada"

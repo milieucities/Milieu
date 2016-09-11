@@ -33,5 +33,4 @@ extension Resource{
             return json.flatMap(parseJSON)
         }
     }
-
 }
