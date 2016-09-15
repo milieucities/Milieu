@@ -8,10 +8,10 @@ pod 'Mapbox-iOS-SDK','~> 3.1'
 target 'Milieu' do
 
   pod 'STPopup', '~> 1.6'
-  pod 'Alamofire', '~> 3.0'
+  pod 'Alamofire', '~> 4.0'
   pod 'PNChart'
   pod 'Fabric'
-  pod 'NVActivityIndicatorView'
+  #pod 'NVActivityIndicatorView'
 
 end
 
