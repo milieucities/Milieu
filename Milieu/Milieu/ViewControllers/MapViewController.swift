@@ -21,15 +21,15 @@ class MapViewController: UIViewController{
     var selectedNeighbour: Neighbourhood?
     
     var events: [EventInfo]!
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     
     var devSiteCache: [DevSite]?
     
-    let certainDate: NSDate = {
-       let comps = NSDateComponents()
+    let certainDate: Date = {
+       var comps = DateComponents()
         // Always show recent 1 year result
         comps.year = -1
-        return NSCalendar.currentCalendar().dateByAddingComponents(comps, toDate: NSDate(), options: [])!
+        return (Calendar.current as NSCalendar).date(byAdding: comps, to: Date(), options: [])!
     }()
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
@@ -59,12 +59,12 @@ class MapViewController: UIViewController{
         
         // Set the bar appearance in MapView to solve the bug that the first showing close button color is dark blue
         STPopupNavigationBar.appearance().barTintColor = UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1)
-        STPopupNavigationBar.appearance().tintColor = UIColor.whiteColor()
-        STPopupNavigationBar.appearance().barStyle = UIBarStyle.Default
-        STPopupNavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        STPopupNavigationBar.appearance().tintColor = UIColor.white
+        STPopupNavigationBar.appearance().barStyle = UIBarStyle.default
+        STPopupNavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         displaySitesNearUserLocation()
@@ -92,8 +92,8 @@ class MapViewController: UIViewController{
     // MARK: - Map View Setup
     func createMapView(){
         // Create the Map View
-        map = MGLMapView(frame: view.bounds, styleURL: MGLStyle.streetsStyleURLWithVersion(9))
-        map.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        map = MGLMapView(frame: view.bounds, styleURL: MGLStyle.streetsStyleURL(withVersion: 9))
+        map.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         view.addSubview(map)
         
@@ -103,12 +103,12 @@ class MapViewController: UIViewController{
     
     func settleUserLocation(){
         map.showsUserLocation = true
-        map.userTrackingMode = .Follow
+        map.userTrackingMode = .follow
     }
     
     func loadDefaultLocationIfAny(){
         // Load the defaults value
-        let defaultNeighbour = defaults.objectForKey(DefaultsKey.SelectedNeighbour) as? String
+        let defaultNeighbour = defaults.object(forKey: DefaultsKey.SelectedNeighbour) as? String
         selectedNeighbour = NeighbourManager.sharedManager.fetchNeighbourhood(defaultNeighbour ?? "")
         if selectedNeighbour == nil{
             settleUserLocation()
@@ -134,26 +134,26 @@ class MapViewController: UIViewController{
     }
     
 
-    func changeStyle(longPress: UILongPressGestureRecognizer) {
-        if longPress.state == .Began {
+    func changeStyle(_ longPress: UILongPressGestureRecognizer) {
+        if longPress.state == .began {
             let styleURLs = [
-                MGLStyle.lightStyleURLWithVersion(9),
-                MGLStyle.streetsStyleURLWithVersion(9),
-                MGLStyle.outdoorsStyleURLWithVersion(9),
-                MGLStyle.darkStyleURLWithVersion(9),
-                MGLStyle.satelliteStyleURLWithVersion(9),
-                MGLStyle.satelliteStreetsStyleURLWithVersion(9)
+                MGLStyle.lightStyleURL(withVersion: 9),
+                MGLStyle.streetsStyleURL(withVersion: 9),
+                MGLStyle.outdoorsStyleURL(withVersion: 9),
+                MGLStyle.darkStyleURL(withVersion: 9),
+                MGLStyle.satelliteStyleURL(withVersion: 9),
+                MGLStyle.satelliteStreetsStyleURL(withVersion: 9)
             ]
             var index = 0
             for styleURL in styleURLs {
                 if map.styleURL == styleURL {
-                    index = styleURLs.indexOf(styleURL)!
+                    index = styleURLs.index(of: styleURL)!
                 }
             }
             if index == styleURLs.endIndex - 1 {
                 index = styleURLs.startIndex
             } else {
-                index = index.advancedBy(1)
+                index = index.advanced(by: 1)
             }
             map.styleURL = styleURLs[index]
         }
@@ -165,10 +165,10 @@ class MapViewController: UIViewController{
         
         // Try to find the neighbourhood bounds
         // Use the current one if those can't be found
-        let bounds = NeighbourManager.findBoundsFromNeighbourhood(selectedNeighbour) ?? map.visibleCoordinateBounds
-        map.setVisibleCoordinateBounds(bounds, edgePadding: UIEdgeInsetsMake(5.0, 10.0, 5.0, 10.0), animated: true)
-        defaults.setObject(selectedNeighbour!.name, forKey: DefaultsKey.SelectedNeighbour)
-        defaults.synchronize()
+//        let bounds = NeighbourManager.findBoundsFromNeighbourhood(selectedNeighbour) ?? map.visibleCoordinateBounds
+//        map.setVisibleCoordinateBounds(bounds, edgePadding: UIEdgeInsetsMake(5.0, 10.0, 5.0, 10.0), animated: true)
+//        defaults.set(selectedNeighbour!.name, forKey: DefaultsKey.SelectedNeighbour)
+//        defaults.synchronize()
     }
     
     func populateAnnotations(){
@@ -181,8 +181,8 @@ class MapViewController: UIViewController{
     }
     
     // MARK: - Callback from LocationSelectionViewController
-    @IBAction func unwindFromLocationSelection(segue: UIStoryboardSegue){
-        let locationSelectionController = segue.sourceViewController as! LocationSelectionViewController
+    @IBAction func unwindFromLocationSelection(_ segue: UIStoryboardSegue){
+        let locationSelectionController = segue.source as! LocationSelectionViewController
         selectedNeighbour = locationSelectionController.selectedNeighbourhood
         showApplicationsInSelectedNeighbour()
     }
@@ -192,12 +192,12 @@ class MapViewController: UIViewController{
 
 extension MapViewController: MGLMapViewDelegate{
     
-    func mapView(mapView: MGLMapView, imageForAnnotation annotation: MGLAnnotation) -> MGLAnnotationImage? {
+    func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
         let annotation = annotation as! MilieuAnnotation
         // Make unique reusable identifier for one annotation type
         let identifier = annotation.category.rawValue
         
-        var annotationImage = mapView.dequeueReusableAnnotationImageWithIdentifier(identifier)
+        var annotationImage = mapView.dequeueReusableAnnotationImage(withIdentifier: identifier)
         
         if annotationImage == nil{
             let image = UIImage(named: identifier)!
@@ -207,7 +207,7 @@ extension MapViewController: MGLMapViewDelegate{
         return annotationImage
     }
     
-    func mapView(mapView: MGLMapView, didSelectAnnotation annotation: MGLAnnotation) {
+    func mapView(_ mapView: MGLMapView, didSelect annotation: MGLAnnotation) {
         
         // Deselect the annotation so that it can be chosen again after dismissing the detail view controller
         mapView.deselectAnnotation(annotation, animated: false)
@@ -215,31 +215,31 @@ extension MapViewController: MGLMapViewDelegate{
         if let annotation = annotation as? ApplicationInfo{
             
             // Create the ApplicationDetailViewController by storyboard
-            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ApplicationDetailViewController") as? ApplicationDetailViewController
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ApplicationDetailViewController") as? ApplicationDetailViewController
             
             // Set the annotation
             viewController?.annotation = annotation
             
             // Use the STPopupController to make the fancy view controller
             let popupController = STPopupController(rootViewController: viewController)
-            popupController.containerView.layer.cornerRadius = 4
+            popupController?.containerView.layer.cornerRadius = 4
 
             // Show it on top of the map view
-            popupController.presentInViewController(self)
+            popupController?.present(in: self)
             
         }else if let annotation = annotation as? EventInfo{
             // Create the ApplicationDetailViewController by storyboard
-            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("EventDetailViewController") as? EventDetailViewController
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventDetailViewController") as? EventDetailViewController
             
             // Set the annotation
             viewController?.annotation = annotation
             
             // Use the STPopupController to make the fancy view controller
             let popupController = STPopupController(rootViewController: viewController)
-            popupController.containerView.layer.cornerRadius = 4
+            popupController?.containerView.layer.cornerRadius = 4
             
             // Show it on top of the map view
-            popupController.presentInViewController(self)
+            popupController?.present(in: self)
         }
     }
 }

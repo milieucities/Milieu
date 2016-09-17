@@ -29,9 +29,9 @@ class VotingController: UIViewController {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.contentSizeInPopup = CGSizeMake(300, 400)
-        self.landscapeContentSizeInPopup = CGSizeMake(400, 200)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(VotingController.doneBtnDidTap))
+        self.contentSizeInPopup = CGSize(width: 300, height: 400)
+        self.landscapeContentSizeInPopup = CGSize(width: 400, height: 200)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(VotingController.doneBtnDidTap))
     }
     
     override func viewDidLoad() {
@@ -53,17 +53,17 @@ class VotingController: UIViewController {
 //        }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         locationRate = Int(locationRatingView.rating)
         typeRate = Int(locationRatingView.rating)
     }
     
     func doneBtnDidTap(){
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func submitVoting(sender: AnyObject) {
+    @IBAction func submitVoting(_ sender: AnyObject) {
         
 //        let locationParams: [String: AnyObject] = ["score":locationRate, "dimension":"location", "klass":"DevSite", "id": annotation.devSiteUid!]
 //        let typeParams: [String: AnyObject] = ["score":typeRate, "dimension":"app_type", "klass":"DevSite", "id": annotation.devSiteUid!]
@@ -72,44 +72,38 @@ class VotingController: UIViewController {
 //        sendResults(typeParams)
     }
     
-    func sendResults(params: [String: AnyObject]){
-        
-        Alamofire.request(.POST, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.SubmitVoting.rawValue)")!, parameters: params, headers: Connection.AdditionalHttpHeaders, encoding: .JSON).responseJSON{
+    func sendResults(_ params: [String: AnyObject]){
+        Alamofire.request(URL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.SubmitVoting.rawValue)")!, method: .post, parameters: params, encoding: JSONEncoding.default, headers: Connection.AdditionalHttpHeaders).responseJSON{
             response in
             
             debugPrint(response.result.error)
             debugPrint(response.response)
             debugPrint(response.request)
-            debugPrint(response.result.value?.boolValue)
             
             if params["dimension"] as! String == "app_type"{
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     
-                    self.submitButton.hidden = false
-                    self.submitButton.setTitle("Done", forState: .Normal)
-                    self.submitButton.enabled = false
+                    self.submitButton.isHidden = false
+                    self.submitButton.setTitle("Done", for: .normal)
+                    self.submitButton.isEnabled = false
                     self.delay(2.0){
-                        self.submitButton.hidden = true
+                        self.submitButton.isHidden = true
                     }
                 })
             }
         }
-    }
+}
     
-    func delay(delay: Double, closure: ()->()) {
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(delay * Double(NSEC_PER_SEC))
-            ),
-            dispatch_get_main_queue(),
-            closure
+    func delay(_ delay: Double, closure: @escaping ()->()) {
+        DispatchQueue.main.asyncAfter(
+            deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC),
+            execute: closure
         )
     }
 }
 
 extension VotingController: FloatRatingViewDelegate{
-    func floatRatingView(ratingView: FloatRatingView, didUpdate rating: Float) {
+    func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float) {
         if ratingView === locationRatingView{
             locationRate = Int(rating)
         }else if ratingView === typeRatingView{
@@ -117,7 +111,7 @@ extension VotingController: FloatRatingViewDelegate{
         }
     }
     
-    func floatRatingView(ratingView: FloatRatingView, isUpdating rating: Float) {
+    func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating: Float) {
         // Required delegate method
     }
 }

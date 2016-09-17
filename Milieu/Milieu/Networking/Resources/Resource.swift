@@ -10,26 +10,26 @@ import Foundation
 
 
 struct Resource<T> {
-    let url: NSURL
-    let request: NSMutableURLRequest
-    let parse: NSData -> T?
+    let url: URL
+    let request: URLRequest
+    let parse: (Data) -> T?
 }
 
 extension Resource{
     
-    init(url: NSURL, parseJSON: AnyObject -> T?){
+    init(url: URL, parseJSON: @escaping ([String:AnyObject]?) -> T?){
         self.url = url
         
         // Setup request
-        let request = NSMutableURLRequest(URL: url)
+        var request = URLRequest(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.HTTPMethod = "GET"
+        request.httpMethod = "GET"
         self.request = request
         
         self.parse = {
             data in
-            let json = try? NSJSONSerialization.JSONObjectWithData(data, options: [])
+            let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject]
             return json.flatMap(parseJSON)
         }
     }

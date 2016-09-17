@@ -25,7 +25,7 @@ struct ApplicationComments {
     
     init(comment: NSDictionary){
         self.userName = comment["username"] as? String ?? "Anonymous"
-        self.date = DateUtil.transformStringFromDate(comment["created_at"] as? String, dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.ShortStyle, stringFormat: MilieuDateFormat.UTCStandardFormat)
+        self.date = DateUtil.transformStringFromDate(comment["created_at"] as? String, dateStyle: DateFormatter.Style.short, timeStyle: DateFormatter.Style.short, stringFormat: MilieuDateFormat.utcStandardFormat)
         self.content = comment["body"] as? String ?? "Error comment"
     }
 }

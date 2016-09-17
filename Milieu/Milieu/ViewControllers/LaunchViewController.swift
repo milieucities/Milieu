@@ -25,15 +25,15 @@ class LaunchViewController: UIViewController {
         coreDataStack = CoreDataManager.sharedManager.coreDataStack
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        indicator.hidden = false
+        indicator.isHidden = false
         indicator.startAnimating()
-        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.isTranslucent = true
         informationLabel.text = "Getting the map from the bookshelf ..."
-        privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+        privateContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         privateContext.persistentStoreCoordinator = coreDataStack.context.persistentStoreCoordinator
-        privateContext.performBlock{
+        privateContext.perform{
             self.preloadData()
         }
     }
@@ -43,22 +43,22 @@ class LaunchViewController: UIViewController {
      */
     func preloadData(){
         // Find or Create Neighbourhood Data
-        let fetchRequest = NSFetchRequest(entityName: "Neighbourhood")
-        fetchRequest.resultType = .CountResultType
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Neighbourhood")
+        fetchRequest.resultType = .countResultType
         
         do{
             // Check the neighbourhood objects count
-            let results = try self.privateContext.executeFetchRequest(fetchRequest) as! [NSNumber]
+            let results = try self.privateContext.fetch(fetchRequest)
             
             // If there is no data, load json file in
-            if results.first!.integerValue == 0{
+            if results.count == 0{
                 insertWardsDataFromApi()
             }else{
                 finishPreload()
             }
         }catch let error as NSError{
             AR5Logger.debug("Can't fetch data: \(error.localizedDescription)")
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.informationLabel.text = "Oops! A fatal error occurs ..."
             })
         }
@@ -68,10 +68,10 @@ class LaunchViewController: UIViewController {
      Finish the preloading process, stop the indicator and segue to the next view controller
      */
     func finishPreload(){
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             self.indicator.stopAnimating()
-            self.indicator.hidden = true
-            self.performSegueWithIdentifier("launchToMap", sender: self)
+            self.indicator.isHidden = true
+            self.performSegue(withIdentifier: "launchToMap", sender: self)
         })
     }
     
@@ -80,41 +80,42 @@ class LaunchViewController: UIViewController {
     func insertWardsDataFromApi(){
         
         // TODO: change to fetch wards page by page.
-        Alamofire.request(.GET, NSURL(string: "\(Connection.OpenNorthBaseUrl)\(OpenNorthApi.FindOttawaWards.rawValue)")!).responseJSON{
+        Alamofire.request(URL(string: "\(Connection.OpenNorthBaseUrl)\(OpenNorthApi.FindOttawaWards.rawValue)")!, method: .get).responseJSON{
             response in
             
             if let _ = response.result.error{
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.informationLabel.text = "Oops! Can not find the secret path, \nrelaunch the app pls ..."
                 })
-                AR5Logger.debug("\(response.result.error?.userInfo)")
+                AR5Logger.debug("\(response.result.error.debugDescription)")
                 return
             }
             
             if let result = response.result.value{
-                self.privateContext.performBlock{
+                self.privateContext.perform{
                     self.parseWardsFromDict(result as! [String: AnyObject])
                 }
-              
+                
             }
+
         }
     }
     
-    func parseWardsFromDict(dict: [String: AnyObject]){
+    func parseWardsFromDict(_ dict: [String: AnyObject]){
         let wards = dict["objects"] as! [[String: AnyObject]]
         // TODO: If the coredata city wards count is less than Api returned wards count, update the coredata
         
         // Create city in the CoreData
-        let cityEntity = NSEntityDescription.entityForName("City", inManagedObjectContext: self.privateContext)!
-        let city = City(entity: cityEntity, insertIntoManagedObjectContext:  privateContext)
+        let cityEntity = NSEntityDescription.entity(forEntityName: "City", in: self.privateContext)!
+        let city = City(entity: cityEntity, insertInto:  privateContext)
         city.name = "OTTAWA"
         
         // Create entity description
-        let entity = NSEntityDescription.entityForName("Neighbourhood", inManagedObjectContext: self.privateContext)!
+        let entity = NSEntityDescription.entity(forEntityName: "Neighbourhood", in: self.privateContext)!
         
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             self.informationLabel.text = "Desgining the blueprint ..."
-            self.percentLabel.hidden = false
+            self.percentLabel.isHidden = false
             self.percentLabel.text = "0 %"
         })
         
@@ -123,9 +124,9 @@ class LaunchViewController: UIViewController {
             let wardName = ward["name"] as! String
             
             // Create entity
-            let neighbourhood = Neighbourhood(entity: entity, insertIntoManagedObjectContext: self.privateContext)
+            let neighbourhood = Neighbourhood(entity: entity, insertInto: self.privateContext)
             neighbourhood.name = wardName
-            neighbourhood.number = NSNumber(integer: wardNumber)
+            neighbourhood.number = NSNumber(value: wardNumber as Int)
             neighbourhood.city = city
         }
         
@@ -135,7 +136,7 @@ class LaunchViewController: UIViewController {
             insertWardBoundsFromApi()
         }catch let error as NSError{
             AR5Logger.debug("Error: \(error.localizedDescription)")
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.informationLabel.text = "Oops! A fatal error occurs ..."
             })
         }
@@ -143,26 +144,27 @@ class LaunchViewController: UIViewController {
     
     func insertWardBoundsFromApi(){
         // TODO: change to fetch wards page by page.
-        Alamofire.request(.GET, NSURL(string: "\(Connection.OpenNorthBaseUrl)\(OpenNorthApi.FindOttawaWardsSimpleShape.rawValue)")!).responseJSON{
+        
+        Alamofire.request(URL(string: "\(Connection.OpenNorthBaseUrl)\(OpenNorthApi.FindOttawaWardsSimpleShape.rawValue)")!, method: .get).responseJSON{
             response in
             
             if let _ = response.result.error{
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.informationLabel.text = "Oops! Can not find the secret path, \nrelaunch the app pls ..."
                 })
-                AR5Logger.debug("\(response.result.error?.userInfo)")
+                AR5Logger.debug("\(response.result.error.debugDescription)")
                 return
             }
             
             if let result = response.result.value{
-                self.privateContext.performBlock{
+                self.privateContext.perform{
                     self.parseBoundariesFromDict(result as! [String: AnyObject])
                 }
             }
         }
     }
     
-    func parseBoundariesFromDict(dict: [String: AnyObject]){
+    func parseBoundariesFromDict(_ dict: [String: AnyObject]){
         let boundaries = dict["objects"] as! [[String: AnyObject]]
         
         var count = 0
@@ -172,13 +174,13 @@ class LaunchViewController: UIViewController {
             let coordinates = ((simpleShape["coordinates"] as! NSArray)[0] as! NSArray)[0] as! NSArray
             
             // Find or Create Neighbourhood Data
-            let fetchRequest = NSFetchRequest(entityName: "Neighbourhood")
+            let fetchRequest: NSFetchRequest<Neighbourhood> = NSFetchRequest(entityName: "Neighbourhood")
             let predicate = NSPredicate(format: "name == %@", (boundary["name"] as! String))
             fetchRequest.predicate = predicate
             
             do{
                 // Check the neighbourhood objects count
-                let results = try self.privateContext.executeFetchRequest(fetchRequest) as! [Neighbourhood]
+                let results = try self.privateContext.fetch(fetchRequest)
                 
                 // If there is no data, load json file in
                 if results.count > 0{
@@ -191,22 +193,22 @@ class LaunchViewController: UIViewController {
                 self.privateContext.reset()
                 
                 count += 1
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.percentLabel.text = "\(Int (count * 100 / boundaries.count)) %"
                 })
                 
             }catch let error as NSError{
                 AR5Logger.debug("Error: \(error.localizedDescription)")
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.informationLabel.text = "Oops! A fatal error occurs ..."
                 })
             }
         }
         
-        dispatch_async(dispatch_get_main_queue(), {
-            self.percentLabel.hidden = true
-            self.informationLabel.hidden = false
-            self.percentLabel.hidden = false
+        DispatchQueue.main.async(execute: {
+            self.percentLabel.isHidden = true
+            self.informationLabel.isHidden = false
+            self.percentLabel.isHidden = false
         })
         
         self.finishPreload()
@@ -218,13 +220,13 @@ class LaunchViewController: UIViewController {
      - Parameter neighbourhood: The parent neighbourhood that the coordinate belongs to
      - Parameter coordinates: The coordinate array need to save in
      */
-    func addCoordinatesForNeighbourhood(neighbourhood: Neighbourhood, coordinates: NSArray){
+    func addCoordinatesForNeighbourhood(_ neighbourhood: Neighbourhood, coordinates: NSArray){
         
         for xyz in coordinates{
-            let coordinate = NSEntityDescription.insertNewObjectForEntityForName("Coordinate", inManagedObjectContext: self.privateContext) as! Coordinate
+            let coordinate = NSEntityDescription.insertNewObject(forEntityName: "Coordinate", into: self.privateContext) as! Coordinate
             let point = xyz as! NSArray
-            coordinate.longitude = NSNumber(double: point[0] as! Double)
-            coordinate.latitude = NSNumber(double: point[1] as! Double)
+            coordinate.longitude = NSNumber(value: point[0] as! Double as Double)
+            coordinate.latitude = NSNumber(value: point[1] as! Double as Double)
             coordinate.neighbourhood = neighbourhood
         }
     }

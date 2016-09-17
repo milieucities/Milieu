@@ -19,29 +19,29 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.contentSizeInPopup = CGSizeMake(300, 400)
-        self.landscapeContentSizeInPopup = CGSizeMake(400, 200)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(CommentsViewController.doneBtnDidTap))
+        self.contentSizeInPopup = CGSize(width: 300, height: 400)
+        self.landscapeContentSizeInPopup = CGSize(width: 400, height: 200)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(CommentsViewController.doneBtnDidTap))
     }
     
     override func viewDidLoad() {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 80.0
-        commentTextView.scrollEnabled = false
+        commentTextView.isScrollEnabled = false
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchAllComments()
     }
     
     
     func doneBtnDidTap(){
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 
     
-    func displayComments(result: AnyObject){
+    func displayComments(_ result: AnyObject){
         
         if let comments = ((result as! NSArray)[0] as! NSDictionary)["all_comments_of_devsite"] as? NSArray{
             if comments.count > 0{
@@ -59,29 +59,29 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    @IBAction func sendComment(sender: AnyObject) {
+    @IBAction func sendComment(_ sender: AnyObject) {
         if commentTextView.text.isEmpty{
             return
         }
         
         let commentString = commentTextView.text
-        let newComment = ApplicationComments(userName: "Jonny L. Digger", date: DateUtil.transformStringFromDate(NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.MediumStyle), dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.ShortStyle, stringFormat: MilieuDateFormat.NoFormat), content: commentString, userAvatar: "jonny")
+        let newComment = ApplicationComments(userName: "Jonny L. Digger", date: DateUtil.transformStringFromDate(DateFormatter.localizedString(from: Date(), dateStyle: DateFormatter.Style.short, timeStyle: DateFormatter.Style.medium), dateStyle: DateFormatter.Style.short, timeStyle: DateFormatter.Style.short, stringFormat: MilieuDateFormat.noFormat), content: commentString!, userAvatar: "jonny")
         devSiteComments.append(newComment)
         commentTextView.text = ""
         
         self.tableView.reloadData()
         
         let delay = 0.1 * Double(NSEC_PER_MSEC)
-        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        let time = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
         
-        dispatch_after(time, dispatch_get_main_queue(), {
+        DispatchQueue.main.asyncAfter(deadline: time, execute: {
             
             let numberOfSections = self.tableView.numberOfSections
-            let numberOfRows = self.tableView.numberOfRowsInSection(numberOfSections-1)
+            let numberOfRows = self.tableView.numberOfRows(inSection: numberOfSections-1)
             
             if numberOfRows > 0 {
-                let indexPath = NSIndexPath(forRow: numberOfRows-1, inSection: (numberOfSections-1))
-                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.None, animated: true)
+                let indexPath = IndexPath(row: numberOfRows-1, section: (numberOfSections-1))
+                self.tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.none, animated: true)
             }
         })
         
@@ -92,35 +92,33 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
         
         AR5Logger.debug("DevSiteUID: \(devSiteId)")
         
-        Alamofire.request(Method.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.FetchCommentsForDevSite.rawValue)?dev_site_id=\(devSiteId)")!).responseJSON{
-            response in
+        Alamofire.request(URL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.FetchCommentsForDevSite.rawValue)?dev_site_id=\(devSiteId)")!, method: .get).responseJSON{ response in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if let result = response.result.value{
-                    self.displayComments(result)
+                    self.displayComments(result as AnyObject)
                 }
             })
         }
-        
+
     }
     
-    func commitComment(message: String){
-        Alamofire.request(Method.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.FetchCommentsForDevSite.rawValue)?dev_site_id=\(devSiteId)")!).responseJSON{
-            response in
+    func commitComment(_ message: String){
+        
+        Alamofire.request(URL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.FetchCommentsForDevSite.rawValue)?dev_site_id=\(devSiteId)")!, method: .get).responseJSON{ response in
             
             debugPrint(response.result.error)
             debugPrint(response.response)
             debugPrint(response.request)
             debugPrint(response.result.value)
-            dispatch_async(dispatch_get_main_queue(), {
-                
-                if let result = response.result.value{
-                    self.displayComments(result)
-                }
+            DispatchQueue.main.async(execute: {
+            
+            if let result = response.result.value{
+            self.displayComments(result as AnyObject)
+            }
             })
         }
-
     }
     
 }
@@ -128,9 +126,9 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
 extension CommentsViewController: UITableViewDataSource, UITableViewDelegate{
     // MARK: - UITableViewDataSource
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell", forIndexPath: indexPath) as! CommentCell
-        let comment = devSiteComments[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
+        let comment = devSiteComments[(indexPath as NSIndexPath).row]
         cell.nameLabel.text = comment.userName
         
         let dateString = comment.date
@@ -146,32 +144,32 @@ extension CommentsViewController: UITableViewDataSource, UITableViewDelegate{
         return cell
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return devSiteComments.count
     }
     
     // MARK: - UITableViewDelegate
     
     
-    func calculateHeightForConfiguredSizingCell(cell: UITableViewCell) -> CGFloat{
+    func calculateHeightForConfiguredSizingCell(_ cell: UITableViewCell) -> CGFloat{
         cell.layoutIfNeeded()
         
-        let size = cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+        let size = cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
         return size.height
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         if devSiteComments.count == 0{
-            let label = UILabel(frame: CGRectMake(0,0,tableView.bounds.size.width, tableView.bounds.size.height))
+            let label = UILabel(frame: CGRect(x: 0,y: 0,width: tableView.bounds.size.width, height: tableView.bounds.size.height))
             label.text = ""
-            label.textAlignment = .Center
+            label.textAlignment = .center
             label.sizeToFit()
             tableView.backgroundView = label
-            tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+            tableView.separatorStyle = UITableViewCellSeparatorStyle.none
             
             return 0
         }else{

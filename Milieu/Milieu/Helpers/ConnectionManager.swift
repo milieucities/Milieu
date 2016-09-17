@@ -24,42 +24,42 @@ enum OpenNorthApi: String{
 }
 
 protocol ConnectionManagerDelegate: class{
-    func requestDidSucceed(data: NSData)
-    func requestDidFail(error: NSError)
+    func requestDidSucceed(_ data: Data)
+    func requestDidFail(_ error: NSError)
 }
 
 class ConnectionManager {
     static let sharedManager = ConnectionManager()
-    lazy var session = NSURLSession.sharedSession()
+    lazy var session = URLSession.shared
     weak var delegate: ConnectionManagerDelegate?
     
-    func createRequest(type: RequestType) -> NSURLRequest{
+    func createRequest(_ type: RequestType) -> URLRequest{
         let serverUrl = "https://milieu.io"
         
-        let url = NSURL(string: "\(serverUrl)\(type.rawValue)")
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "GET"
+        let url = URL(string: "\(serverUrl)\(type.rawValue)")
+        let request = NSMutableURLRequest(url: url!)
+        request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.timeoutInterval = 20
-        return request
+        return request as URLRequest
     }
     
-    func sendRequest(request: NSURLRequest){
+    func sendRequest(_ request: URLRequest){
         
-        let task = session.dataTaskWithRequest(request, completionHandler:{
+        let task = session.dataTask(with: request, completionHandler:{
             data, response, error in
             
             // Check the connection establishment error
             if let error = error{
-                AR5Logger.debug("Can't get data: \(error.userInfo)")
-                self.delegate?.requestDidFail(error)
+                AR5Logger.debug("Can't get data: \(error.localizedDescription)")
+                self.delegate?.requestDidFail(error as NSError)
                 return
             }
             
             // Check the HTTP response error
-            if let response = response as? NSHTTPURLResponse{
+            if let response = response as? HTTPURLResponse{
                 if response.statusCode != 200{
-                    let message = "HTTP response fails: \(response.statusCode), \(NSHTTPURLResponse.localizedStringForStatusCode(response.statusCode))"
+                    let message = "HTTP response fails: \(response.statusCode), \(HTTPURLResponse.localizedString(forStatusCode: response.statusCode))"
                     let userInfo = [NSLocalizedFailureReasonErrorKey: message]
                     self.delegate?.requestDidFail(NSError(domain: errorDomain, code: 0, userInfo: userInfo))
                     return

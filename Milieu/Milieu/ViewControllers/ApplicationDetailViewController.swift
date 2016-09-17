@@ -9,12 +9,11 @@
 import UIKit
 import Alamofire
 import STPopup
-import NVActivityIndicatorView
 
 enum BackStatus{
-    case Empty
-    case Like
-    case Dislike
+    case empty
+    case like
+    case dislike
 }
 
 class ApplicationDetailViewController: UIViewController {
@@ -39,9 +38,9 @@ class ApplicationDetailViewController: UIViewController {
     
     @IBOutlet weak var applicationImageView: UIImageView!
     
-    var activityIndicator: NVActivityIndicatorView!
+//    var activityIndicator: NVActivityIndicatorView!
     
-    var backStatus: BackStatus = BackStatus.Empty
+    var backStatus: BackStatus = BackStatus.empty
     
     override func viewDidLoad() {
         
@@ -53,32 +52,32 @@ class ApplicationDetailViewController: UIViewController {
         // Get the first part of the title string
         // i.e. if the title is '70 Richmond Road, Ottawa, Ontario, Canada', then this will only
         // take the '70 Richmond Road'
-        titleLabel.text = (devSite.address ?? "N/A").characters.split(",").map(String.init)[0]
+        titleLabel.text = (devSite.address ?? "N/A").characters.split(separator: ",").map(String.init)[0]
         applicationTypeLabel.text = devSite.applicationType
         applicationIdLabel.text = devSite.devId
         reviewStatusLabel.text = devSite.status
         descriptionTextView.text = devSite.description ?? "N/A"
         statusDataLabel.text = devSite.statusDate
         if annotation.category == AnnotationCategory.InComment{
-            commentButton.hidden = false
+            commentButton.isHidden = false
         }
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Detail", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ApplicationDetailViewController.detailBtnDidTap))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Detail", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ApplicationDetailViewController.detailBtnDidTap))
         
-        activityIndicator = NVActivityIndicatorView(frame:CGRectMake(0, 0, 30, 30), type: .BallGridBeat, color: UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1))
-        activityIndicator.center = applicationImageView.convertPoint(applicationImageView.center, fromView: applicationImageView)
-        activityIndicator.hidesWhenStopped = true
-        applicationImageView.addSubview(activityIndicator)
+//        activityIndicator = NVActivityIndicatorView(frame:CGRect(x: 0, y: 0, width: 30, height: 30), type: .BallGridBeat, color: UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1))
+//        activityIndicator.center = applicationImageView.convertPoint(applicationImageView.center, fromView: applicationImageView)
+//        activityIndicator.hidesWhenStopped = true
+//        applicationImageView.addSubview(activityIndicator)
     }
     
     func detailBtnDidTap(){
-        let navController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("DetailNavigationController") as! UINavigationController
+        let navController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailNavigationController") as! UINavigationController
         let detailController = navController.topViewController as! FullDetailController
         detailController.annotation = annotation
-        presentViewController(navController, animated: true, completion: nil)
+        present(navController, animated: true, completion: nil)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         fetchImage()
     }
@@ -91,14 +90,14 @@ class ApplicationDetailViewController: UIViewController {
             return
         }
         
-        let escapeUrl = url.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())!
-        let resizeUrl = (escapeUrl as NSString).stringByReplacingOccurrencesOfString("size=600x600", withString: "size=500x250")
+        let escapeUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let resizeUrl = (escapeUrl as NSString).replacingOccurrences(of: "size=600x600", with: "size=500x250")
         
-        activityIndicator.startAnimation()
+//        activityIndicator.startAnimation()
         
-        self.applicationImageView.loadImageWithURL(resizeUrl){
+        self.applicationImageView.loadImageWithURL(url: resizeUrl){
             
-            self.activityIndicator.stopAnimation()
+//            self.activityIndicator.stopAnimation()
         }
     }
     
@@ -108,10 +107,10 @@ class ApplicationDetailViewController: UIViewController {
         applicationImageView = nil
         titleLabel = nil
         applicationTypeLabel = nil
-        activityIndicator = nil
+//        activityIndicator = nil
     }
     
-    @IBAction func commentBtnDidTap(sender: AnyObject) {
+    @IBAction func commentBtnDidTap(_ sender: AnyObject) {
 //        let commentsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommentsViewController") as! CommentsViewController
 //        commentsController.devSiteId = annotation.devSiteUid
 //        popupController?.pushViewController(commentsController, animated: true)

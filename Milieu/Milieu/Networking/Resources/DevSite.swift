@@ -11,7 +11,7 @@ import Mapbox
 
 typealias JSONDictionary = [String: AnyObject]
 
-let url = NSURL(string: "https://milieu.io/dev_sites")!
+let url = URL(string: "https://milieu.io/dev_sites")!
 
 struct DevSite{
     // Basic Info
@@ -36,17 +36,17 @@ struct DevSite{
 // MARK: - Static fields
 extension DevSite{
     static let all = Resource<[DevSite]>(url: url, parseJSON: { json in
-        guard let count = json["total"] as? Int else {return nil}
-        guard let dictionaries = json["dev_sites"] as? [JSONDictionary] else {return nil}
+        guard let count = json?["total"] as? Int else {return nil}
+        guard let dictionaries = json?["dev_sites"] as? [JSONDictionary] else {return nil}
         return dictionaries.flatMap(DevSite.init)
     })
     
-    static func nearby(coordinate: CLLocationCoordinate2D) -> Resource<[DevSite]>{
-        let url = NSURL(string: "https://milieu.io/dev_sites?limit=20&latitude=\(coordinate.latitude)&longitude=\(coordinate.longitude)")!
+    static func nearby(_ coordinate: CLLocationCoordinate2D) -> Resource<[DevSite]>{
+        let url = URL(string: "https://milieu.io/dev_sites?limit=20&latitude=\(coordinate.latitude)&longitude=\(coordinate.longitude)")!
         return Resource(url: url, parseJSON: {
             json in
-            guard (json["total"] as? Int) != nil else {return nil}
-            guard let dictionaries = json["dev_sites"] as? [JSONDictionary] else {return nil}
+            guard (json?["total"] as? Int) != nil else {return nil}
+            guard let dictionaries = json?["dev_sites"] as? [JSONDictionary] else {return nil}
             return dictionaries.flatMap(DevSite.init)
         })
     }
@@ -56,11 +56,11 @@ extension DevSite{
 extension DevSite{
     init?(dictionary: JSONDictionary){
         guard let id = dictionary["id"] as? Int,
-            devId = dictionary["devID"] as? String,
-            latitude = dictionary["latitude"] as? Double,
-            longitude = dictionary["longitude"] as? Double,
-            applicationType = dictionary["application_type"] as? String,
-            status = dictionary["status"] as? String
+            let devId = dictionary["devID"] as? String,
+            let latitude = dictionary["latitude"] as? Double,
+            let longitude = dictionary["longitude"] as? Double,
+            let applicationType = dictionary["application_type"] as? String,
+            let status = dictionary["status"] as? String
             else {return nil}
         self.id = id
         self.devId = devId
@@ -81,10 +81,10 @@ extension DevSite{
 // MARK: - Methods
 extension DevSite{
     func more() -> Resource<DevSite>{
-        let url = NSURL(string: "https://milieu.io/dev_sites/\(id)")!
+        let url = URL(string: "https://milieu.io/dev_sites/\(id)")!
         return Resource(url: url, parseJSON:{
             json in
-            guard let dictionary = json as? JSONDictionary else {return nil}
+            guard let dictionary = json as JSONDictionary? else {return nil}
             return DevSite(dictionary: dictionary)
         })
     }

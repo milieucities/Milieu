@@ -15,11 +15,11 @@ class FullDetailController: UITableViewController{
     var cardSizeArray = [200, 228, 300, 272]
     
     // Header View
-    private let kTableHeaderHeight: CGFloat = 200.0
+    fileprivate let kTableHeaderHeight: CGFloat = 200.0
     var headerView: UIView!
     
     override func viewDidLoad() {
-        tableView.separatorColor = UIColor.clearColor()
+        tableView.separatorColor = UIColor.clear
     
         headerView = tableView.tableHeaderView
         tableView.tableHeaderView = nil
@@ -41,33 +41,33 @@ class FullDetailController: UITableViewController{
         headerView.frame = headerRect
     }
     
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateHeaderView()
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
     
-    @IBAction func back(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func back(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row == 0{
-            let cell = tableView.dequeueReusableCellWithIdentifier("GeneralInfoCell") as! GeneralInfoCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if (indexPath as NSIndexPath).row == 0{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "GeneralInfoCell") as! GeneralInfoCell
 //            cell.addressLabel.text = annotation.title
 //            cell.applicationTypeLabel.text = annotation.type
 //            cell.applicationIdLabel.text = annotation.devId
 //            cell.newestStatusLabel.text = annotation.newestStatus
 //            cell.statusDateLabel.text = DateUtil.transformStringFromDate(annotation.newestDate, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
             return cell
-        }else if indexPath.row == 1{
-            let cell = tableView.dequeueReusableCellWithIdentifier("DescriptionCell") as! DescriptionCell
+        }else if (indexPath as NSIndexPath).row == 1{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionCell") as! DescriptionCell
 //            cell.descriptionTextView.text = annotation.generalDescription
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("StatusesCell") as! StatusesCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "StatusesCell") as! StatusesCell
             
 //            let devApp = annotation.devApp
 //            let statuses = devApp.statuses?.reverse()
@@ -106,7 +106,7 @@ class FullDetailController: UITableViewController{
     }
     
     func fillHeader(){
-        let imageView = headerView.viewWithTag(1) as! UIImageView
+//        let imageView = headerView.viewWithTag(1) as! UIImageView
 //        if let image = annotation.image{
 //            imageView.image = image
 //        }else{
@@ -122,8 +122,8 @@ class FullDetailController: UITableViewController{
 //        }
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return CGFloat(cardSizeArray[indexPath.row] as Int)
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(cardSizeArray[(indexPath as NSIndexPath).row] as Int)
     }
 
 }

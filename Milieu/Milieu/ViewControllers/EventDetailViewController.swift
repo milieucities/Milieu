@@ -8,12 +8,10 @@
 
 import UIKit
 import Alamofire
-import NVActivityIndicatorView
 
 class EventDetailViewController: UIViewController {
 
     var annotation: EventInfo!
-    var activityIndicator: NVActivityIndicatorView!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var address1Label: UILabel!
@@ -31,14 +29,9 @@ class EventDetailViewController: UIViewController {
 //        timeLabel.text = annotation.time
 //        contactLabel.text = annotation.email
 //        descriptionTextView.text = annotation.generalDescription
-        
-        activityIndicator = NVActivityIndicatorView(frame:CGRectMake(0, 0, 30, 30), type: .BallGridBeat, color: UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1))
-        activityIndicator.center = imageView.convertPoint(imageView.center, fromView: imageView)
-        activityIndicator.hidesWhenStopped = true
-        imageView.addSubview(activityIndicator)
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         fetchImage()
     }
