@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import STPopup
+import NVActivityIndicatorView
 
 enum BackStatus{
     case empty
@@ -33,12 +34,9 @@ class ApplicationDetailViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var commentButton: UIButton!
     
-    @IBOutlet weak var heartButton: UIButton!
-    @IBOutlet weak var upHeartButton: UIButton!
-    
     @IBOutlet weak var applicationImageView: UIImageView!
     
-//    var activityIndicator: NVActivityIndicatorView!
+    var activityIndicator: NVActivityIndicatorView!
     
     var backStatus: BackStatus = BackStatus.empty
     
@@ -64,16 +62,19 @@ class ApplicationDetailViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Detail", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ApplicationDetailViewController.detailBtnDidTap))
         
-//        activityIndicator = NVActivityIndicatorView(frame:CGRect(x: 0, y: 0, width: 30, height: 30), type: .BallGridBeat, color: UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1))
-//        activityIndicator.center = applicationImageView.convertPoint(applicationImageView.center, fromView: applicationImageView)
-//        activityIndicator.hidesWhenStopped = true
-//        applicationImageView.addSubview(activityIndicator)
+        activityIndicator = NVActivityIndicatorView(frame:CGRect(x: 0, y: 0, width: 30, height: 30), type: .orbit, color: UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1))
+        
+        applicationImageView.addSubview(activityIndicator)
+        
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        applicationImageView.addConstraint(NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: applicationImageView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0))
+        applicationImageView.addConstraint(NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: applicationImageView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0))
     }
     
     func detailBtnDidTap(){
         let navController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailNavigationController") as! UINavigationController
-        let detailController = navController.topViewController as! FullDetailController
-        detailController.annotation = annotation
+        let detailController = navController.topViewController as! DevsiteDetailController
+        detailController.devSite = devSite
         present(navController, animated: true, completion: nil)
     }
     
@@ -93,27 +94,20 @@ class ApplicationDetailViewController: UIViewController {
         let escapeUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let resizeUrl = (escapeUrl as NSString).replacingOccurrences(of: "size=600x600", with: "size=500x250")
         
-//        activityIndicator.startAnimation()
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
         
         self.applicationImageView.loadImageWithURL(url: resizeUrl){
             
-//            self.activityIndicator.stopAnimation()
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.isHidden = true
         }
     }
     
-    
-    deinit{
-        AR5Logger.debug("Deinit the view!")
-        applicationImageView = nil
-        titleLabel = nil
-        applicationTypeLabel = nil
-//        activityIndicator = nil
-    }
-    
     @IBAction func commentBtnDidTap(_ sender: AnyObject) {
-//        let commentsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommentsViewController") as! CommentsViewController
-//        commentsController.devSiteId = annotation.devSiteUid
-//        popupController?.pushViewController(commentsController, animated: true)
+        let commentsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CommentsViewController") as! CommentsViewController
+        commentsController.devSite = devSite
+        popupController?.push(commentsController, animated: true)
     }
     
 }

@@ -15,7 +15,7 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var commentTextView: UITextView!
 
     var devSiteComments = [ApplicationComments]()
-    var devSiteId: Int!
+    var devSite: DevSite!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,24 +30,12 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
         commentTextView.isScrollEnabled = false
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        fetchAllComments()
-    }
-    
-    
-    func doneBtnDidTap(){
-        self.dismiss(animated: true, completion: nil)
-    }
-
-    
-    func displayComments(_ result: AnyObject){
-        
-        if let comments = ((result as! NSArray)[0] as! NSDictionary)["all_comments_of_devsite"] as? NSArray{
+    func loadComments(){
+        if let comments = devSite.comments{
             if comments.count > 0{
                 var appComments = [ApplicationComments]()
                 for comment in comments{
-                    let commentObject = ApplicationComments(comment: comment as! NSDictionary)
+                    let commentObject = ApplicationComments(comment: comment)
                     appComments.append(commentObject)
                 }
                 devSiteComments = appComments
@@ -59,13 +47,24 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadComments()
+    }
+    
+    
+    func doneBtnDidTap(){
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    
     @IBAction func sendComment(_ sender: AnyObject) {
         if commentTextView.text.isEmpty{
             return
         }
         
         let commentString = commentTextView.text
-        let newComment = ApplicationComments(userName: "Jonny L. Digger", date: DateUtil.transformStringFromDate(DateFormatter.localizedString(from: Date(), dateStyle: DateFormatter.Style.short, timeStyle: DateFormatter.Style.medium), dateStyle: DateFormatter.Style.short, timeStyle: DateFormatter.Style.short, stringFormat: MilieuDateFormat.noFormat), content: commentString!, userAvatar: "jonny")
+        let newComment = ApplicationComments(content: commentString!)
         devSiteComments.append(newComment)
         commentTextView.text = ""
         
@@ -87,40 +86,6 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
         
     }
     
-    // TODO: Server Communication
-    func fetchAllComments(){
-        
-        AR5Logger.debug("DevSiteUID: \(devSiteId)")
-        
-        Alamofire.request(URL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.FetchCommentsForDevSite.rawValue)?dev_site_id=\(devSiteId)")!, method: .get).responseJSON{ response in
-            
-            DispatchQueue.main.async(execute: {
-                
-                if let result = response.result.value{
-                    self.displayComments(result as AnyObject)
-                }
-            })
-        }
-
-    }
-    
-    func commitComment(_ message: String){
-        
-        Alamofire.request(URL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.FetchCommentsForDevSite.rawValue)?dev_site_id=\(devSiteId)")!, method: .get).responseJSON{ response in
-            
-            debugPrint(response.result.error)
-            debugPrint(response.response)
-            debugPrint(response.request)
-            debugPrint(response.result.value)
-            DispatchQueue.main.async(execute: {
-            
-            if let result = response.result.value{
-            self.displayComments(result as AnyObject)
-            }
-            })
-        }
-    }
-    
 }
 
 extension CommentsViewController: UITableViewDataSource, UITableViewDelegate{
@@ -130,15 +95,6 @@ extension CommentsViewController: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
         let comment = devSiteComments[(indexPath as NSIndexPath).row]
         cell.nameLabel.text = comment.userName
-        
-        let dateString = comment.date
-        cell.dateLabel.text = dateString
-        if comment.userAvatar.isEmpty{
-            cell.avatarImageView.image = nil
-        }else{
-            cell.avatarImageView.image = UIImage(named: comment.userAvatar)
-        }
-        
         cell.commentLabel.text = comment.content
         
         return cell
@@ -165,7 +121,7 @@ extension CommentsViewController: UITableViewDataSource, UITableViewDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
         if devSiteComments.count == 0{
             let label = UILabel(frame: CGRect(x: 0,y: 0,width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-            label.text = ""
+            label.text = "No one comment yet!"
             label.textAlignment = .center
             label.sizeToFit()
             tableView.backgroundView = label

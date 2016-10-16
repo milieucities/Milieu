@@ -31,6 +31,7 @@ struct DevSite{
     let imageUrl: String?
     let images: [JSONDictionary]?
     let comments: [JSONDictionary]?
+    let statuses: [JSONDictionary]?
 }
 
 // MARK: - Static fields
@@ -75,6 +76,7 @@ extension DevSite{
         self.imageUrl = dictionary["image_url"] as? String
         self.images = dictionary["images"] as? [JSONDictionary]
         self.comments = dictionary["comments"] as? [JSONDictionary]
+        self.statuses = dictionary["statuses"] as? [JSONDictionary]
     }
 }
 

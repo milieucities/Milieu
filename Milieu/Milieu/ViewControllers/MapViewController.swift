@@ -80,9 +80,7 @@ class MapViewController: UIViewController{
         // Link the menus
         if revealViewController() != nil{
             revealViewController().rearViewRevealWidth = 260
-            locationMenuButton.target = revealViewController()
-            locationMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
-            
+             
             revealViewController().rightViewRevealWidth = 220
             menuButton.target = revealViewController()
             menuButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))

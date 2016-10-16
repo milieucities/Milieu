@@ -17,8 +17,14 @@ extension UIImageView{
             response in
             if let data = response.result.value{
                 DispatchQueue.main.async(execute: {
+                    self.alpha = 0
                     self.image = UIImage(data: data)
                     self.contentMode = .scaleAspectFill
+                    
+                    UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseInOut], animations: {
+                            self.alpha = 1
+                        }, completion: nil)
+                    
                     completion()
                 })
             }
