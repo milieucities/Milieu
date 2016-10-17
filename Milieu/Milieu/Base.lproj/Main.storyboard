@@ -336,6 +336,12 @@
             </objects>
             <point key="canvasLocation" x="1955" y="-298"/>
         </scene>
+                                                            <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                                <rect key="frame" x="518" y="8" width="246" height="171"/>
+                                                            </variation>
+                                                            <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                                                <rect key="frame" x="20" y="8" width="490" height="170"/>
+                                                            </variation>
         <!--Comments-->
         <scene sceneID="0yA-QD-W10">
             <objects>

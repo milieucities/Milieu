@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.0.1)
-  - Fabric (1.6.9)
+  - Fabric (1.6.10)
   - Mapbox-iOS-SDK (3.3.4)
   - NVActivityIndicatorView (3.0)
   - PNChart (0.8.9):
@@ -18,7 +18,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
-  Fabric: bc5bec42cef4bcf1ee3ce0e218fc518e4b44dfbb
+  Fabric: c73f371ee543e3f0b80608f2674750e4910d1669
   Mapbox-iOS-SDK: b22da0d9703fcfb0a8b592b6a7f6a21264fe44b0
   NVActivityIndicatorView: 81953b5e65093ba79edf4fe7268e002039ca5268
   PNChart: 84774d225c2126ded6c93d4dbe6ae98c3a73c2d2
@@ -27,4 +27,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 46f9ac1b2d03888c5ccb1b928623fdf42e1ee372
 
-COCOAPODS: 1.0.0.beta.6
+COCOAPODS: 1.0.1
