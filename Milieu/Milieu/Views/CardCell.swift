@@ -22,7 +22,7 @@ class CardCell: UITableViewCell {
         cardSetup()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
@@ -32,7 +32,7 @@ class CardCell: UITableViewCell {
         cardView.alpha = 1.0
         cardView.layer.masksToBounds = false
         cardView.layer.cornerRadius = 1
-        cardView.layer.shadowOffset = CGSizeMake(-1, 1)
+        cardView.layer.shadowOffset = CGSize(width: -1, height: 1)
         cardView.layer.shadowRadius = 1
         
         cardView.layer.shadowOpacity = 0.2

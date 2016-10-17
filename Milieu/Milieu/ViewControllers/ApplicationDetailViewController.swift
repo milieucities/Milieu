@@ -12,14 +12,19 @@ import STPopup
 import NVActivityIndicatorView
 
 enum BackStatus{
-    case Empty
-    case Like
-    case Dislike
+    case empty
+    case like
+    case dislike
 }
 
 class ApplicationDetailViewController: UIViewController {
     
     var annotation: ApplicationInfo!
+    var devSite: DevSite {
+        get{
+            return annotation.devSite
+        }
+    }
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var applicationTypeLabel: UILabel!
@@ -29,186 +34,80 @@ class ApplicationDetailViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var commentButton: UIButton!
     
-    @IBOutlet weak var heartButton: UIButton!
-    @IBOutlet weak var upHeartButton: UIButton!
-    
     @IBOutlet weak var applicationImageView: UIImageView!
     
     var activityIndicator: NVActivityIndicatorView!
     
-    var backStatus: BackStatus = BackStatus.Empty
+    var backStatus: BackStatus = BackStatus.empty
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        titleLabel.text = annotation.title
-        applicationTypeLabel.text = annotation.type
-        applicationIdLabel.text = annotation.devId
-        reviewStatusLabel.text = annotation.newestStatus
-        descriptionTextView.text = annotation.generalDescription
+        initData()
+    }
+    
+    func initData(){
+        // Get the first part of the title string
+        // i.e. if the title is '70 Richmond Road, Ottawa, Ontario, Canada', then this will only
+        // take the '70 Richmond Road'
+        titleLabel.text = (devSite.address ?? "N/A").characters.split(separator: ",").map(String.init)[0]
+        applicationTypeLabel.text = devSite.applicationType
+        applicationIdLabel.text = devSite.devId
+        reviewStatusLabel.text = devSite.status
+        descriptionTextView.text = devSite.description ?? "N/A"
+        statusDataLabel.text = devSite.statusDate
         if annotation.category == AnnotationCategory.InComment{
-            commentButton.hidden = false
+            commentButton.isHidden = false
         }
         
-        if let date = annotation.newestDate{
-            
-            // Transform the date from UTC standard string to human readable string with medium style
-            statusDataLabel.text = DateUtil.transformStringFromDate(date, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
-            
-        }else{
-            statusDataLabel.text = "Unknown"
-        }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Detail", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ApplicationDetailViewController.detailBtnDidTap))
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Detail", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ApplicationDetailViewController.detailBtnDidTap))
+        activityIndicator = NVActivityIndicatorView(frame:CGRect(x: 0, y: 0, width: 30, height: 30), type: .orbit, color: UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1))
         
-        activityIndicator = NVActivityIndicatorView(frame:CGRectMake(0, 0, 30, 30), type: .BallGridBeat, color: UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1))
-        activityIndicator.center = applicationImageView.convertPoint(applicationImageView.center, fromView: applicationImageView)
-        activityIndicator.hidesWhenStopped = true
         applicationImageView.addSubview(activityIndicator)
+        
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        applicationImageView.addConstraint(NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: applicationImageView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0))
+        applicationImageView.addConstraint(NSLayoutConstraint(item: activityIndicator, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: applicationImageView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0))
     }
     
     func detailBtnDidTap(){
-        let navController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("DetailNavigationController") as! UINavigationController
-        let detailController = navController.topViewController as! FullDetailController
-        detailController.annotation = annotation
-        presentViewController(navController, animated: true, completion: nil)
+        let navController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailNavigationController") as! UINavigationController
+        let detailController = navController.topViewController as! DevsiteDetailController
+        detailController.devSite = devSite
+        present(navController, animated: true, completion: nil)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        fetchHeartLabel()
         fetchImage()
-        
     }
 
     
     func fetchImage(){
-        if annotation.title == nil{
+        
+        
+        guard let url = devSite.imageUrl else{
             return
         }
         
-        if annotation.title == "350 Sparks Street"{
-            annotation.image = UIImage(named: "350Sparks1")
-            self.applicationImageView.image = annotation.image
-            self.applicationImageView.contentMode = .ScaleAspectFit
-        }else if annotation.title == "400 Albert Street"{
-            annotation.image = UIImage(named: "400Albert1")
-            self.applicationImageView.image = annotation.image
-            self.applicationImageView.contentMode = .ScaleAspectFit
-        }else{
+        let escapeUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let resizeUrl = (escapeUrl as NSString).replacingOccurrences(of: "size=600x600", with: "size=500x250")
+        
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        
+        self.applicationImageView.loadImageWithURL(url: resizeUrl){
             
-            if let image = annotation.image{
-                self.applicationImageView.image = image
-                self.applicationImageView.contentMode = .ScaleAspectFill
-                return
-            }else{
-                let escapeAddress = annotation.title?.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
-                
-                let urlString = "https://maps.googleapis.com/maps/api/streetview?size=500x250&location=\(escapeAddress!)%2COttawa%2COntario$2CCanada"
-                
-                activityIndicator.startAnimation()
-                Alamofire.request(Method.GET, urlString).response{
-                    request, response, data, error in
-                    
-                    if let data = data{
-                        dispatch_async(dispatch_get_main_queue(),{
-                            self.annotation.image = UIImage(data: data)
-                            
-                            self.applicationImageView.image = self.annotation.image
-                            self.applicationImageView.contentMode = .ScaleAspectFill
-                            self.activityIndicator.stopAnimation()
-                            
-                        })
-                    }
-                    
-                }
-            }
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.isHidden = true
         }
     }
     
-    func fetchHeartLabel(){
-        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Like.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders)
-        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Dislike.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders).responseJSON{
-            response in
-            
-            if let _ = response.result.value as? NSArray{
-                dispatch_async(dispatch_get_main_queue(),{
-                    self.upHeartButton.setImage(UIImage(named: "heartEmpty"), forState: .Normal)
-                    self.heartButton.setImage(UIImage(named: "upHeartEmpty"), forState: .Normal)
-                })
-            }
-        }
-
-
-    }
-	
-    
-    deinit{
-        AR5Logger.debug("Deinit the view!")
-        applicationImageView = nil
-        titleLabel = nil
-        applicationTypeLabel = nil
-        activityIndicator = nil
+    @IBAction func commentBtnDidTap(_ sender: AnyObject) {
+        let commentsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CommentsViewController") as! CommentsViewController
+        commentsController.devSite = devSite
+        popupController?.push(commentsController, animated: true)
     }
     
-    @IBAction func commentBtnDidTap(sender: AnyObject) {
-        let commentsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CommentsViewController") as! CommentsViewController
-        commentsController.devSiteId = annotation.devSiteUid
-        popupController?.pushViewController(commentsController, animated: true)
-    }
-    
-    @IBAction func votingBtnDidTap(sender: AnyObject) {
-        let votingController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("VotingController") as! VotingController
-        votingController.annotation = annotation
-        popupController?.pushViewController(votingController, animated: true)
-    }
-
-    @IBAction func analysisBtnDidTap(sender: AnyObject) {
-        let analysisController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AnalysisController") as! AnalysisController
-        presentViewController(analysisController, animated: true, completion: nil)
-    }
-    
-
-    @IBAction func upHeartBtnDidTap(sender: AnyObject) {
-        if backStatus == BackStatus.Like{
-            return
-        }
-        upHeartButton.enabled = true
-        heartButton.enabled = true
-        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Like.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders).responseJSON{
-            response in
-            
-            if let _ = response.result.value as? NSArray{
-                dispatch_async(dispatch_get_main_queue(),{
-                    self.upHeartButton.enabled = true
-                    self.heartButton.enabled = true
-                    self.upHeartButton.setImage(UIImage(named: "heartFull"), forState: .Normal)
-                    self.heartButton.setImage(UIImage(named: "upHeartEmpty"), forState: .Normal)
-                    self.backStatus = .Like
-                })
-            }
-        }
-
-    }
-    
-    @IBAction func heartBtnDidTap(sender: AnyObject) {
-        if backStatus == BackStatus.Dislike{
-            return
-        }
-        upHeartButton.enabled = false
-        heartButton.enabled = false
-        Alamofire.request(.GET, NSURL(string: "\(Connection.MilieuServerBaseUrl)\(RequestType.Dislike.rawValue)?dev_site_id=\(annotation.devSiteUid!)")!, headers: Connection.AddictionalHttpHeaders).responseJSON{
-            response in
-            
-            if let _ = response.result.value as? NSArray{
-                dispatch_async(dispatch_get_main_queue(),{
-                    self.upHeartButton.enabled = true
-                    self.heartButton.enabled = true
-                    self.upHeartButton.setImage(UIImage(named: "heartEmpty"), forState: .Normal)
-                    self.heartButton.setImage(UIImage(named: "upHeartFull"), forState: .Normal)
-                    self.backStatus = .Dislike
-                })
-            }
-        }
-
-    }
 }

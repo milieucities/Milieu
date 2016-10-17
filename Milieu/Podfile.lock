@@ -1,15 +1,15 @@
 PODS:
-  - Alamofire (3.4.1)
-  - Fabric (1.6.7)
-  - Mapbox-iOS-SDK (3.2.3)
-  - NVActivityIndicatorView (2.8)
+  - Alamofire (4.0.1)
+  - Fabric (1.6.9)
+  - Mapbox-iOS-SDK (3.3.4)
+  - NVActivityIndicatorView (3.0)
   - PNChart (0.8.9):
     - UICountingLabel (~> 1.2.0)
-  - STPopup (1.7.0)
+  - STPopup (1.8.0)
   - UICountingLabel (1.2.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.0)
+  - Alamofire (~> 4.0)
   - Fabric
   - Mapbox-iOS-SDK (~> 3.1)
   - NVActivityIndicatorView
@@ -17,14 +17,14 @@ DEPENDENCIES:
   - STPopup (~> 1.6)
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  Mapbox-iOS-SDK: 120e8a140e9cd4adae8227340dd89f5cc3850259
-  NVActivityIndicatorView: 6aba1dbbd893f615a9452c9e66ae46473e1ce092
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  Fabric: bc5bec42cef4bcf1ee3ce0e218fc518e4b44dfbb
+  Mapbox-iOS-SDK: b22da0d9703fcfb0a8b592b6a7f6a21264fe44b0
+  NVActivityIndicatorView: 81953b5e65093ba79edf4fe7268e002039ca5268
   PNChart: 84774d225c2126ded6c93d4dbe6ae98c3a73c2d2
-  STPopup: 36b45120f51ab3cdf7a10c1b9032b7fc8eef75ac
+  STPopup: af630a85628e4226ffcbda5caaead0d99aed13a8
   UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
 
-PODFILE CHECKSUM: c6f5a899f9d9a3ff780fa7c47afcff1875bf0abe
+PODFILE CHECKSUM: 46f9ac1b2d03888c5ccb1b928623fdf42e1ee372
 
 COCOAPODS: 1.0.0.beta.6

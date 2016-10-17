@@ -13,18 +13,18 @@ class LocationMenuController: UITableViewController {
     var neighbourhoods: [Neighbourhood] = {
         return NeighbourManager.sharedManager.fetchNeighbourhoods()}()
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row == 0{
-            let cell = tableView.dequeueReusableCellWithIdentifier("neighbourTitleCell")! as UITableViewCell
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if (indexPath as NSIndexPath).row == 0{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "neighbourTitleCell")! as UITableViewCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             return cell
         }else{
-            let cell = tableView.dequeueReusableCellWithIdentifier("neighbourNameCell")! as UITableViewCell
-            let neighbour = neighbourhoods[indexPath.row - 1]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "neighbourNameCell")! as UITableViewCell
+            let neighbour = neighbourhoods[(indexPath as NSIndexPath).row - 1]
             
             cell.textLabel?.text = neighbour.name
             
@@ -32,17 +32,17 @@ class LocationMenuController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return neighbourhoods.count
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "SelectNeighbourToMap"){
-            let navController = segue.destinationViewController as! UINavigationController
+            let navController = segue.destination as! UINavigationController
             let mapController = navController.topViewController as! MapViewController
             
             let indexPath = tableView.indexPathForSelectedRow!
-            mapController.selectedNeighbour = neighbourhoods[indexPath.row - 1]
+            mapController.selectedNeighbour = neighbourhoods[(indexPath as NSIndexPath).row - 1]
         }
     }
 }

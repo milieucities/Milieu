@@ -18,7 +18,7 @@ class AR5Logger{
      
      - Parameter string: The information need to print in debug mode
     */
-    class func debug(string: String){
+    class func debug(_ string: String){
         debugPrint("\(string)")
     }
 }
