@@ -16,32 +16,13 @@ enum AnnotationCategory: String{
     case Event = "eventAnnotation"
 }
 
-class MilieuAnnotation : NSObject, MGLAnnotation{
-    private var _title: String = ""
-    var title: String?{
-        set{
-            _title = newValue ?? ""
-        }
-        get{
-            // Get the first part of the title string
-            // i.e. if the title is '70 Richmond Road, Ottawa, Ontario, Canada', then this will only
-            // take the '70 Richmond Road'
-            return _title.characters.split(",").map(String.init)[0]
-        }
-    }
-    let category: AnnotationCategory
-    let generalDescription: String?
+class MilieuAnnotation : NSObject, MGLAnnotation{	
+
     let coordinate: CLLocationCoordinate2D
+    var category: AnnotationCategory = AnnotationCategory.General
     
-    init(title: String?, category: AnnotationCategory, description: String?, coordinate: CLLocationCoordinate2D) {
-        
-        self.category = category
-        self.generalDescription = description
+    init(coordinate: CLLocationCoordinate2D) {
         self.coordinate = coordinate
-        
         super.init()
-        
-        self.title = title
-        
     }
 }

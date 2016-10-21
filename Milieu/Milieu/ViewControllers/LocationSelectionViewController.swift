@@ -12,7 +12,7 @@ import CoreData
 import MapKit
 
 protocol LocationSelectionDelegate: class{
-    func selectNeighbourhood(neighbourhood: Neighbourhood, withRegion region: MKCoordinateRegion?)
+    func selectNeighbourhood(_ neighbourhood: Neighbourhood, withRegion region: MKCoordinateRegion?)
 }
 
 class LocationSelectionViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
@@ -36,42 +36,42 @@ class LocationSelectionViewController: UIViewController, UIPickerViewDelegate, U
         
         // Clear background colors from labels and buttons
         for view in backgroundColoredViews{
-            view.backgroundColor = UIColor.clearColor()
+            view.backgroundColor = UIColor.clear
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         neighbourhoods = NeighbourManager.sharedManager.fetchNeighbourhoods()
     }
     
-    @IBAction func useCurrentLocation(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func useCurrentLocation(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Populate Picker View
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return neighbourhoods.count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return neighbourhoods[row].name
     }
     
-    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let title = neighbourhoods[row].name!
-        let myTitle = NSAttributedString(string: title, attributes: [NSFontAttributeName: UIFont(name:"PingFang TC", size: 18.0)!, NSForegroundColorAttributeName: UIColor.whiteColor()])
+        let myTitle = NSAttributedString(string: title, attributes: [NSFontAttributeName: UIFont(name:"PingFang TC", size: 18.0)!, NSForegroundColorAttributeName: UIColor.white])
         return myTitle
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedNeighbourhood = neighbourhoods[row]
-        selectedLoctionBtn.setTitle("\(selectedNeighbourhood!.name!), OTTAWA", forState: .Normal)
+        selectedLoctionBtn.setTitle("\(selectedNeighbourhood!.name!), OTTAWA", for: UIControlState())
     }
 }
 
