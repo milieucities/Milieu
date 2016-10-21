@@ -13,5 +13,7 @@ about the [CocoaPod](https://cocoapods.org/ "CocoaPod")
 ## RUN MILIEU LOCALLY
 1. Download the repo to local directory.
 2. Install the CocoaPods following their [installation guide](https://guides.cocoapods.org/using/getting-started.html).
-3. In the terminal, under the directory where Podfile is available, run `pod install`.	
-3. Open the project with Xcode, build and run the app.
+3. In the terminal, under the directory where Podfile is available, run `pod install`.
+4. Open the `Milieu.xcworspace`.
+5. Follow [this answer](http://stackoverflow.com/a/37732248) to build the Pod with Pod schemes.
+6. Build the app and run in simulator or device
