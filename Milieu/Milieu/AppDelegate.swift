@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         Fabric.with([MGLAccountManager.self])
+        
+        // Set up the selected tab bar item tint
+        UITabBar.appearance().tintColor = Color.primary
         return true
     }
 

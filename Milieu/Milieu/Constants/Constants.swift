@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct DefaultsKey {
     static let SelectedNeighbour = "SelectedNeighbour"
@@ -20,4 +21,8 @@ struct Connection{
     static let MilieuServerBaseUrl = "https://milieu.io"
     static let AdditionalHttpHeaders = ["Content-Type": "application/json", "Accept": "application/json"]
     static let OpenNorthBaseUrl = "http://represent.opennorth.ca"
+}
+
+struct Color{
+    static let primary = UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1)
 }

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		10B9E3E21C4D539900DE21B9 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B9E3E11C4D539900DE21B9 /* SWRevealViewController.m */; };
 		10B9E3E61C4D59B800DE21B9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9E3E51C4D59B800DE21B9 /* CoreDataManager.swift */; };
 		2778F262BA7D9B892493DA4D /* Pods_Milieu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 232F1A68D95F6DEC274308D6 /* Pods_Milieu.framework */; };
 		3E2BCA7929D3994C7EDE12C5 /* Pods_MilieuTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 127375757A998C363C60FDA7 /* Pods_MilieuTests.framework */; };
@@ -20,29 +19,21 @@
 		8317C9801C25ECAC0088DEAA /* Acknowledgement&Legal in Resources */ = {isa = PBXBuildFile; fileRef = 8317C97F1C25ECAC0088DEAA /* Acknowledgement&Legal */; };
 		8317C9831C25F5250088DEAA /* ApplicationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C9821C25F5250088DEAA /* ApplicationDetailViewController.swift */; };
 		8317C9861C25FFF20088DEAA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317C9851C25FFF20088DEAA /* Constants.swift */; };
-		831A89A31C4DE03F0066A874 /* UserAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A89A21C4DE03F0066A874 /* UserAccountController.swift */; };
-		831A89A51C4DE79B0066A874 /* EulaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A89A41C4DE79B0066A874 /* EulaController.swift */; };
-		831A89A91C4E01870066A874 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A89A81C4E01870066A874 /* MainMenuController.swift */; };
-		831A89AB1C4E01900066A874 /* LocationMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A89AA1C4E01900066A874 /* LocationMenuController.swift */; };
 		831A89AE1C4E14060066A874 /* NeighbourManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831A89AD1C4E14060066A874 /* NeighbourManager.swift */; };
 		831C224D1CAB5EA5003351B1 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C224C1CAB5EA5003351B1 /* CardCell.swift */; };
 		831C224F1CAB5EBC003351B1 /* HeaderImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C224E1CAB5EBC003351B1 /* HeaderImageCell.swift */; };
 		831C22511CAB5ED0003351B1 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C22501CAB5ED0003351B1 /* FloatRatingView.swift */; };
-		831C22531CAB5EE3003351B1 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C22521CAB5EE3003351B1 /* EventDetailViewController.swift */; };
-		83383D681C5F46F100FE15F2 /* SummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83383D671C5F46F100FE15F2 /* SummaryCell.swift */; };
 		83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D031C37424200F16F4D /* CommentsViewController.swift */; };
 		83405D071C37435A00F16F4D /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D061C37435A00F16F4D /* CommentCell.swift */; };
 		83405D091C37487200F16F4D /* ApplicationComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D081C37487200F16F4D /* ApplicationComments.swift */; };
 		83405D0D1C374F4100F16F4D /* Comments.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83405D0C1C374F4100F16F4D /* Comments.plist */; };
 		83405D101C38278D00F16F4D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D0F1C38278D00F16F4D /* UIImage+Resize.swift */; };
 		834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E87ED1C1C6734002A763C /* MapViewController.swift */; };
-		834E87F21C1C67E0002A763C /* LocationSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */; };
 		835A1C191D486F400054C2F0 /* DevApp+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835A1C171D486F400054C2F0 /* DevApp+CoreDataProperties.swift */; };
 		835A1C1A1D486F400054C2F0 /* DevApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835A1C181D486F400054C2F0 /* DevApp.swift */; };
 		837BDF7E1C51E7C70000A9E4 /* MilieuAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BDF7D1C51E7C70000A9E4 /* MilieuAnnotation.swift */; };
 		837BDF821C51F7700000A9E4 /* Events.plist in Resources */ = {isa = PBXBuildFile; fileRef = 837BDF811C51F7700000A9E4 /* Events.plist */; };
 		837BDF841C51FC640000A9E4 /* EventInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BDF831C51FC640000A9E4 /* EventInfo.swift */; };
-		837BDF8A1C532EF30000A9E4 /* VotingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837BDF891C532EF30000A9E4 /* VotingController.swift */; };
 		839C88711C14C1D200D80D0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839C88701C14C1D200D80D0A /* AppDelegate.swift */; };
 		839C88781C14C1D200D80D0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839C88761C14C1D200D80D0A /* Main.storyboard */; };
 		839C887A1C14C1D200D80D0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 839C88791C14C1D200D80D0A /* Assets.xcassets */; };
@@ -95,9 +86,6 @@
 		078DE1060C95CEA9985F493D /* Pods-Milieu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Milieu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Milieu/Pods-Milieu.debug.xcconfig"; sourceTree = "<group>"; };
 		08C7E516AE93BF548DACE7D4 /* Pods-MilieuUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MilieuUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MilieuUITests/Pods-MilieuUITests.release.xcconfig"; sourceTree = "<group>"; };
 		0E3039D9028479E319D70D5B /* Pods-Milieu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Milieu.release.xcconfig"; path = "Pods/Target Support Files/Pods-Milieu/Pods-Milieu.release.xcconfig"; sourceTree = "<group>"; };
-		10B9E3DC1C4D534300DE21B9 /* Milieu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Milieu-Bridging-Header.h"; sourceTree = "<group>"; };
-		10B9E3E01C4D539900DE21B9 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = ViewControllers/SWRevealViewController/SWRevealViewController.h; sourceTree = "<group>"; };
-		10B9E3E11C4D539900DE21B9 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = ViewControllers/SWRevealViewController/SWRevealViewController.m; sourceTree = "<group>"; };
 		10B9E3E51C4D59B800DE21B9 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataManager.swift; path = Models/CoreDataManager.swift; sourceTree = "<group>"; };
 		127375757A998C363C60FDA7 /* Pods_MilieuTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MilieuTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1768E4FFC88A95905D51DB8B /* Pods-MilieuUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MilieuUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MilieuUITests/Pods-MilieuUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -119,29 +107,21 @@
 		8317C97F1C25ECAC0088DEAA /* Acknowledgement&Legal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Acknowledgement&Legal"; sourceTree = "<group>"; };
 		8317C9821C25F5250088DEAA /* ApplicationDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationDetailViewController.swift; path = ViewControllers/ApplicationDetailViewController.swift; sourceTree = "<group>"; };
 		8317C9851C25FFF20088DEAA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Constants/Constants.swift; sourceTree = "<group>"; };
-		831A89A21C4DE03F0066A874 /* UserAccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserAccountController.swift; path = ViewControllers/UserAccountController.swift; sourceTree = "<group>"; };
-		831A89A41C4DE79B0066A874 /* EulaController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EulaController.swift; path = ViewControllers/EulaController.swift; sourceTree = "<group>"; };
-		831A89A81C4E01870066A874 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainMenuController.swift; path = ViewControllers/MainMenuController.swift; sourceTree = "<group>"; };
-		831A89AA1C4E01900066A874 /* LocationMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationMenuController.swift; path = ViewControllers/LocationMenuController.swift; sourceTree = "<group>"; };
 		831A89AD1C4E14060066A874 /* NeighbourManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NeighbourManager.swift; path = Models/NeighbourManager.swift; sourceTree = "<group>"; };
 		831C224C1CAB5EA5003351B1 /* CardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardCell.swift; path = Views/CardCell.swift; sourceTree = "<group>"; };
 		831C224E1CAB5EBC003351B1 /* HeaderImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderImageCell.swift; path = Views/HeaderImageCell.swift; sourceTree = "<group>"; };
 		831C22501CAB5ED0003351B1 /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatRatingView.swift; path = Views/FloatRatingView.swift; sourceTree = "<group>"; };
-		831C22521CAB5EE3003351B1 /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventDetailViewController.swift; path = ViewControllers/EventDetailViewController.swift; sourceTree = "<group>"; };
-		83383D671C5F46F100FE15F2 /* SummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SummaryCell.swift; path = Views/SummaryCell.swift; sourceTree = "<group>"; };
 		83405D031C37424200F16F4D /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentsViewController.swift; path = ViewControllers/CommentsViewController.swift; sourceTree = "<group>"; };
 		83405D061C37435A00F16F4D /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentCell.swift; path = Views/CommentCell.swift; sourceTree = "<group>"; };
 		83405D081C37487200F16F4D /* ApplicationComments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationComments.swift; path = Models/ApplicationComments.swift; sourceTree = "<group>"; };
 		83405D0C1C374F4100F16F4D /* Comments.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Comments.plist; sourceTree = "<group>"; };
 		83405D0F1C38278D00F16F4D /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Resize.swift"; path = "Views/UIImage+Resize.swift"; sourceTree = "<group>"; };
 		834E87ED1C1C6734002A763C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ViewControllers/MapViewController.swift; sourceTree = "<group>"; };
-		834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationSelectionViewController.swift; path = ViewControllers/LocationSelectionViewController.swift; sourceTree = "<group>"; };
 		835A1C171D486F400054C2F0 /* DevApp+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DevApp+CoreDataProperties.swift"; path = "Models/CoreData/DevApp+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		835A1C181D486F400054C2F0 /* DevApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DevApp.swift; path = Models/CoreData/DevApp.swift; sourceTree = "<group>"; };
 		837BDF7D1C51E7C70000A9E4 /* MilieuAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MilieuAnnotation.swift; path = Models/MilieuAnnotation.swift; sourceTree = "<group>"; };
 		837BDF811C51F7700000A9E4 /* Events.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Events.plist; sourceTree = "<group>"; };
 		837BDF831C51FC640000A9E4 /* EventInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventInfo.swift; path = Models/EventInfo.swift; sourceTree = "<group>"; };
-		837BDF891C532EF30000A9E4 /* VotingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VotingController.swift; path = ViewControllers/VotingController.swift; sourceTree = "<group>"; };
 		839C886D1C14C1D200D80D0A /* Milieu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Milieu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		839C88701C14C1D200D80D0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		839C88771C14C1D200D80D0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -217,15 +197,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		10B9E3DB1C4D532E00DE21B9 /* SWRevealViewController */ = {
-			isa = PBXGroup;
-			children = (
-				10B9E3E01C4D539900DE21B9 /* SWRevealViewController.h */,
-				10B9E3E11C4D539900DE21B9 /* SWRevealViewController.m */,
-			);
-			name = SWRevealViewController;
-			sourceTree = "<group>";
-		};
 		83080A321DA001A9007966A5 /* DetailViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,15 +230,6 @@
 			name = Constants;
 			sourceTree = "<group>";
 		};
-		831A89AC1C4E02D90066A874 /* MenuControllers */ = {
-			isa = PBXGroup;
-			children = (
-				831A89A81C4E01870066A874 /* MainMenuController.swift */,
-				831A89AA1C4E01900066A874 /* LocationMenuController.swift */,
-			);
-			name = MenuControllers;
-			sourceTree = "<group>";
-		};
 		831C22561CAB6408003351B1 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,7 +247,6 @@
 				83405D0F1C38278D00F16F4D /* UIImage+Resize.swift */,
 				831C224C1CAB5EA5003351B1 /* CardCell.swift */,
 				831C22501CAB5ED0003351B1 /* FloatRatingView.swift */,
-				83383D671C5F46F100FE15F2 /* SummaryCell.swift */,
 				83DEF4151C5D39BA0051002C /* UIImageView+DownloadImage.swift */,
 				83080A301D9FFCEA007966A5 /* UIView+Constraints.swift */,
 			);
@@ -295,17 +256,10 @@
 		834E87EC1C1C6687002A763C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				831A89AC1C4E02D90066A874 /* MenuControllers */,
-				10B9E3DB1C4D532E00DE21B9 /* SWRevealViewController */,
 				83FB29EE1C4A979B0093EBC8 /* LaunchViewController.swift */,
-				834E87F11C1C67E0002A763C /* LocationSelectionViewController.swift */,
 				834E87ED1C1C6734002A763C /* MapViewController.swift */,
 				8317C9821C25F5250088DEAA /* ApplicationDetailViewController.swift */,
-				831C22521CAB5EE3003351B1 /* EventDetailViewController.swift */,
 				83405D031C37424200F16F4D /* CommentsViewController.swift */,
-				837BDF891C532EF30000A9E4 /* VotingController.swift */,
-				831A89A21C4DE03F0066A874 /* UserAccountController.swift */,
-				831A89A41C4DE79B0066A874 /* EulaController.swift */,
 				83080A2E1D9FF565007966A5 /* DevsiteDetailController.swift */,
 			);
 			name = Controllers;
@@ -379,7 +333,6 @@
 				839C88791C14C1D200D80D0A /* Assets.xcassets */,
 				839C887B1C14C1D200D80D0A /* LaunchScreen.storyboard */,
 				839C887E1C14C1D200D80D0A /* Info.plist */,
-				10B9E3DC1C4D534300DE21B9 /* Milieu-Bridging-Header.h */,
 				83FB298F1C43208D0093EBC8 /* ottawa_wards_2010.json */,
 				8317C97F1C25ECAC0088DEAA /* Acknowledgement&Legal */,
 			);
@@ -752,7 +705,6 @@
 				83C32B871C95FAB900F1BF5C /* Status.swift in Sources */,
 				835A1C1A1D486F400054C2F0 /* DevApp.swift in Sources */,
 				83C32B861C95FAB900F1BF5C /* Status+CoreDataProperties.swift in Sources */,
-				831A89A31C4DE03F0066A874 /* UserAccountController.swift in Sources */,
 				83FA343E1D60D1CB0061276F /* Resource.swift in Sources */,
 				837BDF841C51FC640000A9E4 /* EventInfo.swift in Sources */,
 				83080A361DA02713007966A5 /* DevSiteCell.swift in Sources */,
@@ -760,7 +712,6 @@
 				8317C97D1C25AFE10088DEAA /* ApplicationInfo.swift in Sources */,
 				83405D101C38278D00F16F4D /* UIImage+Resize.swift in Sources */,
 				83CD24331D8BACF7008D2945 /* Neighbourhood.swift in Sources */,
-				831C22531CAB5EE3003351B1 /* EventDetailViewController.swift in Sources */,
 				83FB29F11C4A9D480093EBC8 /* ConnectionManager.swift in Sources */,
 				83FB29921C4321760093EBC8 /* CoreDataStack.swift in Sources */,
 				10B9E3E61C4D59B800DE21B9 /* CoreDataManager.swift in Sources */,
@@ -773,20 +724,13 @@
 				834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */,
 				831C224F1CAB5EBC003351B1 /* HeaderImageCell.swift in Sources */,
 				83405D071C37435A00F16F4D /* CommentCell.swift in Sources */,
-				831A89AB1C4E01900066A874 /* LocationMenuController.swift in Sources */,
 				83EE7D551C14DF3000CEDF0D /* AR5Logger.swift in Sources */,
-				834E87F21C1C67E0002A763C /* LocationSelectionViewController.swift in Sources */,
-				831A89A91C4E01870066A874 /* MainMenuController.swift in Sources */,
 				8317C9861C25FFF20088DEAA /* Constants.swift in Sources */,
-				837BDF8A1C532EF30000A9E4 /* VotingController.swift in Sources */,
 				831A89AE1C4E14060066A874 /* NeighbourManager.swift in Sources */,
 				83DEF4141C5D26790051002C /* StatusCell.swift in Sources */,
 				83FB29FD1C4AC4000093EBC8 /* Address+CoreDataProperties.swift in Sources */,
 				831C22511CAB5ED0003351B1 /* FloatRatingView.swift in Sources */,
-				831A89A51C4DE79B0066A874 /* EulaController.swift in Sources */,
-				83383D681C5F46F100FE15F2 /* SummaryCell.swift in Sources */,
 				83FB29A61C44AE8E0093EBC8 /* Coordinate.swift in Sources */,
-				10B9E3E21C4D539900DE21B9 /* SWRevealViewController.m in Sources */,
 				83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */,
 				83DEF4161C5D39BA0051002C /* UIImageView+DownloadImage.swift in Sources */,
 				83FB29FE1C4AC4000093EBC8 /* Address.swift in Sources */,
@@ -904,7 +848,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.milieucities.milieuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Milieu/Milieu-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Alpha;
@@ -992,7 +936,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.milieucities.milieuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Milieu/Milieu-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Beta;
@@ -1127,7 +1071,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.milieucities.milieuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Milieu/Milieu-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1149,7 +1093,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.milieucities.milieuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Milieu/Milieu-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

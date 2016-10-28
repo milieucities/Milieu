@@ -71,7 +71,7 @@ class LaunchViewController: UIViewController {
         DispatchQueue.main.async(execute: {
             self.indicator.stopAnimating()
             self.indicator.isHidden = true
-            self.performSegue(withIdentifier: "launchToMap", sender: self)
+            self.performSegue(withIdentifier: "landingToTabBar", sender: self)
         })
     }
     
