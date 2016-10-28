@@ -20,7 +20,6 @@ class MapViewController: UIViewController{
     var coreDataStack: CoreDataStack!
     var selectedNeighbour: Neighbourhood?
     
-    var events: [EventInfo]!
     let defaults = UserDefaults.standard
     
     var devSiteCache: [DevSite]?
@@ -40,7 +39,6 @@ class MapViewController: UIViewController{
         super.viewDidLoad()
         
         coreDataStack = CoreDataManager.sharedManager.coreDataStack
-        linkMenuController()
         createMapView()
         
         // Add gesture to change the map style
@@ -49,16 +47,8 @@ class MapViewController: UIViewController{
         
         settleUserLocation()
         
-//        events = EventInfo.loadAllEvents()
-        
-//        if selectedNeighbour == nil{
-//            loadDefaultLocationIfAny()
-//        }else{
-//            showApplicationsInSelectedNeighbour()
-//        }
-        
         // Set the bar appearance in MapView to solve the bug that the first showing close button color is dark blue
-        STPopupNavigationBar.appearance().barTintColor = UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1)
+        STPopupNavigationBar.appearance().barTintColor = Color.primary
         STPopupNavigationBar.appearance().tintColor = UIColor.white
         STPopupNavigationBar.appearance().barStyle = UIBarStyle.default
         STPopupNavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
@@ -71,20 +61,7 @@ class MapViewController: UIViewController{
     }
     
     func showApplicationsInSelectedNeighbour(){
-        displaySelectedNeighbour()
         populateAnnotations()
-    }
-    
-    // MARK: - View Setup
-    func linkMenuController(){
-        // Link the menus
-        if revealViewController() != nil{
-            revealViewController().rearViewRevealWidth = 260
-             
-            revealViewController().rightViewRevealWidth = 220
-            menuButton.target = revealViewController()
-            menuButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
-        }
     }
     
     // MARK: - Map View Setup
@@ -122,11 +99,13 @@ class MapViewController: UIViewController{
         if let userCoordinate = map.userLocation?.location?.coordinate{
             AR5Logger.debug("\(userCoordinate)")
             
-            // Fetch the nearby dev sites
-            Webservice().load(DevSite.nearby(userCoordinate)){
-                result in
-                self.devSiteCache = result
-                self.populateAnnotations()
+            if devSiteCache == nil || devSiteCache?.count == 0 {
+                // Fetch the nearby dev sites
+                Webservice().load(DevSite.nearby(userCoordinate)){
+                    result in
+                    self.devSiteCache = result
+                    self.populateAnnotations()
+                }
             }
         }
     }
@@ -158,17 +137,6 @@ class MapViewController: UIViewController{
     }
     
     // MARK: - View Controller Logic
-    
-    func displaySelectedNeighbour(){
-        
-        // Try to find the neighbourhood bounds
-        // Use the current one if those can't be found
-//        let bounds = NeighbourManager.findBoundsFromNeighbourhood(selectedNeighbour) ?? map.visibleCoordinateBounds
-//        map.setVisibleCoordinateBounds(bounds, edgePadding: UIEdgeInsetsMake(5.0, 10.0, 5.0, 10.0), animated: true)
-//        defaults.set(selectedNeighbour!.name, forKey: DefaultsKey.SelectedNeighbour)
-//        defaults.synchronize()
-    }
-    
     func populateAnnotations(){
         if let devSiteCache = devSiteCache{
             let devSites = devSiteCache.map{ApplicationInfo(devSite: $0)}
@@ -176,13 +144,6 @@ class MapViewController: UIViewController{
             map.showsUserLocation = true
             map.addAnnotations(devSites)
         }
-    }
-    
-    // MARK: - Callback from LocationSelectionViewController
-    @IBAction func unwindFromLocationSelection(_ segue: UIStoryboardSegue){
-        let locationSelectionController = segue.source as! LocationSelectionViewController
-        selectedNeighbour = locationSelectionController.selectedNeighbourhood
-        showApplicationsInSelectedNeighbour()
     }
 }
 
@@ -213,31 +174,18 @@ extension MapViewController: MGLMapViewDelegate{
         if let annotation = annotation as? ApplicationInfo{
             
             // Create the ApplicationDetailViewController by storyboard
-            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ApplicationDetailViewController") as? ApplicationDetailViewController
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ApplicationDetailViewController") as! ApplicationDetailViewController
             
             // Set the annotation
-            viewController?.annotation = annotation
+            viewController.annotation = annotation
             
             // Use the STPopupController to make the fancy view controller
             let popupController = STPopupController(rootViewController: viewController)
-            popupController?.containerView.layer.cornerRadius = 4
+            popupController.containerView.layer.cornerRadius = 4
 
             // Show it on top of the map view
-            popupController?.present(in: self)
+            popupController.present(in: self)
             
-        }else if let annotation = annotation as? EventInfo{
-            // Create the ApplicationDetailViewController by storyboard
-            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventDetailViewController") as? EventDetailViewController
-            
-            // Set the annotation
-            viewController?.annotation = annotation
-            
-            // Use the STPopupController to make the fancy view controller
-            let popupController = STPopupController(rootViewController: viewController)
-            popupController?.containerView.layer.cornerRadius = 4
-            
-            // Show it on top of the map view
-            popupController?.present(in: self)
         }
     }
 }
