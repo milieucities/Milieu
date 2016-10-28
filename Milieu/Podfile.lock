@@ -5,7 +5,7 @@ PODS:
   - NVActivityIndicatorView (3.0)
   - PNChart (0.8.9):
     - UICountingLabel (~> 1.2.0)
-  - STPopup (1.8.0)
+  - STPopup (1.8.1)
   - UICountingLabel (1.2.0)
 
 DEPENDENCIES:
@@ -22,7 +22,7 @@ SPEC CHECKSUMS:
   Mapbox-iOS-SDK: b22da0d9703fcfb0a8b592b6a7f6a21264fe44b0
   NVActivityIndicatorView: 81953b5e65093ba79edf4fe7268e002039ca5268
   PNChart: 84774d225c2126ded6c93d4dbe6ae98c3a73c2d2
-  STPopup: af630a85628e4226ffcbda5caaead0d99aed13a8
+  STPopup: 47e8ae53d348fa5f9be2d08d5c513ebe12ca758d
   UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
 
 PODFILE CHECKSUM: b1e9b7306d3adb9b833cafb5a9da00c5c2af10ca

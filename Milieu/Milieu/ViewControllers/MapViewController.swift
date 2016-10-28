@@ -174,17 +174,17 @@ extension MapViewController: MGLMapViewDelegate{
         if let annotation = annotation as? ApplicationInfo{
             
             // Create the ApplicationDetailViewController by storyboard
-            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ApplicationDetailViewController") as? ApplicationDetailViewController
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ApplicationDetailViewController") as! ApplicationDetailViewController
             
             // Set the annotation
-            viewController?.annotation = annotation
+            viewController.annotation = annotation
             
             // Use the STPopupController to make the fancy view controller
             let popupController = STPopupController(rootViewController: viewController)
-            popupController?.containerView.layer.cornerRadius = 4
+            popupController.containerView.layer.cornerRadius = 4
 
             // Show it on top of the map view
-            popupController?.present(in: self)
+            popupController.present(in: self)
             
         }
     }
