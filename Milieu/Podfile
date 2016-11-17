@@ -13,11 +13,13 @@ target 'Milieu' do
   pod 'PNChart'
   pod 'Fabric'
   pod 'NVActivityIndicatorView'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKShareKit'
+  pod 'FBSDKLoginKit'
 
 end
 
 target 'MilieuTests' do
-
 end
 
 target 'MilieuUITests' do
