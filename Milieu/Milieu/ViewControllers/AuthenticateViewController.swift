@@ -11,30 +11,16 @@ import FBSDKLoginKit
 
 class AuthenticateViewController: UIViewController {
 
+    
+    @IBOutlet weak var facebookSignInButton: FBSDKLoginButton!
+    
     override func viewDidLoad() {
          super.viewDidLoad()
         
-        let loginButton = FBSDKLoginButton()
-        
-        view.addSubview(loginButton)
-        
-        
-        loginButton.frame = CGRect(x: 16, y:50, width: view.frame.width - 32, height: 50)
-        
-        loginButton.delegate = self
-        loginButton.readPermissions = ["email", "public_profile"]
+        facebookSignInButton.delegate = self
+        facebookSignInButton.readPermissions = ["email", "public_profile"]
     }
 
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    
-    
 }
 
 
@@ -50,21 +36,6 @@ extension AuthenticateViewController: FBSDKLoginButtonDelegate{
             return
         }
         
-        showEmailAddress()
-    }
-    
-    func showEmailAddress(){
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start{
-            (connection, result, err) in
-            if err != nil{
-                print("Failed to start graph request:", err)
-                return
-            }
-            
-            
-            print(result)
-            
-            print(FBSDKAccessToken.current().tokenString)
-        }
+        self.dismiss(animated: true, completion: nil)
     }
 }
