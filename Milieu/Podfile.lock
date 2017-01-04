@@ -1,7 +1,19 @@
 PODS:
-  - Alamofire (4.0.1)
-  - Fabric (1.6.10)
-  - Mapbox-iOS-SDK (3.3.4)
+  - Alamofire (4.1.0)
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.8.4)
+  - Fabric (1.6.11)
+  - FBSDKCoreKit (4.17.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.17.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.17.0):
+    - FBSDKCoreKit
+  - Mapbox-iOS-SDK (3.3.6)
   - NVActivityIndicatorView (3.0)
   - PNChart (0.8.9):
     - UICountingLabel (~> 1.2.0)
@@ -11,20 +23,27 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - Fabric
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - FBSDKShareKit
   - Mapbox-iOS-SDK (~> 3.1)
   - NVActivityIndicatorView
   - PNChart
   - STPopup (~> 1.6)
 
 SPEC CHECKSUMS:
-  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
-  Fabric: c73f371ee543e3f0b80608f2674750e4910d1669
-  Mapbox-iOS-SDK: b22da0d9703fcfb0a8b592b6a7f6a21264fe44b0
+  Alamofire: e266cf991b933498df791e645e0d8ac294492153
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  FBSDKCoreKit: 30a21d2d7b92984b3d80497113433c00824c35e9
+  FBSDKLoginKit: 42b7129ac0373ca99eaf4cbebf4d07bd42371f59
+  FBSDKShareKit: 9b573d03fbee36cbaf42d5bb1f2bc019e0d72347
+  Mapbox-iOS-SDK: 1651ab31beec917b60ccbb8f737d0435ec80eeb3
   NVActivityIndicatorView: 81953b5e65093ba79edf4fe7268e002039ca5268
   PNChart: 84774d225c2126ded6c93d4dbe6ae98c3a73c2d2
   STPopup: 47e8ae53d348fa5f9be2d08d5c513ebe12ca758d
   UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
 
-PODFILE CHECKSUM: b1e9b7306d3adb9b833cafb5a9da00c5c2af10ca
+PODFILE CHECKSUM: e58bdd8856a10d42c62ef545949d68ab3ef9421a
 
 COCOAPODS: 1.1.1
