@@ -101,7 +101,7 @@ class MapViewController: UIViewController{
             
             if devSiteCache == nil || devSiteCache?.count == 0 {
                 // Fetch the nearby dev sites
-                Webservice().load(DevSite.nearby(userCoordinate)){
+                Webservice().load(resource: DevSite.nearby(userCoordinate)){
                     result in
                     self.devSiteCache = result
                     self.populateAnnotations()

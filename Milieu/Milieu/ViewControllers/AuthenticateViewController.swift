@@ -27,7 +27,7 @@ class AuthenticateViewController: UIViewController {
 extension AuthenticateViewController: FBSDKLoginButtonDelegate{
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        print("Did log out of facebook")
+        //
     }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
@@ -35,6 +35,9 @@ extension AuthenticateViewController: FBSDKLoginButtonDelegate{
             print(error)
             return
         }
+        
+        // TODO: Send the token to the Milieu backend
+        // TODO: Get the JWT and save it in the Keychain
         
         self.dismiss(animated: true, completion: nil)
     }

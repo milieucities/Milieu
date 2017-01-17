@@ -18,6 +18,8 @@ class UserTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         if hasLogIn() {
+            AR5Logger.debug( "FB UserID: \(FBSDKAccessToken.current().userID), FB TOKEN String: \(FBSDKAccessToken.current().tokenString), FB Token Refresh Date: \(FBSDKAccessToken.current().expirationDate))")
+            
             FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "email, name"]).start(completionHandler: {
                 connection, result, error in
                 guard error == nil else {

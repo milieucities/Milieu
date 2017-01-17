@@ -28,6 +28,8 @@
 		83405D091C37487200F16F4D /* ApplicationComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D081C37487200F16F4D /* ApplicationComments.swift */; };
 		83405D0D1C374F4100F16F4D /* Comments.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83405D0C1C374F4100F16F4D /* Comments.plist */; };
 		83405D101C38278D00F16F4D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D0F1C38278D00F16F4D /* UIImage+Resize.swift */; };
+		834DED8A1E2AA32B000D2F77 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DED891E2AA32B000D2F77 /* Login.swift */; };
+		834DED8C1E2AA645000D2F77 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DED8B1E2AA645000D2F77 /* HttpMethod.swift */; };
 		834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E87ED1C1C6734002A763C /* MapViewController.swift */; };
 		835A1C191D486F400054C2F0 /* DevApp+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835A1C171D486F400054C2F0 /* DevApp+CoreDataProperties.swift */; };
 		835A1C1A1D486F400054C2F0 /* DevApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835A1C181D486F400054C2F0 /* DevApp.swift */; };
@@ -118,6 +120,8 @@
 		83405D081C37487200F16F4D /* ApplicationComments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationComments.swift; path = Models/ApplicationComments.swift; sourceTree = "<group>"; };
 		83405D0C1C374F4100F16F4D /* Comments.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Comments.plist; sourceTree = "<group>"; };
 		83405D0F1C38278D00F16F4D /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Resize.swift"; path = "Views/UIImage+Resize.swift"; sourceTree = "<group>"; };
+		834DED891E2AA32B000D2F77 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Login.swift; path = Networking/Resources/Login.swift; sourceTree = "<group>"; };
+		834DED8B1E2AA645000D2F77 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HttpMethod.swift; path = Networking/HttpMethod.swift; sourceTree = "<group>"; };
 		834E87ED1C1C6734002A763C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ViewControllers/MapViewController.swift; sourceTree = "<group>"; };
 		835A1C171D486F400054C2F0 /* DevApp+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DevApp+CoreDataProperties.swift"; path = "Models/CoreData/DevApp+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		835A1C181D486F400054C2F0 /* DevApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DevApp.swift; path = Models/CoreData/DevApp.swift; sourceTree = "<group>"; };
@@ -239,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				83FA343A1D60D0740061276F /* Webservice.swift */,
+				834DED8B1E2AA645000D2F77 /* HttpMethod.swift */,
 				83FA343C1D60D19B0061276F /* Resources */,
 			);
 			name = Networking;
@@ -379,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				83FA343D1D60D1CB0061276F /* Resource.swift */,
+				834DED891E2AA32B000D2F77 /* Login.swift */,
 				83FA343F1D6125510061276F /* DevSite.swift */,
 			);
 			name = Resources;
@@ -736,6 +742,7 @@
 				835A1C191D486F400054C2F0 /* DevApp+CoreDataProperties.swift in Sources */,
 				83080A2F1D9FF566007966A5 /* DevsiteDetailController.swift in Sources */,
 				834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */,
+				834DED8C1E2AA645000D2F77 /* HttpMethod.swift in Sources */,
 				831C224F1CAB5EBC003351B1 /* HeaderImageCell.swift in Sources */,
 				83405D071C37435A00F16F4D /* CommentCell.swift in Sources */,
 				83EE7D551C14DF3000CEDF0D /* AR5Logger.swift in Sources */,
@@ -750,6 +757,7 @@
 				83FB29FE1C4AC4000093EBC8 /* Address.swift in Sources */,
 				83080A311D9FFCEA007966A5 /* UIView+Constraints.swift in Sources */,
 				83FB29EF1C4A979B0093EBC8 /* LaunchViewController.swift in Sources */,
+				834DED8A1E2AA32B000D2F77 /* Login.swift in Sources */,
 				838B51B21DDC0452000A9CB5 /* UserTableViewController.swift in Sources */,
 				83FA343B1D60D0740061276F /* Webservice.swift in Sources */,
 				83080A341DA00BE5007966A5 /* GeneralInfoCell.swift in Sources */,
@@ -851,7 +859,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2ECE75D3383B3A6D12702592 /* Pods-Milieu.alpha.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Milieu/Milieu.entitlements;
@@ -942,7 +950,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 65500B470B1E786CDE2107FC /* Pods-Milieu.beta.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Milieu/Milieu.entitlements;
@@ -1080,7 +1088,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 078DE1060C95CEA9985F493D /* Pods-Milieu.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Milieu/Milieu.entitlements;
@@ -1105,7 +1113,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0E3039D9028479E319D70D5B /* Pods-Milieu.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Milieu/Milieu.entitlements;
