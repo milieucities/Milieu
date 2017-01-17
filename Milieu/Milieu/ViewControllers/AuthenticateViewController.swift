@@ -8,6 +8,7 @@
 
 import UIKit
 import FBSDKLoginKit
+import Alamofire
 
 class AuthenticateViewController: UIViewController {
 
@@ -34,6 +35,16 @@ extension AuthenticateViewController: FBSDKLoginButtonDelegate{
         if error != nil{
             print(error)
             return
+        }
+        
+        let parameters: Parameters = [
+            "token":FBSDKAccessToken.current().tokenString,
+            "provider":"facebook"
+        ]
+        
+        Alamofire.request("http://localhost:3000/api/v1/login", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{
+            response in
+            debugPrint(response)
         }
         
         // TODO: Send the token to the Milieu backend
