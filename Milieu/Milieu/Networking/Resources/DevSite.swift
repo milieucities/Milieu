@@ -9,8 +9,6 @@
 import Foundation
 import Mapbox
 
-typealias JSONDictionary = [String: Any]
-
 let url = URL(string: "https://milieu.io/dev_sites")!
 
 struct DevSite{

@@ -16,6 +16,7 @@ PODS:
   - Mapbox-iOS-SDK (3.3.7)
   - NVActivityIndicatorView (3.2)
   - STPopup (1.8.2)
+  - SwiftKeychainWrapper (3.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
@@ -26,6 +27,7 @@ DEPENDENCIES:
   - Mapbox-iOS-SDK (~> 3.1)
   - NVActivityIndicatorView
   - STPopup (~> 1.8.2)
+  - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
@@ -37,7 +39,8 @@ SPEC CHECKSUMS:
   Mapbox-iOS-SDK: 142301fa63a6719cbd2eacc0f9e8bf36c65930d9
   NVActivityIndicatorView: 28942c18ced111a6a3ce5e6f5b27d9d40116d639
   STPopup: b69b3e7484ef7d2baec5f9ab2939f8a7bcdfe218
+  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
 
-PODFILE CHECKSUM: bd3bfe753775bee38a506609a4300c1f08c15906
+PODFILE CHECKSUM: 9ed85645617bc6ce9f67c85de27ca35428d7e4b6
 
 COCOAPODS: 1.1.1

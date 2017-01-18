@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import Alamofire
+import SwiftKeychainWrapper
 
 class AuthenticateViewController: UIViewController {
 
@@ -33,23 +34,81 @@ extension AuthenticateViewController: FBSDKLoginButtonDelegate{
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         if error != nil{
-            print(error)
+            self.showDefaultAlert(message: "\(error.localizedDescription)")
             return
         }
         
+        guard FBSDKAccessToken.current() != nil else{
+            self.showDefaultAlert(message: "Can not sign up with facebook account")
+            return
+        }
+        
+        // Send the token to the Milieu backend
+        registerAccountInMilieu(fbToken: FBSDKAccessToken.current().tokenString){
+            token, error in
+            guard error == nil else{
+                self.showDefaultAlert(message: "\(error.debugDescription)")
+                return
+            }
+            
+            guard token != nil else{
+                self.showDefaultAlert(message: "Can not get token from Milieu")
+                return
+            }
+            
+            // Save token into keychain
+            guard self.saveToken(token: token!) else{
+                self.showDefaultAlert(message: "Keychain Error")
+                return
+            }
+            
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+}
+
+// MARK: - Handle Login Result
+extension AuthenticateViewController{
+    
+    func registerAccountInMilieu(fbToken: String, completionHandler: @escaping (ApiToken?, Error?) -> Void){
         let parameters: Parameters = [
-            "token":FBSDKAccessToken.current().tokenString,
+            "token":fbToken,
             "provider":"facebook"
         ]
         
-        Alamofire.request("http://localhost:3000/api/v1/login", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{
+        Alamofire.request("http://localhost:3000/api/v1/login", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseJSON{
             response in
-            debugPrint(response)
+            
+            let result = response.result
+            switch response.result{
+            case .success:
+                completionHandler(ApiToken(dictionary: result.value as? JSONDictionary), nil)
+            case .failure(let error):
+                completionHandler(nil, error)
+            }
+        }
+    }
+    
+    func saveToken(token: ApiToken) -> Bool{
+        let data = NSKeyedArchiver.archivedData(withRootObject: token)
+        return KeychainWrapper.standard.set(data, forKey: "MilieuApiToken")
+    }
+    
+    func showDefaultAlert(title: String = "Error", message: String){
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default){
+            _ in
+            self.performSegue(withIdentifier: "skipSignInSegue", sender: nil)
         }
         
-        // TODO: Send the token to the Milieu backend
-        // TODO: Get the JWT and save it in the Keychain
+        showAlert(title: title, message: message, cancelAction: cancelAction, okAction: okAction)
+    }
+    
+    func showAlert(title: String, message: String, preferredStyle: UIAlertControllerStyle = UIAlertControllerStyle.alert, cancelAction: UIAlertAction?, okAction: UIAlertAction?){
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         
-        self.dismiss(animated: true, completion: nil)
+        if let cancelAction = cancelAction {alertController.addAction(cancelAction)}
+        if let okAction = okAction {alertController.addAction(okAction)}
+        present(alertController, animated: true, completion: nil)
     }
 }

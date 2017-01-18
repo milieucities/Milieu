@@ -50,6 +50,10 @@ class UserTableViewController: UITableViewController {
     }
     
     func hasLogIn() -> Bool{
+        // TODO: Check JWT token in keychain instead of fbtoken
+        // TODO: If can't find one, try to show login view
+        // TOOD: If find one but expire, update JWT from Milieu
+        // TODO: If find one that is not expire, show user setting view
         return (FBSDKAccessToken.current() != nil)
     }
     

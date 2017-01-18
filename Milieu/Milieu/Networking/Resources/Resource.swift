@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias JSONDictionary = [String: Any]
+
 struct Resource<A> {
     let url: URL
     let method: HttpMethod<Data>
@@ -15,7 +17,7 @@ struct Resource<A> {
 }
 
 extension Resource {
-    init(url: URL, method: HttpMethod<AnyObject> = .get, parseJSON: @escaping (Any) -> A?) {
+    init(url: URL, method: HttpMethod<Any> = .get, parseJSON: @escaping (Any) -> A?) {
         self.url = url
         self.method = method.map { json in
             try! JSONSerialization.data(withJSONObject: json, options: [])
