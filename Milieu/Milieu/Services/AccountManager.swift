@@ -45,8 +45,7 @@ class AccountManager{
             response in
             
             let result = response.result
-            print(response.debugDescription)
-            print(JSON.init(data: response.data!).debugDescription)
+
             switch result{
             case .success:
                 completionHandler(ApiToken(dictionary: result.value as? JSONDictionary), nil)

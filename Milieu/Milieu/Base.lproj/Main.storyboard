@@ -62,21 +62,36 @@
                         <sections>
                             <tableViewSection headerTitle="Profile" id="Qqf-Eg-uwm">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="6ch-RO-GDX" rowHeight="88" style="IBUITableViewCellStyleDefault" id="1t9-NU-JrZ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="88" id="1t9-NU-JrZ">
                                         <rect key="frame" x="0.0" y="56" width="375" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1t9-NU-JrZ" id="Aoh-1T-vuf">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6ch-RO-GDX">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="87"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tld-Wt-x12">
+                                                    <rect key="frame" x="95.5" y="8" width="271.5" height="72"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Qo-ww-UIX" customClass="FBSDKProfilePictureView">
+                                                    <rect key="frame" x="8" y="8" width="79.5" height="71.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="0Qo-ww-UIX" secondAttribute="height" multiplier="1:1" constant="8" id="0pH-pW-OBr"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="0Qo-ww-UIX" firstAttribute="leading" secondItem="Aoh-1T-vuf" secondAttribute="leading" constant="8" id="0bh-iv-YvC"/>
+                                                <constraint firstItem="Tld-Wt-x12" firstAttribute="top" secondItem="Aoh-1T-vuf" secondAttribute="top" constant="8" id="4Qj-MX-BH9"/>
+                                                <constraint firstItem="0Qo-ww-UIX" firstAttribute="top" secondItem="Aoh-1T-vuf" secondAttribute="top" constant="8" id="DOR-AM-76s"/>
+                                                <constraint firstAttribute="bottom" secondItem="0Qo-ww-UIX" secondAttribute="bottom" constant="8" id="RYg-9K-03W"/>
+                                                <constraint firstItem="Tld-Wt-x12" firstAttribute="leading" secondItem="0Qo-ww-UIX" secondAttribute="trailing" constant="8" id="cpJ-Gn-PJI"/>
+                                                <constraint firstAttribute="bottom" secondItem="Tld-Wt-x12" secondAttribute="bottom" constant="7" id="jk0-j9-6z4"/>
+                                                <constraint firstAttribute="trailing" secondItem="Tld-Wt-x12" secondAttribute="trailing" constant="8" id="r0A-Cc-it6"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -131,13 +146,14 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Me" id="OVg-D5-8g1"/>
                     <connections>
-                        <outlet property="userNameLabel" destination="6ch-RO-GDX" id="Ied-lI-z0m"/>
+                        <outlet property="avatarView" destination="0Qo-ww-UIX" id="sES-rZ-eH4"/>
+                        <outlet property="userNameLabel" destination="Tld-Wt-x12" id="eK8-LQ-Poz"/>
                         <segue destination="wwQ-2f-pcy" kind="presentation" identifier="loginSegue" id="3PT-4W-2Vn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mSt-oA-ryw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="118" y="1012"/>
+            <point key="canvasLocation" x="117.59999999999999" y="1011.544227886057"/>
         </scene>
         <!--Authenticate View Controller-->
         <scene sceneID="fXd-ya-luB">

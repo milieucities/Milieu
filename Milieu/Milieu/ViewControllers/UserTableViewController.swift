@@ -9,10 +9,12 @@
 import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
+import SwiftyJSON
 
 class UserTableViewController: UITableViewController {
 
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var avatarView: FBSDKProfilePictureView!
     
     let accountMgr = AccountManager.sharedInstance
     var token: ApiToken!
@@ -27,13 +29,12 @@ class UserTableViewController: UITableViewController {
             FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "email, name"]).start(completionHandler: {
                 connection, result, error in
                 guard error == nil else {
-                    AR5Logger.debug(error as! String)
                     return
                 }
                 
                 if (result != nil) {
-                    AR5Logger.debug(result.debugDescription)
-                    self.userNameLabel.text = (result as! [String:Any])["name"] as? String
+                    let json = JSON.init(result as Any)
+                    self.userNameLabel.text = json["name"].stringValue
                 }
             })
         }else{
