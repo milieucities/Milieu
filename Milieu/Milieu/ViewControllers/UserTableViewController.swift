@@ -14,11 +14,15 @@ class UserTableViewController: UITableViewController {
 
     @IBOutlet weak var userNameLabel: UILabel!
     
+    let accountMgr = AccountManager.sharedInstance
+    var token: ApiToken!
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if hasLogIn() {
-            AR5Logger.debug( "FB UserID: \(FBSDKAccessToken.current().userID), FB TOKEN String: \(FBSDKAccessToken.current().tokenString), FB Token Refresh Date: \(FBSDKAccessToken.current().expirationDate))")
+            
+            syncToken()
             
             FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "email, name"]).start(completionHandler: {
                 connection, result, error in
@@ -50,11 +54,38 @@ class UserTableViewController: UITableViewController {
     }
     
     func hasLogIn() -> Bool{
-        // TODO: Check JWT token in keychain instead of fbtoken
-        // TODO: If can't find one, try to show login view
-        // TOOD: If find one but expire, update JWT from Milieu
-        // TODO: If find one that is not expire, show user setting view
-        return (FBSDKAccessToken.current() != nil)
+        // Check if fbToken exists
+        guard FBSDKAccessToken.current() != nil else{
+            return false
+        }
+        // Check JWT token in keychain
+        token = accountMgr.fetchToken()
+        return  token != nil
+    }
+    
+    /**
+     Check if need to update JWT token.
+     Silently update token if needed.
+    */
+    func syncToken(){
+        if token.isExpire(){
+            
+            accountMgr.updateToken(fbToken: FBSDKAccessToken.current().tokenString){
+                token, error in
+                guard error == nil else{
+                    return
+                }
+                
+                guard token != nil else{
+                    return
+                }
+                
+                // Save token into keychain
+                guard self.accountMgr.saveToken(token: token!) else{
+                    return
+                }
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

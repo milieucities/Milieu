@@ -24,7 +24,7 @@
 		831C224F1CAB5EBC003351B1 /* HeaderImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C224E1CAB5EBC003351B1 /* HeaderImageCell.swift */; };
 		831C22511CAB5ED0003351B1 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C22501CAB5ED0003351B1 /* FloatRatingView.swift */; };
 		833DB8CB1E2EFD5500D040A9 /* ApiToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833DB8CA1E2EFD5500D040A9 /* ApiToken.swift */; };
-		833DB8CE1E2F104E00D040A9 /* AccountManageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833DB8CD1E2F104E00D040A9 /* AccountManageService.swift */; };
+		833DB8D01E34768F00D040A9 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833DB8CF1E34768F00D040A9 /* AccountManager.swift */; };
 		83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D031C37424200F16F4D /* CommentsViewController.swift */; };
 		83405D071C37435A00F16F4D /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D061C37435A00F16F4D /* CommentCell.swift */; };
 		83405D091C37487200F16F4D /* ApplicationComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D081C37487200F16F4D /* ApplicationComments.swift */; };
@@ -117,7 +117,7 @@
 		831C224E1CAB5EBC003351B1 /* HeaderImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderImageCell.swift; path = Views/HeaderImageCell.swift; sourceTree = "<group>"; };
 		831C22501CAB5ED0003351B1 /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatRatingView.swift; path = Views/FloatRatingView.swift; sourceTree = "<group>"; };
 		833DB8CA1E2EFD5500D040A9 /* ApiToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiToken.swift; path = Networking/Resources/ApiToken.swift; sourceTree = "<group>"; };
-		833DB8CD1E2F104E00D040A9 /* AccountManageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountManageService.swift; path = Services/AccountManageService.swift; sourceTree = "<group>"; };
+		833DB8CF1E34768F00D040A9 /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountManager.swift; path = Services/AccountManager.swift; sourceTree = "<group>"; };
 		83405D031C37424200F16F4D /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentsViewController.swift; path = ViewControllers/CommentsViewController.swift; sourceTree = "<group>"; };
 		83405D061C37435A00F16F4D /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentCell.swift; path = Views/CommentCell.swift; sourceTree = "<group>"; };
 		83405D081C37487200F16F4D /* ApplicationComments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationComments.swift; path = Models/ApplicationComments.swift; sourceTree = "<group>"; };
@@ -254,7 +254,7 @@
 		833DB8CC1E2F0FF000D040A9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				833DB8CD1E2F104E00D040A9 /* AccountManageService.swift */,
+				833DB8CF1E34768F00D040A9 /* AccountManager.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -740,6 +740,7 @@
 				837BDF841C51FC640000A9E4 /* EventInfo.swift in Sources */,
 				83080A361DA02713007966A5 /* DevSiteCell.swift in Sources */,
 				838B51B01DDC03BE000A9CB5 /* AuthenticateViewController.swift in Sources */,
+				833DB8D01E34768F00D040A9 /* AccountManager.swift in Sources */,
 				830F879A1C51CED90039CC8D /* DateUtil.swift in Sources */,
 				8317C97D1C25AFE10088DEAA /* ApplicationInfo.swift in Sources */,
 				83405D101C38278D00F16F4D /* UIImage+Resize.swift in Sources */,
@@ -763,7 +764,6 @@
 				83DEF4141C5D26790051002C /* StatusCell.swift in Sources */,
 				83FB29FD1C4AC4000093EBC8 /* Address+CoreDataProperties.swift in Sources */,
 				831C22511CAB5ED0003351B1 /* FloatRatingView.swift in Sources */,
-				833DB8CE1E2F104E00D040A9 /* AccountManageService.swift in Sources */,
 				83FB29A61C44AE8E0093EBC8 /* Coordinate.swift in Sources */,
 				83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */,
 				83DEF4161C5D39BA0051002C /* UIImageView+DownloadImage.swift in Sources */,

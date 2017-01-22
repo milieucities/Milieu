@@ -9,12 +9,13 @@
 import UIKit
 import FBSDKLoginKit
 import Alamofire
-import SwiftKeychainWrapper
+
 
 class AuthenticateViewController: UIViewController {
 
     
     @IBOutlet weak var facebookSignInButton: FBSDKLoginButton!
+    let accountMgr = AccountManager.sharedInstance
     
     override func viewDidLoad() {
          super.viewDidLoad()
@@ -44,10 +45,10 @@ extension AuthenticateViewController: FBSDKLoginButtonDelegate{
         }
         
         // Send the token to the Milieu backend
-        registerAccountInMilieu(fbToken: FBSDKAccessToken.current().tokenString){
-            token, error in
-            guard error == nil else{
-                self.showDefaultAlert(message: "\(error.debugDescription)")
+        accountMgr.updateToken(fbToken: FBSDKAccessToken.current().tokenString){
+            token, errorMsg in
+            guard errorMsg == nil else{
+                self.showDefaultAlert(message: "Facebook authentication fail with error: \(errorMsg!)")
                 return
             }
             
@@ -57,7 +58,7 @@ extension AuthenticateViewController: FBSDKLoginButtonDelegate{
             }
             
             // Save token into keychain
-            guard self.saveToken(token: token!) else{
+            guard self.accountMgr.saveToken(token: token!) else{
                 self.showDefaultAlert(message: "Keychain Error")
                 return
             }
@@ -70,30 +71,7 @@ extension AuthenticateViewController: FBSDKLoginButtonDelegate{
 // MARK: - Handle Login Result
 extension AuthenticateViewController{
     
-    func registerAccountInMilieu(fbToken: String, completionHandler: @escaping (ApiToken?, Error?) -> Void){
-        let parameters: Parameters = [
-            "token":fbToken,
-            "provider":"facebook"
-        ]
-        
-        Alamofire.request("http://localhost:3000/api/v1/login", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseJSON{
-            response in
-            
-            let result = response.result
-            switch response.result{
-            case .success:
-                completionHandler(ApiToken(dictionary: result.value as? JSONDictionary), nil)
-            case .failure(let error):
-                completionHandler(nil, error)
-            }
-        }
-    }
-    
-    func saveToken(token: ApiToken) -> Bool{
-        let data = NSKeyedArchiver.archivedData(withRootObject: token)
-        return KeychainWrapper.standard.set(data, forKey: "MilieuApiToken")
-    }
-    
+
     func showDefaultAlert(title: String = "Error", message: String){
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default){

@@ -42,6 +42,8 @@ class ApiToken: NSObject, NSCoding{
 // MARK: - Methods
 extension ApiToken{
     func isExpire() -> Bool{
-        return expireTime >= Date()
+        return expireTime <= Date()
     }
+    
+
 }

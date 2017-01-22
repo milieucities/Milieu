@@ -16,6 +16,7 @@ target 'Milieu' do
   pod 'FBSDKShareKit'
   pod 'FBSDKLoginKit'
   pod 'SwiftKeychainWrapper'
+  pod 'SwiftyJSON'
 
 end
 
