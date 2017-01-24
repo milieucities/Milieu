@@ -16,6 +16,7 @@ import MapKit
 class ApplicationInfo : MilieuAnnotation{
     
     let devSite: DevSite!
+    var cacheSmallImage: UIImage?
     
     init(devSite: DevSite) {
         self.devSite = devSite

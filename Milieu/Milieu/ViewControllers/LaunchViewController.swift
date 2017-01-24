@@ -20,6 +20,8 @@ class LaunchViewController: UIViewController {
     var neighbourhoods: [Neighbourhood]?
     var privateContext: NSManagedObjectContext!
     
+    let accountMgr = AccountManager.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         coreDataStack = CoreDataManager.sharedManager.coreDataStack
@@ -71,8 +73,20 @@ class LaunchViewController: UIViewController {
         DispatchQueue.main.async(execute: {
             self.indicator.stopAnimating()
             self.indicator.isHidden = true
-            self.performSegue(withIdentifier: "landingToTabBar", sender: self)
+            
+            if self.accountMgr.hasLogIn(){
+                self.performSegue(withIdentifier: Segue.landingToMapSegue, sender: self)
+            }else{
+                self.performSegue(withIdentifier: Segue.landingToAuthSegue, sender: nil)
+            }
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Segue.landingToAuthSegue {
+            let dest = segue.destination as! AuthenticateViewController
+            dest.firstTime = true
+        }
     }
     
     // MARK: - Preload Neighbourhood Data

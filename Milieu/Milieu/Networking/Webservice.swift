@@ -7,19 +7,29 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 /**
  Networking layer to request and get response from backend
  */
+
 final class Webservice {
-    func load<T>(_ resource: Resource<T>, completion: @escaping (T?) -> ()){
-        URLSession.shared.dataTask(with: resource.request, completionHandler: {
-            data, response, error in
-            guard let data = data else{
-                completion(nil)
-                return
-            }
-            completion(resource.parse(data))
-        }).resume()
+    func load<A>(resource: Resource<A>, completion: @escaping (A?) -> ()) {
+        let request = NSMutableURLRequest(resource: resource)
+        URLSession.shared.dataTask(with: request as URLRequest) { data, _, _ in
+            completion(data.flatMap(resource.parse))
+            }.resume()
+    }
+}
+
+extension NSMutableURLRequest {
+    convenience init<A>(resource: Resource<A>) {
+        self.init(url: resource.url)
+        httpMethod = resource.method.method
+        addValue("application/json", forHTTPHeaderField: "Accept")
+        addValue("application/json", forHTTPHeaderField: "Content-Type")
+        if case let .post(data) = resource.method {
+            httpBody = data
+        }
     }
 }

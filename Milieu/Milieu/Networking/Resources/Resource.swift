@@ -7,29 +7,24 @@
 //
 
 import Foundation
+import SwiftyJSON
 
+typealias JSONDictionary = [String: Any]
 
-struct Resource<T> {
+struct Resource<A> {
     let url: URL
-    let request: URLRequest
-    let parse: (Data) -> T?
+    let method: HttpMethod<Data>
+    let parse: (Data) -> A?
 }
 
-extension Resource{
-    
-    init(url: URL, parseJSON: @escaping ([String:AnyObject]?) -> T?){
+extension Resource {
+    init(url: URL, method: HttpMethod<Any> = .get, parseJSON: @escaping (Any) -> A?) {
         self.url = url
-        
-        // Setup request
-        var request = URLRequest(url: url)
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "GET"
-        self.request = request
-        
-        self.parse = {
-            data in
-            let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject]
+        self.method = method.map { json in
+            try! JSONSerialization.data(withJSONObject: json, options: [])
+        }
+        self.parse = { data in
+            let json = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
             return json.flatMap(parseJSON)
         }
     }

@@ -8,8 +8,8 @@
 
 import Foundation
 import Mapbox
-
-typealias JSONDictionary = [String: AnyObject]
+import SwiftyJSON
+import Alamofire
 
 let url = URL(string: "https://milieu.io/dev_sites")!
 
@@ -37,17 +37,18 @@ struct DevSite{
 // MARK: - Static fields
 extension DevSite{
     static let all = Resource<[DevSite]>(url: url, parseJSON: { json in
-        guard let count = json?["total"] as? Int else {return nil}
-        guard let dictionaries = json?["dev_sites"] as? [JSONDictionary] else {return nil}
+        guard let count = (json as! JSONDictionary)["total"] as? Int else {return nil}
+        guard let dictionaries = (json as! JSONDictionary)["dev_sites"] as? [JSONDictionary] else {return nil}
         return dictionaries.flatMap(DevSite.init)
     })
     
     static func nearby(_ coordinate: CLLocationCoordinate2D) -> Resource<[DevSite]>{
-        let url = URL(string: "https://milieu.io/dev_sites?limit=20&latitude=\(coordinate.latitude)&longitude=\(coordinate.longitude)")!
+        let url = URL(string: "https://milieu.io/dev_sites.json?limit=20&latitude=\(coordinate.latitude)&longitude=\(coordinate.longitude)")!
+
         return Resource(url: url, parseJSON: {
             json in
-            guard (json?["total"] as? Int) != nil else {return nil}
-            guard let dictionaries = json?["dev_sites"] as? [JSONDictionary] else {return nil}
+            guard ((json as! JSONDictionary)["total"] as? Int) != nil else {return nil}
+            guard let dictionaries = (json as! JSONDictionary)["dev_sites"] as? [JSONDictionary] else {return nil}
             return dictionaries.flatMap(DevSite.init)
         })
     }
@@ -86,7 +87,7 @@ extension DevSite{
         let url = URL(string: "https://milieu.io/dev_sites/\(id)")!
         return Resource(url: url, parseJSON:{
             json in
-            guard let dictionary = json as JSONDictionary? else {return nil}
+            guard let dictionary = (json as? JSONDictionary) else {return nil}
             return DevSite(dictionary: dictionary)
         })
     }
