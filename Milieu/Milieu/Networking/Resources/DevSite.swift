@@ -8,6 +8,8 @@
 
 import Foundation
 import Mapbox
+import SwiftyJSON
+import Alamofire
 
 let url = URL(string: "https://milieu.io/dev_sites")!
 
@@ -41,7 +43,8 @@ extension DevSite{
     })
     
     static func nearby(_ coordinate: CLLocationCoordinate2D) -> Resource<[DevSite]>{
-        let url = URL(string: "https://milieu.io/dev_sites?limit=20&latitude=\(coordinate.latitude)&longitude=\(coordinate.longitude)")!
+        let url = URL(string: "https://milieu.io/dev_sites.json?limit=20&latitude=\(coordinate.latitude)&longitude=\(coordinate.longitude)")!
+
         return Resource(url: url, parseJSON: {
             json in
             guard ((json as! JSONDictionary)["total"] as? Int) != nil else {return nil}

@@ -4,10 +4,10 @@
 # Uncomment this line if you're using Swift
  use_frameworks!
 
-pod 'Mapbox-iOS-SDK','~> 3.1'
-
 target 'Milieu' do
 
+  pod 'Fabric'
+  pod 'Mapbox-iOS-SDK'
   pod 'STPopup', '~> 1.8.2'
   pod 'Alamofire', '~> 4.3'
   pod 'Fabric'

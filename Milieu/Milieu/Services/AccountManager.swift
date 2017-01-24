@@ -41,7 +41,7 @@ class AccountManager{
             "provider":"facebook"
         ]
         
-        Alamofire.request("http://localhost:3000/api/v1/login", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseJSON{
+        Alamofire.request(Connection.LoginUrl, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseJSON{
             response in
             
             let result = response.result
@@ -54,5 +54,9 @@ class AccountManager{
                 completionHandler(nil, message)
             }
         }
+    }
+    
+    func deleteToken() -> Bool{
+        return KeychainWrapper.standard.removeObject(forKey: secretKey)
     }
 }

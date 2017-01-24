@@ -25,7 +25,7 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
-  - Mapbox-iOS-SDK (~> 3.1)
+  - Mapbox-iOS-SDK
   - NVActivityIndicatorView
   - STPopup (~> 1.8.2)
   - SwiftKeychainWrapper
@@ -44,6 +44,6 @@ SPEC CHECKSUMS:
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: b6de5edcdb532acd1c40f61738ef1b99002aa6de
+PODFILE CHECKSUM: 465cd06a8cbd26b57935fc17aa819409369c481d
 
 COCOAPODS: 1.1.1

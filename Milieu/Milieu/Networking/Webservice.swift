@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 /**
  Networking layer to request and get response from backend
@@ -26,6 +27,7 @@ extension NSMutableURLRequest {
         self.init(url: resource.url)
         httpMethod = resource.method.method
         addValue("application/json", forHTTPHeaderField: "Accept")
+        addValue("application/json", forHTTPHeaderField: "Content-Type")
         if case let .post(data) = resource.method {
             httpBody = data
         }
