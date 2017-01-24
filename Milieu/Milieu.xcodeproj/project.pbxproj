@@ -23,11 +23,14 @@
 		831C224D1CAB5EA5003351B1 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C224C1CAB5EA5003351B1 /* CardCell.swift */; };
 		831C224F1CAB5EBC003351B1 /* HeaderImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C224E1CAB5EBC003351B1 /* HeaderImageCell.swift */; };
 		831C22511CAB5ED0003351B1 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C22501CAB5ED0003351B1 /* FloatRatingView.swift */; };
+		833DB8CB1E2EFD5500D040A9 /* ApiToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833DB8CA1E2EFD5500D040A9 /* ApiToken.swift */; };
+		833DB8D01E34768F00D040A9 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833DB8CF1E34768F00D040A9 /* AccountManager.swift */; };
 		83405D041C37424200F16F4D /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D031C37424200F16F4D /* CommentsViewController.swift */; };
 		83405D071C37435A00F16F4D /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D061C37435A00F16F4D /* CommentCell.swift */; };
 		83405D091C37487200F16F4D /* ApplicationComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D081C37487200F16F4D /* ApplicationComments.swift */; };
 		83405D0D1C374F4100F16F4D /* Comments.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83405D0C1C374F4100F16F4D /* Comments.plist */; };
 		83405D101C38278D00F16F4D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83405D0F1C38278D00F16F4D /* UIImage+Resize.swift */; };
+		834DED8C1E2AA645000D2F77 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834DED8B1E2AA645000D2F77 /* HttpMethod.swift */; };
 		834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E87ED1C1C6734002A763C /* MapViewController.swift */; };
 		835A1C191D486F400054C2F0 /* DevApp+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835A1C171D486F400054C2F0 /* DevApp+CoreDataProperties.swift */; };
 		835A1C1A1D486F400054C2F0 /* DevApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835A1C181D486F400054C2F0 /* DevApp.swift */; };
@@ -113,11 +116,14 @@
 		831C224C1CAB5EA5003351B1 /* CardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardCell.swift; path = Views/CardCell.swift; sourceTree = "<group>"; };
 		831C224E1CAB5EBC003351B1 /* HeaderImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderImageCell.swift; path = Views/HeaderImageCell.swift; sourceTree = "<group>"; };
 		831C22501CAB5ED0003351B1 /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatRatingView.swift; path = Views/FloatRatingView.swift; sourceTree = "<group>"; };
+		833DB8CA1E2EFD5500D040A9 /* ApiToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiToken.swift; path = Networking/Resources/ApiToken.swift; sourceTree = "<group>"; };
+		833DB8CF1E34768F00D040A9 /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountManager.swift; path = Services/AccountManager.swift; sourceTree = "<group>"; };
 		83405D031C37424200F16F4D /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentsViewController.swift; path = ViewControllers/CommentsViewController.swift; sourceTree = "<group>"; };
 		83405D061C37435A00F16F4D /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentCell.swift; path = Views/CommentCell.swift; sourceTree = "<group>"; };
 		83405D081C37487200F16F4D /* ApplicationComments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationComments.swift; path = Models/ApplicationComments.swift; sourceTree = "<group>"; };
 		83405D0C1C374F4100F16F4D /* Comments.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Comments.plist; sourceTree = "<group>"; };
 		83405D0F1C38278D00F16F4D /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Resize.swift"; path = "Views/UIImage+Resize.swift"; sourceTree = "<group>"; };
+		834DED8B1E2AA645000D2F77 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HttpMethod.swift; path = Networking/HttpMethod.swift; sourceTree = "<group>"; };
 		834E87ED1C1C6734002A763C /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ViewControllers/MapViewController.swift; sourceTree = "<group>"; };
 		835A1C171D486F400054C2F0 /* DevApp+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DevApp+CoreDataProperties.swift"; path = "Models/CoreData/DevApp+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		835A1C181D486F400054C2F0 /* DevApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DevApp.swift; path = Models/CoreData/DevApp.swift; sourceTree = "<group>"; };
@@ -239,9 +245,18 @@
 			isa = PBXGroup;
 			children = (
 				83FA343A1D60D0740061276F /* Webservice.swift */,
+				834DED8B1E2AA645000D2F77 /* HttpMethod.swift */,
 				83FA343C1D60D19B0061276F /* Resources */,
 			);
 			name = Networking;
+			sourceTree = "<group>";
+		};
+		833DB8CC1E2F0FF000D040A9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				833DB8CF1E34768F00D040A9 /* AccountManager.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		83405D051C37431400F16F4D /* Views */ = {
@@ -329,6 +344,7 @@
 		839C886F1C14C1D200D80D0A /* Milieu */ = {
 			isa = PBXGroup;
 			children = (
+				833DB8CC1E2F0FF000D040A9 /* Services */,
 				83A0DA6E1DDD555B006523A2 /* Milieu.entitlements */,
 				831C22561CAB6408003351B1 /* Networking */,
 				83405D051C37431400F16F4D /* Views */,
@@ -380,6 +396,7 @@
 			children = (
 				83FA343D1D60D1CB0061276F /* Resource.swift */,
 				83FA343F1D6125510061276F /* DevSite.swift */,
+				833DB8CA1E2EFD5500D040A9 /* ApiToken.swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -476,7 +493,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Atelier Ruderal";
 				TargetAttributes = {
 					839C886C1C14C1D200D80D0A = {
@@ -712,6 +729,7 @@
 				837BDF7E1C51E7C70000A9E4 /* MilieuAnnotation.swift in Sources */,
 				83FB29EB1C473F140093EBC8 /* City.swift in Sources */,
 				839C88711C14C1D200D80D0A /* AppDelegate.swift in Sources */,
+				833DB8CB1E2EFD5500D040A9 /* ApiToken.swift in Sources */,
 				8317C9831C25F5250088DEAA /* ApplicationDetailViewController.swift in Sources */,
 				83FB29961C4322720093EBC8 /* Milieu.xcdatamodeld in Sources */,
 				83DEF4121C5D26540051002C /* DescriptionCell.swift in Sources */,
@@ -722,6 +740,7 @@
 				837BDF841C51FC640000A9E4 /* EventInfo.swift in Sources */,
 				83080A361DA02713007966A5 /* DevSiteCell.swift in Sources */,
 				838B51B01DDC03BE000A9CB5 /* AuthenticateViewController.swift in Sources */,
+				833DB8D01E34768F00D040A9 /* AccountManager.swift in Sources */,
 				830F879A1C51CED90039CC8D /* DateUtil.swift in Sources */,
 				8317C97D1C25AFE10088DEAA /* ApplicationInfo.swift in Sources */,
 				83405D101C38278D00F16F4D /* UIImage+Resize.swift in Sources */,
@@ -736,6 +755,7 @@
 				835A1C191D486F400054C2F0 /* DevApp+CoreDataProperties.swift in Sources */,
 				83080A2F1D9FF566007966A5 /* DevsiteDetailController.swift in Sources */,
 				834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */,
+				834DED8C1E2AA645000D2F77 /* HttpMethod.swift in Sources */,
 				831C224F1CAB5EBC003351B1 /* HeaderImageCell.swift in Sources */,
 				83405D071C37435A00F16F4D /* CommentCell.swift in Sources */,
 				83EE7D551C14DF3000CEDF0D /* AR5Logger.swift in Sources */,
@@ -840,7 +860,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -851,7 +871,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2ECE75D3383B3A6D12702592 /* Pods-Milieu.alpha.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Milieu/Milieu.entitlements;
@@ -931,7 +951,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -942,7 +962,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 65500B470B1E786CDE2107FC /* Pods-Milieu.beta.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Milieu/Milieu.entitlements;
@@ -1028,7 +1048,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1068,7 +1088,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1080,7 +1100,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 078DE1060C95CEA9985F493D /* Pods-Milieu.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Milieu/Milieu.entitlements;
@@ -1105,7 +1125,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0E3039D9028479E319D70D5B /* Pods-Milieu.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Milieu/Milieu.entitlements;

@@ -101,7 +101,7 @@ class MapViewController: UIViewController{
             
             if devSiteCache == nil || devSiteCache?.count == 0 {
                 // Fetch the nearby dev sites
-                Webservice().load(DevSite.nearby(userCoordinate)){
+                Webservice().load(resource: DevSite.nearby(userCoordinate)){
                     result in
                     self.devSiteCache = result
                     self.populateAnnotations()
@@ -155,11 +155,11 @@ extension MapViewController: MGLMapViewDelegate{
         let annotation = annotation as! MilieuAnnotation
         // Make unique reusable identifier for one annotation type
         let identifier = annotation.category.rawValue
+        let image = UIImage(named: identifier)!
         
         var annotationImage = mapView.dequeueReusableAnnotationImage(withIdentifier: identifier)
         
         if annotationImage == nil{
-            let image = UIImage(named: identifier)!
             annotationImage = MGLAnnotationImage(image: image, reuseIdentifier: identifier)
         }
         

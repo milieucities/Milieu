@@ -77,9 +77,14 @@ class ApplicationDetailViewController: UIViewController {
         present(navController, animated: true, completion: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        fetchImage()
+        if let image = annotation.cacheSmallImage{
+            applicationImageView.image = image
+            applicationImageView.contentMode = .scaleAspectFill
+        }else{
+            fetchImage()
+        }
     }
 
     
@@ -96,8 +101,8 @@ class ApplicationDetailViewController: UIViewController {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         
-        self.applicationImageView.loadImageWithURL(url: resizeUrl){
-            
+        applicationImageView.loadImageWithURL(url: resizeUrl){
+            self.annotation.cacheSmallImage = self.applicationImageView.image
             self.activityIndicator.stopAnimating()
             self.activityIndicator.isHidden = true
         }

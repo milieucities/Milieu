@@ -9,29 +9,36 @@
 import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
+import SwiftyJSON
 
 class UserTableViewController: UITableViewController {
 
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var avatarView: FBSDKProfilePictureView!
+    
+    let accountMgr = AccountManager.sharedInstance
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if hasLogIn() {
+        if accountMgr.hasLogIn() {
+            
+            syncToken()
+            
             FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "email, name"]).start(completionHandler: {
                 connection, result, error in
                 guard error == nil else {
-                    AR5Logger.debug(error as! String)
                     return
                 }
                 
                 if (result != nil) {
-                    AR5Logger.debug(result.debugDescription)
-                    self.userNameLabel.text = (result as! [String:Any])["name"] as? String
+                    let json = JSON.init(result as Any)
+                    self.userNameLabel.text = json["name"].stringValue
                 }
             })
         }else{
-            performSegue(withIdentifier: "loginSegue", sender: nil)
+            performSegue(withIdentifier: Segue.userToAuthSegue, sender: nil)
         }
     }
 
@@ -39,7 +46,7 @@ class UserTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,15 +54,39 @@ class UserTableViewController: UITableViewController {
         return 1
     }
     
-    func hasLogIn() -> Bool{
-        return (FBSDKAccessToken.current() != nil)
+
+    
+    /**
+     Check if need to update JWT token.
+     Silently update token if needed.
+    */
+    func syncToken(){
+        if accountMgr.token!.isExpire(){
+            
+            accountMgr.updateToken(fbToken: FBSDKAccessToken.current().tokenString){
+                token, error in
+                guard error == nil else{
+                    return
+                }
+                
+                guard token != nil else{
+                    return
+                }
+                
+                // Save token into keychain
+                guard self.accountMgr.saveToken(token: token!) else{
+                    return
+                }
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if indexPath.section == 2 && indexPath.row == 0 {
+        if indexPath.section == 1 && indexPath.row == 0 {
             FBSDKLoginManager().logOut()
+            accountMgr.deleteToken()
             performSegue(withIdentifier: "loginSegue", sender: nil)
         }
     }

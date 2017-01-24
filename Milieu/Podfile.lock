@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.1.0)
+  - Alamofire (4.3.0)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
     - Bolts/Tasks (= 1.8.4)
@@ -7,43 +7,43 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
   - Fabric (1.6.11)
-  - FBSDKCoreKit (4.17.0):
+  - FBSDKCoreKit (4.18.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.17.0):
+  - FBSDKLoginKit (4.18.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.17.0):
+  - FBSDKShareKit (4.18.0):
     - FBSDKCoreKit
-  - Mapbox-iOS-SDK (3.3.6)
-  - NVActivityIndicatorView (3.0)
-  - PNChart (0.8.9):
-    - UICountingLabel (~> 1.2.0)
-  - STPopup (1.8.1)
-  - UICountingLabel (1.2.0)
+  - Mapbox-iOS-SDK (3.4.0)
+  - NVActivityIndicatorView (3.2)
+  - STPopup (1.8.2)
+  - SwiftKeychainWrapper (3.0.1)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.0)
+  - Alamofire (~> 4.3)
   - Fabric
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
-  - Mapbox-iOS-SDK (~> 3.1)
+  - Mapbox-iOS-SDK
   - NVActivityIndicatorView
-  - PNChart
-  - STPopup (~> 1.6)
+  - STPopup (~> 1.8.2)
+  - SwiftKeychainWrapper
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: e266cf991b933498df791e645e0d8ac294492153
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  FBSDKCoreKit: 30a21d2d7b92984b3d80497113433c00824c35e9
-  FBSDKLoginKit: 42b7129ac0373ca99eaf4cbebf4d07bd42371f59
-  FBSDKShareKit: 9b573d03fbee36cbaf42d5bb1f2bc019e0d72347
-  Mapbox-iOS-SDK: 1651ab31beec917b60ccbb8f737d0435ec80eeb3
-  NVActivityIndicatorView: 81953b5e65093ba79edf4fe7268e002039ca5268
-  PNChart: 84774d225c2126ded6c93d4dbe6ae98c3a73c2d2
-  STPopup: 47e8ae53d348fa5f9be2d08d5c513ebe12ca758d
-  UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
+  FBSDKCoreKit: 15fef8804a4629f98c6f4e55e81a76c9d725d85e
+  FBSDKLoginKit: 6773073e970b2b15fb12e451ce7f11da0532b880
+  FBSDKShareKit: 0b8d6cc3f103c75297eb3c62caec284a2ccf1b9e
+  Mapbox-iOS-SDK: 0b466a2e2346589e93050e0b1d1c253f6b2510bc
+  NVActivityIndicatorView: 28942c18ced111a6a3ce5e6f5b27d9d40116d639
+  STPopup: b69b3e7484ef7d2baec5f9ab2939f8a7bcdfe218
+  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: e58bdd8856a10d42c62ef545949d68ab3ef9421a
+PODFILE CHECKSUM: 465cd06a8cbd26b57935fc17aa819409369c481d
 
 COCOAPODS: 1.1.1
