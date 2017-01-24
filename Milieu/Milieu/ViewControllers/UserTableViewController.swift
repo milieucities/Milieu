@@ -17,12 +17,12 @@ class UserTableViewController: UITableViewController {
     @IBOutlet weak var avatarView: FBSDKProfilePictureView!
     
     let accountMgr = AccountManager.sharedInstance
-    var token: ApiToken!
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if hasLogIn() {
+        if accountMgr.hasLogIn() {
             
             syncToken()
             
@@ -38,7 +38,7 @@ class UserTableViewController: UITableViewController {
                 }
             })
         }else{
-            performSegue(withIdentifier: "loginSegue", sender: nil)
+            performSegue(withIdentifier: Segue.userToAuthSegue, sender: nil)
         }
     }
 
@@ -54,22 +54,14 @@ class UserTableViewController: UITableViewController {
         return 1
     }
     
-    func hasLogIn() -> Bool{
-        // Check if fbToken exists
-        guard FBSDKAccessToken.current() != nil else{
-            return false
-        }
-        // Check JWT token in keychain
-        token = accountMgr.fetchToken()
-        return  token != nil
-    }
+
     
     /**
      Check if need to update JWT token.
      Silently update token if needed.
     */
     func syncToken(){
-        if token.isExpire(){
+        if accountMgr.token!.isExpire(){
             
             accountMgr.updateToken(fbToken: FBSDKAccessToken.current().tokenString){
                 token, error in

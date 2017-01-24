@@ -28,3 +28,10 @@ struct Connection{
 struct Color{
     static let primary = UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1)
 }
+
+struct Segue{
+    static let authToMapSegue = "authToMapViewSegue"
+    static let userToAuthSegue = "userToAuthSegue"
+    static let landingToAuthSegue = "landingToAuthSegue"
+    static let landingToMapSegue = "landingToMapSegue"
+}

@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -127,7 +128,7 @@
                     <connections>
                         <outlet property="avatarView" destination="0Qo-ww-UIX" id="sES-rZ-eH4"/>
                         <outlet property="userNameLabel" destination="Tld-Wt-x12" id="eK8-LQ-Poz"/>
-                        <segue destination="wwQ-2f-pcy" kind="presentation" identifier="loginSegue" id="3PT-4W-2Vn"/>
+                        <segue destination="wwQ-2f-pcy" kind="presentation" identifier="userToAuthSegue" id="3PT-4W-2Vn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mSt-oA-ryw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -173,7 +174,7 @@ Gain Urban Insight from Local Communities</string>
                                         <rect key="frame" x="53" y="310" width="145" height="30"/>
                                         <state key="normal" title="Don't Want to Sign In"/>
                                         <connections>
-                                            <segue destination="8ng-az-3lj" kind="presentation" identifier="skipSignInSegue" id="BGt-ro-aoD"/>
+                                            <segue destination="8ng-az-3lj" kind="presentation" identifier="authToMapViewSegue" id="BGt-ro-aoD"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcc-Sm-lla" customClass="FBSDKLoginButton">
@@ -596,7 +597,8 @@ Gain Urban Insight from Local Communities</string>
                         <outlet property="indicator" destination="nYx-aW-7dp" id="sAk-Xb-Ojb"/>
                         <outlet property="informationLabel" destination="54G-EK-wg5" id="avF-Ml-uJW"/>
                         <outlet property="percentLabel" destination="LKz-OY-hB8" id="D9G-vC-bsW"/>
-                        <segue destination="8ng-az-3lj" kind="showDetail" identifier="landingToTabBar" action="showViewController:sender:" id="uFw-qv-DWy"/>
+                        <segue destination="8ng-az-3lj" kind="showDetail" identifier="landingToMapSegue" action="showViewController:sender:" id="uFw-qv-DWy"/>
+                        <segue destination="wwQ-2f-pcy" kind="presentation" identifier="landingToAuthSegue" id="hEh-zW-RHo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lGy-ju-ESx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -719,6 +721,7 @@ Gain Urban Insight from Local Communities</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="BGt-ro-aoD"/>
+        <segue reference="hEh-zW-RHo"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.61960784310000006" green="0.82745098039999998" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

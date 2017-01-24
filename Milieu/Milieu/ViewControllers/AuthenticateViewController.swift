@@ -16,6 +16,7 @@ class AuthenticateViewController: UIViewController {
     
     @IBOutlet weak var facebookSignInButton: FBSDKLoginButton!
     let accountMgr = AccountManager.sharedInstance
+    var firstTime: Bool = false
     
     override func viewDidLoad() {
          super.viewDidLoad()
@@ -63,7 +64,11 @@ extension AuthenticateViewController: FBSDKLoginButtonDelegate{
                 return
             }
             
-            self.dismiss(animated: true, completion: nil)
+            if self.firstTime {
+                self.performSegue(withIdentifier: Segue.authToMapSegue, sender: nil)
+            }else{
+                self.dismiss(animated: true, completion: nil)
+            }
         }
     }
 }
@@ -76,7 +81,7 @@ extension AuthenticateViewController{
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default){
             _ in
-            self.performSegue(withIdentifier: "skipSignInSegue", sender: nil)
+            self.performSegue(withIdentifier: Segue.authToMapSegue, sender: nil)
         }
         
         showAlert(title: title, message: message, cancelAction: cancelAction, okAction: okAction)

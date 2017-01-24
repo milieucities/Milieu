@@ -10,16 +10,27 @@ import Foundation
 import SwiftKeychainWrapper
 import Alamofire
 import SwiftyJSON
+import FBSDKLoginKit
 
 class AccountManager{
     let secretKey: String = "MilieuApiToken"
-
+    var token: ApiToken?
 
     //MARK: Shared Instance
         
     static let sharedInstance : AccountManager = {
         return AccountManager()
     }()
+    
+    func hasLogIn() -> Bool{
+        // Check if fbToken exists
+        guard FBSDKAccessToken.current() != nil else{
+            return false
+        }
+        // Check JWT token in keychain
+        token = fetchToken()
+        return token != nil
+    }
     
     func saveToken(token: ApiToken) -> Bool{
         let data = NSKeyedArchiver.archivedData(withRootObject: token)
@@ -56,7 +67,7 @@ class AccountManager{
         }
     }
     
-    func deleteToken() -> Bool{
-        return KeychainWrapper.standard.removeObject(forKey: secretKey)
+    func deleteToken(){
+        KeychainWrapper.standard.removeObject(forKey: secretKey)
     }
 }
