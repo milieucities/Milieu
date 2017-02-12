@@ -21,6 +21,7 @@ struct Connection{
     static let MilieuServerBaseUrl = "https://milieu.io"
     static let ApiVersion = "/api/v1"
     static let LoginUrl = "\(MilieuServerBaseUrl)\(ApiVersion)/login"
+    static let DevSiteUrl = "\(MilieuServerBaseUrl)\(ApiVersion)/dev_sites"
     static let AdditionalHttpHeaders = ["Content-Type": "application/json", "Accept": "application/json"]
     static let OpenNorthBaseUrl = "http://represent.opennorth.ca"
 }
@@ -34,4 +35,5 @@ struct Segue{
     static let userToAuthSegue = "userToAuthSegue"
     static let landingToAuthSegue = "landingToAuthSegue"
     static let landingToMapSegue = "landingToMapSegue"
+    static let detailToCommentSegue = "deatilToCommentSegue"
 }

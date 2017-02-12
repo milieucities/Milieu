@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class CommentsViewController: UIViewController, UITextViewDelegate {
 
@@ -16,13 +17,14 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
 
     var devSiteComments = [ApplicationComments]()
     var devSite: DevSite!
+    let accountMgr = AccountManager.sharedInstance
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.contentSizeInPopup = CGSize(width: 300, height: 400)
-        self.landscapeContentSizeInPopup = CGSize(width: 400, height: 200)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(CommentsViewController.doneBtnDidTap))
-    }
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        self.contentSizeInPopup = CGSize(width: 300, height: 400)
+//        self.landscapeContentSizeInPopup = CGSize(width: 400, height: 200)
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(CommentsViewController.doneBtnDidTap))
+//    }
     
     override func viewDidLoad() {
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -31,18 +33,35 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
     }
     
     func loadComments(){
-        if let comments = devSite.comments{
-            if comments.count > 0{
-                var appComments = [ApplicationComments]()
-                for comment in comments{
-                    let commentObject = ApplicationComments(comment: comment)
-                    appComments.append(commentObject)
+
+        let headers: HTTPHeaders = [
+            "Authorization": accountMgr.fetchToken()?.jwt! ?? ""
+        ]
+        
+        let url = Connection.DevSiteUrl + "/\(devSite.id)" + "/comments"
+        Alamofire.request(url, method: .get, headers: headers).responseJSON{
+            response in
+            
+            let result = response.result
+            
+            debugPrint(response)
+            switch result{
+            case .success:
+                let comments = JSON(result.value!)["comments"].arrayValue
+                if comments.count > 0{
+                    var appComments = [ApplicationComments]()
+                    for comment in comments{
+                        let commentObject = ApplicationComments(comment: comment)
+                        appComments.append(commentObject)
+                    }
+                    self.devSiteComments = appComments
+                    self.tableView.reloadData()
                 }
-                devSiteComments = appComments
-                tableView.reloadData()
-            }else{
-                // TODO: Add a empty view to saying that there is no comment yet
-                AR5Logger.debug("No comments found")
+                break
+            case .failure:
+                let message = JSON.init(data: response.data!)["message"].stringValue
+                debugPrint(message)
+                break
             }
         }
     }

@@ -33,6 +33,7 @@ class AccountManager{
     }
     
     func saveToken(token: ApiToken) -> Bool{
+        AR5Logger.debug("\(token.jwt)")
         let data = NSKeyedArchiver.archivedData(withRootObject: token)
         return KeychainWrapper.standard.set(data, forKey: secretKey)
     }

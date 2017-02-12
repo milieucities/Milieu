@@ -67,7 +67,7 @@
                                         <rect key="frame" x="0.0" y="56" width="375" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1t9-NU-JrZ" id="Aoh-1T-vuf">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tld-Wt-x12">
@@ -384,7 +384,7 @@ Gain Urban Insight from Local Communities</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ILA-Lt-LB7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="986" y="35"/>
+            <point key="canvasLocation" x="995" y="130"/>
         </scene>
         <!--Comments-->
         <scene sceneID="0yA-QD-W10">
@@ -395,14 +395,14 @@ Gain Urban Insight from Local Communities</string>
                         <viewControllerLayoutGuide type="bottom" id="yD4-IE-KrR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="k8X-dV-wop">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5m4-9N-Ret">
-                                <rect key="frame" x="0.0" y="362" width="300" height="38"/>
+                                <rect key="frame" x="0.0" y="629" width="375" height="38"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yX2-gS-LFv">
-                                        <rect key="frame" x="256" y="8" width="36" height="30"/>
+                                        <rect key="frame" x="331" y="8" width="36" height="30"/>
                                         <state key="normal" title="Send">
                                             <color key="titleColor" red="0.19001331043097147" green="0.44523595099074742" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -411,7 +411,7 @@ Gain Urban Insight from Local Communities</string>
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lwo-JF-jE2">
-                                        <rect key="frame" x="8" y="8" width="240" height="22"/>
+                                        <rect key="frame" x="8" y="8" width="315" height="22"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -432,49 +432,49 @@ Gain Urban Insight from Local Communities</string>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="74" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YgK-xz-AXg">
-                                <rect key="frame" x="0.0" y="44" width="300" height="318"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="565"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" id="e4H-kE-ypo" customClass="CommentCell" customModule="Milieu" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="22" width="300" height="74"/>
+                                        <rect key="frame" x="0.0" y="22" width="375" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e4H-kE-ypo" id="zSN-To-61c">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="74"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="sl0-NG-MKC">
-                                                    <rect key="frame" x="8" y="8" width="284" height="66"/>
+                                                    <rect key="frame" x="16" y="8" width="351" height="66"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DTe-hn-pET">
-                                                            <rect key="frame" x="0.0" y="0.0" width="284" height="66"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="351" height="66"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qmF-ji-JKI">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="284" height="41.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="49.5"/>
                                                                     <subviews>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KpK-7S-k4A">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="284" height="40.5"/>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KpK-7S-k4A">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="351" height="49.5"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flT-PS-Kuk">
-                                                                                    <rect key="frame" x="252" y="0.0" width="32" height="14.5"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="32" height="14.5"/>
                                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70c-DJ-GyJ">
-                                                                                    <rect key="frame" x="247" y="22.5" width="37" height="18"/>
+                                                                                    <rect key="frame" x="0.0" y="22.5" width="37" height="18"/>
                                                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
+                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6jL-4w-kcv">
+                                                                                    <rect key="frame" x="0.0" y="48.5" width="351" height="1"/>
+                                                                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="1" id="dbm-8b-UAT"/>
+                                                                                    </constraints>
+                                                                                </view>
                                                                             </subviews>
                                                                         </stackView>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IoT-FA-uaj">
-                                                                            <rect key="frame" x="0.0" y="40.5" width="284" height="1"/>
-                                                                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="1" id="33a-mJ-2RV"/>
-                                                                            </constraints>
-                                                                        </imageView>
                                                                     </subviews>
                                                                 </stackView>
                                                             </subviews>
@@ -484,7 +484,7 @@ Gain Urban Insight from Local Communities</string>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="sl0-NG-MKC" secondAttribute="bottom" id="LRi-Bg-83c"/>
-                                                <constraint firstItem="sl0-NG-MKC" firstAttribute="leading" secondItem="zSN-To-61c" secondAttribute="leading" constant="8" id="h85-ee-NoZ"/>
+                                                <constraint firstItem="sl0-NG-MKC" firstAttribute="leading" secondItem="zSN-To-61c" secondAttribute="leading" constant="16" id="h85-ee-NoZ"/>
                                                 <constraint firstAttribute="trailing" secondItem="sl0-NG-MKC" secondAttribute="trailing" constant="8" id="nU9-zZ-StR"/>
                                                 <constraint firstItem="sl0-NG-MKC" firstAttribute="top" secondItem="zSN-To-61c" secondAttribute="top" constant="8" id="uBf-ge-C8c"/>
                                             </constraints>
@@ -515,11 +515,6 @@ Gain Urban Insight from Local Communities</string>
                     <navigationItem key="navigationItem" title="Comments" id="R6E-LJ-s50">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="qhj-4G-6WS"/>
                     </navigationItem>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="300" height="400"/>
                     <connections>
                         <outlet property="commentTextView" destination="lwo-JF-jE2" id="yXI-q1-SfK"/>
                         <outlet property="tableView" destination="YgK-xz-AXg" id="s6j-cN-lHl"/>
@@ -527,7 +522,7 @@ Gain Urban Insight from Local Communities</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0dT-oX-cvb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="986" y="452"/>
+            <point key="canvasLocation" x="1006" y="-475"/>
         </scene>
         <!--Launch View Controller-->
         <scene sceneID="F0C-5v-nnY">
@@ -652,9 +647,10 @@ Gain Urban Insight from Local Communities</string>
             <objects>
                 <navigationController storyboardIdentifier="DetailNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="ep0-A0-f2n" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xWv-H3-Sbz">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xWv-H3-Sbz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.61960784310000006" green="0.82745098039999998" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -673,7 +669,7 @@ Gain Urban Insight from Local Communities</string>
         <scene sceneID="3bp-sv-wPJ">
             <objects>
                 <collectionViewController id="Nv8-Z6-SWX" customClass="DevsiteDetailController" customModule="Milieu" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="BvI-5Z-3jI">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="BvI-5Z-3jI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -703,6 +699,12 @@ Gain Urban Insight from Local Communities</string>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="back:" destination="Nv8-Z6-SWX" id="Uux-Gv-IlP"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Comment" id="W0H-e7-8Cf">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="xGR-xV-ePz" kind="show" identifier="detailToCommentSegue" id="Bbv-M8-EH1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

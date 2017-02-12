@@ -83,3 +83,12 @@ class DevsiteDetailController: UICollectionViewController, UICollectionViewDeleg
     }
 
 }
+
+extension DevsiteDetailController{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailToCommentSegue" {
+            let commentController = segue.destination as! CommentsViewController
+            commentController.devSite = devSite
+        }
+    }
+}

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SwiftyJSON
 
 struct ApplicationComments {
     var userName: String = "Anonymous"
@@ -18,7 +19,8 @@ struct ApplicationComments {
         self.content = content
     }
     
-    init(comment: JSONDictionary){
-        self.content = comment["body"] as? String
+    init(comment: JSON){
+        self.userName = comment["user"]["name"].string ?? "Anonymous"
+        self.content = comment["body"].stringValue
     }
 }
