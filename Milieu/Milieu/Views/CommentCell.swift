@@ -12,6 +12,6 @@ class CommentCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
-    
-    
+    var userId: Int?
+    var commentId: Int!
 }
