@@ -116,6 +116,10 @@ extension CommentsViewController: UITableViewDataSource, UITableViewDelegate{
         cell.commentLabel.text = comment.body
         cell.userId = comment.userId
         cell.commentId = comment.id
+        cell.dateLabel.text = DateUtil.transformStringFromDate(comment.createdAt, dateStyle: .short, timeStyle: .none, stringFormat: .utcStandardFormat)
+        cell.voteCountLabel.text = String(comment.voteCount)
+        cell.votedUp = comment.votedUp
+        cell.votedDown = comment.votedDown
         return cell
     }
     

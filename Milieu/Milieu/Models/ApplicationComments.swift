@@ -15,7 +15,7 @@ struct ApplicationComments {
     let userId: Int?
     let body: String?
     var createdAt: String = ""
-    let voteCount: Int?
+    var voteCount: Int = 0
     var votedDown: Bool = false
     var votedUp: Bool = false
     var id: Int
@@ -25,7 +25,7 @@ struct ApplicationComments {
         self.userId = comment["user"]["id"].int
         self.body = comment["body"].stringValue
         self.createdAt = comment["created_at"].stringValue
-        self.voteCount = comment["vote_count"].int
+        self.voteCount = comment["vote_count"].int ?? 0
         self.votedDown = comment["voted_down"].boolValue
         self.votedUp = comment["voted_up"].boolValue
         self.id = comment["id"].intValue
