@@ -12,15 +12,22 @@ import SwiftyJSON
 
 struct ApplicationComments {
     var userName: String = "Anonymous"
-    let content: String?
-    
-    init(userName: String = "Anonymous", content: String){
-        self.userName = userName
-        self.content = content
-    }
+    let userId: Int?
+    let body: String?
+    var createdAt: String = ""
+    let voteCount: Int?
+    var votedDown: Bool = false
+    var votedUp: Bool = false
+    var id: Int
     
     init(comment: JSON){
         self.userName = comment["user"]["name"].string ?? "Anonymous"
-        self.content = comment["body"].stringValue
+        self.userId = comment["user"]["id"].int
+        self.body = comment["body"].stringValue
+        self.createdAt = comment["created_at"].stringValue
+        self.voteCount = comment["vote_count"].int
+        self.votedDown = comment["voted_down"].boolValue
+        self.votedUp = comment["voted_up"].boolValue
+        self.id = comment["id"].intValue
     }
 }

@@ -10,6 +10,7 @@
 		10B9E3E61C4D59B800DE21B9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B9E3E51C4D59B800DE21B9 /* CoreDataManager.swift */; };
 		2778F262BA7D9B892493DA4D /* Pods_Milieu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 232F1A68D95F6DEC274308D6 /* Pods_Milieu.framework */; };
 		3E2BCA7929D3994C7EDE12C5 /* Pods_MilieuTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 127375757A998C363C60FDA7 /* Pods_MilieuTests.framework */; };
+		830172361E529E7700AD0996 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830172351E529E7700AD0996 /* User.swift */; };
 		83080A2F1D9FF566007966A5 /* DevsiteDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83080A2E1D9FF565007966A5 /* DevsiteDetailController.swift */; };
 		83080A311D9FFCEA007966A5 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83080A301D9FFCEA007966A5 /* UIView+Constraints.swift */; };
 		83080A341DA00BE5007966A5 /* GeneralInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83080A331DA00BE5007966A5 /* GeneralInfoCell.swift */; };
@@ -103,6 +104,7 @@
 		65500B470B1E786CDE2107FC /* Pods-Milieu.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Milieu.beta.xcconfig"; path = "Pods/Target Support Files/Pods-Milieu/Pods-Milieu.beta.xcconfig"; sourceTree = "<group>"; };
 		78282D22C6FCCCE55D1002CE /* Pods-MilieuUITests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MilieuUITests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-MilieuUITests/Pods-MilieuUITests.beta.xcconfig"; sourceTree = "<group>"; };
 		7FF45709C6C76C13AD1F790C /* Pods-MilieuTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MilieuTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MilieuTests/Pods-MilieuTests.debug.xcconfig"; sourceTree = "<group>"; };
+		830172351E529E7700AD0996 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Networking/Resources/User.swift; sourceTree = "<group>"; };
 		83080A2E1D9FF565007966A5 /* DevsiteDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DevsiteDetailController.swift; path = ViewControllers/DevsiteDetailController.swift; sourceTree = "<group>"; };
 		83080A301D9FFCEA007966A5 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Constraints.swift"; path = "Views/UIView+Constraints.swift"; sourceTree = "<group>"; };
 		83080A331DA00BE5007966A5 /* GeneralInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeneralInfoCell.swift; path = Views/DetailViews/GeneralInfoCell.swift; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 				83FA343D1D60D1CB0061276F /* Resource.swift */,
 				83FA343F1D6125510061276F /* DevSite.swift */,
 				833DB8CA1E2EFD5500D040A9 /* ApiToken.swift */,
+				830172351E529E7700AD0996 /* User.swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -753,6 +756,7 @@
 				831C224D1CAB5EA5003351B1 /* CardCell.swift in Sources */,
 				83FB29EA1C473F140093EBC8 /* City+CoreDataProperties.swift in Sources */,
 				835A1C191D486F400054C2F0 /* DevApp+CoreDataProperties.swift in Sources */,
+				830172361E529E7700AD0996 /* User.swift in Sources */,
 				83080A2F1D9FF566007966A5 /* DevsiteDetailController.swift in Sources */,
 				834E87EF1C1C6734002A763C /* MapViewController.swift in Sources */,
 				834DED8C1E2AA645000D2F77 /* HttpMethod.swift in Sources */,

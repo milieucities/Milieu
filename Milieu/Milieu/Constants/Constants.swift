@@ -22,6 +22,8 @@ struct Connection{
     static let ApiVersion = "/api/v1"
     static let LoginUrl = "\(MilieuServerBaseUrl)\(ApiVersion)/login"
     static let DevSiteUrl = "\(MilieuServerBaseUrl)\(ApiVersion)/dev_sites"
+    static let OldDevSiteUrl = "\(MilieuServerBaseUrl)/dev_sites"
+    static let UserUrl = "\(MilieuServerBaseUrl)\(ApiVersion)/user"
     static let AdditionalHttpHeaders = ["Content-Type": "application/json", "Accept": "application/json"]
     static let OpenNorthBaseUrl = "http://represent.opennorth.ca"
 }
