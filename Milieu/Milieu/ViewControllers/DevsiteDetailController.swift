@@ -12,7 +12,12 @@ private let cellId = "infoId"
 
 class DevsiteDetailController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    var devSite: DevSite!
+    var annotation: ApplicationInfo!
+    var devSite: DevSite {
+        get{
+            return annotation.devSite
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +35,6 @@ class DevsiteDetailController: UICollectionViewController, UICollectionViewDeleg
 
     }
     
-
-    // MARK: - Navigation Bar
-    @IBAction func back(_ sender: AnyObject) {
-        self.dismiss(animated: true, completion: nil)
-    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4

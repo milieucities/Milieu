@@ -73,7 +73,7 @@ class ApplicationDetailViewController: UIViewController {
     func detailBtnDidTap(){
         let navController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailNavigationController") as! UINavigationController
         let detailController = navController.topViewController as! DevsiteDetailController
-        detailController.devSite = devSite
+//        detailController.devSite = devSite
         present(navController, animated: true, completion: nil)
     }
     

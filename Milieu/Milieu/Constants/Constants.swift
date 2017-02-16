@@ -40,4 +40,5 @@ struct Segue{
     static let landingToAuthSegue = "landingToAuthSegue"
     static let landingToMapSegue = "landingToMapSegue"
     static let detailToCommentSegue = "deatilToCommentSegue"
+    static let mapToDetailSegue = "mapToDetailSegue"
 }

@@ -12,7 +12,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Applications-->
+        <!--Application-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController storyboardIdentifier="MapViewController" id="9pv-A4-QxB" customClass="MapViewController" customModule="Milieu" customModuleProvider="target" sceneMemberID="viewController">
@@ -25,11 +25,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Applications" id="sD4-aL-HLp"/>
+                    <navigationItem key="navigationItem" title="Application" id="sD4-aL-HLp"/>
+                    <connections>
+                        <segue destination="Nv8-Z6-SWX" kind="show" identifier="mapToDetailSegue" id="4Bt-Vc-9jQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="161" y="251"/>
+            <point key="canvasLocation" x="161" y="250"/>
         </scene>
         <!--Me-->
         <scene sceneID="cEF-o8-4t2">
@@ -395,11 +398,11 @@ Gain Urban Insight from Local Communities</string>
                         <viewControllerLayoutGuide type="bottom" id="yD4-IE-KrR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="k8X-dV-wop">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5m4-9N-Ret">
-                                <rect key="frame" x="0.0" y="629" width="375" height="38"/>
+                                <rect key="frame" x="0.0" y="565" width="375" height="38"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yX2-gS-LFv">
                                         <rect key="frame" x="331" y="8" width="36" height="30"/>
@@ -432,7 +435,7 @@ Gain Urban Insight from Local Communities</string>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="74" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YgK-xz-AXg">
-                                <rect key="frame" x="0.0" y="64" width="375" height="565"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="565"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" id="e4H-kE-ypo" customClass="CommentCell" customModule="Milieu" customModuleProvider="target">
@@ -532,9 +535,7 @@ Gain Urban Insight from Local Communities</string>
                             <constraint firstAttribute="trailing" secondItem="YgK-xz-AXg" secondAttribute="trailing" id="ohR-Ev-1bj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Comments" id="R6E-LJ-s50">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="qhj-4G-6WS"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Comments" id="R6E-LJ-s50"/>
                     <connections>
                         <outlet property="commentTextView" destination="lwo-JF-jE2" id="yXI-q1-SfK"/>
                         <outlet property="tableView" destination="YgK-xz-AXg" id="s6j-cN-lHl"/>
@@ -662,35 +663,12 @@ Gain Urban Insight from Local Communities</string>
             </objects>
             <point key="canvasLocation" x="-1393" y="250"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="6RG-cp-VZH">
-            <objects>
-                <navigationController storyboardIdentifier="DetailNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="ep0-A0-f2n" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xWv-H3-Sbz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.61960784310000006" green="0.82745098039999998" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Nv8-Z6-SWX" kind="relationship" relationship="rootViewController" id="meA-zU-Twr"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fyD-9A-um7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-628" y="-475"/>
-        </scene>
         <!--Devsite Detail Controller-->
         <scene sceneID="3bp-sv-wPJ">
             <objects>
                 <collectionViewController id="Nv8-Z6-SWX" customClass="DevsiteDetailController" customModule="Milieu" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="BvI-5Z-3jI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vmh-Zu-BCI">
@@ -715,13 +693,7 @@ Gain Urban Insight from Local Communities</string>
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="yKn-2s-hP2">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="6we-mH-e7r">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="back:" destination="Nv8-Z6-SWX" id="Uux-Gv-IlP"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Comment" id="W0H-e7-8Cf">
+                        <barButtonItem key="rightBarButtonItem" title="Comments" id="W0H-e7-8Cf">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="xGR-xV-ePz" kind="show" identifier="detailToCommentSegue" id="Bbv-M8-EH1"/>
