@@ -18,18 +18,20 @@ struct DefaultsValue{
 }
 
 struct Connection{
-    static let MilieuServerBaseUrl = "https://milieu.io"
+    static let MilieuServerBaseUrl = "http://test.milieu.io"
     static let ApiVersion = "/api/v1"
     static let LoginUrl = "\(MilieuServerBaseUrl)\(ApiVersion)/login"
     static let DevSiteUrl = "\(MilieuServerBaseUrl)\(ApiVersion)/dev_sites"
     static let OldDevSiteUrl = "\(MilieuServerBaseUrl)/dev_sites"
-    static let UserUrl = "\(MilieuServerBaseUrl)\(ApiVersion)/user"
+    static let UserUrl = "\(MilieuServerBaseUrl)\(ApiVersion)/users"
+    static let VoteUrl = "\(MilieuServerBaseUrl)\(ApiVersion)/votes"
     static let AdditionalHttpHeaders = ["Content-Type": "application/json", "Accept": "application/json"]
     static let OpenNorthBaseUrl = "http://represent.opennorth.ca"
 }
 
 struct Color{
     static let primary = UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1)
+    static let lightGray = UIColor(red:170.0/255.0, green:170.0/255.0, blue:170.0/255.0, alpha:1)
 }
 
 struct Segue{

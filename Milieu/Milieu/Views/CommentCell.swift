@@ -20,11 +20,11 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var dislikeButton: UIButton!
     
     @IBAction func likeComment(_ sender: Any) {
-        like()
+        vote(up: true)
     }
     
     @IBAction func dislikeComment(_ sender: Any) {
-        dislikeButtonIsPressed()
+        vote(up: false)
     }
     
     var userId: Int?
@@ -46,22 +46,25 @@ class CommentCell: UITableViewCell {
     }
     
     func likeButtonIsPressed(){
-        votedUp = true
+        votedUp = !votedUp
         votedDown = false
-        likeButton.setTitleColor(Color.primary, for: .normal)
+        likeButton.setTitleColor((votedUp ? Color.primary : Color.lightGray), for: .normal)
         dislikeButton.setTitleColor(Color.lightGray, for: .normal)
-        voteCountLabel.text = String(Int(voteCountLabel.text!)! + 1)
+        voteCountLabel.text = String(Int(voteCountLabel.text!)! + (votedUp ? 1 : -1))
     }
     
     func dislikeButtonIsPressed(){
         votedUp = false
-        votedDown = true
+        votedDown = !votedDown
         likeButton.setTitleColor(Color.lightGray, for: .normal)
-        dislikeButton.setTitleColor(Color.primary, for: .normal)
-        voteCountLabel.text = String(Int(voteCountLabel.text!)! - 1)
+        dislikeButton.setTitleColor((votedDown ? Color.primary : Color.lightGray), for: .normal)
+        voteCountLabel.text = String(Int(voteCountLabel.text!)! + (votedDown ? -1 : 1))
     }
     
-    func like(){
+    /**
+     If up is true, then vote a up for the comment. Otherwise, vote a down for the comment.
+    */
+    func vote(up: Bool){
         let headers: HTTPHeaders = [
             "Authorization": accountMgr.fetchToken()?.jwt! ?? "",
             "Accept": "application/json",
@@ -70,7 +73,7 @@ class CommentCell: UITableViewCell {
         
         let parameters: Parameters = [
             "comment_id": commentId,
-            "up": true
+            "up": up
         ]
         
         let url = Connection.VoteUrl
@@ -83,7 +86,11 @@ class CommentCell: UITableViewCell {
             debugPrint(response)
             switch result{
             case .success:
-                self.likeButtonIsPressed()
+                if up{
+                    self.likeButtonIsPressed()
+                }else{
+                    self.dislikeButtonIsPressed()
+                }
                 break
             case .failure:
                 let message = JSON.init(data: response.data!)["description"].stringValue
@@ -91,30 +98,5 @@ class CommentCell: UITableViewCell {
                 break
             }
         }
-    }
-    
-    func dislike(){
-//        let headers: HTTPHeaders = [
-//            "Authorization": accountMgr.fetchToken()?.jwt! ?? ""
-//        ]
-//        
-//        let url = Connection.VoteUrl + "/\(commentId)"
-//        
-//        Alamofire.request(url, method: .delete, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate().responseJSON{
-//            response in
-//            
-//            let result = response.result
-//            
-//            debugPrint(response)
-//            switch result{
-//            case .success:
-//                self.likeButtonIsPressed()
-//                break
-//            case .failure:
-//                let message = JSON.init(data: response.data!)["description"].stringValue
-//                debugPrint(message)
-//                break
-//            }
-//        }
     }
 }
