@@ -18,7 +18,7 @@ struct DefaultsValue{
 }
 
 struct Connection{
-    static let MilieuServerBaseUrl = "http://test.milieu.io"
+    static let MilieuServerBaseUrl = "https://milieu.io"
     static let ApiVersion = "/api/v1"
     static let LoginUrl = "\(MilieuServerBaseUrl)\(ApiVersion)/login"
     static let DevSiteUrl = "\(MilieuServerBaseUrl)\(ApiVersion)/dev_sites"
