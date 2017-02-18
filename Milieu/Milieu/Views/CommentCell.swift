@@ -29,21 +29,20 @@ class CommentCell: UITableViewCell {
     
     var userId: Int?
     var commentId: Int!
-    var votedDown: Bool = false
-    var votedUp: Bool = false
+    var votedDown: Bool = false {
+        didSet{
+            dislikeButton.setTitleColor(votedDown ? Color.primary : Color.lightGray, for: .normal)
+        }
+    }
+    
+    var votedUp: Bool = false {
+        didSet{
+            likeButton.setTitleColor(votedUp ? Color.primary : Color.lightGray, for: .normal)
+        }
+    }
     
     let accountMgr = AccountManager.sharedInstance
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        if votedUp{
-            likeButton.setTitleColor(Color.primary, for: .normal)
-        }
-        
-        if votedDown{
-            dislikeButton.setTitleColor(Color.primary, for: .normal)
-        }
-    }
     
     /**
      If up is true, then vote a up for the comment. Otherwise, vote a down for the comment.
@@ -103,8 +102,6 @@ class CommentCell: UITableViewCell {
     func voteDidFinish(up: Bool, down: Bool, offset: Int){
         votedUp = up
         votedDown = down
-        likeButton.setTitleColor((votedUp ? Color.primary : Color.lightGray), for: .normal)
-        dislikeButton.setTitleColor((votedDown ? Color.primary : Color.lightGray), for: .normal)
         voteCountLabel.text = String(Int(voteCountLabel.text!)! + offset)
     }
     
