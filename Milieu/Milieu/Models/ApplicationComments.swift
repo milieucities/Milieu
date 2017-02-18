@@ -16,8 +16,8 @@ struct ApplicationComments {
     let body: String?
     var createdAt: String = ""
     var voteCount: Int = 0
-    var votedDown: Int? = nil
-    var votedUp: Int? = nil
+    var votedDown: Int?
+    var votedUp: Int?
     var id: Int
     
     init(comment: JSON){
