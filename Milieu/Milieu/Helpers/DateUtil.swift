@@ -10,7 +10,7 @@ import Foundation
 
 enum MilieuDateFormat{
     case utcStandardFormat
-    case noFormat
+    case customizeFormat(format:String, timeZone:TimeZone)
 }
 class DateUtil{
     
@@ -32,8 +32,9 @@ class DateUtil{
             case .utcStandardFormat:
                 dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-            case .noFormat:
-                return dateString
+            case .customizeFormat(let format, let timezone):
+                dateFormatter.dateFormat = format
+                dateFormatter.timeZone = timezone
             }
             
             if let dateObject = dateFormatter.date(from: dateString){
@@ -55,23 +56,6 @@ class DateUtil{
             return "Unknown"
         }
         
-    }
-    
-    class func transformDateFromString(_ dateString: String?, withFormat stringFormat: MilieuDateFormat) -> Date{
-        if let dateString = dateString{
-            let dateFormatter = DateFormatter()
-            
-            switch stringFormat{
-            case .utcStandardFormat:
-                dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-            case .noFormat:
-                return Date()
-            }
-            
-            return dateFormatter.date(from: dateString) ?? Date()
-        }
-        return Date()
     }
     
 }

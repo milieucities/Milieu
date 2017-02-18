@@ -14,7 +14,17 @@ import FBSDKLoginKit
 
 class AccountManager{
     let secretKey: String = "MilieuApiToken"
-    var token: ApiToken?
+    var token: ApiToken?{
+        get{
+            return fetchToken()
+        }
+    }
+    var user: User?{
+        get{
+            return fetchUser()
+        }
+    }
+    let defaults = UserDefaults.standard
 
     //MARK: Shared Instance
         
@@ -27,12 +37,12 @@ class AccountManager{
         guard FBSDKAccessToken.current() != nil else{
             return false
         }
-        // Check JWT token in keychain
-        token = fetchToken()
+        
         return token != nil
     }
     
     func saveToken(token: ApiToken) -> Bool{
+        AR5Logger.debug("\(token.jwt)")
         let data = NSKeyedArchiver.archivedData(withRootObject: token)
         return KeychainWrapper.standard.set(data, forKey: secretKey)
     }
@@ -69,5 +79,20 @@ class AccountManager{
     
     func deleteToken(){
         KeychainWrapper.standard.removeObject(forKey: secretKey)
+    }
+}
+
+extension AccountManager{
+    func saveUser(user: User){
+        let data = NSKeyedArchiver.archivedData(withRootObject: user)
+        defaults.set(data, forKey:"userInfo")
+    }
+    
+    func fetchUser() -> User?{
+        let savedData = defaults.object(forKey: "userInfo") as? Data
+        guard let data =  savedData else{
+            return nil
+        }
+        return NSKeyedUnarchiver.unarchiveObject(with: data) as? User
     }
 }

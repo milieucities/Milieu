@@ -17,6 +17,7 @@ target 'Milieu' do
   pod 'FBSDKLoginKit'
   pod 'SwiftKeychainWrapper'
   pod 'SwiftyJSON'
+  pod 'Whisper'
 
 end
 
