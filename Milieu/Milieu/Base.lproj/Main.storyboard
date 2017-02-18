@@ -248,7 +248,7 @@ Gain Urban Insight from Local Communities</string>
                                         <rect key="frame" x="8" y="8" width="315" height="22"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                                         <connections>
                                             <outlet property="delegate" destination="xGR-xV-ePz" id="6tM-Ae-TZn"/>
                                         </connections>
@@ -377,6 +377,8 @@ Gain Urban Insight from Local Communities</string>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="commentTextView" destination="lwo-JF-jE2" id="yXI-q1-SfK"/>
+                        <outlet property="commentView" destination="5m4-9N-Ret" id="qml-Z3-4DF"/>
+                        <outlet property="keyboardHeightLayoutConstraint" destination="SIF-CE-bI2" id="GJU-V9-dL7"/>
                         <outlet property="tableView" destination="YgK-xz-AXg" id="s6j-cN-lHl"/>
                     </connections>
                 </viewController>
@@ -553,7 +555,7 @@ Gain Urban Insight from Local Communities</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="BGt-ro-aoD"/>
-        <segue reference="hEh-zW-RHo"/>
+        <segue reference="3PT-4W-2Vn"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.61960784310000006" green="0.82745098039999998" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

@@ -14,6 +14,8 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commentTextView: UITextView!
+    @IBOutlet weak var commentView: UIView!
+    @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint!
 
     var devSiteComments = [ApplicationComments]()
     var devSite: DevSite!
@@ -25,6 +27,42 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 80.0
         commentTextView.isScrollEnabled = false
+        self.hideKeyboardWhenTappedAround()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        user = accountMgr.fetchUser()
+        loadComments()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardNotification(notification:)), name: .UIKeyboardWillChangeFrame, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
+    func keyboardNotification(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+            let duration:TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
+            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
+            let animationCurve:UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+            if (endFrame?.origin.y)! >= UIScreen.main.bounds.size.height {
+                self.keyboardHeightLayoutConstraint?.constant = 0.0
+            } else {
+                self.keyboardHeightLayoutConstraint?.constant = endFrame?.size.height ?? 0.0
+            }
+            UIView.animate(withDuration: duration,
+                           delay: TimeInterval(0),
+                           options: animationCurve,
+                           animations: { self.view.layoutIfNeeded() },
+                           completion: nil)
+        }
     }
     
     
@@ -62,11 +100,6 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        user = accountMgr.fetchUser()
-        loadComments()
-    }
 
 
     
@@ -101,8 +134,8 @@ extension CommentsViewController: UITableViewDataSource, UITableViewDelegate{
         let truncated = dateString.substring(to: newEndIndex)
         cell.dateLabel.text = DateUtil.transformStringFromDate(truncated, dateStyle: .medium, timeStyle: .short, stringFormat: .customizeFormat(format: "yyyy-MM-dd HH:mm:ss", timeZone: TimeZone(abbreviation: "UTC")!))
         cell.voteCountLabel.text = String(comment.voteCount)
-        cell.votedUp = comment.votedUp
-        cell.votedDown = comment.votedDown
+        cell.votedUp = (comment.votedUp == nil) ? false : true
+        cell.votedDown = (comment.votedDown == nil) ? false : true
         return cell
     }
 
