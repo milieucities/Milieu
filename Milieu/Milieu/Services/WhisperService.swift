@@ -11,8 +11,8 @@ import Whisper
 
 class WhisperService{
     
-    func showWhisper(message: String, controller: UINavigationController){
-        let whisperMessage = Message(title: message, backgroundColor: Color.lightGray)
+    class func showWhisper(message: String, controller: UINavigationController){
+        let whisperMessage = Message(title: message, backgroundColor: Color.lightRed)
         show(whisper: whisperMessage, to: controller, action: .show)
     }
 }

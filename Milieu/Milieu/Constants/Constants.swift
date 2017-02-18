@@ -30,6 +30,7 @@ struct Connection{
 }
 
 struct Color{
+    static let lightRed = UIColor(red:255.0/255.0, green:123.0/255.0, blue:121.0/255.0, alpha:0.9)
     static let primary = UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1)
     static let lightGray = UIColor(red:170.0/255.0, green:170.0/255.0, blue:170.0/255.0, alpha:1)
 }

@@ -200,12 +200,12 @@ extension CommentsViewController{
                 let newComment = ApplicationComments(comment: comment)
                 self.devSiteComments.insert(newComment, at: 0)
                 self.commentTextView.text = ""
-                
+
                 self.tableView.reloadData()
                 break
             case .failure:
                 let message = JSON.init(data: response.data!)["description"].stringValue
-                debugPrint(message)
+                WhisperService.showWhisper(message: message, controller: self.navigationController!)
                 break
             }
         }
