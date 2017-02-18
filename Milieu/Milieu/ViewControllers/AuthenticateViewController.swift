@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import Alamofire
+import SwiftyJSON
 
 
 class AuthenticateViewController: UIViewController {
@@ -64,6 +65,8 @@ extension AuthenticateViewController: FBSDKLoginButtonDelegate{
                 return
             }
             
+            self.getUserInfo()
+            
             if self.firstTime {
                 self.performSegue(withIdentifier: Segue.authToMapSegue, sender: nil)
             }else{
@@ -75,7 +78,32 @@ extension AuthenticateViewController: FBSDKLoginButtonDelegate{
 
 // MARK: - Handle Login Result
 extension AuthenticateViewController{
-    
+    func getUserInfo(){
+        let headers: HTTPHeaders = [
+            "Authorization": accountMgr.token?.jwt! ?? "",
+            "Accept": "application/json"
+        ]
+        
+        Alamofire.request(Connection.UserUrl, method: .get, headers: headers).validate().responseJSON{
+            response in
+                
+            let result = response.result
+                
+            debugPrint(response)
+            switch result{
+            case .success:
+                let json = JSON(result.value!)
+                let user = User(json:json)
+                self.accountMgr.saveUser(user: user!)
+                break
+            case .failure:
+                let message = JSON.init(data: response.data!)["description"].stringValue
+                debugPrint(message)
+                break
+            }
+        }
+
+    }
 
     func showDefaultAlert(title: String = "Error", message: String){
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)

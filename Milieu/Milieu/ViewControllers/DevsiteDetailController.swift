@@ -12,11 +12,18 @@ private let cellId = "infoId"
 
 class DevsiteDetailController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    var devSite: DevSite!
+    var annotation: ApplicationInfo!
+    var devSite: DevSite {
+        get{
+            return annotation.devSite
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        tabBarController?.tabBar.isHidden = true
+        
         navigationItem.title = "Detail"
         
         collectionView?.alwaysBounceVertical = true
@@ -28,12 +35,6 @@ class DevsiteDetailController: UICollectionViewController, UICollectionViewDeleg
         collectionView?.register(DescriptionCell.self, forCellWithReuseIdentifier: DescriptionCell.cellId)
         collectionView?.register(StatusCell.self, forCellWithReuseIdentifier: StatusCell.cellId)
 
-    }
-    
-
-    // MARK: - Navigation Bar
-    @IBAction func back(_ sender: AnyObject) {
-        self.dismiss(animated: true, completion: nil)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -82,4 +83,13 @@ class DevsiteDetailController: UICollectionViewController, UICollectionViewDeleg
         }
     }
 
+}
+
+extension DevsiteDetailController{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailToCommentSegue" {
+            let commentController = segue.destination as! CommentsViewController
+            commentController.devSite = devSite
+        }
+    }
 }

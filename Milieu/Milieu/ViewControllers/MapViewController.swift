@@ -54,6 +54,11 @@ class MapViewController: UIViewController{
         STPopupNavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -172,20 +177,16 @@ extension MapViewController: MGLMapViewDelegate{
         mapView.deselectAnnotation(annotation, animated: false)
         
         if let annotation = annotation as? ApplicationInfo{
-            
-            // Create the ApplicationDetailViewController by storyboard
-            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ApplicationDetailViewController") as! ApplicationDetailViewController
-            
-            // Set the annotation
-            viewController.annotation = annotation
-            
-            // Use the STPopupController to make the fancy view controller
-            let popupController = STPopupController(rootViewController: viewController)
-            popupController.containerView.layer.cornerRadius = 4
+            performSegue(withIdentifier: Segue.mapToDetailSegue, sender: annotation)
+        }
+    }
+}
 
-            // Show it on top of the map view
-            popupController.present(in: self)
-            
+extension MapViewController{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Segue.mapToDetailSegue{
+            let viewController = segue.destination as! DevsiteDetailController
+            viewController.annotation = sender as! ApplicationInfo
         }
     }
 }

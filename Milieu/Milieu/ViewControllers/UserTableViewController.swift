@@ -87,7 +87,7 @@ class UserTableViewController: UITableViewController {
         if indexPath.section == 1 && indexPath.row == 0 {
             FBSDKLoginManager().logOut()
             accountMgr.deleteToken()
-            performSegue(withIdentifier: "loginSegue", sender: nil)
+            performSegue(withIdentifier: Segue.userToAuthSegue, sender: nil)
         }
     }
 
