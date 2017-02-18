@@ -21,7 +21,9 @@ class DevsiteDetailController: UICollectionViewController, UICollectionViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        tabBarController?.tabBar.isHidden = true
+        
         navigationItem.title = "Detail"
         
         collectionView?.alwaysBounceVertical = true
@@ -34,7 +36,6 @@ class DevsiteDetailController: UICollectionViewController, UICollectionViewDeleg
         collectionView?.register(StatusCell.self, forCellWithReuseIdentifier: StatusCell.cellId)
 
     }
-    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4

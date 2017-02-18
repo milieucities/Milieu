@@ -45,22 +45,6 @@ class CommentCell: UITableViewCell {
         }
     }
     
-    func likeButtonIsPressed(){
-        votedUp = !votedUp
-        votedDown = false
-        likeButton.setTitleColor((votedUp ? Color.primary : Color.lightGray), for: .normal)
-        dislikeButton.setTitleColor(Color.lightGray, for: .normal)
-        voteCountLabel.text = String(Int(voteCountLabel.text!)! + (votedUp ? 1 : -1))
-    }
-    
-    func dislikeButtonIsPressed(){
-        votedUp = false
-        votedDown = !votedDown
-        likeButton.setTitleColor(Color.lightGray, for: .normal)
-        dislikeButton.setTitleColor((votedDown ? Color.primary : Color.lightGray), for: .normal)
-        voteCountLabel.text = String(Int(voteCountLabel.text!)! + (votedDown ? -1 : 1))
-    }
-    
     /**
      If up is true, then vote a up for the comment. Otherwise, vote a down for the comment.
     */
@@ -86,11 +70,7 @@ class CommentCell: UITableViewCell {
             debugPrint(response)
             switch result{
             case .success:
-                if up{
-                    self.likeButtonIsPressed()
-                }else{
-                    self.dislikeButtonIsPressed()
-                }
+                self.updateCommentVote(statusCode: (response.response?.statusCode)!, up: up)
                 break
             case .failure:
                 let message = JSON.init(data: response.data!)["description"].stringValue
@@ -99,4 +79,33 @@ class CommentCell: UITableViewCell {
             }
         }
     }
+    
+    func updateCommentVote(statusCode: Int, up: Bool){
+        // Initial Status
+        if !votedDown && !votedUp{
+            if up && statusCode == 200{
+                voteDidFinish(up: true, down: false, offset: 1)
+            }else if !up && statusCode == 200{
+                voteDidFinish(up: false, down: true, offset: -1)
+            }
+        }else if votedUp && !votedDown{
+            if statusCode == 204{
+                voteDidFinish(up: false, down: false, offset: -1)
+            }
+        }else if !votedUp && votedDown{
+            if statusCode == 204{
+                voteDidFinish(up: false, down: false, offset: 1)
+            }
+        }
+    }
+    
+    
+    func voteDidFinish(up: Bool, down: Bool, offset: Int){
+        votedUp = up
+        votedDown = down
+        likeButton.setTitleColor((votedUp ? Color.primary : Color.lightGray), for: .normal)
+        dislikeButton.setTitleColor((votedDown ? Color.primary : Color.lightGray), for: .normal)
+        voteCountLabel.text = String(Int(voteCountLabel.text!)! + offset)
+    }
+    
 }

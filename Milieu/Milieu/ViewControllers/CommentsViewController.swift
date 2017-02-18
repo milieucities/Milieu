@@ -20,13 +20,6 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
     var user: User?
     let accountMgr = AccountManager.sharedInstance
     
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        self.contentSizeInPopup = CGSize(width: 300, height: 400)
-//        self.landscapeContentSizeInPopup = CGSize(width: 400, height: 200)
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(CommentsViewController.doneBtnDidTap))
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -74,7 +67,8 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
         user = accountMgr.fetchUser()
         loadComments()
     }
-    
+
+
     
     func doneBtnDidTap(){
         self.dismiss(animated: true, completion: nil)
@@ -87,22 +81,6 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
         }
         
         create(comment: commentTextView.text)
-
-        
-//        let delay = 0.1 * Double(NSEC_PER_MSEC)
-//        let time = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-//        
-//        DispatchQueue.main.asyncAfter(deadline: time, execute: {
-//            
-//            let numberOfSections = self.tableView.numberOfSections
-//            let numberOfRows = self.tableView.numberOfRows(inSection: numberOfSections-1)
-//            
-//            if numberOfRows > 0 {
-//                let indexPath = IndexPath(row: numberOfRows-1, section: (numberOfSections-1))
-//                self.tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.none, animated: true)
-//            }
-//        })
-//        
     }
 }
 
@@ -116,12 +94,18 @@ extension CommentsViewController: UITableViewDataSource, UITableViewDelegate{
         cell.commentLabel.text = comment.body
         cell.userId = comment.userId
         cell.commentId = comment.id
-        cell.dateLabel.text = DateUtil.transformStringFromDate(comment.createdAt, dateStyle: .short, timeStyle: .none, stringFormat: .utcStandardFormat)
+        
+        // Truncate the date string
+        let dateString = comment.createdAt
+        let newEndIndex = dateString.index(dateString.endIndex, offsetBy: -4)
+        let truncated = dateString.substring(to: newEndIndex)
+        cell.dateLabel.text = DateUtil.transformStringFromDate(truncated, dateStyle: .medium, timeStyle: .short, stringFormat: .customizeFormat(format: "yyyy-MM-dd HH:mm:ss", timeZone: TimeZone(abbreviation: "UTC")!))
         cell.voteCountLabel.text = String(comment.voteCount)
         cell.votedUp = comment.votedUp
         cell.votedDown = comment.votedDown
         return cell
     }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return devSiteComments.count

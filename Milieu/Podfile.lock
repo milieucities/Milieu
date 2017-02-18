@@ -7,17 +7,18 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
   - Fabric (1.6.11)
-  - FBSDKCoreKit (4.18.0):
+  - FBSDKCoreKit (4.19.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.18.0):
+  - FBSDKLoginKit (4.19.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.18.0):
+  - FBSDKShareKit (4.19.0):
     - FBSDKCoreKit
-  - Mapbox-iOS-SDK (3.4.0)
-  - NVActivityIndicatorView (3.2)
+  - Mapbox-iOS-SDK (3.4.1)
+  - NVActivityIndicatorView (3.4)
   - STPopup (1.8.2)
   - SwiftKeychainWrapper (3.0.1)
   - SwiftyJSON (3.1.4)
+  - Whisper (4.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
@@ -30,20 +31,22 @@ DEPENDENCIES:
   - STPopup (~> 1.8.2)
   - SwiftKeychainWrapper
   - SwiftyJSON
+  - Whisper
 
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  FBSDKCoreKit: 15fef8804a4629f98c6f4e55e81a76c9d725d85e
-  FBSDKLoginKit: 6773073e970b2b15fb12e451ce7f11da0532b880
-  FBSDKShareKit: 0b8d6cc3f103c75297eb3c62caec284a2ccf1b9e
-  Mapbox-iOS-SDK: 0b466a2e2346589e93050e0b1d1c253f6b2510bc
-  NVActivityIndicatorView: 28942c18ced111a6a3ce5e6f5b27d9d40116d639
+  FBSDKCoreKit: 894b2b6eda6a4c8c4204e92e59cc355709ef045c
+  FBSDKLoginKit: 83ca4d8f12a2022570af9fd6aacf27f6b425b99f
+  FBSDKShareKit: 5953758366278430dc322d5cdc906db361ed7f81
+  Mapbox-iOS-SDK: 9c0d23e9a3784e6c9e45af4339898e4598b5b09b
+  NVActivityIndicatorView: 5754be63ceecd1df8af37d3c088d81872feeb8b8
   STPopup: b69b3e7484ef7d2baec5f9ab2939f8a7bcdfe218
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  Whisper: 08be92623311f8e53201e62e17f6d7b9599a4714
 
-PODFILE CHECKSUM: 465cd06a8cbd26b57935fc17aa819409369c481d
+PODFILE CHECKSUM: 3ec8cef7a0ec6e4cd54468c512f800d25d886bc3
 
 COCOAPODS: 1.1.1
