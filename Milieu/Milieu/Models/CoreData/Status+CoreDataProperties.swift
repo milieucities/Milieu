@@ -14,11 +14,11 @@ import CoreData
 
 extension Status {
 
-    @NSManaged var createdDate: NSDate?
+    @NSManaged var createdDate: Date?
     @NSManaged var id: NSNumber?
     @NSManaged var status: String?
-    @NSManaged var statusDate: NSDate?
-    @NSManaged var updatedDate: NSDate?
+    @NSManaged var statusDate: Date?
+    @NSManaged var updatedDate: Date?
     @NSManaged var devApp: DevApp?
 
 }

@@ -9,8 +9,8 @@
 import Foundation
 
 enum MilieuDateFormat{
-    case UTCStandardFormat
-    case NoFormat
+    case utcStandardFormat
+    case customizeFormat(format:String, timeZone:TimeZone)
 }
 class DateUtil{
     
@@ -23,21 +23,22 @@ class DateUtil{
      - Parameter stringFormat: Pre-defined format to identify the dateString
      - Returns: A human readable date and time string
     */
-    class func transformStringFromDate(dateString: String?, dateStyle: NSDateFormatterStyle, timeStyle: NSDateFormatterStyle, stringFormat: MilieuDateFormat) -> String{
+    class func transformStringFromDate(_ dateString: String?, dateStyle: DateFormatter.Style, timeStyle: DateFormatter.Style, stringFormat: MilieuDateFormat) -> String{
         
         if let dateString = dateString{
-            let dateFormatter = NSDateFormatter()
+            let dateFormatter = DateFormatter()
             
             switch stringFormat{
-            case .UTCStandardFormat:
-                dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
+            case .utcStandardFormat:
+                dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-            case .NoFormat:
-                return dateString
+            case .customizeFormat(let format, let timezone):
+                dateFormatter.dateFormat = format
+                dateFormatter.timeZone = timezone
             }
             
-            if let dateObject = dateFormatter.dateFromString(dateString){
-                return NSDateFormatter.localizedStringFromDate(dateObject, dateStyle: dateStyle, timeStyle: timeStyle)
+            if let dateObject = dateFormatter.date(from: dateString){
+                return DateFormatter.localizedString(from: dateObject, dateStyle: dateStyle, timeStyle: timeStyle)
             }else{
                 return dateString
             }
@@ -47,31 +48,14 @@ class DateUtil{
         
     }
     
-    class func transformStringFromDate(date: NSDate?, dateStyle: NSDateFormatterStyle, timeStyle: NSDateFormatterStyle) -> String{
+    class func transformStringFromDate(_ date: Date?, dateStyle: DateFormatter.Style, timeStyle: DateFormatter.Style) -> String{
         
         if let date = date{
-            return NSDateFormatter.localizedStringFromDate(date, dateStyle: dateStyle, timeStyle: timeStyle)
+            return DateFormatter.localizedString(from: date, dateStyle: dateStyle, timeStyle: timeStyle)
         }else{
             return "Unknown"
         }
         
-    }
-    
-    class func transformDateFromString(dateString: String?, withFormat stringFormat: MilieuDateFormat) -> NSDate{
-        if let dateString = dateString{
-            let dateFormatter = NSDateFormatter()
-            
-            switch stringFormat{
-            case .UTCStandardFormat:
-                dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-            case .NoFormat:
-                return NSDate()
-            }
-            
-            return dateFormatter.dateFromString(dateString) ?? NSDate()
-        }
-        return NSDate()
     }
     
 }
