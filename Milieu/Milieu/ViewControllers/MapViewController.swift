@@ -9,6 +9,7 @@
 import Mapbox
 import STPopup
 import UIKit
+import Alamofire
 
 class MapViewController: UIViewController{
     
@@ -19,14 +20,15 @@ class MapViewController: UIViewController{
     var coreDataStack: CoreDataStack!
     var selectedNeighbour: Neighbourhood?
     
-    var events: [EventInfo]!
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     
-    let certainDate: NSDate = {
-       let comps = NSDateComponents()
+    var devSiteCache: [DevSite]?
+    
+    let certainDate: Date = {
+       var comps = DateComponents()
         // Always show recent 1 year result
         comps.year = -1
-        return NSCalendar.currentCalendar().dateByAddingComponents(comps, toDate: NSDate(), options: [])!
+        return (Calendar.current as NSCalendar).date(byAdding: comps, to: Date(), options: [])!
     }()
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
@@ -37,52 +39,41 @@ class MapViewController: UIViewController{
         super.viewDidLoad()
         
         coreDataStack = CoreDataManager.sharedManager.coreDataStack
-        linkMenuController()
         createMapView()
         
         // Add gesture to change the map style
         map.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
             action: #selector(MapViewController.changeStyle(_:))))
         
-        events = EventInfo.loadAllEvents()
-        
-        if selectedNeighbour == nil{
-            loadDefaultLocationIfAny()
-        }else{
-            showApplicationsInSelectedNeighbour()
-        }
+        settleUserLocation()
         
         // Set the bar appearance in MapView to solve the bug that the first showing close button color is dark blue
-        STPopupNavigationBar.appearance().barTintColor = UIColor(red:158.0/255.0, green:211.0/255.0, blue:225.0/255.0, alpha:1)
-        STPopupNavigationBar.appearance().tintColor = UIColor.whiteColor()
-        STPopupNavigationBar.appearance().barStyle = UIBarStyle.Default
-        STPopupNavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        STPopupNavigationBar.appearance().barTintColor = Color.primary
+        STPopupNavigationBar.appearance().tintColor = UIColor.white
+        STPopupNavigationBar.appearance().barStyle = UIBarStyle.default
+        STPopupNavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        displaySitesNearUserLocation()
     }
     
     func showApplicationsInSelectedNeighbour(){
-        displaySelectedNeighbour()
         populateAnnotations()
-    }
-    
-    // MARK: - View Setup
-    func linkMenuController(){
-        // Link the menus
-        if revealViewController() != nil{
-            revealViewController().rearViewRevealWidth = 260
-            locationMenuButton.target = revealViewController()
-            locationMenuButton.action = #selector(SWRevealViewController.revealToggle(_:))
-            
-            revealViewController().rightViewRevealWidth = 220
-            menuButton.target = revealViewController()
-            menuButton.action = #selector(SWRevealViewController.rightRevealToggle(_:))
-        }
     }
     
     // MARK: - Map View Setup
     func createMapView(){
         // Create the Map View
-        map = MGLMapView(frame: view.bounds, styleURL: MGLStyle.streetsStyleURLWithVersion(9))
-        map.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        map = MGLMapView(frame: view.bounds, styleURL: MGLStyle.streetsStyleURL(withVersion: 9))
+        map.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         view.addSubview(map)
         
@@ -92,112 +83,72 @@ class MapViewController: UIViewController{
     
     func settleUserLocation(){
         map.showsUserLocation = true
-        map.userTrackingMode = .Follow
+        map.userTrackingMode = .follow
     }
     
     func loadDefaultLocationIfAny(){
         // Load the defaults value
-        let defaultNeighbour = defaults.objectForKey(DefaultsKey.SelectedNeighbour) as? String
+        let defaultNeighbour = defaults.object(forKey: DefaultsKey.SelectedNeighbour) as? String
         selectedNeighbour = NeighbourManager.sharedManager.fetchNeighbourhood(defaultNeighbour ?? "")
         if selectedNeighbour == nil{
             settleUserLocation()
-            showLocationSelectionView()
         }else{
             showApplicationsInSelectedNeighbour()
         }
     }
     
+    /**
+     Displaying sites near user location
+    */
+    func displaySitesNearUserLocation(){
+        if let userCoordinate = map.userLocation?.location?.coordinate{
+            AR5Logger.debug("\(userCoordinate)")
+            
+            if devSiteCache == nil || devSiteCache?.count == 0 {
+                // Fetch the nearby dev sites
+                Webservice().load(resource: DevSite.nearby(userCoordinate)){
+                    result in
+                    self.devSiteCache = result
+                    self.populateAnnotations()
+                }
+            }
+        }
+    }
+    
 
-    func changeStyle(longPress: UILongPressGestureRecognizer) {
-        if longPress.state == .Began {
+    func changeStyle(_ longPress: UILongPressGestureRecognizer) {
+        if longPress.state == .began {
             let styleURLs = [
-                MGLStyle.lightStyleURLWithVersion(9),
-                MGLStyle.streetsStyleURLWithVersion(9),
-                MGLStyle.outdoorsStyleURLWithVersion(9),
-                MGLStyle.darkStyleURLWithVersion(9),
-                MGLStyle.satelliteStyleURLWithVersion(9),
-                MGLStyle.satelliteStreetsStyleURLWithVersion(9)
+                MGLStyle.lightStyleURL(withVersion: 9),
+                MGLStyle.streetsStyleURL(withVersion: 9),
+                MGLStyle.outdoorsStyleURL(withVersion: 9),
+                MGLStyle.darkStyleURL(withVersion: 9),
+                MGLStyle.satelliteStyleURL(withVersion: 9),
+                MGLStyle.satelliteStreetsStyleURL(withVersion: 9)
             ]
             var index = 0
             for styleURL in styleURLs {
                 if map.styleURL == styleURL {
-                    index = styleURLs.indexOf(styleURL)!
+                    index = styleURLs.index(of: styleURL)!
                 }
             }
             if index == styleURLs.endIndex - 1 {
                 index = styleURLs.startIndex
             } else {
-                index = index.advancedBy(1)
+                index = index.advanced(by: 1)
             }
             map.styleURL = styleURLs[index]
         }
     }
     
     // MARK: - View Controller Logic
-    
-    func displaySelectedNeighbour(){
-        
-        // Try to find the neighbourhood bounds
-        // Use the current one if those can't be found
-        let bounds = NeighbourManager.findBoundsFromNeighbourhood(selectedNeighbour) ?? map.visibleCoordinateBounds
-        map.setVisibleCoordinateBounds(bounds, edgePadding: UIEdgeInsetsMake(5.0, 10.0, 5.0, 10.0), animated: true)
-        defaults.setObject(selectedNeighbour!.name, forKey: DefaultsKey.SelectedNeighbour)
-        defaults.synchronize()
-    }
-    
     func populateAnnotations(){
-        if let neighbour = selectedNeighbour{
-            var applicationInfos = [MilieuAnnotation]()
-            
-            for item in neighbour.devApps!{
-                let app = item as! DevApp
-                if let _ = app.addresses?.allObjects.first as? Address{
-                    let appInfo = ApplicationInfo(devApp: app)
-                    
-                    if let devAppStatus = app.statuses?.reverse().first as? Status{
-                        if let statusDate = devAppStatus.statusDate{
-                            if statusDate >= certainDate{
-                                applicationInfos.append(appInfo)
-                            }
-                        }
-                    }
-                }
-            }
-            
-            for event in events{
-                if event.wardNum == neighbour.number{
-                    applicationInfos.append(event)
-                }
-            }
-            
+        if let devSiteCache = devSiteCache{
+            let devSites = devSiteCache.map{ApplicationInfo(devSite: $0)}
             map.removeAnnotations(map.annotations ?? [MGLAnnotation]())
             map.showsUserLocation = true
-            map.addAnnotations(applicationInfos)
+            map.addAnnotations(devSites)
         }
-    }
-    
-    
-    // MARK: - Segue
-    func showLocationSelectionView(){
-        self.performSegueWithIdentifier("mapToLocationSelection", sender: self)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "mapToLocationSelection"{
-            let locationSelectionVC = segue.destinationViewController as! LocationSelectionViewController
-            
-            // Show the location selection view on top of the current map view
-            locationSelectionVC.view.frame = self.view.bounds
-            locationSelectionVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-            locationSelectionVC.hidesBottomBarWhenPushed = true
-        }
-    }
-    
-    // MARK: - Callback from LocationSelectionViewController
-    @IBAction func unwindFromLocationSelection(segue: UIStoryboardSegue){
-        let locationSelectionController = segue.sourceViewController as! LocationSelectionViewController
-        selectedNeighbour = locationSelectionController.selectedNeighbourhood
-        showApplicationsInSelectedNeighbour()
     }
 }
 
@@ -205,54 +156,37 @@ class MapViewController: UIViewController{
 
 extension MapViewController: MGLMapViewDelegate{
     
-    func mapView(mapView: MGLMapView, imageForAnnotation annotation: MGLAnnotation) -> MGLAnnotationImage? {
+    func mapView(_ mapView: MGLMapView, imageFor annotation: MGLAnnotation) -> MGLAnnotationImage? {
         let annotation = annotation as! MilieuAnnotation
         // Make unique reusable identifier for one annotation type
         let identifier = annotation.category.rawValue
+        let image = UIImage(named: identifier)!
         
-        var annotationImage = mapView.dequeueReusableAnnotationImageWithIdentifier(identifier)
+        var annotationImage = mapView.dequeueReusableAnnotationImage(withIdentifier: identifier)
         
         if annotationImage == nil{
-            let image = UIImage(named: identifier)!
             annotationImage = MGLAnnotationImage(image: image, reuseIdentifier: identifier)
         }
         
         return annotationImage
     }
     
-    func mapView(mapView: MGLMapView, didSelectAnnotation annotation: MGLAnnotation) {
+    func mapView(_ mapView: MGLMapView, didSelect annotation: MGLAnnotation) {
         
         // Deselect the annotation so that it can be chosen again after dismissing the detail view controller
         mapView.deselectAnnotation(annotation, animated: false)
         
         if let annotation = annotation as? ApplicationInfo{
-            
-            // Create the ApplicationDetailViewController by storyboard
-            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ApplicationDetailViewController") as? ApplicationDetailViewController
-            
-            // Set the annotation
-            viewController?.annotation = annotation
-            
-            // Use the STPopupController to make the fancy view controller
-            let popupController = STPopupController(rootViewController: viewController)
-            popupController.containerView.layer.cornerRadius = 4
+            performSegue(withIdentifier: Segue.mapToDetailSegue, sender: annotation)
+        }
+    }
+}
 
-            // Show it on top of the map view
-            popupController.presentInViewController(self)
-            
-        }else if let annotation = annotation as? EventInfo{
-            // Create the ApplicationDetailViewController by storyboard
-            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("EventDetailViewController") as? EventDetailViewController
-            
-            // Set the annotation
-            viewController?.annotation = annotation
-            
-            // Use the STPopupController to make the fancy view controller
-            let popupController = STPopupController(rootViewController: viewController)
-            popupController.containerView.layer.cornerRadius = 4
-            
-            // Show it on top of the map view
-            popupController.presentInViewController(self)
+extension MapViewController{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Segue.mapToDetailSegue{
+            let viewController = segue.destination as! DevsiteDetailController
+            viewController.annotation = sender as! ApplicationInfo
         }
     }
 }

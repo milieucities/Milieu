@@ -1,30 +1,52 @@
 PODS:
-  - Alamofire (3.4.1)
-  - Fabric (1.6.7)
-  - Mapbox-iOS-SDK (3.2.3)
-  - NVActivityIndicatorView (2.8)
-  - PNChart (0.8.9):
-    - UICountingLabel (~> 1.2.0)
-  - STPopup (1.7.0)
-  - UICountingLabel (1.2.0)
+  - Alamofire (4.3.0)
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.8.4)
+  - Fabric (1.6.11)
+  - FBSDKCoreKit (4.19.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.19.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.19.0):
+    - FBSDKCoreKit
+  - Mapbox-iOS-SDK (3.4.1)
+  - NVActivityIndicatorView (3.4)
+  - STPopup (1.8.2)
+  - SwiftKeychainWrapper (3.0.1)
+  - SwiftyJSON (3.1.4)
+  - Whisper (4.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.0)
+  - Alamofire (~> 4.3)
   - Fabric
-  - Mapbox-iOS-SDK (~> 3.1)
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - FBSDKShareKit
+  - Mapbox-iOS-SDK
   - NVActivityIndicatorView
-  - PNChart
-  - STPopup (~> 1.6)
+  - STPopup (~> 1.8.2)
+  - SwiftKeychainWrapper
+  - SwiftyJSON
+  - Whisper
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  Mapbox-iOS-SDK: 120e8a140e9cd4adae8227340dd89f5cc3850259
-  NVActivityIndicatorView: 6aba1dbbd893f615a9452c9e66ae46473e1ce092
-  PNChart: 84774d225c2126ded6c93d4dbe6ae98c3a73c2d2
-  STPopup: 36b45120f51ab3cdf7a10c1b9032b7fc8eef75ac
-  UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  FBSDKCoreKit: 894b2b6eda6a4c8c4204e92e59cc355709ef045c
+  FBSDKLoginKit: 83ca4d8f12a2022570af9fd6aacf27f6b425b99f
+  FBSDKShareKit: 5953758366278430dc322d5cdc906db361ed7f81
+  Mapbox-iOS-SDK: 9c0d23e9a3784e6c9e45af4339898e4598b5b09b
+  NVActivityIndicatorView: 5754be63ceecd1df8af37d3c088d81872feeb8b8
+  STPopup: b69b3e7484ef7d2baec5f9ab2939f8a7bcdfe218
+  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  Whisper: 08be92623311f8e53201e62e17f6d7b9599a4714
 
-PODFILE CHECKSUM: c6f5a899f9d9a3ff780fa7c47afcff1875bf0abe
+PODFILE CHECKSUM: 3ec8cef7a0ec6e4cd54468c512f800d25d886bc3
 
-COCOAPODS: 1.0.0.beta.6
+COCOAPODS: 1.1.1

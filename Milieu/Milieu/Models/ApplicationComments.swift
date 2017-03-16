@@ -8,24 +8,26 @@
 
 import Foundation
 import UIKit
+import SwiftyJSON
 
 struct ApplicationComments {
-    let userName: String
-    let date: String
-    let content: String
-    var userAvatar: String = ""
+    var userName: String = "Anonymous"
+    let userId: Int?
+    let body: String?
+    var createdAt: String = ""
+    var voteCount: Int = 0
+    var votedDown: Int?
+    var votedUp: Int?
+    var id: Int
     
-    init(userName: String, date: String, content: String, userAvatar: String){
-        self.userName = userName
-        self.date = date
-        self.content = content
-        self.userAvatar = userAvatar
-    }
-    
-    
-    init(comment: NSDictionary){
-        self.userName = comment["username"] as? String ?? "Anonymous"
-        self.date = DateUtil.transformStringFromDate(comment["created_at"] as? String, dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.ShortStyle, stringFormat: MilieuDateFormat.UTCStandardFormat)
-        self.content = comment["body"] as? String ?? "Error comment"
+    init(comment: JSON){
+        self.userName = comment["user"]["name"].string ?? "Anonymous"
+        self.userId = comment["user"]["id"].int
+        self.body = comment["body"].stringValue
+        self.createdAt = comment["created_at"].stringValue
+        self.voteCount = comment["vote_count"].int ?? 0
+        self.votedDown = comment["voted_down"].int
+        self.votedUp = comment["voted_up"].int
+        self.id = comment["id"].intValue
     }
 }
